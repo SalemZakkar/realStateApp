@@ -5,15 +5,15 @@ import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
-import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
-import 'package:real_state/features/home/presentation/home_page.dart';
 import 'package:real_state/injection.dart';
 import 'package:real_state/routing/observer_utils.dart';
 import 'package:real_state/routing/route_info.dart';
 import 'package:real_state/routing/routes.dart';
 import 'package:real_state/themes/app_theme.dart';
 
+import 'features/core/presentation/page/splash_page.dart';
+import 'features/real_state/presentation/page/real_state_map_page.dart';
 import 'generated/translation/translations.dart';
 
 class App extends StatefulWidget {
@@ -40,8 +40,10 @@ class _AppState extends State<App> {
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listener: (context, state) {
+              // goRouterConfig.go(RealStateMapPage.path);
+              // return;
               if (state.authState == AuthStateType.authenticated) {
-                goRouterConfig.go(HomePage.path);
+                goRouterConfig.go(RealStateMapPage.path);
                 return;
               }
               if (state.authState == AuthStateType.unActivated) {
@@ -116,5 +118,9 @@ List<RouteBase> _getRoutes(List<RouteInfo>? routes) => (routes ?? []).map((
     name: subRoute.name ?? subRoute.path,
     builder: (context, state) => subRoute.builder(context, state, null),
     routes: _getRoutes(subRoute.routes),
+    pageBuilder: tabRoutes.contains(subRoute.path)
+        ? (context, state) =>
+              NoTransitionPage(child: subRoute.builder(context, state, null))
+        : null,
   );
 }).toList();

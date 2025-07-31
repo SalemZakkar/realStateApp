@@ -165,4 +165,7 @@ class TranslationsEn extends Translations {
 
   @override
   String get resend => 'Resend';
+
+  @override
+  String get settings => 'Settings';
 }

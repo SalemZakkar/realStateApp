@@ -4,11 +4,16 @@ import 'package:real_state/features/auth/presentation/page/auth_login_page.dart'
 import 'package:real_state/features/auth/presentation/page/auth_signup_page.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
 import 'package:real_state/features/core/presentation/page/send_otp_page.dart';
+import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
-import 'package:real_state/features/home/presentation/home_page.dart';
-import 'package:real_state/features/user/presentation/user_change_password_page.dart';
+import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
+import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
 import 'package:real_state/routing/route_info.dart';
+
+import '../features/real_state/presentation/page/real_state_list_page.dart';
 
 class Routes {
   Routes._();
@@ -20,7 +25,33 @@ class Routes {
       path: SplashPage.path,
       builder: (context, state, child) => SplashPage(),
     ),
-    RouteInfo(path: HomePage.path, builder: (co, st, _) => HomePage()),
+    RouteInfo(
+      path: HomePage.path,
+      type: RouteType.shell,
+      builder: (co, st, child) => HomePage(child: child!),
+      routes: [
+        RouteInfo(
+          useRootNavigator: false,
+          path: RealStateMapPage.path,
+          builder: (context, state, child) => RealStateMapPage(),
+        ),
+        RouteInfo(
+          useRootNavigator: false,
+          path: RealStateListPage.path,
+          builder: (context, state, child) => RealStateListPage(),
+        ),
+        RouteInfo(
+          useRootNavigator: false,
+          path: RealStateSavedPage.path,
+          builder: (context, state, child) => RealStateSavedPage(),
+        ),
+        RouteInfo(
+          useRootNavigator: false,
+          path: SettingsPage.path,
+          builder: (context, state, child) => SettingsPage(),
+        ),
+      ],
+    ),
     RouteInfo(
       path: AuthLoginPage.path,
       builder: (context, state, child) => AuthLoginPage(),
@@ -31,7 +62,8 @@ class Routes {
     ),
     RouteInfo(
       path: SendOtpPage.path,
-      builder: (context, state, child) => SendOtpPage(reason: state.extra as OtpReason),
+      builder: (context, state, child) =>
+          SendOtpPage(reason: state.extra as OtpReason),
     ),
     RouteInfo(
       path: VerifyOtpPage.path,
@@ -64,3 +96,10 @@ extension R on BuildContext {
     );
   }
 }
+
+List<String> tabRoutes = [
+  RealStateListPage.path,
+  RealStateMapPage.path,
+  RealStateSavedPage.path,
+  SettingsPage.path,
+];

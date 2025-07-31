@@ -394,6 +394,12 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Resend'**
   String get resend;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

@@ -4,8 +4,8 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/fields/password_input_field.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 
-import '../../../generated/generated_assets/assets.gen.dart';
-import '../../core/presentation/widget/lable_widget.dart';
+import '../../../../generated/generated_assets/assets.gen.dart';
+import '../../../core/presentation/widget/lable_widget.dart';
 
 class UserChangePasswordPage extends StatefulWidget {
   static String path = '/user/changepassword';

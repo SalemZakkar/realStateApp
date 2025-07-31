@@ -48,6 +48,7 @@
   "changePassword" : "Change Password",
   "changeYourAccountPassword" : "Change Your Account Password",
   "currentPassword" : "Current Password",
-  "resend" : "Resend"
+  "resend" : "Resend",
+  "settings" : "Settings"
 
 }
