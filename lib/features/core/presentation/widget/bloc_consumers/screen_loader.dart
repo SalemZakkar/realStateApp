@@ -15,6 +15,7 @@ class ScreenLoader<T> extends StatefulWidget {
   final Widget child;
   final bool? isFloating;
   final bool withSuccess;
+  final bool? useRoot;
 
   const ScreenLoader({
     super.key,
@@ -26,6 +27,7 @@ class ScreenLoader<T> extends StatefulWidget {
     required this.child,
     this.isFloating,
     this.withSuccess = true,
+    this.useRoot,
   });
 
   @override
@@ -47,9 +49,9 @@ class _ScreenLoaderState<T> extends State<ScreenLoader<T>> {
       bloc: widget.cubit,
       listener: (context, BaseState<T> state) {
         if (state.isInProgress) {
-          DialogUtil(context: context).showLoadingDialog();
+          DialogUtil(context: context).showLoadingDialog(root: widget.useRoot);
         } else if (state.isSuccess) {
-          if(context.canPop()){
+          if (context.canPop()) {
             context.pop();
           }
           widget.onSuccess?.call(state.item as T);
@@ -59,7 +61,7 @@ class _ScreenLoaderState<T> extends State<ScreenLoader<T>> {
             // });
           }
         } else if (state.isFailure) {
-          if(context.canPop()){
+          if (context.canPop()) {
             context.pop();
           }
           DialogUtil(context: context).showFailDialog(

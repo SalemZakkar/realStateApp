@@ -78,6 +78,23 @@ flutter:
           weight: 800
         - asset: assets/font/Cairo-Black.ttf
           weight: 900
+    - family: Manrope
+      fonts:
+        - asset: assets/font/Manrope-ExtraLight.ttf
+          weight: 200
+        - asset: assets/font/Manrope-Light.ttf
+          weight: 300
+        - asset: assets/font/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/font/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/font/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: assets/font/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/font/Manrope-ExtraBold.ttf
+          weight: 800
+
 
 flutter_gen:
   output: lib/generated/generated_assets/

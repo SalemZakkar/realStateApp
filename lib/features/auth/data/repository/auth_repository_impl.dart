@@ -44,14 +44,19 @@ class AuthRepositoryImpl extends AuthRepository with ApiHandler {
       UserModel userModel = UserModel.fromJson(res['data']);
       String token = res['token'];
       await localSource.setToken(token);
-      controller.add(UserStreamSignal(user: userModel.toDomain()));
+      controller.add(
+        UserStreamSignal(
+          user: userModel.toDomain(),
+          withPush: !userModel.isEmailVerified,
+        ),
+      );
       return Right(userModel.toDomain());
     });
   }
 
   @override
   Future<void> logout() async {
-    controller.add(UserStreamSignal());
+    controller.add(UserStreamSignal(withPush: false));
     await localSource.clear();
   }
 
@@ -62,7 +67,12 @@ class AuthRepositoryImpl extends AuthRepository with ApiHandler {
       UserModel userModel = UserModel.fromJson(res['data']);
       String token = res['token'];
       await localSource.setToken(token);
-      controller.add(UserStreamSignal(user: userModel.toDomain()));
+      controller.add(
+        UserStreamSignal(
+          user: userModel.toDomain(),
+          withPush: !userModel.isEmailVerified,
+        ),
+      );
       return Right(userModel.toDomain());
     });
   }
@@ -79,11 +89,44 @@ class AuthRepositoryImpl extends AuthRepository with ApiHandler {
   Future<Either<Failure, User>> verifyUser({required String code}) {
     return request(() async {
       var res = await remoteSource.verifyEmail(code: code);
-      controller.add(UserStreamSignal(user: res.data!.toDomain()));
+      controller.add(
+        UserStreamSignal(
+          user: res.data!.toDomain(),
+          withPush: !res.data!.isEmailVerified,
+        ),
+      );
       return Right(res.data!.toDomain());
     });
   }
 
   @override
   Stream<UserStreamSignal> get authStream => controller.stream;
+
+  @override
+  Future<Either<Failure, OtpStatus>> requestOtpPassword({
+    required String email,
+  }) {
+    return request(() async {
+      var res = await remoteSource.requestPasswordOtp(email: email);
+      return Right(res.toDomain());
+    });
+  }
+
+  @override
+  Future<Either<Failure, void>> verifyOtpPassword({
+    required String email,
+    required String code,
+    required String password,
+    required String confirmPassword,
+  }) {
+    return request(() async {
+      await remoteSource.verifyPasswordOtp(
+        code: code,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      );
+      return Right(null);
+    });
+  }
 }

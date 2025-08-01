@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 class RealStateMapPage extends StatefulWidget {
   static String path = '/real_state_map_page';
@@ -20,7 +19,7 @@ class _RealStateMapPageState extends State<RealStateMapPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Assets.icons.nazg.image()
+            // Assets.icons.nazg.image()
           ],
         ),
       ),

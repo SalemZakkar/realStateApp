@@ -168,4 +168,55 @@ class TranslationsEn extends Translations {
 
   @override
   String get settings => 'Settings';
+
+  @override
+  String get realStates => 'RealStates';
+
+  @override
+  String get logOut => 'Logout';
+
+  @override
+  String get logoutMessage => 'Are u sure you want to logout?';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get whatsapp => 'Whatsapp';
+
+  @override
+  String get telegram => 'Telegram';
+
+  @override
+  String get aboutUs => 'About Us';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get sendWhatsapp => 'Send whatsapp';
+
+  @override
+  String get sendTelegram => 'Send telegram';
+
+  @override
+  String get callUs => 'Call us';
+
+  @override
+  String get facebook => 'Facebook';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get toSaveYouMustLogin => 'To save you must login';
 }

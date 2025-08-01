@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
-import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
@@ -40,10 +39,7 @@ class _AppState extends State<App> {
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listener: (context, state) {
-              // goRouterConfig.go(RealStateMapPage.path);
-              // return;
-              if (state.authState == AuthStateType.authenticated) {
-                goRouterConfig.go(RealStateMapPage.path);
+              if (!state.withPush) {
                 return;
               }
               if (state.authState == AuthStateType.unActivated) {
@@ -56,7 +52,7 @@ class _AppState extends State<App> {
                 );
                 return;
               }
-              goRouterConfig.go(AuthLoginPage.path);
+              goRouterConfig.go(RealStateMapPage.path);
             },
           ),
         ],

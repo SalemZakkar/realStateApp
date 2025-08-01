@@ -9,7 +9,11 @@ import 'package:real_state/features/user/domain/entity/user.dart';
 class AuthState {
   AuthStateType authState;
 
-  AuthState({this.authState = AuthStateType.initial, this.userData});
+  AuthState({
+    this.authState = AuthStateType.initial,
+    this.userData,
+    this.withPush = false,
+  });
 
   User? userData;
 
@@ -19,6 +23,8 @@ class AuthState {
     }
     return userData!;
   }
+
+  bool withPush;
 
   bool get authenticated => authState == AuthStateType.authenticated;
 }
@@ -51,7 +57,9 @@ class AuthCubit extends HydratedCubit<AuthState> {
   }
 
   void setUser(User? user) {
-    emitAuthState(UserStreamSignal(user: user));
+    emitAuthState(
+      UserStreamSignal(user: user, withPush: user?.isEmailVerified == false),
+    );
   }
 
   @override

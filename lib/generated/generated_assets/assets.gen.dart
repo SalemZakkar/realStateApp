@@ -41,6 +41,27 @@ class $AssetsFontGen {
   /// File path: assets/font/Cairo-SemiBold.ttf
   String get cairoSemiBold => 'assets/font/Cairo-SemiBold.ttf';
 
+  /// File path: assets/font/Manrope-Bold.ttf
+  String get manropeBold => 'assets/font/Manrope-Bold.ttf';
+
+  /// File path: assets/font/Manrope-ExtraBold.ttf
+  String get manropeExtraBold => 'assets/font/Manrope-ExtraBold.ttf';
+
+  /// File path: assets/font/Manrope-ExtraLight.ttf
+  String get manropeExtraLight => 'assets/font/Manrope-ExtraLight.ttf';
+
+  /// File path: assets/font/Manrope-Light.ttf
+  String get manropeLight => 'assets/font/Manrope-Light.ttf';
+
+  /// File path: assets/font/Manrope-Medium.ttf
+  String get manropeMedium => 'assets/font/Manrope-Medium.ttf';
+
+  /// File path: assets/font/Manrope-Regular.ttf
+  String get manropeRegular => 'assets/font/Manrope-Regular.ttf';
+
+  /// File path: assets/font/Manrope-SemiBold.ttf
+  String get manropeSemiBold => 'assets/font/Manrope-SemiBold.ttf';
+
   /// File path: assets/font/calibri.ttf
   String get calibri => 'assets/font/calibri.ttf';
 
@@ -54,6 +75,13 @@ class $AssetsFontGen {
     cairoMedium,
     cairoRegular,
     cairoSemiBold,
+    manropeBold,
+    manropeExtraBold,
+    manropeExtraLight,
+    manropeLight,
+    manropeMedium,
+    manropeRegular,
+    manropeSemiBold,
     calibri,
   ];
 }
@@ -64,11 +92,34 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bookmark.svg
   SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
 
+  /// File path: assets/icons/brandTelegram.svg
+  SvgGenImage get brandTelegram =>
+      const SvgGenImage('assets/icons/brandTelegram.svg');
+
+  /// File path: assets/icons/brandWhatsapp.svg
+  SvgGenImage get brandWhatsapp =>
+      const SvgGenImage('assets/icons/brandWhatsapp.svg');
+
+  /// File path: assets/icons/building.svg
+  SvgGenImage get building => const SvgGenImage('assets/icons/building.svg');
+
   /// File path: assets/icons/chat.svg
   SvgGenImage get chat => const SvgGenImage('assets/icons/chat.svg');
 
+  /// File path: assets/icons/compass.svg
+  SvgGenImage get compass => const SvgGenImage('assets/icons/compass.svg');
+
+  /// File path: assets/icons/dollar.svg
+  SvgGenImage get dollar => const SvgGenImage('assets/icons/dollar.svg');
+
+  /// File path: assets/icons/edit.svg
+  SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
+
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
+
+  /// File path: assets/icons/facebook.svg
+  SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
 
   /// File path: assets/icons/heart.svg
   SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
@@ -76,8 +127,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
+  /// File path: assets/icons/info.svg
+  SvgGenImage get info => const SvgGenImage('assets/icons/info.svg');
+
+  /// File path: assets/icons/instagram.svg
+  SvgGenImage get instagram => const SvgGenImage('assets/icons/instagram.svg');
+
   /// File path: assets/icons/invisible.svg
   SvgGenImage get invisible => const SvgGenImage('assets/icons/invisible.svg');
+
+  /// File path: assets/icons/maps.svg
+  SvgGenImage get maps => const SvgGenImage('assets/icons/maps.svg');
 
   /// File path: assets/icons/name.svg
   SvgGenImage get name => const SvgGenImage('assets/icons/name.svg');
@@ -94,8 +154,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone.svg
   SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
 
+  /// File path: assets/icons/phoneCall.svg
+  SvgGenImage get phoneCall => const SvgGenImage('assets/icons/phoneCall.svg');
+
+  /// File path: assets/icons/send.svg
+  SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
+
   /// File path: assets/icons/star.svg
   SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
+
+  /// File path: assets/icons/user.svg
+  SvgGenImage get user => const SvgGenImage('assets/icons/user.svg');
 
   /// File path: assets/icons/visible.svg
   SvgGenImage get visible => const SvgGenImage('assets/icons/visible.svg');
@@ -103,17 +172,30 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
     bookmark,
+    brandTelegram,
+    brandWhatsapp,
+    building,
     chat,
+    compass,
+    dollar,
+    edit,
     email,
+    facebook,
     heart,
     home,
+    info,
+    instagram,
     invisible,
+    maps,
     name,
     nazg,
     otp,
     password,
     phone,
+    phoneCall,
+    send,
     star,
+    user,
     visible,
   ];
 }

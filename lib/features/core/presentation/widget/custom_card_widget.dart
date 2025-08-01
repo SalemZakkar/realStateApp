@@ -28,7 +28,7 @@ class CustomCardWidget extends StatelessWidget {
       elevation: 0,
       shape: (withoutBorder)
           ? RoundedRectangleBorder(
-              borderRadius: borderRadius ?? BorderRadius.circular(16),
+              borderRadius: borderRadius ?? BorderRadius.circular(12),
             )
           : RoundedRectangleBorder(
               side: BorderSide(
@@ -36,7 +36,7 @@ class CustomCardWidget extends StatelessWidget {
                       Theme.of(context).primaryColor.withValues(alpha: 0.1)
                   // ?? Theme.of(context).appColors.grey.tint20!,
                   ),
-              borderRadius: borderRadius ?? BorderRadius.circular(16),
+              borderRadius: borderRadius ?? BorderRadius.circular(12),
             ),
       child: Container(
         padding: padding,

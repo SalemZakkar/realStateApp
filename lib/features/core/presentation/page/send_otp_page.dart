@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
+import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
@@ -67,6 +69,13 @@ class _SendOtpPageState extends State<SendOtpPage> {
                       if (!key.currentState!.validate()) {
                         return;
                       }
+                      context.pushReplacement(
+                        VerifyOtpPage.path,
+                        extra: VerifyOtpPageParams(
+                          reason: widget.reason,
+                          email: email.text,
+                        ),
+                      );
                     },
                     child: Text(context.translation.continuE),
                   ),

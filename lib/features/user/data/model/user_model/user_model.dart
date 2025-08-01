@@ -1,5 +1,6 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:real_state/features/core/presentation/widget/fields/phone_input_field.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
 
 part 'user_model.g.dart';
@@ -38,7 +39,7 @@ extension MapToDomain on UserModel {
     name: name,
     email: email,
     id: id,
-    phoneNumber: PhoneNumber(phoneNumber: phone, dialCode: phoneCountryCode),
+    phoneNumber: PhoneNumber(phoneNumber: phone, dialCode: phoneCountryCode , isoCode: getIso(phoneCountryCode)),
     isActive: isActive,
     isEmailVerified: isEmailVerified,
   );

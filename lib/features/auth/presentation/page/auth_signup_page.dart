@@ -109,6 +109,10 @@ class _AuthSignUpPageState extends State<AuthSignUpPage> {
                 16.height(),
                 ScreenLoader(
                   cubit: cubit,
+                  onSuccess: (v) {
+                    context.pop();
+                    context.pop();
+                  },
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(

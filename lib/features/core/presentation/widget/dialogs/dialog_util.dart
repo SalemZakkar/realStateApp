@@ -3,6 +3,7 @@ import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/themes/app_theme.dart';
 
+import 'confirm_dialog.dart';
 import 'loading_dialog.dart';
 
 class DialogUtil {
@@ -18,11 +19,11 @@ class DialogUtil {
     this.onCancel,
   });
 
-  Future<void> showLoadingDialog() async {
+  Future<void> showLoadingDialog({bool? root}) async {
     onShow?.call();
     await showDialog(
       context: context,
-      useRootNavigator: false,
+      useRootNavigator: root ?? false,
       builder: (context) => const LoadingDialog(),
       barrierDismissible: false,
     );
@@ -55,13 +56,13 @@ class DialogUtil {
     onDone?.call();
   }
 
-
   Future<void> showFailDialog({
     Failure? failure,
     bool isFloating = false,
   }) async {
     onShow?.call();
-    String message = failure?.getError(context) ?? context.translation.errorMessage;
+    String message =
+        failure?.getError(context) ?? context.translation.errorMessage;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -85,4 +86,17 @@ class DialogUtil {
     );
   }
 
+  Future<void> showConfirmDialog({required String message}) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return ConfirmDialog(
+          onAccept: () {
+            onDone?.call();
+          },
+          message: message,
+        );
+      },
+    );
+  }
 }

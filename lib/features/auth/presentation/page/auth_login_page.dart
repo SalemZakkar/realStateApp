@@ -80,6 +80,9 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                 16.height(),
                 ScreenLoader(
                   cubit: cubit,
+                  onSuccess: (v) {
+                    context.pop();
+                  },
 
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,

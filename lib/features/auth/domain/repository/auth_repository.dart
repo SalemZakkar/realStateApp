@@ -18,8 +18,18 @@ abstract class AuthRepository {
 
   Future<Either<Failure, OtpStatus>> requestOtpVerify({required String email});
 
+  Future<Either<Failure, OtpStatus>> requestOtpPassword({
+    required String email,
+  });
+
+  Future<Either<Failure, void>> verifyOtpPassword({
+    required String email,
+    required String code,
+    required String password,
+    required String confirmPassword,
+  });
+
   Future<String> getToken();
 
   Stream<UserStreamSignal> get authStream;
-
 }

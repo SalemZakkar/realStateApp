@@ -22,8 +22,8 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 264 + 64,
-      height: 72,
+      width: 264,
+      height: 64,
       alignment: Alignment.center,
 
       decoration: BoxDecoration(
@@ -39,7 +39,7 @@ class _BottomBarState extends State<BottomBar> {
               decoration: BoxDecoration(
                 // color: Colors.bl,
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.grey.withValues(alpha: 0.1),
+                color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
               ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -55,13 +55,16 @@ class _BottomBarState extends State<BottomBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _Button(image: Assets.icons.home, path: RealStateMapPage.path),
-                _Button(icon: Icons.menu, path: RealStateListPage.path),
+                _Button(image: Assets.icons.compass, path: RealStateMapPage.path),
                 _Button(
-                  image: Assets.icons.star,
+                  image: Assets.icons.building,
+                  path: RealStateListPage.path,
+                ),
+                _Button(
+                  image: Assets.icons.bookmark,
                   path: RealStateSavedPage.path,
                 ),
-                _Button(icon: Icons.settings_outlined, path: SettingsPage.path),
+                _Button(image: Assets.icons.info, path: SettingsPage.path),
               ],
             ),
           ),
@@ -92,9 +95,9 @@ class _ButtonState extends State<_Button> {
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
-        width: 56,
-        height: 56,
-        padding: EdgeInsets.all(16),
+        width: 48,
+        height: 48,
+        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: sel
@@ -103,7 +106,7 @@ class _ButtonState extends State<_Button> {
         ),
         child: widget.icon == null
             ? widget.image!.dynamicSVGColor(
-                width: 24,
+                width: 30,
                 context,
                 color: sel
                     ? context.appColorSchema.white

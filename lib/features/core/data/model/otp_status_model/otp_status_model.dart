@@ -5,6 +5,7 @@ import 'package:real_state/features/core/domain/enum/otp_status_type.dart';
 
 part 'otp_status_model.g.dart';
 
+
 @JsonSerializable()
 class OtpStatusModel {
   @CustomNonNullableDateTimeConverter()

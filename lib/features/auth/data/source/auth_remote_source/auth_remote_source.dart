@@ -16,11 +16,18 @@ abstract class AuthRemoteSource {
 
   Future signUp({required AuthSignUpParamsModel params});
 
-  Future<OtpStatusModel> requestEmailVerify({
-    required String email,
-  });
+  Future<OtpStatusModel> requestEmailVerify({required String email});
 
   Future<BaseResponse<UserModel>> verifyEmail({required String code});
+
+  Future<OtpStatusModel> requestPasswordOtp({required String email});
+
+  Future<void> verifyPasswordOtp({
+    required String email,
+    required String code,
+    required String password,
+    required String confirmPassword,
+  });
 }
 
 @RestApi()
@@ -37,9 +44,7 @@ abstract class AuthRemoteImpl extends AuthRemoteSource {
 
   @POST("auth/signup/send-otp")
   @override
-  Future<OtpStatusModel> requestEmailVerify({
-    @Field() required String email,
-  });
+  Future<OtpStatusModel> requestEmailVerify({@Field() required String email});
 
   @POST("auth/signup")
   @override
@@ -48,4 +53,17 @@ abstract class AuthRemoteImpl extends AuthRemoteSource {
   @POST("auth/verify-email-code")
   @override
   Future<BaseResponse<UserModel>> verifyEmail({@Field() required String code});
+
+  @POST("auth/forgotPassword")
+  @override
+  Future<OtpStatusModel> requestPasswordOtp({@Field() required String email});
+
+  @POST("auth/verifyResetCode")
+  @override
+  Future<void> verifyPasswordOtp({
+    @Field() required String email,
+    @Field("resetCode") required String code,
+    @Field("newPassword") required String password,
+    @Field() required String confirmPassword,
+  });
 }

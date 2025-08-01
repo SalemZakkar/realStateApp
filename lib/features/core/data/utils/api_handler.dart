@@ -38,7 +38,7 @@ mixin ApiHandler {
         return left(
           ServerFailure(
             errorCode: _getErrorCode(code: e.response?.statusCode ?? -1),
-            message: errorBody['message'] ?? 'Oops something went wrong',
+            message: errorBody['message'] ?? 'حدث خطأ',
           ),
         );
       } else {
@@ -46,7 +46,12 @@ mixin ApiHandler {
       }
     } catch (e, stack) {
       _logger.e(e.toString(), error: e, stackTrace: stack);
-      return left(ServerFailure(errorCode: ServerErrorCode.serverError));
+      return left(
+        ServerFailure(
+          errorCode: ServerErrorCode.serverError,
+          message: "حدث خطأ",
+        ),
+      );
     }
   }
 

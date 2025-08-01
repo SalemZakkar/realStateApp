@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_send_otp_cubit.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_verify_otp_cubit.dart';
+import 'package:real_state/features/auth/presentation/cubits/auth_verify_otp_password_cubit.dart';
 import 'package:real_state/features/core/domain/entity/otp_status.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
@@ -13,6 +15,7 @@ import 'package:real_state/features/core/presentation/widget/timer_disable_widge
 import 'package:real_state/injection.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
+import '../../../auth/presentation/cubits/auth_send_otp_password.dart';
 import '../widget/lable_widget.dart';
 
 class VerifyOtpPageParams {
@@ -38,6 +41,8 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   TimerDisableWidgetController controller = TimerDisableWidgetController();
   var sendEmail = getIt<AuthSendOtpCubit>();
   var verifyEmail = getIt<AuthVerifyOtpCubit>();
+  var sendPassword = getIt<AuthSendOtpPasswordCubit>();
+  var verifyPassword = getIt<AuthVerifyOtpPasswordCubit>();
   final key = GlobalKey<FormState>();
   String otp = '';
 
@@ -48,6 +53,9 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       if (widget.params.reason == OtpReason.email) {
         sendEmail.exec(email: widget.params.email);
       }
+      if (widget.params.reason == OtpReason.password) {
+        sendPassword.exec(email: widget.params.email);
+      }
     });
   }
 
@@ -57,7 +65,9 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       appBar: AppBar(),
       body: ScreenLoader<OtpStatus>(
         withSuccess: false,
-        cubit: sendEmail,
+        cubit: widget.params.reason == OtpReason.email
+            ? sendEmail
+            : sendPassword,
         onSuccess: (v) {
           if (DateTime.now().isBefore(v.nextDate)) {
             controller.toggle(v.nextDate.difference(DateTime.now()).inSeconds);
@@ -108,7 +118,14 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   ],
                   16.height(),
                   ScreenLoader(
-                    cubit: verifyEmail,
+                    onSuccess: (v) {
+                      if (widget.params.reason == OtpReason.password) {
+                        context.pop();
+                      }
+                    },
+                    cubit: widget.params.reason == OtpReason.email
+                        ? verifyEmail
+                        : verifyPassword,
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
@@ -118,6 +135,14 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           }
                           if (widget.params.reason == OtpReason.email) {
                             verifyEmail.exec(code: otp);
+                          }
+                          if (widget.params.reason == OtpReason.password) {
+                            verifyPassword.exec(
+                              email: widget.params.email,
+                              code: otp,
+                              password: password.text,
+                              confirmPassword: password.text,
+                            );
                           }
                         },
                         child: Text(context.translation.continuE),
@@ -135,6 +160,9 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           onPressed: () {
                             if (widget.params.reason == OtpReason.email) {
                               sendEmail.exec(email: widget.params.email);
+                            }
+                            if (widget.params.reason == OtpReason.password) {
+                              sendPassword.exec(email: widget.params.email);
                             }
                           },
                           child: Text(context.translation.resend),

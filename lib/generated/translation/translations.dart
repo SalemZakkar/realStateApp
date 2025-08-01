@@ -400,6 +400,108 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @realStates.
+  ///
+  /// In en, this message translates to:
+  /// **'RealStates'**
+  String get realStates;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logOut;
+
+  /// No description provided for @logoutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are u sure you want to logout?'**
+  String get logoutMessage;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @whatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Whatsapp'**
+  String get whatsapp;
+
+  /// No description provided for @telegram.
+  ///
+  /// In en, this message translates to:
+  /// **'Telegram'**
+  String get telegram;
+
+  /// No description provided for @aboutUs.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get aboutUs;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @sendWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send whatsapp'**
+  String get sendWhatsapp;
+
+  /// No description provided for @sendTelegram.
+  ///
+  /// In en, this message translates to:
+  /// **'Send telegram'**
+  String get sendTelegram;
+
+  /// No description provided for @callUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Call us'**
+  String get callUs;
+
+  /// No description provided for @facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// No description provided for @instagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get instagram;
+
+  /// No description provided for @toSaveYouMustLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'To save you must login'**
+  String get toSaveYouMustLogin;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

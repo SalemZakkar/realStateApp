@@ -5,6 +5,7 @@ import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
+import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/domain/repository/user_repository.dart';
 
 @Injectable(as: UserRepository)
@@ -33,6 +34,18 @@ class UserRepositoryImpl extends UserRepository with ApiHandler {
   Future<Either<Failure, User>> getMine() {
     return request(() async {
       var res = await source.getMine();
+      return Right(res.data!.toDomain());
+    });
+  }
+
+  @override
+  Future<Either<Failure, User>> updateUser({required UserUpdateParams params}) {
+    return request(() async {
+      var res = await source.updateUser(
+        name: params.name,
+        phone: params.phone,
+        phoneCountryCode: params.phoneCountryCode,
+      );
       return Right(res.data!.toDomain());
     });
   }
