@@ -15,8 +15,10 @@ class CoreRepoImpl extends CoreRepository with ApiHandler {
 
   @override
   Future<Either<Failure, List<City>>> getCities() {
-    // TODO: implement getCities
-    throw UnimplementedError();
+    return request(() async {
+      var res = await source.getCities();
+      return Right(res.data!.map((e) => e.toDomain()).toList());
+    });
   }
 
   @override

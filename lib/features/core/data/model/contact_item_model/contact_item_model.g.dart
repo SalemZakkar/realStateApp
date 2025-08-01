@@ -11,7 +11,7 @@ part of 'contact_item_model.dart';
 ContactItemModel _$ContactItemModelFromJson(Map json) => ContactItemModel(
   type: $enumDecode(_$ContactTypeEnumMap, json['type']),
   value: json['value'] as String,
-  title: json['title'],
+  title: json['title'] as String?,
 );
 
 const _$ContactTypeEnumMap = {

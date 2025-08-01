@@ -47,6 +47,8 @@ import 'package:real_state/features/core/domain/entity/configuration.dart'
     as _i780;
 import 'package:real_state/features/core/domain/repository/core_repository.dart'
     as _i676;
+import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
+    as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
@@ -95,6 +97,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i672.ContactCubit>(
       () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.lazySingleton<_i305.CityCubit>(
+      () => _i305.CityCubit(gh<_i676.CoreRepository>()),
     );
     gh.factory<_i797.UserRemoteSource>(
       () => _i797.UserRemoteSourceImpl(
