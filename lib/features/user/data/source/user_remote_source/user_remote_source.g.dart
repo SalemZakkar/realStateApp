@@ -37,7 +37,7 @@ class _UserRemoteSourceImpl implements UserRemoteSourceImpl {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'changeMyPassword',
+            'users/changeMyPassword',
             queryParameters: queryParameters,
             data: _data,
           )

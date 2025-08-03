@@ -24,6 +24,12 @@ class CoreRepoImpl extends CoreRepository with ApiHandler {
   @override
   Future<Either<Failure, List<ContactItem>>> getContacts() {
     return request(() async {
+      // return Right([
+      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+      // ]);
       var res = await source.getContacts();
       return Right(res.data!.map((e) => e.toDomain()).toList());
     });

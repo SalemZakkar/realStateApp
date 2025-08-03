@@ -34,7 +34,7 @@ abstract class UserRemoteSourceImpl extends UserRemoteSource {
     return _UserRemoteSourceImpl(dio, baseUrl: configuration.getBaseUrl);
   }
 
-  @PUT("changeMyPassword")
+  @PUT("users/changeMyPassword")
   @override
   Future<void> changePassword({
     @Field("currentPassword") required String old,
