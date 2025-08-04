@@ -52,6 +52,7 @@ dev_dependencies:
   injectable_generator: ^2.7.0
   flutter_gen_runner: ^5.10.0
   retrofit_generator: ^9.1.9
+  flutter_native_splash: ^2.4.6
 
 
 flutter:
@@ -103,3 +104,9 @@ flutter_gen:
   output: lib/generated/generated_assets/
   integrations:
     flutter_svg: true
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/ic_launcher.png"
+  min_sdk_android:

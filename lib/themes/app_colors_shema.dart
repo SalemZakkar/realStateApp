@@ -27,6 +27,7 @@ abstract class AppColorsSchema {
   MainColor spanishGrey = MainColor(0xff999999, {});
   // MainColor brightGray = MainColor(0xffE9EDEC, {});
   MainColor onyx = MainColor(0xff333539, {});
+  MainColor eireBlack = MainColor(0xff1A1C22, {});
   Color grey = Colors.grey;
   Color blue = Colors.blue;
 }
