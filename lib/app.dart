@@ -59,7 +59,7 @@ class _AppState extends State<App> {
         child: MaterialApp.router(
           localizationsDelegates: Translations.localizationsDelegates,
           supportedLocales: Translations.supportedLocales,
-          theme: context.theme.appTheme.getThemeData(),
+          theme: context.theme,
           debugShowCheckedModeBanner: false,
           routerConfig: goRouterConfig,
           builder: (context, child) {

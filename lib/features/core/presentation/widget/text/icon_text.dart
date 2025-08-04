@@ -42,7 +42,7 @@ class _IconTextState extends State<IconText> {
               TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).primaryColor,
+                color: context.appColorSchema.textColors.primaryText,
               ),
         ),
       ],

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -340,11 +341,9 @@ class _PasswordInputFieldWidgetState extends State<PasswordInputFieldWidget> {
             padding: const EdgeInsets.all(12.0),
             child:
                 (_obscureText ? Assets.icons.visible : Assets.icons.invisible)
-                    .svg(
-                      colorFilter: ColorFilter.mode(
-                        Theme.of(context).appColors.grey,
-                        BlendMode.srcIn,
-                      ),
+                    .dynamicSVGColor(
+                      context,
+                      color: context.appColorSchema.shapeColors.iconColor,
                     ),
           ),
         ),

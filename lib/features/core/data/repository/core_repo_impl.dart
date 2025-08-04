@@ -7,6 +7,8 @@ import 'package:real_state/features/core/domain/entity/contact_item.dart';
 import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/domain/repository/core_repository.dart';
 
+import '../../domain/enum/contact_type.dart';
+
 @Injectable(as: CoreRepository)
 class CoreRepoImpl extends CoreRepository with ApiHandler {
   CoreRemoteSource source;
@@ -24,12 +26,12 @@ class CoreRepoImpl extends CoreRepository with ApiHandler {
   @override
   Future<Either<Failure, List<ContactItem>>> getContacts() {
     return request(() async {
-      // return Right([
-      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
-      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
-      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
-      //   ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
-      // ]);
+      return Right([
+        ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+        ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+        ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+        ContactItem(type: ContactType.whatsapp, value: 'value' , title: 'whatsapp'),
+      ]);
       var res = await source.getContacts();
       return Right(res.data!.map((e) => e.toDomain()).toList());
     });

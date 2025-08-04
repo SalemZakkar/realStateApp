@@ -123,10 +123,13 @@ class AppTheme {
         color: _schema.textColors.hintAndDisable,
       ),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: _schema.primaryColor),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: _schema.primaryColor,
+      brightness: _schema.brightness,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: Colors.white,
+      fillColor: _schema.shapeColors.cardColor,
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       labelStyle: TextStyle(
         color: _schema.textColors.labelAndSecondaryText,
@@ -213,18 +216,24 @@ class AppTheme {
   );
 }
 
-extension AppThemeExtension on ThemeData {
-  AppTheme get appTheme => AppTheme(LightAppColorSchema());
-}
+// extension AppThemeExtension on ThemeData {
+//   AppTheme get appTheme => AppTheme(LightAppColorSchema());
+// }
 
 extension ContextAppThemeExtension on BuildContext {
-  AppColorsSchema get appColorSchema => Theme.of(this).appTheme._schema;
-
-  ThemeData get theme => Theme.of(this);
-}
-
-extension GetAppColorTheme on ThemeData {
-  AppColorsSchema get appColors {
-    return LightAppColorSchema();
+  AppColorsSchema get appColorSchema {
+    AppColorsSchema schema =
+        MediaQuery.of(this).platformBrightness == Brightness.dark
+        ? DarkAppColorSchema()
+        : LightAppColorSchema();
+    return schema;
   }
+
+  ThemeData get theme => AppTheme(appColorSchema).getThemeData();
 }
+
+// extension GetAppColorTheme on ThemeData {
+//   AppColorsSchema get appColors {
+//     return LightAppColorSchema();
+//   }
+// }

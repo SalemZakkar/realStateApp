@@ -6,7 +6,6 @@ import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/regular_bottom_sheet_layout.dart';
-import 'package:real_state/themes/app_theme.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
 import '../../../../injection.dart';
@@ -53,10 +52,6 @@ class _RealStateCardState extends State<RealStateCard> {
                     icon: Assets.icons.info,
                     size: 18,
                     text: 'Title',
-                    textStyle: TextStyle(
-                      color: context.appColorSchema.textColors.primaryText,
-                      fontWeight: FontWeight.w600,
-                    ),
                   ),
                   6.height(),
                   IconText(icon: Assets.icons.maps, text: 'hama , albaath'),
