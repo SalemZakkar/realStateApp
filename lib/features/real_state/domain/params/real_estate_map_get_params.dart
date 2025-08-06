@@ -1,0 +1,3 @@
+class RealEstateMapGetParams {
+  String? city;
+}

@@ -4,6 +4,9 @@ part 'base_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true, createToJson: false)
 class BaseResponse<T> {
+  @JsonKey(
+    name: "totalResult"
+  )
   final int? totalRecords;
   final T? data;
   final String? message;

@@ -219,4 +219,111 @@ class TranslationsEn extends Translations {
 
   @override
   String get toSaveYouMustLogin => 'To save you must login';
+
+  @override
+  String categoryE(String category) {
+    String _temp0 = intl.Intl.selectLogic(category, {
+      'buy': 'Buy',
+      'rent': 'Rent',
+      'other': 'Unknown',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String propertyDeedE(String type) {
+    String _temp0 = intl.Intl.selectLogic(type, {
+      'green': 'Green',
+      'courtRolling': 'Court Rolling',
+      'municipal': 'Municipal',
+      'farm': 'Farm',
+      'industrial': 'Industrial',
+      'agricultural': 'Agricultural',
+      'other': 'Unknown',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get propertyDeed => 'Property Deed';
+
+  @override
+  String get propertyType => 'Property Type';
+
+  @override
+  String propertyTypeE(String type) {
+    String _temp0 = intl.Intl.selectLogic(type, {
+      'apartment': 'Apartment',
+      'land': 'Land',
+      'villa': 'Villa',
+      'agriculturalLand': 'Agricultural Land',
+      'industrialLand': 'Industrial Land',
+      'farm': 'Farm',
+      'shop': 'Shop',
+      'architecture': 'Architecture',
+      'other': 'Unknown',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get price => 'Price';
+
+  @override
+  String get neighborhood => 'Neighborhood';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get rooms => 'Rooms';
+
+  @override
+  String get floor => 'Floor';
+
+  @override
+  String get area => 'Area';
+
+  @override
+  String get bedrooms => 'Bedrooms';
+
+  @override
+  String get bathrooms => 'Bathrooms';
+
+  @override
+  String get kitchen => 'Kitchen';
+
+  @override
+  String get garage => 'Garage';
+
+  @override
+  String get balcony => 'Balcony';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get images => 'Images';
+
+  @override
+  String get addImage => 'Add Image';
+
+  @override
+  String get addNewImage => 'Add New Image';
+
+  @override
+  String get deleteImage => 'Delete Image';
+
+  @override
+  String get deleteImageMessage =>
+      'Are you sure you want to delete this image?';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get noData => 'No Data';
 }

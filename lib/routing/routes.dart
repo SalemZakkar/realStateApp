@@ -8,6 +8,7 @@ import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
@@ -73,6 +74,10 @@ class Routes {
     RouteInfo(
       path: UserChangePasswordPage.path,
       builder: (context, state, child) => UserChangePasswordPage(),
+    ),
+    RouteInfo(
+      path: RealEstateDetailsPage.path,
+      builder: (context, state, child) => RealEstateDetailsPage(),
     ),
   ];
 }

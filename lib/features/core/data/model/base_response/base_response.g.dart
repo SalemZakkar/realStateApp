@@ -12,7 +12,7 @@ BaseResponse<T> _$BaseResponseFromJson<T>(
   Map json,
   T Function(Object? json) fromJsonT,
 ) => BaseResponse<T>(
-  totalRecords: (json['totalRecords'] as num?)?.toInt(),
+  totalRecords: (json['totalResult'] as num?)?.toInt(),
   data: _$nullableGenericFromJson(json['data'], fromJsonT),
   message: json['message'] as String?,
 );

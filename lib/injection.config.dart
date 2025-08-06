@@ -51,6 +51,16 @@ import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
+import 'package:real_state/features/real_state/data/repository/real_estate_repository_impl.dart'
+    as _i127;
+import 'package:real_state/features/real_state/data/source/real_estate_remote_source/real_estate_remote_source.dart'
+    as _i521;
+import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart'
+    as _i670;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart'
+    as _i1066;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_map_get.dart'
+    as _i680;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
     as _i905;
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart'
@@ -95,11 +105,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i676.CoreRepository>(
       () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
     );
-    gh.lazySingleton<_i672.ContactCubit>(
-      () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
-    );
     gh.lazySingleton<_i305.CityCubit>(
       () => _i305.CityCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.lazySingleton<_i672.ContactCubit>(
+      () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
     );
     gh.factory<_i797.UserRemoteSource>(
       () => _i797.UserRemoteSourceImpl(
@@ -109,6 +119,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i31.AuthRemoteSource>(
       () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i780.Configuration>()),
+    );
+    gh.factory<_i521.RealEstateRemoteSource>(
+      () => _i521.RealEstateRemoteSourceImpl(
+        gh<_i361.Dio>(),
+        gh<_i780.Configuration>(),
+      ),
     );
     gh.factory<_i140.UserRepository>(
       () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
@@ -122,8 +138,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i31.AuthRemoteSource>(),
       ),
     );
+    gh.factory<_i670.RealEstateRepository>(
+      () => _i127.RealEstateRepositoryImpl(gh<_i521.RealEstateRemoteSource>()),
+    );
     gh.factory<_i525.AuthSendOtpCubit>(
       () => _i525.AuthSendOtpCubit(gh<_i458.AuthRepository>()),
+    );
+    gh.factory<_i1068.AuthSendOtpPasswordCubit>(
+      () => _i1068.AuthSendOtpPasswordCubit(gh<_i458.AuthRepository>()),
     );
     gh.factory<_i602.AuthSignInCubit>(
       () => _i602.AuthSignInCubit(gh<_i458.AuthRepository>()),
@@ -133,9 +155,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1001.AuthVerifyOtpCubit>(
       () => _i1001.AuthVerifyOtpCubit(gh<_i458.AuthRepository>()),
-    );
-    gh.factory<_i1068.AuthSendOtpPasswordCubit>(
-      () => _i1068.AuthSendOtpPasswordCubit(gh<_i458.AuthRepository>()),
     );
     gh.factory<_i668.AuthVerifyOtpPasswordCubit>(
       () => _i668.AuthVerifyOtpPasswordCubit(gh<_i458.AuthRepository>()),
@@ -148,6 +167,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i202.AuthCubit>(),
         gh<_i140.UserRepository>(),
       ),
+    );
+    gh.factory<_i1066.RealEstateGetListCubit>(
+      () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i680.RealEstateMapGet>(
+      () => _i680.RealEstateMapGet(gh<_i670.RealEstateRepository>()),
     );
     gh.factory<_i16.UserUpdateCubit>(
       () => _i16.UserUpdateCubit(

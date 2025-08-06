@@ -9,5 +9,5 @@ class DevConfiguration extends Configuration {
   String get name => AppEnvironment.dev;
 
   @override
-  String get getBaseUrl => "http://192.168.34.129:8080/api/v1/";
+  String get getBaseUrl => "http://192.168.43.25:8080/api/v1/";
 }

@@ -502,6 +502,156 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'To save you must login'**
   String get toSaveYouMustLogin;
+
+  /// No description provided for @categoryE.
+  ///
+  /// In en, this message translates to:
+  /// **'{category, select, buy{Buy} rent{Rent} other{Unknown}}'**
+  String categoryE(String category);
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @propertyDeedE.
+  ///
+  /// In en, this message translates to:
+  /// **'{type, select, green{Green} courtRolling{Court Rolling} municipal{Municipal} farm{Farm} industrial{Industrial} agricultural{Agricultural} other{Unknown}}'**
+  String propertyDeedE(String type);
+
+  /// No description provided for @propertyDeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Property Deed'**
+  String get propertyDeed;
+
+  /// No description provided for @propertyType.
+  ///
+  /// In en, this message translates to:
+  /// **'Property Type'**
+  String get propertyType;
+
+  /// No description provided for @propertyTypeE.
+  ///
+  /// In en, this message translates to:
+  /// **'{type, select, apartment{Apartment} land{Land} villa{Villa} agriculturalLand{Agricultural Land} industrialLand{Industrial Land} farm{Farm} shop{Shop} architecture{Architecture} other{Unknown}}'**
+  String propertyTypeE(String type);
+
+  /// No description provided for @price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get price;
+
+  /// No description provided for @neighborhood.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighborhood'**
+  String get neighborhood;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @rooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Rooms'**
+  String get rooms;
+
+  /// No description provided for @floor.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor'**
+  String get floor;
+
+  /// No description provided for @area.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get area;
+
+  /// No description provided for @bedrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedrooms'**
+  String get bedrooms;
+
+  /// No description provided for @bathrooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathrooms'**
+  String get bathrooms;
+
+  /// No description provided for @kitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen'**
+  String get kitchen;
+
+  /// No description provided for @garage.
+  ///
+  /// In en, this message translates to:
+  /// **'Garage'**
+  String get garage;
+
+  /// No description provided for @balcony.
+  ///
+  /// In en, this message translates to:
+  /// **'Balcony'**
+  String get balcony;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @images.
+  ///
+  /// In en, this message translates to:
+  /// **'Images'**
+  String get images;
+
+  /// No description provided for @addImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Image'**
+  String get addImage;
+
+  /// No description provided for @addNewImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Image'**
+  String get addNewImage;
+
+  /// No description provided for @deleteImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Image'**
+  String get deleteImage;
+
+  /// No description provided for @deleteImageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this image?'**
+  String get deleteImageMessage;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No Data'**
+  String get noData;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

@@ -14,5 +14,6 @@ void main() async {
     ),
   );
   await configureInjection("dev");
-  runApp(const App());
+  runApp(const
+  App());
 }
