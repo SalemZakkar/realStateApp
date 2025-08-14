@@ -518,7 +518,7 @@ abstract class Translations {
   /// No description provided for @propertyDeedE.
   ///
   /// In en, this message translates to:
-  /// **'{type, select, green{Green} courtRolling{Court Rolling} municipal{Municipal} farm{Farm} industrial{Industrial} agricultural{Agricultural} other{Unknown}}'**
+  /// **'{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} other{Unknown}}'**
   String propertyDeedE(String type);
 
   /// No description provided for @propertyDeed.
@@ -652,6 +652,42 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'No Data'**
   String get noData;
+
+  /// No description provided for @specifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Specifications'**
+  String get specifications;
+
+  /// No description provided for @m2.
+  ///
+  /// In en, this message translates to:
+  /// **'M2'**
+  String get m2;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @year.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get map;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

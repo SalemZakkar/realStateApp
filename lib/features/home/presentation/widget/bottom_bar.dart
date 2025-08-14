@@ -39,10 +39,14 @@ class _BottomBarState extends State<BottomBar> {
               decoration: BoxDecoration(
                 // color: Colors.bl,
                 borderRadius: BorderRadius.circular(50),
-                color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Theme.of(
+                        context,
+                      ).scaffoldBackgroundColor.withValues(alpha: 0.6)
+                    : Theme.of(context).primaryColor.withValues(alpha: 0.3),
               ),
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                 child: const SizedBox(),
               ),
             ),
@@ -55,7 +59,10 @@ class _BottomBarState extends State<BottomBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _Button(image: Assets.icons.compass, path: RealStateMapPage.path),
+                _Button(
+                  image: Assets.icons.compass,
+                  path: RealStateMapPage.path,
+                ),
                 _Button(
                   image: Assets.icons.building,
                   path: RealStateListPage.path,

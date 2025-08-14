@@ -7,7 +7,7 @@ class RealEstateGetParams extends PaginationParams {
   String? city;
 
   RealEstateGetParams({
-    required super.skip,
+    required super.page,
     required super.limit,
     this.minPrice,
     this.maxPrice,

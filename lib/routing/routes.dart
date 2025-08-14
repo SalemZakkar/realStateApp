@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/auth/presentation/page/auth_signup_page.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
+import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/send_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
@@ -77,7 +80,13 @@ class Routes {
     ),
     RouteInfo(
       path: RealEstateDetailsPage.path,
-      builder: (context, state, child) => RealEstateDetailsPage(),
+      builder: (context, state, child) => RealEstateDetailsPage(
+        realEstate: state.extra as RealEstate,
+      ),
+    ),
+    RouteInfo(
+      path: MapPage.path,
+      builder: (context, state, child) => MapPage(latLng: state.extra as LatLng),
     ),
   ];
 }

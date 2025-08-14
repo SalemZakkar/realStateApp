@@ -236,12 +236,12 @@ class TranslationsEn extends Translations {
   @override
   String propertyDeedE(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
-      'green': 'Green',
-      'courtRolling': 'Court Rolling',
-      'municipal': 'Municipal',
-      'farm': 'Farm',
-      'industrial': 'Industrial',
-      'agricultural': 'Agricultural',
+      'green': 'Green Deed',
+      'courtRolling': 'Court Rolling Deed',
+      'municipal': 'Municipal Deed',
+      'farm': 'Farm Deed',
+      'industrial': 'Industrial Deed',
+      'agricultural': 'Agricultural Deed',
       'other': 'Unknown',
     });
     return '$_temp0';
@@ -326,4 +326,22 @@ class TranslationsEn extends Translations {
 
   @override
   String get noData => 'No Data';
+
+  @override
+  String get specifications => 'Specifications';
+
+  @override
+  String get m2 => 'M2';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get map => 'Map';
 }

@@ -9,6 +9,7 @@ import 'package:real_state/features/core/presentation/widget/buttons/inkwell_wit
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/regular_bottom_sheet_layout.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
@@ -30,7 +31,7 @@ class _RealStateCardState extends State<RealStateCard> {
     double h = 100;
     return InkWellWithoutFeedback(
       onTap: () {
-        context.pushNamed(RealEstateDetailsPage.path);
+        context.pushNamed(RealEstateDetailsPage.path, extra: widget.realEstate);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -59,7 +60,6 @@ class _RealStateCardState extends State<RealStateCard> {
                   children: [
                     IconText(
                       icon: Assets.icons.info,
-                      size: 18,
                       text: widget.realEstate.title,
                     ),
                     6.height(),
@@ -70,7 +70,9 @@ class _RealStateCardState extends State<RealStateCard> {
                     6.height(),
                     IconText(
                       icon: Assets.icons.dollar,
-                      text: widget.realEstate.price.toStringAsFixed(0).formatNum(),
+                      text: widget.realEstate.price
+                          .toStringAsFixed(0)
+                          .formatNum(),
                     ),
                   ],
                 ),
@@ -80,6 +82,18 @@ class _RealStateCardState extends State<RealStateCard> {
             IconButton(
               onPressed: () {
                 if (getIt<AuthCubit>().state.authenticated) {
+                  widget.realEstate.isFavourite =
+                      !widget.realEstate.isFavourite;
+                  if (widget.realEstate.isFavourite) {
+                    getIt<RealEstateRepository>().save(
+                      id: widget.realEstate.id,
+                    );
+                  } else {
+                    getIt<RealEstateRepository>().unSave(
+                      id: widget.realEstate.id,
+                    );
+                  }
+                  setState(() {});
                 } else {
                   showModalBottomSheet(
                     context: context,

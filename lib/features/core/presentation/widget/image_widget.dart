@@ -1,11 +1,8 @@
 // ignore_for_file: unused_element
 
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/themes/app_theme.dart';
-
 
 class ImageWidget extends StatefulWidget {
   final String? url;
@@ -44,12 +41,22 @@ class _ImageWidgetState extends State<ImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWellWithoutFeedback(
-      child: Container(
-        color: Colors.transparent,
-        child: Stack(
-          children: [
-            Container(
+    return Container(
+      color: Colors.transparent,
+      width: widget.shape == BoxShape.circle
+          ? (widget.radius ?? 100)
+          : widget.width ?? 100,
+      height: widget.shape == BoxShape.circle
+          ? (widget.radius ?? 100)
+          : widget.height ?? 100,
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            top: 0,
+            child: Container(
               clipBehavior: Clip.antiAlias,
               width: widget.shape == BoxShape.circle
                   ? (widget.radius ?? 100)
@@ -83,11 +90,13 @@ class _ImageWidgetState extends State<ImageWidget> {
                         Icon(
                           Icons.image,
                           size: 40,
-                          color: context.appColorSchema.primaryColor.withValues(alpha: 0.8),
+                          color: context.appColorSchema.primaryColor.withValues(
+                            alpha: 0.8,
+                          ),
                         )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -11,7 +11,7 @@ part of 'real_estate_get_params_model.dart';
 Map<String, dynamic> _$RealEstateGetParamsModelToJson(
   RealEstateGetParamsModel instance,
 ) => <String, dynamic>{
-  'skip': instance.skip,
+  'page': instance.page,
   'limit': instance.limit,
   if (instance.minPrice case final value?) 'minPrice': value,
   if (instance.maxPrice case final value?) 'maxPrice': value,

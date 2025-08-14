@@ -18,17 +18,16 @@ class RealEstateGetListCubit
     this.params = params!;
     emit(state.setInProgressState());
     var res = await repository.getRealEstates(params: params);
-    res.fold(
-      (e) => emit(state.setFailureState(e)),
-      (r) => emit(
+    res.fold((e) => emit(state.setFailureState(e)), (r) {
+      emit(
         state.copyWith(
           status: PaginatedListStatus.success,
           totalRecords: r.totalRecords,
           hasReachedMax: r.totalRecords == r.data.length,
           items: r.data,
         ),
-      ),
-    );
+      );
+    });
   }
 
   @override
@@ -40,7 +39,7 @@ class RealEstateGetListCubit
     }
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
 
-    params.skip += state.items.length;
+    params.page++;
     var res = await repository.getRealEstates(params: params);
     res.fold((e) => emit(state.setPaginateFailureState(e)), (r) {
       var list = [...state.items, ...r.data];
@@ -48,7 +47,7 @@ class RealEstateGetListCubit
         state.copyWith(
           status: PaginatedListStatus.success,
           totalRecords: r.totalRecords,
-          hasReachedMax: r.totalRecords >= list.length,
+          hasReachedMax: list.length >= r.totalRecords,
           items: list,
         ),
       );

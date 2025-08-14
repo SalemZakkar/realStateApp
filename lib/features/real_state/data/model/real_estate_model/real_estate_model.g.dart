@@ -26,6 +26,11 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
   images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   isFavourite: json['isFavourite'] as bool? ?? false,
   description: json['description'] as String?,
+  propertyDeedType: $enumDecode(
+    _$PropertyDeedTypeEnumMap,
+    json['property_deed_type'],
+  ),
+  category: $enumDecode(_$CategoryEnumMap, json['category']),
 );
 
 const _$PropertyTypeEnumMap = {
@@ -38,3 +43,14 @@ const _$PropertyTypeEnumMap = {
   PropertyType.shop: 'shop',
   PropertyType.architecture: 'architecture',
 };
+
+const _$PropertyDeedTypeEnumMap = {
+  PropertyDeedType.green: 'green',
+  PropertyDeedType.courtRolling: 'courtRolling',
+  PropertyDeedType.municipal: 'municipal',
+  PropertyDeedType.farm: 'farm',
+  PropertyDeedType.industrial: 'industrial',
+  PropertyDeedType.agricultural: 'agricultural',
+};
+
+const _$CategoryEnumMap = {Category.buy: 'buy', Category.rent: 'rent'};

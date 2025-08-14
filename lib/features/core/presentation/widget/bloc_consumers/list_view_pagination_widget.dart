@@ -56,6 +56,7 @@ class _ListViewPaginationWidgetState<T>
 
   @override
   void initState() {
+
     scrollController = widget.scrollController ?? ScrollController();
     scrollController.addListener(() {
       if (scrollController.offset == scrollController.position.maxScrollExtent &&

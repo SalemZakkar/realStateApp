@@ -6,14 +6,14 @@ part 'real_estate_get_params_model.g.dart';
 
 @JsonSerializable(createToJson: true, createFactory: false)
 class RealEstateGetParamsModel {
-  int skip, limit;
+  int page, limit;
   double? minPrice, maxPrice;
   String? title;
   bool? isFavourite;
   String? city;
 
   RealEstateGetParamsModel({
-    required this.skip,
+    required this.page,
     required this.limit,
     this.minPrice,
     this.maxPrice,
@@ -28,7 +28,7 @@ class RealEstateGetParamsModel {
 
 extension MapF on RealEstateGetParams {
   RealEstateGetParamsModel toModel() => RealEstateGetParamsModel(
-    skip: skip,
+    page: page,
     limit: limit,
     minPrice: minPrice,
     maxPrice: maxPrice,

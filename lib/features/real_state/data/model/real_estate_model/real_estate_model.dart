@@ -2,9 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_location_model/real_estate_location_model.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/domain/enum/category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/property_type.dart';
 
 part 'real_estate_model.g.dart';
+
 @JsonSerializable()
 class RealEstateModel {
   @JsonKey(name: "_id")
@@ -26,6 +29,9 @@ class RealEstateModel {
   List<String> images;
   bool isFavourite;
   String? description;
+  Category category;
+  @JsonKey(name: "property_deed_type")
+  PropertyDeedType propertyDeedType;
 
   RealEstateModel({
     required this.id,
@@ -43,6 +49,8 @@ class RealEstateModel {
     required this.images,
     this.isFavourite = false,
     this.description,
+    required this.propertyDeedType,
+    required this.category,
   });
 
   factory RealEstateModel.fromJson(Map<String, dynamic> json) =>
@@ -64,5 +72,7 @@ class RealEstateModel {
     images: images,
     isFavourite: isFavourite,
     description: description,
+    category: category,
+    propertyDeedType: propertyDeedType,
   );
 }

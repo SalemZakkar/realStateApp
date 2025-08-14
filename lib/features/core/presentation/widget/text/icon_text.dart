@@ -26,24 +26,28 @@ class _IconTextState extends State<IconText> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.icon is SvgGenImage)
           (widget.icon as SvgGenImage).dynamicSVGColor(
             context,
             color: context.appColorSchema.primaryColor,
-            width: widget.size ?? 18,
+            width: widget.size ?? 20,
           ),
         if (widget.icon is Widget) widget.icon,
         4.width(),
-        Text(
-          widget.text,
-          style:
-              widget.textStyle ??
-              TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: context.appColorSchema.textColors.primaryText,
-              ),
+        Flexible(
+          child: Text(
+            widget.text,
+            maxLines: 2,
+            style:
+                widget.textStyle ??
+                TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: context.appColorSchema.textColors.primaryText,
+                ),
+          ),
         ),
       ],
     );

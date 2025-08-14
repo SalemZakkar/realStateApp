@@ -1,19 +1,16 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/domain/enum/contact_type.dart';
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart';
-import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/screen_loader.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
-import 'package:real_state/features/core/presentation/widget/contact_icon.dart';
+import 'package:real_state/features/core/presentation/widget/buttons/tile_button.dart';
+import 'package:real_state/features/core/presentation/widget/contact_us_card.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
 import 'package:real_state/themes/app_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
 import '../../../../injection.dart';
@@ -78,7 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 child: Column(
                                   children: [
                                     InkWellWithoutFeedback(
-                                      child: _Button(
+                                      child: TileButton(
                                         image: Assets.icons.user,
                                         title: user.name,
                                       ),
@@ -109,7 +106,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                           ),
                                         );
                                       },
-                                      child: _Button(
+                                      child: TileButton(
                                         image: Icon(
                                           Icons.phone_android,
                                           color: Theme.of(context).primaryColor,
@@ -126,7 +123,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                           UserChangePasswordPage.path,
                                         );
                                       },
-                                      child: _Button(
+                                      child: TileButton(
                                         image: Assets.icons.password,
                                         title: context.translation.password,
                                       ),
@@ -167,49 +164,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             for (var type in ContactType.values) ...[
                               for (var e in c) ...[
                                 if (e.type == type) ...[
-                                  InkWellWithoutFeedback(
-                                    onTap: () {
-                                      if (e.type == ContactType.whatsapp) {
-                                        if (Platform.isAndroid) {
-                                          launchUrl(
-                                            Uri.parse(
-                                              "https://wa.me/${e.value}/?text=hello",
-                                            ),
-                                          );
-                                        } else {
-                                          launchUrl(
-                                            Uri.parse(
-                                              "https://api.whatsapp.com/send?phone=${e.type}=hello",
-                                            ),
-                                          );
-                                        }
-                                        return;
-                                      }
-                                      if (e.type == ContactType.call) {
-                                        launchUrl(
-                                          Uri.parse("tel://${e.value}"),
-                                        );
-                                        return;
-                                      }
-                                      if (e.type == ContactType.telegram) {
-                                        launchUrl(
-                                          Uri.parse("https://t.me/${e.value}"),
-                                        );
-                                        return;
-                                      }
-
-                                      if (e.type == ContactType.facebook ||
-                                          e.type == ContactType.instagram) {
-                                        launchUrl(Uri.parse(e.value));
-                                        return;
-                                      }
-                                    },
-                                    child: _Button(
-                                      image: ContactIcon(contactType: e.type),
-                                      title: e.title ?? e.value,
-                                      isSend: true,
-                                    ),
-                                  ),
+                                  ContactUsCard(contactItem: e),
                                   16.height(),
                                 ],
                               ],
@@ -264,44 +219,6 @@ class _SettingsPageState extends State<SettingsPage> {
           contact.start();
         },
       ),
-    );
-  }
-}
-
-class _Button extends StatelessWidget {
-  final dynamic image;
-  final String title;
-  final bool isSend;
-
-  const _Button({
-    required this.image,
-    required this.title,
-    this.isSend = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (image is SvgGenImage) ...[
-          (image as SvgGenImage).dynamicSVGColor(
-            context,
-            color: Theme.of(context).primaryColor,
-            width: 24,
-            height: 24,
-          ),
-        ],
-        if (image is Widget) image,
-        8.width(),
-        Expanded(
-          child: Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
-        ),
-        (isSend ? Assets.icons.send : Assets.icons.edit).dynamicSVGColor(
-          context,
-          color: Theme.of(context).primaryColor,
-        ),
-      ],
     );
   }
 }

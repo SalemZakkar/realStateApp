@@ -19,7 +19,7 @@ class RealStateListPage extends StatefulWidget {
 
 class _RealStateListPageState extends State<RealStateListPage> {
   var cubit = getIt<RealEstateGetListCubit>();
-  var params = RealEstateGetParams(skip: 0, limit: 10);
+  var params = RealEstateGetParams(page: 1, limit: 10);
   ScrollController scrollController = ScrollController();
 
   @override

@@ -69,7 +69,7 @@
   "toSaveYouMustLogin": "To save you must login",
   "categoryE": "{category, select, buy{Buy} rent{Rent} other{Unknown}}",
   "category": "Category",
-  "propertyDeedE": "{type, select, green{Green} courtRolling{Court Rolling} municipal{Municipal} farm{Farm} industrial{Industrial} agricultural{Agricultural} other{Unknown}}",
+  "propertyDeedE": "{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} other{Unknown}}",
   "propertyDeed": "Property Deed",
   "propertyType": "Property Type",
   "propertyTypeE": "{type, select, apartment{Apartment} land{Land} villa{Villa} agriculturalLand{Agricultural Land} industrialLand{Industrial Land} farm{Farm} shop{Shop} architecture{Architecture} other{Unknown}}",
@@ -91,5 +91,11 @@
   "deleteImage": "Delete Image",
   "deleteImageMessage": "Are you sure you want to delete this image?",
   "delete": "Delete",
-  "noData" : "No Data"
+  "noData" : "No Data",
+  "specifications" : "Specifications",
+  "m2" : "M2",
+  "age" : "Age",
+  "year" : "Year",
+  "city" : "City",
+  "map" : "Map"
 }

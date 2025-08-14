@@ -43,7 +43,7 @@ abstract class InjectableModule {
         responseBody: true,
         responseHeader: true,
         request: true,
-        // usePrint: true,
+        usePrint: true,
       ),
     ]);
 

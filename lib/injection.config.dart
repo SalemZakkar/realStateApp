@@ -51,6 +51,8 @@ import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
+import 'package:real_state/features/core/presentation/utils/ext/file_manager.dart'
+    as _i417;
 import 'package:real_state/features/real_state/data/repository/real_estate_repository_impl.dart'
     as _i127;
 import 'package:real_state/features/real_state/data/source/real_estate_remote_source/real_estate_remote_source.dart'
@@ -119,6 +121,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i31.AuthRemoteSource>(
       () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i780.Configuration>()),
+    );
+    gh.singleton<_i417.FileManager>(
+      () => _i417.FileManager(gh<_i780.Configuration>()),
     );
     gh.factory<_i521.RealEstateRemoteSource>(
       () => _i521.RealEstateRemoteSourceImpl(

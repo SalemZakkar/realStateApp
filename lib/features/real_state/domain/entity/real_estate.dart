@@ -1,6 +1,8 @@
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
 
+import '../enum/category_type.dart';
+import '../enum/property_deed_type.dart';
 import '../enum/property_type.dart';
 
 class RealEstate {
@@ -19,6 +21,8 @@ class RealEstate {
   bool isFavourite;
   PropertyType propertyType;
   String? description;
+  Category category;
+  PropertyDeedType propertyDeedType;
 
   RealEstate({
     required this.id,
@@ -36,5 +40,7 @@ class RealEstate {
     required this.images,
     this.isFavourite = false,
     this.description,
+    required this.propertyDeedType,
+    required this.category,
   });
 }

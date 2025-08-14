@@ -80,7 +80,7 @@ class RegularBottomSheetLayout extends StatelessWidget {
                     child: Text(
                       title!,
                       textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                 if (actions != null) Row(children: actions!),

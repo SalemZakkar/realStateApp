@@ -118,6 +118,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
 
+  /// File path: assets/icons/expand.svg
+  SvgGenImage get expand => const SvgGenImage('assets/icons/expand.svg');
+
   /// File path: assets/icons/facebook.svg
   SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
 
@@ -177,6 +180,7 @@ class $AssetsIconsGen {
     dollar,
     edit,
     email,
+    expand,
     facebook,
     heart,
     home,
