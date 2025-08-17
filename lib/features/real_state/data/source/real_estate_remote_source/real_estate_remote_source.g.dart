@@ -60,10 +60,11 @@ class _RealEstateRemoteSourceImpl implements RealEstateRemoteSourceImpl {
 
   @override
   Future<BaseResponse<List<RealEstateModel>>> getRealEstatesMap({
-    required String city,
+    required RealEstateGetParamsModel params,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'city': city};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(params.toJson());
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponse<List<RealEstateModel>>>(

@@ -5,7 +5,7 @@ import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart';
 
-@injectable
+@singleton
 class RealEstateGetListCubit
     extends PaginationCubit<RealEstate, RealEstateGetParams> {
   RealEstateGetListCubit(this.repository) : super(BasePaginatedListState());
@@ -30,6 +30,19 @@ class RealEstateGetListCubit
     });
   }
 
+  void removeFavourite(String id) {
+    if (params.isFavourite == true) {
+      var res = state.items.where((e) => e.id != id).toList();
+      emit(
+        state.copyWith(
+          items: res,
+          totalRecords: state.totalRecords! - 1,
+          hasReachedMax: res.length >= state.totalRecords! - 1,
+        ),
+      );
+    }
+  }
+
   @override
   void paginate() async {
     if (state.hasReachedMax ||
@@ -39,7 +52,7 @@ class RealEstateGetListCubit
     }
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
 
-    params.page++;
+    params.page = (params.page ?? 0) + 1;
     var res = await repository.getRealEstates(params: params);
     res.fold((e) => emit(state.setPaginateFailureState(e)), (r) {
       var list = [...state.items, ...r.data];

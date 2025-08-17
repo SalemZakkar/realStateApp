@@ -10,6 +10,7 @@ import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/regular_bottom_sheet_layout.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart';
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
@@ -89,6 +90,9 @@ class _RealStateCardState extends State<RealStateCard> {
                       id: widget.realEstate.id,
                     );
                   } else {
+                    getIt<RealEstateGetListCubit>().removeFavourite(
+                      widget.realEstate.id,
+                    );
                     getIt<RealEstateRepository>().unSave(
                       id: widget.realEstate.id,
                     );
@@ -126,7 +130,11 @@ class _RealStateCardState extends State<RealStateCard> {
                   );
                 }
               },
-              icon: Icon(Icons.bookmark_border),
+              icon: Icon(
+                widget.realEstate.isFavourite
+                    ? Icons.bookmark
+                    : Icons.bookmark_border,
+              ),
             ),
           ],
         ),

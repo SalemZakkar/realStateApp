@@ -15,7 +15,7 @@ abstract class RealEstateRemoteSource {
   });
 
   Future<BaseResponse<List<RealEstateModel>>> getRealEstatesMap({
-    required String city,
+    required RealEstateGetParamsModel params,
   });
 
   Future<void> like({required String id});
@@ -40,7 +40,7 @@ abstract class RealEstateRemoteSourceImpl extends RealEstateRemoteSource {
   @GET("apartments/map")
   @override
   Future<BaseResponse<List<RealEstateModel>>> getRealEstatesMap({
-    @Query("city") required String city,
+    @Queries() required RealEstateGetParamsModel params,
   });
 
   @POST("wishlist")

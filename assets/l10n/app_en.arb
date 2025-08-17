@@ -97,5 +97,10 @@
   "age" : "Age",
   "year" : "Year",
   "city" : "City",
-  "map" : "Map"
+  "map" : "Map",
+  "min" : "Min",
+  "max" : "Max",
+  "syp" : "Syp",
+  "favourites" : "Favourites",
+  "km2" : "Km2"
 }

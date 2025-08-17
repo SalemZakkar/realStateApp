@@ -1,6 +1,6 @@
 class PaginationParams {
-  int page;
-  int limit;
+  int? page;
+  int? limit;
 
-  PaginationParams({required this.page, required this.limit});
+  PaginationParams({ this.page,  this.limit});
 }

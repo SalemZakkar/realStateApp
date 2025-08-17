@@ -344,4 +344,19 @@ class TranslationsEn extends Translations {
 
   @override
   String get map => 'Map';
+
+  @override
+  String get min => 'Min';
+
+  @override
+  String get max => 'Max';
+
+  @override
+  String get syp => 'Syp';
+
+  @override
+  String get favourites => 'Favourites';
+
+  @override
+  String get km2 => 'Km2';
 }

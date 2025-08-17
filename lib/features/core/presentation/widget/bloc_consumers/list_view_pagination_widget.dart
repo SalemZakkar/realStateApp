@@ -83,17 +83,17 @@ class _ListViewPaginationWidgetState<T>
     }
   }
 
-  @override
-  void didUpdateWidget(ListViewPaginationWidget<T> oldWidget) {
-    if (widget.params != null) {
-      if (widget.params != oldWidget.params) {
-        widget.paginationCubit.get(
-          params: widget.params,
-        );
-      }
-    }
-    super.didUpdateWidget(oldWidget);
-  }
+  // @override
+  // void didUpdateWidget(ListViewPaginationWidget<T> oldWidget) {
+  //   if (widget.params != null) {
+  //     if (widget.params != oldWidget.params) {
+  //       widget.paginationCubit.get(
+  //         params: widget.params,
+  //       );
+  //     }
+  //   }
+  //   super.didUpdateWidget(oldWidget);
+  // }
 
   void jumpToLast() {
     if (autoScrollLock) {

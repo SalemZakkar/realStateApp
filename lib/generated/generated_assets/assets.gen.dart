@@ -124,11 +124,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/facebook.svg
   SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
 
+  /// File path: assets/icons/filter.svg
+  SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
+
   /// File path: assets/icons/heart.svg
   SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/homeM.svg
+  SvgGenImage get homeM => const SvgGenImage('assets/icons/homeM.svg');
 
   /// File path: assets/icons/info.svg
   SvgGenImage get info => const SvgGenImage('assets/icons/info.svg');
@@ -138,6 +144,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/invisible.svg
   SvgGenImage get invisible => const SvgGenImage('assets/icons/invisible.svg');
+
+  /// File path: assets/icons/mapMarker.svg
+  SvgGenImage get mapMarker => const SvgGenImage('assets/icons/mapMarker.svg');
 
   /// File path: assets/icons/maps.svg
   SvgGenImage get maps => const SvgGenImage('assets/icons/maps.svg');
@@ -182,11 +191,14 @@ class $AssetsIconsGen {
     email,
     expand,
     facebook,
+    filter,
     heart,
     home,
+    homeM,
     info,
     instagram,
     invisible,
+    mapMarker,
     maps,
     name,
     otp,
@@ -215,12 +227,23 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [icLauncher, icLauncherDark];
 }
 
+class $AssetsMapsGen {
+  const $AssetsMapsGen();
+
+  /// File path: assets/maps/map_dark_style.json
+  String get mapDarkStyle => 'assets/maps/map_dark_style.json';
+
+  /// List of all assets
+  List<String> get values => [mapDarkStyle];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsFontGen font = $AssetsFontGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsMapsGen maps = $AssetsMapsGen();
 }
 
 class AssetGenImage {

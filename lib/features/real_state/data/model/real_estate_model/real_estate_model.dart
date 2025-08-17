@@ -19,7 +19,7 @@ class RealEstateModel {
   String? address;
   RealEstateLocationModel location;
   @JsonKey(name: 'property_type')
-  PropertyType propertyType;
+  RealEstatePropertyType propertyType;
   @JsonKey(name: "property_size")
   double size;
   int room;
@@ -27,11 +27,12 @@ class RealEstateModel {
   @JsonKey(name: "property_age")
   int propertyAge;
   List<String> images;
+  @JsonKey(name: "isFavorite" , )
   bool isFavourite;
   String? description;
-  Category category;
+  RealEstateCategory category;
   @JsonKey(name: "property_deed_type")
-  PropertyDeedType propertyDeedType;
+  RealEstatePropertyDeedType propertyDeedType;
 
   RealEstateModel({
     required this.id,

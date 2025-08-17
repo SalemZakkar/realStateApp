@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-enum PropertyType {
+enum RealEstatePropertyType {
   @JsonValue('apartment')
   apartment,
   @JsonValue('land')

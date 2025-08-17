@@ -33,6 +33,8 @@
         <meta-data
             android:name="io.flutter.embedding.android.EnableImpeller"
             android:value="false" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBwS1RGORd99POklATVqROMyNpHH-5Rm_I"/>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

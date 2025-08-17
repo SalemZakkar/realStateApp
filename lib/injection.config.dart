@@ -51,6 +51,8 @@ import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
+import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
+    as _i568;
 import 'package:real_state/features/core/presentation/utils/ext/file_manager.dart'
     as _i417;
 import 'package:real_state/features/real_state/data/repository/real_estate_repository_impl.dart'
@@ -87,6 +89,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final injectableModule = _$InjectableModule();
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
+    gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());
     await gh.lazySingletonAsync<_i460.SharedPreferences>(
       () => injectableModule.sharedPref,
@@ -173,11 +176,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i140.UserRepository>(),
       ),
     );
-    gh.factory<_i1066.RealEstateGetListCubit>(
-      () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),
+    gh.factory<_i680.RealEstateMapGetCubit>(
+      () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
     );
-    gh.factory<_i680.RealEstateMapGet>(
-      () => _i680.RealEstateMapGet(gh<_i670.RealEstateRepository>()),
+    gh.singleton<_i1066.RealEstateGetListCubit>(
+      () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.factory<_i16.UserUpdateCubit>(
       () => _i16.UserUpdateCubit(

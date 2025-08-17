@@ -12,6 +12,7 @@ import 'package:real_state/features/core/presentation/page/verify_otp_page.dart'
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
@@ -80,13 +81,19 @@ class Routes {
     ),
     RouteInfo(
       path: RealEstateDetailsPage.path,
-      builder: (context, state, child) => RealEstateDetailsPage(
-        realEstate: state.extra as RealEstate,
-      ),
+      builder: (context, state, child) =>
+          RealEstateDetailsPage(realEstate: state.extra as RealEstate),
     ),
     RouteInfo(
       path: MapPage.path,
-      builder: (context, state, child) => MapPage(latLng: state.extra as LatLng),
+      builder: (context, state, child) =>
+          MapPage(latLng: state.extra as LatLng),
+    ),
+    RouteInfo(
+      path: RealEstateFilterPage.path,
+      builder: (context, state, child) => RealEstateFilterPage(
+        params: state.extra as RealEstateFilterPageParams,
+      ),
     ),
   ];
 }

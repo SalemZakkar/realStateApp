@@ -19,10 +19,10 @@ class RealEstate {
   int propertyAge;
   List<String> images;
   bool isFavourite;
-  PropertyType propertyType;
+  RealEstatePropertyType propertyType;
   String? description;
-  Category category;
-  PropertyDeedType propertyDeedType;
+  RealEstateCategory category;
+  RealEstatePropertyDeedType propertyDeedType;
 
   RealEstate({
     required this.id,

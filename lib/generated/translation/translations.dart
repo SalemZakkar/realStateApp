@@ -688,6 +688,36 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Map'**
   String get map;
+
+  /// No description provided for @min.
+  ///
+  /// In en, this message translates to:
+  /// **'Min'**
+  String get min;
+
+  /// No description provided for @max.
+  ///
+  /// In en, this message translates to:
+  /// **'Max'**
+  String get max;
+
+  /// No description provided for @syp.
+  ///
+  /// In en, this message translates to:
+  /// **'Syp'**
+  String get syp;
+
+  /// No description provided for @favourites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourites'**
+  String get favourites;
+
+  /// No description provided for @km2.
+  ///
+  /// In en, this message translates to:
+  /// **'Km2'**
+  String get km2;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class SearchTextField extends StatefulWidget {
@@ -91,33 +94,40 @@ class _SearchTextFieldState extends State<SearchTextField> {
             ),
           ),
         ),
-        // if (widget.onPressedFilter != null) ...[
-        //   16.width(),
-        //   SizedBox(
-        //     height: 47,
-        //     width: 47,
-        //     child: OutlinedButton(
-        //       style: ButtonStyle(
-        //         backgroundColor: WidgetStateProperty.all(Colors.transparent),
-        //         padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
-        //         side: WidgetStateProperty.all(
-        //           BorderSide(color: context.appColorSchema.shapeColors.borderColor),
-        //         ),
-        //         shape: WidgetStateProperty.all(
-        //           RoundedRectangleBorder(
-        //             side: BorderSide(
-        //               color: context.appColorSchema.shapeColors.borderColor,
-        //             ),
-        //             borderRadius: BorderRadius.circular(8),
-        //           ),
-        //         ),
-        //         foregroundColor: WidgetStateProperty.all(Colors.transparent),
-        //       ),
-        //       onPressed: widget.onPressedFilter,
-        //       child: Assets.icons.filter.path.dynamicSVGColor(context),
-        //     ),
-        //   ),
-        // ],
+        if (widget.onPressedFilter != null) ...[
+          16.width(),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(8)
+            ),
+            height: 47,
+            width: 47,
+            
+            child: OutlinedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
+                side: WidgetStateProperty.all(
+                  BorderSide(
+                    color: context.appColorSchema.shapeColors.borderColor,
+                  ),
+                ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: context.appColorSchema.shapeColors.borderColor,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                foregroundColor: WidgetStateProperty.all(Colors.transparent),
+              ),
+              onPressed: widget.onPressedFilter,
+              child: Assets.icons.filter.path.dynamicSVGColor(context),
+            ),
+          ),
+        ],
       ],
     );
   }

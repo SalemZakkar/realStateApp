@@ -1,1 +1,1 @@
-enum Category { buy, rent }
+enum RealEstateCategory { buy, rent }

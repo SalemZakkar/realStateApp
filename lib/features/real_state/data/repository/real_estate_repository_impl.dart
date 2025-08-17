@@ -7,7 +7,6 @@ import 'package:real_state/features/real_state/data/model/real_estate_get_params
 import 'package:real_state/features/real_state/data/source/real_estate_remote_source/real_estate_remote_source.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_map_get_params.dart';
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart';
 
 @Injectable(as: RealEstateRepository)
@@ -33,10 +32,10 @@ class RealEstateRepositoryImpl extends RealEstateRepository with ApiHandler {
 
   @override
   Future<Either<Failure, List<RealEstate>>> getRealEstatesMap({
-    required RealEstateMapGetParams params,
+    required RealEstateGetParams params,
   }) {
     return request(() async {
-      var res = await source.getRealEstatesMap(city: params.city!);
+      var res = await source.getRealEstatesMap(params: params.toModel());
       return Right(res.data!.map((e) => e.toDomain()).toList());
     });
   }
