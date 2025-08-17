@@ -39,8 +39,6 @@ dependencies:
   hydrated_bloc: ^10.0.0
   path_provider: ^2.1.5
   photo_view: ^0.15.0
-  flutter_map: ^8.2.1
-  latlong2: ^0.9.1
   flutter_launcher_icons: ^0.14.4
   google_maps_cluster_manager_2: ^3.2.0
 

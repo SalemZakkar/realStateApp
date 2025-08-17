@@ -63,9 +63,9 @@ class _RealEstateDetailsPageState extends State<RealEstateDetailsPage> {
                 titlePadding: EdgeInsets.zero,
 
                 stretchModes: [StretchMode.blurBackground],
-                background: Container(
+                background: SizedBox(
                   height: 320,
-                  color: Colors.red,
+                  // color: Colors.red,
                   width: MediaQuery.of(context).size.width,
                   child: RealEstateImages(
                     images: widget.realEstate.images,
@@ -89,6 +89,13 @@ class _RealEstateDetailsPageState extends State<RealEstateDetailsPage> {
                       title: widget.realEstate.title,
                       textStyle: Theme.of(context).textTheme.headlineSmall!
                           .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    16.height(),
+                    IconText(
+                      icon: Assets.icons.dollar,
+
+                      // textStyle: Theme.of(context).textTheme.bodyMedium,
+                      text: widget.realEstate.price.formatPrice(context),
                     ),
                     16.height(),
                     IconText(

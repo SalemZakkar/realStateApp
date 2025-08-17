@@ -11,12 +11,12 @@ class TokenInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    Map<String, String> headers;
+    Map<String, String> headers = {'appversion' : '0.0.8'};
     final login = await getIt<AuthLocalSource>().getToken();
     if (login != null) {
-      headers = {'Authorization': 'Bearer $login'};
-      options.headers.addAll(headers);
+      headers = {'Authorization': 'Bearer $login' ,};
     }
+    options.headers.addAll(headers);
 
     return handler.next(options);
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/map_utils.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
-import 'package:real_state/themes/app_theme.dart';
 
 class RealEstateLocationWidget extends StatefulWidget {
   final RealEstate realEstate;
@@ -19,6 +19,15 @@ class RealEstateLocationWidget extends StatefulWidget {
 }
 
 class _RealEstateLocationWidgetState extends State<RealEstateLocationWidget> {
+  Marker? marker;
+
+  String? darkStyle;
+
+  Future<void> _loadStyles() async {
+    darkStyle = await rootBundle.loadString('assets/maps/map_dark_style.json');
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,44 +40,29 @@ class _RealEstateLocationWidgetState extends State<RealEstateLocationWidget> {
           Positioned.fill(
             child: IgnorePointer(
               ignoring: true,
-              child: FlutterMap(
-                options: MapOptions(
-                  initialCenter: LatLng(
-                    widget.realEstate.location.lat,
-                    widget.realEstate.location.lng,
-                  ),
-                  initialZoom: 19,
-                  interactionOptions: InteractionOptions(
-                    flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-                  ),
-                  // initialCenter:
+              child: GoogleMap(
+                zoomControlsEnabled: false,
+                style: Theme.of(context).brightness == Brightness.light
+                    ? null
+                    : darkStyle,
+                markers: marker == null ? {} : {marker!},
+                initialCameraPosition: CameraPosition(
+                  target: widget.realEstate.location.latLng,
+                  zoom: 18,
                 ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        "https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=Vh5c6lyPtjPEifTfOL9W",
-                    subdomains: ['a', 'b', 'c'],
-                  ),
-                  MarkerLayer(
-                    markers: [
-                      Marker(
-                        // height: 30,
-                        // width: 50,
-                        point: LatLng(
-                          widget.realEstate.location.lat,
-                          widget.realEstate.location.lng,
-                        ),
-                        child: Icon(
-                          Icons.location_on,
-                          size: 34,
-                          color: context.appColorSchema.primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                onMapCreated: (c) async {
+                  await _loadStyles();
 
-                  // MarkerLayer(markers: markers)
-                ],
+                  marker = Marker(
+                    markerId: const MarkerId('1'),
+                    position: widget.realEstate.location.latLng,
+                    icon: await MapUtils.createMarkerFromWidget(
+                      child: Assets.icons.mapMarker.svg(width: 40, height: 40),
+                      size: Size(40, 40),
+                    ),
+                  );
+                  setState(() {});
+                },
               ),
             ),
           ),
