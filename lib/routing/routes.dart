@@ -8,6 +8,7 @@ import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/send_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
+import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
@@ -95,6 +96,7 @@ class Routes {
         params: state.extra as RealEstateFilterPageParams,
       ),
     ),
+    RouteInfo(builder: (c, s, i) => UpdateAppPage(), path: UpdateAppPage.path),
   ];
 }
 

@@ -11,7 +11,7 @@ import 'package:real_state/features/real_state/presentation/cubit/real_estate_ma
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
 import 'package:real_state/features/real_state/presentation/widget/real_estate_map_bloc_widget.dart';
-import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_marker_widget.dart';
 import 'package:real_state/injection.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -63,15 +63,17 @@ class _RealStateMapPageState extends State<RealStateMapPage> {
               children: [
                 Positioned.fill(
                   child: MapClusterWidget<RealEstate>(
-                    threshold: 8,
+                    threshold: 7,
+                    padding: 130,
                     mapClusterController: controller,
                     normalMarkerBuilder: (context, item) {
+                      Size size = Size(70, 60);
                       return MarkerData.fromWidget(
-                        child: Assets.icons.mapMarker.svg(
-                          width: 40,
-                          height: 40,
+                        child: RealEstateMarkerWidget(
+                          realEstate: item,
+                          size: size,
                         ),
-                        size: Size(40, 40),
+                        size: size,
                       );
                     },
                     onItemTap: (item) {

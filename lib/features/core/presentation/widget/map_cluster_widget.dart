@@ -24,6 +24,7 @@ class MapClusterWidget<T> extends StatefulWidget {
   final bool viewMapFromPage;
   final InfoWindow Function(T)? infoWindowBuilder;
   final bool hideExpand;
+  final double? padding;
 
   final MapClusterController<T> mapClusterController;
 
@@ -43,6 +44,7 @@ class MapClusterWidget<T> extends StatefulWidget {
     this.threshold = 10,
     this.infoWindowBuilder,
     this.hideExpand = false,
+    this.padding,
   }) {
     assert(threshold >= 0, 'threshold INF >= X >= 0 got $threshold');
   }
@@ -170,7 +172,7 @@ class _MapClusterWidgetState<T> extends State<MapClusterWidget<T>>
                   MapUtils.getBounds(
                     cluster.items.map((e) => e.location).toList(),
                   ),
-                  50,
+                  widget.padding ?? 80,
                 ),
               );
               widget.onClusterTap?.call(cluster.items.length);
@@ -198,7 +200,7 @@ class _MapClusterWidgetState<T> extends State<MapClusterWidget<T>>
       controller.animateCamera(
         CameraUpdate.newLatLngBounds(
           MapUtils.getBounds(places.map((e) => e.location).toList()),
-          80,
+          widget.padding ?? 80,
         ),
       );
     }
@@ -308,9 +310,8 @@ class _MapClusterWidgetState<T> extends State<MapClusterWidget<T>>
     return Stack(
       children: [
         GoogleMap(
-          onTap: (v){
+          onTap: (v) {
             FocusManager.instance.primaryFocus?.unfocus();
-
           },
           myLocationEnabled: true,
           style: Theme.of(context).brightness == Brightness.dark
@@ -409,6 +410,7 @@ class MapClusterController<T> extends ChangeNotifier {
   LatLng Function(dynamic) getPosition;
   bool Function(dynamic, dynamic) identical;
   Duration animationDuration;
+
   // ignore: library_private_types_in_public_api
   _AnimationObject<T>? animationObject;
 

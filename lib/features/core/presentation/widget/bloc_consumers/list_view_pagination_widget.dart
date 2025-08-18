@@ -9,7 +9,6 @@ import '../../cubit/base_states/base_paginated_list_state.dart';
 import 'error_view.dart';
 import 'loader.dart';
 
-
 class ListViewPaginationWidget<T> extends StatefulWidget {
   final PaginationCubit paginationCubit;
   final PaginationParams? params;
@@ -25,6 +24,9 @@ class ListViewPaginationWidget<T> extends StatefulWidget {
   final ScrollController? scrollController;
   final ScrollPhysics? scrollPhysics;
   final EdgeInsets? padding;
+  final Widget? loader;
+  final Widget Function(Widget)? errorBuilder;
+  final Widget? noDataWidget;
 
   const ListViewPaginationWidget({
     super.key,
@@ -42,6 +44,9 @@ class ListViewPaginationWidget<T> extends StatefulWidget {
     this.scrollController,
     this.scrollPhysics,
     this.padding,
+    this.loader,
+    this.errorBuilder,
+    this.noDataWidget,
   });
 
   @override
@@ -56,10 +61,10 @@ class _ListViewPaginationWidgetState<T>
 
   @override
   void initState() {
-
     scrollController = widget.scrollController ?? ScrollController();
     scrollController.addListener(() {
-      if (scrollController.offset == scrollController.position.maxScrollExtent &&
+      if (scrollController.offset ==
+              scrollController.position.maxScrollExtent &&
           !widget.paginationCubit.state.isInProgress &&
           !widget.paginationCubit.state.hasReachedMax) {
         widget.paginationCubit.paginate();
@@ -111,142 +116,145 @@ class _ListViewPaginationWidgetState<T>
       },
       notificationPredicate: (_) => widget.withRefreshIndicator,
       child: BlocConsumer<PaginationCubit, BasePaginatedListState>(
-          bloc: widget.paginationCubit,
-          listener: (context, state) {
-            /// to scroll to loading
-            if (state.isPaginateInProgress) {
-              jumpToLast();
-            }
-            if (!state.isPaginateInProgress) {
-              autoScrollLock = false;
-            }
-          },
-          builder: (context, state) {
-            if ((state.isInProgress)) {
-              return const _FillRemainingScrollView(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 16),
-                  child: Loader(),
-                ),
-              );
-            } else if ((state.isFailure)) {
-              return _FillRemainingScrollView(
-                child: Center(
-                  child: ErrorView(
-                    failure: state.failure,
-                    onRetry: () =>
-                        widget.paginationCubit.get(params: widget.params),
+        bloc: widget.paginationCubit,
+        listener: (context, state) {
+          /// to scroll to loading
+          if (state.isPaginateInProgress) {
+            jumpToLast();
+          }
+          if (!state.isPaginateInProgress) {
+            autoScrollLock = false;
+          }
+        },
+        builder: (context, state) {
+          if ((state.isInProgress)) {
+            return widget.loader ??
+                const _FillRemainingScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Loader(),
                   ),
-                ),
-              );
-            }
-            if (state.items.isEmpty) {
-              return _FillRemainingScrollView(
-                child: Center(
-                  child: widget.emptyState ??
-                      Text(Translations.of(context)!.noData),
-                ),
-              );
-            }
-            return NotificationListener<ScrollNotification>(
-              onNotification: (notification) {
-                if (notification is UserScrollNotification) {
-                  if (widget.onReversScroll != null) {
-                    if (notification.direction == ScrollDirection.reverse) {
-                      widget.onReversScroll!(true);
-                    } else if (notification.direction ==
-                        ScrollDirection.forward) {
-                      widget.onReversScroll!(false);
-                    }
-                  }
-
-                  if (((notification.direction == ScrollDirection.reverse) ||
-                      (notification.direction == ScrollDirection.idle)) &&
-                      state.isSuccess) {
-                    double maxScroll = notification.metrics.maxScrollExtent;
-                    double currentScroll = notification.metrics.pixels;
-                    double delta = 150.0;
-                    if (maxScroll - currentScroll <= delta) {
-                      if (!widget.paginationCubit.state.hasReachedMax) {
-                        widget.paginationCubit.paginate();
-                      }
-                    }
+                );
+          } else if ((state.isFailure)) {
+            Widget error = Center(
+              child: ErrorView(
+                failure: state.failure,
+                onRetry: () =>
+                    widget.paginationCubit.get(params: widget.params),
+              ),
+            );
+            return widget.errorBuilder?.call(error) ??
+                _FillRemainingScrollView(child: error);
+          }
+          if (state.items.isEmpty) {
+            return widget.noDataWidget ??
+                _FillRemainingScrollView(
+                  child: Center(
+                    child:
+                        widget.emptyState ??
+                        Text(Translations.of(context)!.noData),
+                  ),
+                );
+          }
+          return NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification is UserScrollNotification) {
+                if (widget.onReversScroll != null) {
+                  if (notification.direction == ScrollDirection.reverse) {
+                    widget.onReversScroll!(true);
+                  } else if (notification.direction ==
+                      ScrollDirection.forward) {
+                    widget.onReversScroll!(false);
                   }
                 }
 
-                return false;
-              },
-              child: SizedBox(
-                height: widget.scrollDirection == Axis.vertical
+                if (((notification.direction == ScrollDirection.reverse) ||
+                        (notification.direction == ScrollDirection.idle)) &&
+                    state.isSuccess) {
+                  double maxScroll = notification.metrics.maxScrollExtent;
+                  double currentScroll = notification.metrics.pixels;
+                  double delta = 150.0;
+                  if (maxScroll - currentScroll <= delta) {
+                    if (!widget.paginationCubit.state.hasReachedMax) {
+                      widget.paginationCubit.paginate();
+                    }
+                  }
+                }
+              }
+
+              return false;
+            },
+            child: SizedBox(
+              height: widget.scrollDirection == Axis.vertical
+                  ? null
+                  : widget.height.toDouble(),
+              child: CustomScrollView(
+                shrinkWrap: widget.shrinkWrap,
+                physics: widget.scrollPhysics,
+                scrollDirection: widget.scrollDirection,
+                // controller: scrollController,
+                controller: widget.scrollController != null
                     ? null
-                    : widget.height.toDouble(),
-                child: CustomScrollView(
-                  shrinkWrap: widget.shrinkWrap,
-                  physics: widget.scrollPhysics,
-                  scrollDirection: widget.scrollDirection,
-                  // controller: scrollController,
-                  controller:
-                  widget.scrollController != null ? null : scrollController,
-                  slivers: [
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                            (_, int index) {
-                          bool hasOneItem = state.items.length == 1;
-                          bool hasTwoItems = state.items.length == 2;
-                          bool isFirstItem = index == 0;
-                          bool isLastItem = index == state.items.length - 1;
-                          return Padding(
-                            padding: widget.scrollDirection == Axis.vertical
-                                ? EdgeInsets.zero
-                                : hasOneItem
-                                ? const EdgeInsets.symmetric(horizontal: 16)
-                                : hasTwoItems
-                                ? isFirstItem
-                                ? const EdgeInsetsDirectional.only(
-                                start: 16, end: 8)
-                                : const EdgeInsetsDirectional.only(
-                                end: 16)
+                    : scrollController,
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((_, int index) {
+                      bool hasOneItem = state.items.length == 1;
+                      bool hasTwoItems = state.items.length == 2;
+                      bool isFirstItem = index == 0;
+                      bool isLastItem = index == state.items.length - 1;
+                      return Padding(
+                        padding: widget.scrollDirection == Axis.vertical
+                            ? EdgeInsets.zero
+                            : hasOneItem
+                            ? const EdgeInsets.symmetric(horizontal: 16)
+                            : hasTwoItems
+                            ? isFirstItem
+                                  ? const EdgeInsetsDirectional.only(
+                                      start: 16,
+                                      end: 8,
+                                    )
+                                  : const EdgeInsetsDirectional.only(end: 16)
                             //Otherwise (List include more than 2 items)
-                                : isFirstItem
-                                ? const EdgeInsetsDirectional.only(
-                                start: 16, end: 4)
-                                : isLastItem
-                                ? const EdgeInsetsDirectional
-                                .only(end: 16)
-                                : const EdgeInsets.symmetric(
-                                horizontal: 4),
-                            child: widget.itemBuilder(state.items[index]),
-                          );
-                        },
-                        childCount: state.items.length,
+                            : isFirstItem
+                            ? const EdgeInsetsDirectional.only(
+                                start: 16,
+                                end: 4,
+                              )
+                            : isLastItem
+                            ? const EdgeInsetsDirectional.only(end: 16)
+                            : const EdgeInsets.symmetric(horizontal: 4),
+                        child: widget.itemBuilder(state.items[index]),
+                      );
+                    }, childCount: state.items.length),
+                  ),
+                  if (state.isPaginateInProgress)
+                    const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Loader(),
                       ),
                     ),
-                    if (state.isPaginateInProgress)
-                      const SliverToBoxAdapter(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Loader(),
+                  if (state.isPaginateFailure)
+                    SliverToBoxAdapter(
+                      child: Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.all(8),
+                        child: ErrorView(
+                          failure: state.failure,
+                          onRetry: () {
+                            widget.paginationCubit.paginate();
+                          },
                         ),
                       ),
-                    if (state.isPaginateFailure)
-                      SliverToBoxAdapter(
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.all(8),
-                          child: ErrorView(
-                            failure: state.failure,
-                            onRetry: () {
-                              widget.paginationCubit.paginate();
-                            },
-                          ),
-                        ),
-                      ),
-                    const SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  ],
-                ),
+                    ),
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

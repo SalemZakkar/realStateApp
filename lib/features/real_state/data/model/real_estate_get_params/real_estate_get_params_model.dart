@@ -14,6 +14,7 @@ class RealEstateGetParamsModel {
   double? minPrice;
   @JsonKey(name: "price[lte]")
   double? maxPrice;
+  @JsonKey(name: "keyword")
   String? title;
   @JsonKey(name: "isFavorite")
   bool? isFavourite;
@@ -28,10 +29,9 @@ class RealEstateGetParamsModel {
   @JsonKey(name: "property_size[lte]")
   double? maxSize;
 
-
   RealEstateGetParamsModel({
-     this.page,
-     this.limit,
+    this.page,
+    this.limit,
     this.minPrice,
     this.maxPrice,
 

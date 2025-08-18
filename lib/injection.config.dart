@@ -47,6 +47,8 @@ import 'package:real_state/features/core/domain/entity/configuration.dart'
     as _i780;
 import 'package:real_state/features/core/domain/repository/core_repository.dart'
     as _i676;
+import 'package:real_state/features/core/presentation/cubit/app_update.dart'
+    as _i216;
 import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
@@ -107,7 +109,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i780.Configuration>(),
       ),
     );
-    gh.factory<_i676.CoreRepository>(
+    gh.singleton<_i676.CoreRepository>(
       () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
     );
     gh.lazySingleton<_i305.CityCubit>(
@@ -124,6 +126,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i31.AuthRemoteSource>(
       () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i780.Configuration>()),
+    );
+    gh.singleton<_i216.AppUpdateCubit>(
+      () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
     );
     gh.singleton<_i417.FileManager>(
       () => _i417.FileManager(gh<_i780.Configuration>()),

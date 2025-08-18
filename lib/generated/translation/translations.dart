@@ -718,6 +718,36 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Km2'**
   String get km2;
+
+  /// No description provided for @updateApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Update App'**
+  String get updateApp;
+
+  /// No description provided for @pleaseUpdateApp.
+  ///
+  /// In en, this message translates to:
+  /// **'The app version is outdated'**
+  String get pleaseUpdateApp;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @savedProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Properties'**
+  String get savedProperties;
+
+  /// No description provided for @properties.
+  ///
+  /// In en, this message translates to:
+  /// **'Properties'**
+  String get properties;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

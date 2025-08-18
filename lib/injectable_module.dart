@@ -7,6 +7,7 @@ import 'package:real_state/injection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/core/data/utils/unifi_logger.dart';
+import 'features/core/data/utils/version_interceptor.dart';
 
 @module
 abstract class InjectableModule {
@@ -37,6 +38,7 @@ abstract class InjectableModule {
     );
     dio.interceptors.addAll([
       getIt<TokenInterceptor>(),
+      VersionInterceptor(),
       UnifiInterceptor(
         requestBody: true,
         requestHeader: true,

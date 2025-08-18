@@ -35,7 +35,7 @@ class _RealStateListPageState extends State<RealStateListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.translation.realStates),
+        title: Text(context.translation.properties),
         // centerTitle: true,
         bottom: PreferredSize(
           preferredSize: Size(MediaQuery.of(context).size.width, 48 + 16),
@@ -44,6 +44,7 @@ class _RealStateListPageState extends State<RealStateListPage> {
             child: SearchTextField(
               onChanged: (v) {
                 params.title = v.trim().isEmpty ? null : v.trim();
+                params.page = 1;
                 cubit.get(params: params);
               },
               onPressedFilter: () {

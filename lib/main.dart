@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:platform_identity/platform_identity.dart';
 import 'package:real_state/injection.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+
 import 'app.dart';
 
 void main() async {
@@ -14,6 +16,6 @@ void main() async {
     ),
   );
   await configureInjection("dev");
-  runApp(const
-  App());
+  await PlatformIdentity.init();
+  runApp(const App());
 }

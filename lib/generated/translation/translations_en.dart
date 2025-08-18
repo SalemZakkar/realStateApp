@@ -359,4 +359,19 @@ class TranslationsEn extends Translations {
 
   @override
   String get km2 => 'Km2';
+
+  @override
+  String get updateApp => 'Update App';
+
+  @override
+  String get pleaseUpdateApp => 'The app version is outdated';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get savedProperties => 'Saved Properties';
+
+  @override
+  String get properties => 'Properties';
 }

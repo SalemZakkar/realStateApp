@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/list_view_pagination_widget.dart';
+import 'package:real_state/features/core/presentation/widget/bloc_consumers/loader.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
@@ -32,7 +33,7 @@ class _RealStateSavedPageState extends State<RealStateSavedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.translation.favourites)),
+      appBar: AppBar(title: Text(context.translation.savedProperties)),
       body: LogInWidget(
         child: Container(
           constraints: const BoxConstraints.expand(),
@@ -47,11 +48,42 @@ class _RealStateSavedPageState extends State<RealStateSavedPage> {
                   8.height(),
                   ListViewPaginationWidget<RealEstate>(
                     paginationCubit: cubit,
+                    emptyState: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height:
+                          MediaQuery.of(context).size.height -
+                          140 -
+                          kToolbarHeight,
+                      alignment: Alignment.center,
+                      child: Text(context.translation.noData),
+                    ),
+                    errorBuilder: (v) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height:
+                            MediaQuery.of(context).size.height -
+                            140 -
+                            kToolbarHeight,
+
+                        alignment: Alignment.center,
+                        child: v,
+                      );
+                    },
+                    loader: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height:
+                          MediaQuery.of(context).size.height -
+                          140 -
+                          kToolbarHeight,
+                      alignment: Alignment.center,
+                      child: Loader(),
+                    ),
                     params: params,
                     autoDispose: false,
                     scrollController: scrollController,
                     scrollPhysics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
+
                     itemBuilder: (data) {
                       return Column(
                         children: [

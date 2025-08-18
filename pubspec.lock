@@ -1093,6 +1093,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.6"
+  platform_identity:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: f6f2ff2f87999cbb8eb52aff7bf91743f69d00f0
+      url: "https://github.com/SalemZakkar/platform_identity.git"
+    source: git
+    version: "0.0.3"
   plugin_platform_interface:
     dependency: transitive
     description:

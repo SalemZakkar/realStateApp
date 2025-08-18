@@ -25,20 +25,23 @@ class MapUtils {
       }
     }
     return LatLngBounds(
-        northeast: LatLng(x1!, y1!), southwest: LatLng(x0!, y0!));
-  }
-
-  static LatLngBounds calcBoundsForCircle(double radius, LatLng center) {
-    return getBounds(
-      [
-        moveLatLng(center, radius, 0),
-        moveLatLng(center, radius, 180),
-      ],
+      northeast: LatLng(x1!, y1!),
+      southwest: LatLng(x0!, y0!),
     );
   }
 
+  static LatLngBounds calcBoundsForCircle(double radius, LatLng center) {
+    return getBounds([
+      moveLatLng(center, radius, 0),
+      moveLatLng(center, radius, 180),
+    ]);
+  }
+
   static LatLng moveLatLng(
-      LatLng startLatLng, double distanceInMeters, double bearing) {
+    LatLng startLatLng,
+    double distanceInMeters,
+    double bearing,
+  ) {
     const earthRadius = 6378137; // in meters
 
     double lat1 = startLatLng.latitude * pi / 180;
@@ -46,11 +49,16 @@ class MapUtils {
     double brng = bearing * pi / 180;
     double d = distanceInMeters;
 
-    double lat2 = asin(sin(lat1) * cos(d / earthRadius) +
-        cos(lat1) * sin(d / earthRadius) * cos(brng));
-    double lon2 = lon1 +
-        atan2(sin(brng) * sin(d / earthRadius) * cos(lat1),
-            cos(d / earthRadius) - sin(lat1) * sin(lat2));
+    double lat2 = asin(
+      sin(lat1) * cos(d / earthRadius) +
+          cos(lat1) * sin(d / earthRadius) * cos(brng),
+    );
+    double lon2 =
+        lon1 +
+        atan2(
+          sin(brng) * sin(d / earthRadius) * cos(lat1),
+          cos(d / earthRadius) - sin(lat1) * sin(lat2),
+        );
 
     lat2 = lat2 * 180 / pi;
     lon2 = lon2 * 180 / pi;
@@ -70,7 +78,8 @@ class MapUtils {
 
     double dLon = endLongitude - startLongitude;
     double dLat = endLatitude - startLatitude;
-    double a = pow(sin(dLat / 2), 2) +
+    double a =
+        pow(sin(dLat / 2), 2) +
         cos(startLatitude) * cos(endLatitude) * pow(sin(dLon / 2), 2);
     double c = 2 * asin(sqrt(a));
 
@@ -80,19 +89,26 @@ class MapUtils {
   }
 
   static Future<Offset> latLngToPixels(
-      LatLng latLng, GoogleMapController controller) async {
+    LatLng latLng,
+    GoogleMapController controller,
+  ) async {
     ScreenCoordinate s = (await controller.getScreenCoordinate(latLng));
     return Offset(s.x.toDouble(), s.y.toDouble());
   }
 
   static Future<double> distanceInPx(
-      LatLng start, LatLng dest, GoogleMapController controller) async {
+    LatLng start,
+    LatLng dest,
+    GoogleMapController controller,
+  ) async {
     double dist = 0;
     Offset c1 = await latLngToPixels(start, controller);
     Offset c2 = await latLngToPixels(dest, controller);
     double pixelSize = pow(2, -(await controller.getZoomLevel())).toDouble();
-    dist = (sqrt((c1.dx - c2.dx) * (c1.dx - c2.dx) +
-            (c1.dy - c2.dy) * (c1.dy - c2.dy))) /
+    dist =
+        (sqrt(
+          (c1.dx - c2.dx) * (c1.dx - c2.dx) + (c1.dy - c2.dy) * (c1.dy - c2.dy),
+        )) /
         pixelSize;
     return dist;
   }
@@ -127,8 +143,10 @@ class MapUtils {
     return (bearing * (180 / pi) + 360) % 360;
   }
 
-  static Future<Uint8List> getUnit8ListFromWidget(Widget widget,
-      {required Duration waitToRender}) async {
+  static Future<Uint8List> getUnit8ListFromWidget(
+    Widget widget, {
+    required Duration waitToRender,
+  }) async {
     final RenderRepaintBoundary repaintBoundary = RenderRepaintBoundary();
     final view = ui.PlatformDispatcher.instance.views.first;
     Size logicalSize = view.physicalSize / view.devicePixelRatio;
@@ -139,10 +157,14 @@ class MapUtils {
     final RenderView renderView = RenderView(
       view: view,
       child: RenderPositionedBox(
-          alignment: Alignment.center, child: repaintBoundary),
+        alignment: Alignment.center,
+        child: repaintBoundary,
+      ),
       configuration: ViewConfiguration(
         logicalConstraints: BoxConstraints(
-            maxHeight: logicalSize.height, minWidth: logicalSize.width),
+          maxHeight: logicalSize.height,
+          minWidth: logicalSize.width,
+        ),
         devicePixelRatio: 1.0,
       ),
     );
@@ -155,9 +177,9 @@ class MapUtils {
 
     final RenderObjectToWidgetElement<RenderBox> rootElement =
         RenderObjectToWidgetAdapter<RenderBox>(
-      container: repaintBoundary,
-      child: widget,
-    ).attachToRenderTree(buildOwner);
+          container: repaintBoundary,
+          child: widget,
+        ).attachToRenderTree(buildOwner);
 
     buildOwner.buildScope(rootElement);
 
@@ -171,9 +193,11 @@ class MapUtils {
     pipelineOwner.flushPaint();
 
     final ui.Image image = await repaintBoundary.toImage(
-        pixelRatio: imageSize.width / logicalSize.width);
-    final ByteData? byteData =
-        await image.toByteData(format: ui.ImageByteFormat.png);
+      pixelRatio: imageSize.width / logicalSize.width,
+    );
+    final ByteData? byteData = await image.toByteData(
+      format: ui.ImageByteFormat.png,
+    );
 
     return byteData!.buffer.asUint8List();
   }
@@ -186,20 +210,23 @@ class MapUtils {
   }) async {
     final widget = RepaintBoundary(
       child: MediaQuery(
-          data: const MediaQueryData(),
-          child:
-              Directionality(textDirection: TextDirection.ltr, child: child)),
+        data: const MediaQueryData(),
+        child: Directionality(textDirection: TextDirection.ltr, child: child),
+      ),
     );
     final pngBytes = await getUnit8ListFromWidget(
       widget,
       waitToRender: waitToRender,
     );
-    return BitmapDescriptor.bytes(pngBytes,
-        width: size.width, height: size.height);
+    return BitmapDescriptor.bytes(
+      pngBytes,
+      width: size.width,
+      height: size.height,
+    );
   }
 
   static Future<void> launchMap(LatLng latLng) async {
-    if(kIsWeb){
+    if (kIsWeb) {
       launchMapWeb(latLng);
       return;
     }
@@ -210,10 +237,7 @@ class MapUtils {
     }
     await MapLauncher.showDirections(
       mapType: type,
-      destination: Coords(
-        latLng.latitude,
-        latLng.longitude,
-      ),
+      destination: Coords(latLng.latitude, latLng.longitude),
     );
   }
 
@@ -222,7 +246,83 @@ class MapUtils {
   }
 
   static Future<void> launchMapWeb(LatLng latLng) async {
-    launchUrl(Uri.parse(
-        'https://www.google.com/maps/search/?api=1&query=${latLng.latitude},${latLng.longitude}'));
+    launchUrl(
+      Uri.parse(
+        'https://www.google.com/maps/search/?api=1&query=${latLng.latitude},${latLng.longitude}',
+      ),
+    );
+  }
+
+  static String lightStyle = '[]';
+  static String darkStyle = '''
+  [
+  {
+    "elementType": "geometry",
+    "stylers": [{"color": "#121212"}]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [{"visibility": "on"}]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [{"color": "#e0e0e0"}]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [{"color": "#121212"}]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [{"color": "#2c2c2c"}]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry.stroke",
+    "stylers": [{"color": "#1b1b1b"}]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [{"color": "#ffffff"}]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [{"color": "#0d0d0d"}]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [{"color": "#1a1a1a"}]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [{"color": "#e0e0e0"}]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [{"color": "#3a3a3a"}]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "labels.text.fill",
+    "stylers": [{"color": "#e0e0e0"}]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "geometry",
+    "stylers": [{"color": "#2f2f2f"}]
+  }
+]
+  ''';
+
+  static String getTheme(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? darkStyle
+        : lightStyle;
   }
 }

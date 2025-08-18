@@ -7,14 +7,11 @@ class FileManager {
 
   FileManager(this.configuration);
 
-  String? getFile({String? name, required String prefix}) {
+  String? getFile({String? name}) {
     if (name == null) {
       return null;
     }
-    return "${configuration.getBaseUrl}$prefix/$name";
-  }
-
-  String? getApartment({String? name}) {
-    return getFile(name: name, prefix: "apartment");
+    // print("${configuration.getBaseUrl.split("api/v1").first}$name");
+    return "${configuration.getBaseUrl.split("api/v1").first}$name";
   }
 }

@@ -15,7 +15,7 @@ Map<String, dynamic> _$RealEstateGetParamsModelToJson(
   if (instance.limit case final value?) 'limit': value,
   if (instance.minPrice case final value?) 'price[gte]': value,
   if (instance.maxPrice case final value?) 'price[lte]': value,
-  if (instance.title case final value?) 'title': value,
+  if (instance.title case final value?) 'keyword': value,
   if (instance.isFavourite case final value?) 'isFavorite': value,
   if (instance.city case final value?) 'city': value,
   if (_$RealEstatePropertyDeedTypeEnumMap[instance.propertyDeedType]

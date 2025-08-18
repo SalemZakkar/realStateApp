@@ -45,8 +45,8 @@ class _UserEditDialogState extends State<UserEditDialog> {
   Widget build(BuildContext context) {
     // print(widget.user.phoneNumber);
     return AlertDialog(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      insetPadding: EdgeInsets.symmetric(horizontal: 8),
+      backgroundColor: Theme.of(context).cardColor,
+      insetPadding: EdgeInsets.symmetric(horizontal: 16),
       title: Row(
         children: [
           Expanded(child: Text(context.translation.edit)),

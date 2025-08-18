@@ -3,13 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
+import 'package:real_state/features/core/presentation/widget/map_cluster_widget.dart';
+import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/contact_us_sheet.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/text_item_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/presentation/widget/real_estate_images.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_location_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -180,7 +181,22 @@ class _RealEstateDetailsPageState extends State<RealEstateDetailsPage> {
                     16.height(),
                     HeaderText(title: context.translation.location),
                     16.height(),
-                    RealEstateLocationWidget(realEstate: widget.realEstate),
+                    MapWidget(
+                      ignore: true,
+                      withExpand: true,
+                      icon: MarkerData.fromWidget(
+                        child: Assets.icons.mapMarker.svg(
+                          width: 40,
+                          height: 40,
+                        ),
+                        size: Size(40, 40),
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      zoomControls: false,
+
+                      latLng: widget.realEstate.location.latLng,
+                    ),
                     40.height(),
                   ],
                 ),
