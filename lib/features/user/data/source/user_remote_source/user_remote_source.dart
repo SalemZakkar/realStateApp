@@ -5,7 +5,7 @@ import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
-import '../../../../core/domain/entity/configuration.dart';
+import 'package:real_state/configuration.dart';
 
 part 'user_remote_source.g.dart';
 

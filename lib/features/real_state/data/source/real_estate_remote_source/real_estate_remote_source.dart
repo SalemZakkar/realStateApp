@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:real_state/configuration.dart';
 import 'package:real_state/features/core/data/model/base_response/base_response.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_get_params/real_estate_get_params_model.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_model/real_estate_model.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../../../core/domain/entity/configuration.dart';
-
 part 'real_estate_remote_source.g.dart';
 
 abstract class RealEstateRemoteSource {

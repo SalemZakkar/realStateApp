@@ -5,7 +5,7 @@ import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/core/data/model/contact_item_model/contact_item_model.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../core/domain/entity/configuration.dart';
+import 'package:real_state/configuration.dart';
 
 part 'core_remote_source.g.dart';
 

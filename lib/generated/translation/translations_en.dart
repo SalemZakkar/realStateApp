@@ -374,4 +374,22 @@ class TranslationsEn extends Translations {
 
   @override
   String get properties => 'Properties';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get myProperties => 'My Properties';
+
+  @override
+  String get propertiesMap => 'Properties Map';
+
+  @override
+  String get propertiesList => 'Properties List';
+
+  @override
+  String get featured => 'Featured';
+
+  @override
+  String get fastAccess => 'Fast Access';
 }

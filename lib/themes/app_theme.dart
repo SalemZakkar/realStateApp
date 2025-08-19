@@ -213,6 +213,10 @@ class AppTheme {
         color: _schema.textColors.primaryText,
       ),
     ),
+    sliderTheme: SliderThemeData(
+      activeTrackColor: _schema.primaryColor,
+      thumbColor: _schema.primaryColor,
+    )
   );
 }
 

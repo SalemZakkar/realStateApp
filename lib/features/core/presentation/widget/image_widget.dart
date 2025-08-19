@@ -3,7 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_identity/platform_identity.dart';
-import 'package:real_state/features/core/presentation/utils/ext/file_manager.dart';
+import 'package:real_state/features/core/presentation/utils/file_manager.dart';
 import 'package:real_state/injection.dart';
 import 'package:real_state/themes/app_theme.dart';
 

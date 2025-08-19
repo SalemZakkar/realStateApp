@@ -10,7 +10,9 @@ import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
+import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/home/presentation/page/main_page.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
@@ -32,9 +34,9 @@ class Routes {
       builder: (context, state, child) => SplashPage(),
     ),
     RouteInfo(
-      path: HomePage.path,
+      path: MainPage.path,
       type: RouteType.shell,
-      builder: (co, st, child) => HomePage(child: child!),
+      builder: (co, st, child) => MainPage(child: child!),
       routes: [
         RouteInfo(
           useRootNavigator: false,
@@ -45,6 +47,11 @@ class Routes {
           useRootNavigator: false,
           path: RealStateListPage.path,
           builder: (context, state, child) => RealStateListPage(),
+        ),
+        RouteInfo(
+          useRootNavigator: false,
+          path: HomePage.path,
+          builder: (context, state, child) => HomePage(),
         ),
         RouteInfo(
           useRootNavigator: false,
@@ -97,6 +104,10 @@ class Routes {
       ),
     ),
     RouteInfo(builder: (c, s, i) => UpdateAppPage(), path: UpdateAppPage.path),
+    RouteInfo(
+      builder: (c, s, i) => ViewImagePage(url: s.extra as String),
+      path: ViewImagePage.path,
+    ),
   ];
 }
 
@@ -125,4 +136,5 @@ List<String> tabRoutes = [
   RealStateMapPage.path,
   RealStateSavedPage.path,
   SettingsPage.path,
+  HomePage.path,
 ];

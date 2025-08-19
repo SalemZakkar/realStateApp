@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart';
-import 'package:real_state/features/home/presentation/widget/bottom_bar.dart';
-import 'package:real_state/injection.dart';
+import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
+import 'package:real_state/features/home/presentation/widget/home_buttons_widget.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_row_widget.dart';
 
 class HomePage extends StatefulWidget {
-  static String path = "/home";
-  final Widget child;
+  static const String path = "/homePage";
 
-  const HomePage({super.key, required this.child});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,24 +14,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
-    super.initState();
-    getIt<ContactCubit>().start();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Maison Hub"), centerTitle: true),
       body: Container(
-        constraints: BoxConstraints.expand(),
-        child: Stack(children: [Positioned.fill(child: widget.child),
-        Padding(
-          padding: EdgeInsets.only(bottom: 8),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: BottomBar(),
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints.expand(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              8.height(),
+              HomeButtonsWidget(),
+              9.height(),
+              RealEstateRowWidget(),
+              120.height(),
+
+            ],
           ),
-        )
-        ,]),
+        ),
       ),
     );
   }

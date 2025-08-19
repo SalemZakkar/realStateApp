@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RealEstateImages extends StatefulWidget {
   final List<String> images;
@@ -43,9 +44,9 @@ class _RealEstateImagesState extends State<RealEstateImages> {
                   .map(
                     (e) => InkWellWithoutFeedback(
                       onTap: () {
-                        launchUrl(
-                          Uri.parse(e),
-                          mode: LaunchMode.externalApplication,
+                        context.pushNamed(
+                          ViewImagePage.path,
+                          extra: widget.images[index],
                         );
                       },
                       child: ImageWidget(
@@ -94,15 +95,14 @@ class _RealEstateImagesState extends State<RealEstateImages> {
                       Icons.arrow_back,
 
                       color: context.appColorSchema.shapeColors.iconColor,
-
                     ),
                   ),
                 ),
                 InkWellWithoutFeedback(
                   onTap: () {
-                    launchUrl(
-                      Uri.parse(widget.images[index]),
-                      mode: LaunchMode.externalApplication,
+                    context.pushNamed(
+                      ViewImagePage.path,
+                      extra: widget.images[index],
                     );
                   },
                   child: Container(
@@ -134,7 +134,6 @@ class _RealEstateImagesState extends State<RealEstateImages> {
                     child: Icon(
                       Icons.arrow_forward_outlined,
                       color: context.appColorSchema.shapeColors.iconColor,
-
                     ),
                   ),
                 ),

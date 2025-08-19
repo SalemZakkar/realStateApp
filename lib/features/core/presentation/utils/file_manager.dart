@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:real_state/features/core/domain/entity/configuration.dart';
+import 'package:real_state/configuration.dart';
 
 @singleton
 class FileManager {

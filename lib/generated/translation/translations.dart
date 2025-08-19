@@ -748,6 +748,42 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Properties'**
   String get properties;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @myProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'My Properties'**
+  String get myProperties;
+
+  /// No description provided for @propertiesMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Properties Map'**
+  String get propertiesMap;
+
+  /// No description provided for @propertiesList.
+  ///
+  /// In en, this message translates to:
+  /// **'Properties List'**
+  String get propertiesList;
+
+  /// No description provided for @featured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get featured;
+
+  /// No description provided for @fastAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast Access'**
+  String get fastAccess;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

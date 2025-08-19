@@ -107,5 +107,11 @@
   "pleaseUpdateApp": "The app version is outdated",
   "update": "Update",
   "savedProperties": "Saved Properties",
-  "properties": "Properties"
+  "properties": "Properties",
+  "home": "Home",
+  "myProperties": "My Properties",
+  "propertiesMap": "Properties Map",
+  "propertiesList": "Properties List",
+  "featured" : "Featured",
+  "fastAccess" : "Fast Access"
 }

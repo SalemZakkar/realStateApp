@@ -45,6 +45,7 @@ dependencies:
     git: https://github.com/SalemZakkar/platform_identity.git
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

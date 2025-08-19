@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
+import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
@@ -22,7 +23,9 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 264,
+      constraints: BoxConstraints(
+        maxWidth: 300
+      ),
       height: 64,
       alignment: Alignment.center,
 
@@ -67,6 +70,7 @@ class _BottomBarState extends State<BottomBar> {
                   image: Assets.icons.building,
                   path: RealStateListPage.path,
                 ),
+                _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(
                   image: Assets.icons.bookmark,
                   path: RealStateSavedPage.path,

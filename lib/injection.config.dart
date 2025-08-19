@@ -14,6 +14,7 @@ import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
+import 'package:real_state/configuration.dart' as _i270;
 import 'package:real_state/features/auth/data/repository/auth_repository_impl.dart'
     as _i981;
 import 'package:real_state/features/auth/data/source/auth_local_source/auth_local_source.dart'
@@ -40,11 +41,8 @@ import 'package:real_state/features/core/data/repository/core_repo_impl.dart'
     as _i1031;
 import 'package:real_state/features/core/data/source/core_remote_source/core_remote_source.dart'
     as _i910;
-import 'package:real_state/features/core/data/utils/configuration.dart' as _i40;
 import 'package:real_state/features/core/data/utils/token_interceptor.dart'
     as _i838;
-import 'package:real_state/features/core/domain/entity/configuration.dart'
-    as _i780;
 import 'package:real_state/features/core/domain/repository/core_repository.dart'
     as _i676;
 import 'package:real_state/features/core/presentation/cubit/app_update.dart'
@@ -55,14 +53,16 @@ import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
-import 'package:real_state/features/core/presentation/utils/ext/file_manager.dart'
-    as _i417;
+import 'package:real_state/features/core/presentation/utils/file_manager.dart'
+    as _i976;
 import 'package:real_state/features/real_state/data/repository/real_estate_repository_impl.dart'
     as _i127;
 import 'package:real_state/features/real_state/data/source/real_estate_remote_source/real_estate_remote_source.dart'
     as _i521;
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart'
     as _i670;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_featured_list_cubit.dart'
+    as _i643;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart'
     as _i1066;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_map_get.dart'
@@ -102,48 +102,30 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i892.FirebaseMessaging>(
       () => injectableModule.firebaseMessaging(),
     );
-    gh.lazySingleton<_i780.Configuration>(() => _i40.DevConfiguration());
+    gh.lazySingleton<_i270.Configuration>(() => _i270.DevConfiguration());
+    gh.singleton<_i976.FileManager>(
+      () => _i976.FileManager(gh<_i270.Configuration>()),
+    );
     gh.factory<_i910.CoreRemoteSource>(
       () => _i910.CoreRemoteSourceImpl(
         gh<_i361.Dio>(),
-        gh<_i780.Configuration>(),
+        gh<_i270.Configuration>(),
       ),
-    );
-    gh.singleton<_i676.CoreRepository>(
-      () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
-    );
-    gh.lazySingleton<_i305.CityCubit>(
-      () => _i305.CityCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.lazySingleton<_i672.ContactCubit>(
-      () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.factory<_i797.UserRemoteSource>(
-      () => _i797.UserRemoteSourceImpl(
-        gh<_i361.Dio>(),
-        gh<_i780.Configuration>(),
-      ),
-    );
-    gh.factory<_i31.AuthRemoteSource>(
-      () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i780.Configuration>()),
-    );
-    gh.singleton<_i216.AppUpdateCubit>(
-      () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.singleton<_i417.FileManager>(
-      () => _i417.FileManager(gh<_i780.Configuration>()),
     );
     gh.factory<_i521.RealEstateRemoteSource>(
       () => _i521.RealEstateRemoteSourceImpl(
         gh<_i361.Dio>(),
-        gh<_i780.Configuration>(),
+        gh<_i270.Configuration>(),
       ),
     );
-    gh.factory<_i140.UserRepository>(
-      () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
+    gh.factory<_i31.AuthRemoteSource>(
+      () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i270.Configuration>()),
     );
-    gh.factory<_i737.UserChangePasswordCubit>(
-      () => _i737.UserChangePasswordCubit(gh<_i140.UserRepository>()),
+    gh.factory<_i797.UserRemoteSource>(
+      () => _i797.UserRemoteSourceImpl(
+        gh<_i361.Dio>(),
+        gh<_i270.Configuration>(),
+      ),
     );
     gh.singleton<_i458.AuthRepository>(
       () => _i981.AuthRepositoryImpl(
@@ -151,8 +133,26 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i31.AuthRemoteSource>(),
       ),
     );
+    gh.singleton<_i676.CoreRepository>(
+      () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
+    );
     gh.factory<_i670.RealEstateRepository>(
       () => _i127.RealEstateRepositoryImpl(gh<_i521.RealEstateRemoteSource>()),
+    );
+    gh.lazySingleton<_i305.CityCubit>(
+      () => _i305.CityCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.lazySingleton<_i672.ContactCubit>(
+      () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.singleton<_i216.AppUpdateCubit>(
+      () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.factory<_i140.UserRepository>(
+      () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
+    );
+    gh.factory<_i737.UserChangePasswordCubit>(
+      () => _i737.UserChangePasswordCubit(gh<_i140.UserRepository>()),
     );
     gh.factory<_i525.AuthSendOtpCubit>(
       () => _i525.AuthSendOtpCubit(gh<_i458.AuthRepository>()),
@@ -183,6 +183,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i680.RealEstateMapGetCubit>(
       () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i643.RealEstateFeaturedListCubit>(
+      () => _i643.RealEstateFeaturedListCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.singleton<_i1066.RealEstateGetListCubit>(
       () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),

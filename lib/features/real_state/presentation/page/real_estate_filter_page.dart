@@ -142,12 +142,12 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
                   HeaderText(title: context.translation.price),
                   8.height(),
                   RangeWidget(
-                    max: 1e9,
+                    max: 2e5,
                     min: 0,
                     division: 1000,
                     initial: RangeValues(
                       params.minPrice ?? 0,
-                      params.maxPrice ?? 1e9,
+                      params.maxPrice ?? 2e5,
                     ),
                     onChanged: (min, max) {
                       params.minPrice = min;
@@ -161,12 +161,12 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
                   HeaderText(title: context.translation.area),
                   8.height(),
                   RangeWidget(
-                    max: 3000,
+                    max: 1000,
                     min: 0,
                     division: 100,
                     initial: RangeValues(
                       params.minSize ?? 0,
-                      params.maxSize ?? 3000,
+                      params.maxSize ?? 1000,
                     ),
                     onChanged: (min, max) {
                       params.minSize = min;

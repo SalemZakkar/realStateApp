@@ -9,6 +9,7 @@ class IconText extends StatefulWidget {
   final dynamic icon;
   final TextStyle? textStyle;
   final double? size;
+  final int? maxLines;
 
   const IconText({
     super.key,
@@ -16,6 +17,7 @@ class IconText extends StatefulWidget {
     required this.text,
     this.textStyle,
     this.size,
+    this.maxLines,
   });
 
   @override
@@ -39,7 +41,7 @@ class _IconTextState extends State<IconText> {
         Flexible(
           child: Text(
             widget.text,
-            maxLines: 2,
+            maxLines: widget.maxLines ?? 2,
             style:
                 widget.textStyle ??
                 TextStyle(

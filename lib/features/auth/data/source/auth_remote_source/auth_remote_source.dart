@@ -7,7 +7,7 @@ import 'package:real_state/features/core/data/model/otp_status_model/otp_status_
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../core/domain/entity/configuration.dart';
+import 'package:real_state/configuration.dart';
 
 part 'auth_remote_source.g.dart';
 
