@@ -8,7 +8,7 @@ import 'package:real_state/features/core/presentation/widget/buttons/inkwell_wit
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
+import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -24,7 +24,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: 300
+        maxWidth: 320
       ),
       height: 64,
       alignment: Alignment.center,
@@ -55,8 +55,8 @@ class _BottomBarState extends State<BottomBar> {
             ),
           ),
           Positioned(
-            left: 0,
-            right: 0,
+            left: 4,
+            right: 4,
             bottom: 0,
             top: 0,
             child: Row(
@@ -72,8 +72,8 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(
-                  image: Assets.icons.bookmark,
-                  path: RealStateSavedPage.path,
+                  image: Assets.icons.user,
+                  path: ProfilePage.path,
                 ),
                 _Button(image: Assets.icons.info, path: SettingsPage.path),
               ],

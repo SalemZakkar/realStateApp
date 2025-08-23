@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
+import 'package:real_state/features/home/presentation/page/home_page.dart';
 
 class SplashPage extends StatefulWidget {
   static const String path = '/splashPage';
+
   const SplashPage({super.key});
 
   @override
@@ -15,13 +16,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((e){
-      context.go(RealStateMapPage.path);
+      context.go(HomePage.path);
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
+    return Scaffold();
   }
 }

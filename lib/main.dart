@@ -10,12 +10,14 @@ import 'app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory(
       (await getTemporaryDirectory()).path,
     ),
   );
   await configureInjection("dev");
+
   await PlatformIdentity.init();
   runApp(const App());
 }

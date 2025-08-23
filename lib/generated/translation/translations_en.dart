@@ -392,4 +392,7 @@ class TranslationsEn extends Translations {
 
   @override
   String get fastAccess => 'Fast Access';
+
+  @override
+  String get addNewProperty => 'Add New Property';
 }

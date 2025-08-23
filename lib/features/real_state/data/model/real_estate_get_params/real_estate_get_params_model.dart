@@ -28,6 +28,7 @@ class RealEstateGetParamsModel {
   double? minSize;
   @JsonKey(name: "property_size[lte]")
   double? maxSize;
+  bool? isFeatured;
 
   RealEstateGetParamsModel({
     this.page,
@@ -43,6 +44,7 @@ class RealEstateGetParamsModel {
     this.propertyDeedType,
     this.maxSize,
     this.minSize,
+    this.isFeatured,
   });
 
   Map<String, dynamic> toJson() => _$RealEstateGetParamsModelToJson(this);
@@ -62,5 +64,6 @@ extension MapF on RealEstateGetParams {
     category: category,
     maxSize: maxSize,
     minSize: minSize,
+    isFeatured: isFeatured,
   );
 }

@@ -11,6 +11,10 @@ abstract class AppColorsSchema {
 
   ShapeColors get shapeColors;
 
+  ShadowColors get shadowColors;
+
+  Shadows get shadows;
+
   StatusColors get statusColors =>
       StatusColors(fail: Colors.red, success: Colors.green);
 
@@ -62,6 +66,13 @@ class LightAppColorSchema extends AppColorsSchema {
     labelAndSecondaryText: graniteGrey,
     hintAndDisable: spanishGrey,
   );
+
+  @override
+  ShadowColors get shadowColors => ShadowColors(mainShadow: Colors.grey[200]!);
+
+  @override
+  Shadows get shadows =>
+      Shadows(cardShadow: BoxShadow(color: shadowColors.mainShadow , blurRadius: 4 , spreadRadius: 3));
 }
 
 class DarkAppColorSchema extends AppColorsSchema {
@@ -88,4 +99,11 @@ class DarkAppColorSchema extends AppColorsSchema {
     labelAndSecondaryText: white,
     hintAndDisable: white,
   );
+
+  @override
+  ShadowColors get shadowColors =>
+      ShadowColors(mainShadow: MainColor(Colors.transparent.toARGB32(), {}));
+  @override
+  Shadows get shadows =>
+      Shadows(cardShadow: BoxShadow(color: shadowColors.mainShadow));
 }

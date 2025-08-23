@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/domain/entity/contact_item.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/tile_button.dart';
 import 'package:real_state/features/core/presentation/widget/contact_icon.dart';
+import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../domain/enum/contact_type.dart';
@@ -57,7 +59,10 @@ class _ContactUsCardState extends State<ContactUsCard> {
       child: TileButton(
         image: ContactIcon(contactType: widget.contactItem.type),
         title: widget.contactItem.title ?? widget.contactItem.value,
-        isSend: true,
+        icon: Assets.icons.send.dynamicSVGColor(
+          context,
+          color: Theme.of(context).iconTheme.color,
+        ),
       ),
     );
   }

@@ -784,6 +784,12 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Fast Access'**
   String get fastAccess;
+
+  /// No description provided for @addNewProperty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Property'**
+  String get addNewProperty;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

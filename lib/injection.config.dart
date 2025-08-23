@@ -15,6 +15,12 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:real_state/configuration.dart' as _i270;
+import 'package:real_state/features/ad_banner/data/repository/ad_banner_repo_impl.dart'
+    as _i579;
+import 'package:real_state/features/ad_banner/domain/repository/ad_banner_repository.dart'
+    as _i593;
+import 'package:real_state/features/ad_banner/presentation/cubit/ad_banner_cubit.dart'
+    as _i422;
 import 'package:real_state/features/auth/data/repository/auth_repository_impl.dart'
     as _i981;
 import 'package:real_state/features/auth/data/source/auth_local_source/auth_local_source.dart'
@@ -102,6 +108,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i892.FirebaseMessaging>(
       () => injectableModule.firebaseMessaging(),
     );
+    gh.factory<_i593.AdBannerRepository>(() => _i579.AdBannerRepoImpl());
     gh.lazySingleton<_i270.Configuration>(() => _i270.DevConfiguration());
     gh.singleton<_i976.FileManager>(
       () => _i976.FileManager(gh<_i270.Configuration>()),
@@ -126,6 +133,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i361.Dio>(),
         gh<_i270.Configuration>(),
       ),
+    );
+    gh.singleton<_i422.AdBannerCubit>(
+      () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
     );
     gh.singleton<_i458.AuthRepository>(
       () => _i981.AuthRepositoryImpl(

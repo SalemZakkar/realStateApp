@@ -12,7 +12,7 @@ class AuthState {
   AuthState({
     this.authState = AuthStateType.initial,
     this.userData,
-    this.withPush = false,
+    // this.withPush = false,
   });
 
   User? userData;
@@ -23,8 +23,6 @@ class AuthState {
     }
     return userData!;
   }
-
-  bool withPush;
 
   bool get authenticated => authState == AuthStateType.authenticated;
 }
@@ -43,7 +41,6 @@ class AuthCubit extends HydratedCubit<AuthState> {
     if (e.user == null) {
       emit(AuthState(authState: AuthStateType.unAuth));
     } else if (e.user?.isEmailVerified == false) {
-      // print('sss');
       emit(AuthState(authState: AuthStateType.unActivated, userData: e.user!));
     } else if (e.user?.isActive == false) {
       emit(AuthState(authState: AuthStateType.blocked, userData: e.user!));
@@ -52,27 +49,25 @@ class AuthCubit extends HydratedCubit<AuthState> {
     }
   }
 
-  void init() {
-    emit(state);
-  }
-
   void setUser(User? user) {
     emitAuthState(
       UserStreamSignal(user: user, withPush: user?.isEmailVerified == false),
     );
   }
 
+  void init() {
+    emit(state);
+  }
+
   @override
   AuthState? fromJson(Map<String, dynamic> json) {
-    if (json == {}) {
-      return AuthState();
-    }
-    return AuthState(
+    final state = AuthState(
       authState: AuthStateType.fromString(json['state']),
       userData: json['user'] == null
           ? null
           : UserModel.fromJson(json['user']).toDomain(),
     );
+    return state;
   }
 
   @override

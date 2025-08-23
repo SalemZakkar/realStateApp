@@ -68,6 +68,7 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
             constraints: const BoxConstraints.expand(),
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   8.height(),
@@ -91,6 +92,7 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
                     ),
                     16.height(),
                   ],
+
                   HeaderText(title: context.translation.category),
                   8.height(),
                   ChipsWidget(
@@ -138,7 +140,25 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
                       return context.translation.propertyDeedE(v.name);
                     },
                   ),
-                  16.height(),
+                  const Divider(),
+                  InkWell(
+                    onTap: (){
+                      setState(() {
+                        params.isFeatured = !(params.isFeatured ?? false);
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.symmetric(vertical: 16),
+                      child: Row(
+                        children: [
+                          Icon(params.isFeatured == true ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).primaryColor,),
+                          8.width(),
+                          Text(context.translation.featured , style: Theme.of(context).textTheme.titleMedium,)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Divider(),
                   HeaderText(title: context.translation.price),
                   8.height(),
                   RangeWidget(

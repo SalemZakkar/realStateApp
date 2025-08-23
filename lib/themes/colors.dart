@@ -122,7 +122,7 @@ class Shadows {
 }
 
 class ShadowColors {
-  MainColor mainShadow;
+  Color mainShadow;
 
   ShadowColors({required this.mainShadow});
 }

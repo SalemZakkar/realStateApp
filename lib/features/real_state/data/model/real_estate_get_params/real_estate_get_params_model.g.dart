@@ -27,6 +27,7 @@ Map<String, dynamic> _$RealEstateGetParamsModelToJson(
     'category': value,
   if (instance.minSize case final value?) 'property_size[gte]': value,
   if (instance.maxSize case final value?) 'property_size[lte]': value,
+  if (instance.isFeatured case final value?) 'isFeatured': value,
 };
 
 const _$RealEstatePropertyDeedTypeEnumMap = {

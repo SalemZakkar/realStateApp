@@ -18,6 +18,7 @@ import 'package:real_state/features/real_state/presentation/page/real_estate_det
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
+import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
 import 'package:real_state/routing/route_info.dart';
 
@@ -55,9 +56,10 @@ class Routes {
         ),
         RouteInfo(
           useRootNavigator: false,
-          path: RealStateSavedPage.path,
-          builder: (context, state, child) => RealStateSavedPage(),
+          builder: (c, s, i) => ProfilePage(),
+          path: ProfilePage.path,
         ),
+
         RouteInfo(
           useRootNavigator: false,
           path: SettingsPage.path,
@@ -108,6 +110,11 @@ class Routes {
       builder: (c, s, i) => ViewImagePage(url: s.extra as String),
       path: ViewImagePage.path,
     ),
+    RouteInfo(
+      path: RealStateSavedPage.path,
+      builder: (context, state, child) => RealStateSavedPage(),
+    ),
+
   ];
 }
 
@@ -134,7 +141,7 @@ extension R on BuildContext {
 List<String> tabRoutes = [
   RealStateListPage.path,
   RealStateMapPage.path,
-  RealStateSavedPage.path,
+  ProfilePage.path,
   SettingsPage.path,
   HomePage.path,
 ];

@@ -14,18 +14,37 @@ class RealEstateGetParams extends PaginationParams {
   RealEstateCategory? category;
   double? minSize;
   double? maxSize;
+  bool? isFeatured;
+
+  RealEstateGetParams clone() => RealEstateGetParams(
+    isFeatured: isFeatured,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+    title: title,
+    isFavourite: isFavourite,
+    city: city,
+    propertyDeedType: propertyDeedType,
+    propertyType: propertyType,
+    category: category,
+    maxSize: maxSize,
+    minSize: minSize,
+    page: page,
+    limit: limit,
+  );
 
   RealEstateGetParams({
-     super.page,
-     super.limit,
+    super.page,
+    super.limit,
     this.minPrice,
     this.maxPrice,
-
     this.title,
     this.isFavourite,
     this.city,
     this.category,
     this.minSize,
     this.maxSize,
+    this.isFeatured,
+    this.propertyDeedType,
+    this.propertyType,
   });
 }

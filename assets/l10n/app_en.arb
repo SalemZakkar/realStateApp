@@ -113,5 +113,6 @@
   "propertiesMap": "Properties Map",
   "propertiesList": "Properties List",
   "featured" : "Featured",
-  "fastAccess" : "Fast Access"
+  "fastAccess" : "Fast Access",
+  "addNewProperty": "Add New Property"
 }

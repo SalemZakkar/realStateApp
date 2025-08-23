@@ -6,6 +6,7 @@ class User {
   PhoneNumber phoneNumber;
   String id;
   bool isActive, isEmailVerified;
+  String get formatNumber => "${phoneNumber.dialCode!} ${phoneNumber.phoneNumber!}";
 
   User({
     required this.phoneNumber,

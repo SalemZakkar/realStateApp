@@ -6,6 +6,7 @@ import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
+import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/injection.dart';
 import 'package:real_state/routing/observer_utils.dart';
 import 'package:real_state/routing/route_info.dart';
@@ -15,7 +16,6 @@ import 'package:real_state/themes/app_theme.dart';
 import 'features/core/domain/entity/app_state.dart';
 import 'features/core/presentation/cubit/app_update.dart' show AppUpdateCubit;
 import 'features/core/presentation/page/splash_page.dart';
-import 'features/real_state/presentation/page/real_state_map_page.dart';
 import 'generated/translation/translations.dart';
 
 class App extends StatefulWidget {
@@ -29,18 +29,18 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((e) {
-      getIt<AuthCubit>().init();
-    });
+
     statusCubit.init();
   }
 
   var statusCubit = getIt<AppUpdateCubit>();
 
+  var authCubit =  getIt<AuthCubit>();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => getIt<AuthCubit>())],
+      providers: [BlocProvider(create: (context) => authCubit,)],
       child: MultiBlocListener(
         listeners: [
           BlocListener<AppUpdateCubit, AppUpdateState>(
@@ -55,11 +55,9 @@ class _AppState extends State<App> {
             },
           ),
           BlocListener<AuthCubit, AuthState>(
+            bloc: authCubit,
             listener: (context, state) {
               if (statusCubit.state is OutdatedAppState) {
-                return;
-              }
-              if (!state.withPush) {
                 return;
               }
               if (state.authState == AuthStateType.unActivated) {
@@ -72,7 +70,10 @@ class _AppState extends State<App> {
                 );
                 return;
               }
-              goRouterConfig.go(RealStateMapPage.path);
+              if (goRouterConfig.state.path != SplashPage.path) {
+                return;
+              }
+              goRouterConfig.go(HomePage.path);
             },
           ),
         ],

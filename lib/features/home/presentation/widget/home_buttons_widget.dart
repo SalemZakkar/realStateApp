@@ -4,12 +4,10 @@ import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
-import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/themes/app_theme.dart';
 
 class HomeButtonsWidget extends StatefulWidget {
   const HomeButtonsWidget({super.key});
@@ -24,10 +22,15 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
     var h = 240;
     return Column(
       children: [
-        HeaderText(title: context.translation.fastAccess),
-        8.height(),
-        CustomCardWidget(
-          borderRadius: BorderRadius.circular(8),
+        // HeaderText(title: context.translation.fastAccess),
+        // 8.height(),
+        Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).cardColor,
+            boxShadow: [context.appColorSchema.shadows.cardShadow]
+          ),
           child: Column(
             children: [
               SizedBox(
@@ -57,15 +60,15 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                     ),
                     Expanded(
                       child: _Button(
-                        icon: Assets.icons.building.dynamicSVGColor(
+                        icon: Assets.icons.bookmark.dynamicSVGColor(
                           context,
                           width: 40,
                           height: 40,
                           color: Colors.red,
                         ),
-                        title: context.translation.propertiesList,
+                        title: context.translation.savedProperties,
                         onTap: () {
-                          context.go(RealStateListPage.path);
+                          context.push(RealStateSavedPage.path);
                         },
                       ),
                     ),
@@ -80,15 +83,10 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                   children: [
                     Expanded(
                       child: _Button(
-                        icon: Assets.icons.bookmark.dynamicSVGColor(
-                          context,
-                          width: 40,
-                          height: 40,
-                          color: Colors.purple,
-                        ),
-                        title: context.translation.savedProperties,
+                        icon: Icon(Icons.add, color: Colors.purple, size: 40),
+                        title: context.translation.addNewProperty,
                         onTap: () {
-                          context.go(RealStateSavedPage.path);
+                          // context.go(RealStateSavedPage.path);
                         },
                       ),
                     ),
@@ -106,7 +104,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         ),
                         title: context.translation.myProperties,
                         onTap: () {
-                          context.go(RealStateSavedPage.path);
+                          // context.go(RealStateSavedPage.path);
                         },
                       ),
                     ),

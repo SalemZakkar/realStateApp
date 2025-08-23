@@ -55,7 +55,7 @@ class _RealStateMapPageState extends State<RealStateMapPage> {
         constraints: BoxConstraints.expand(),
         child: CityBuilder(
           onInit: (v) {
-            params.city = v.first;
+            params.city = v.firstOrNull;
             cubit.get(params: params);
           },
           builder: (c) {
