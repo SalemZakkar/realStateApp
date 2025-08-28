@@ -4,19 +4,21 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/cubit/base_states/base_paginated_list_state.dart';
 import 'package:real_state/features/core/presentation/cubit/pagination_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
-class RealEstateRowWidget<Params> extends StatefulWidget {
+class RealEstateRowWidget extends StatefulWidget {
   final String title;
-  final PaginationCubit<RealEstate, Params> cubit;
-  final Params params;
+  final PaginationCubit<RealEstate, RealEstateGetParams> cubit;
+  final RealEstateGetParams params;
 
   const RealEstateRowWidget({
     super.key,
@@ -26,12 +28,10 @@ class RealEstateRowWidget<Params> extends StatefulWidget {
   });
 
   @override
-  State<RealEstateRowWidget<Params>> createState() =>
-      _RealEstateRowWidgetState<Params>();
+  State<RealEstateRowWidget> createState() => _RealEstateRowWidgetState();
 }
 
-class _RealEstateRowWidgetState<Params>
-    extends State<RealEstateRowWidget<Params>> {
+class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
   @override
   void initState() {
     super.initState();
@@ -41,7 +41,7 @@ class _RealEstateRowWidgetState<Params>
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<
-      PaginationCubit<RealEstate, Params>,
+      PaginationCubit<RealEstate, RealEstateGetParams>,
       BasePaginatedListState<RealEstate>
     >(
       bloc: widget.cubit,
@@ -84,9 +84,7 @@ class _RealEstateRowWidgetState<Params>
                             child: ImageWidget(
                               borderRadius: BorderRadius.circular(4),
                               width: double.infinity,
-
-                              // height: 160,
-                              url: state.items[index].images.first,
+                              url: state.items[index].images.first.getUrl,
                             ),
                           ),
                           8.height(),

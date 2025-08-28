@@ -27,7 +27,7 @@ class _ErrorViewState extends State<ErrorView> {
         Center(
           child: Text(
             widget.failure?.getError(context) ?? context.translation.errorMessage,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
         ),

@@ -191,11 +191,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i140.UserRepository>(),
       ),
     );
-    gh.factory<_i680.RealEstateMapGetCubit>(
-      () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
-    );
     gh.factory<_i643.RealEstateFeaturedListCubit>(
       () => _i643.RealEstateFeaturedListCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i680.RealEstateMapGetCubit>(
+      () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.singleton<_i1066.RealEstateGetListCubit>(
       () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),

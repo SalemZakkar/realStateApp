@@ -1,8 +1,8 @@
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/core/domain/entity/paginated_params.dart';
-import 'package:real_state/features/real_state/domain/enum/category_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_deed_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 
 class RealEstateGetParams extends PaginationParams {
   double? minPrice, maxPrice;
@@ -31,6 +31,22 @@ class RealEstateGetParams extends PaginationParams {
     page: page,
     limit: limit,
   );
+
+  void setFromClone(RealEstateGetParams params) {
+    minSize = params.minSize;
+    maxSize = params.maxSize;
+    minPrice = params.minPrice;
+    maxPrice = params.maxPrice;
+    title = params.title;
+    isFeatured = params.isFeatured;
+    propertyType = params.propertyType;
+    propertyDeedType = params.propertyDeedType;
+    city = params.city;
+    category = params.category;
+    page = params.page;
+    limit = params.limit;
+    title = params.title;
+  }
 
   RealEstateGetParams({
     super.page,

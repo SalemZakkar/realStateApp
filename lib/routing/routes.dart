@@ -14,15 +14,15 @@ import 'package:real_state/features/core/presentation/page/view_image_page.dart'
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_add_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
 import 'package:real_state/routing/route_info.dart';
-
-import '../features/real_state/presentation/page/real_state_list_page.dart';
 
 class Routes {
   Routes._();
@@ -41,13 +41,13 @@ class Routes {
       routes: [
         RouteInfo(
           useRootNavigator: false,
-          path: RealStateMapPage.path,
-          builder: (context, state, child) => RealStateMapPage(),
+          path: RealEStateMapPage.path,
+          builder: (context, state, child) => RealEStateMapPage(),
         ),
         RouteInfo(
           useRootNavigator: false,
-          path: RealStateListPage.path,
-          builder: (context, state, child) => RealStateListPage(),
+          path: RealEStateListPage.path,
+          builder: (context, state, child) => RealEStateListPage(),
         ),
         RouteInfo(
           useRootNavigator: false,
@@ -111,10 +111,13 @@ class Routes {
       path: ViewImagePage.path,
     ),
     RouteInfo(
-      path: RealStateSavedPage.path,
-      builder: (context, state, child) => RealStateSavedPage(),
+      path: RealEStateSavedPage.path,
+      builder: (context, state, child) => RealEStateSavedPage(),
     ),
-
+    RouteInfo(
+      path: RealEstateAddPage.path,
+      builder: (context, child, state) => RealEstateAddPage(),
+    ),
   ];
 }
 
@@ -139,8 +142,8 @@ extension R on BuildContext {
 }
 
 List<String> tabRoutes = [
-  RealStateListPage.path,
-  RealStateMapPage.path,
+  RealEStateListPage.path,
+  RealEStateMapPage.path,
   ProfilePage.path,
   SettingsPage.path,
   HomePage.path,

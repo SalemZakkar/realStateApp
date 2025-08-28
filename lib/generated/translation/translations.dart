@@ -293,6 +293,18 @@ abstract class Translations {
   /// **'at least one symbol'**
   String get shouldContainAtLeastOneSymbol;
 
+  /// No description provided for @nonLessThan.
+  ///
+  /// In en, this message translates to:
+  /// **'Non less than'**
+  String get nonLessThan;
+
+  /// No description provided for @nonMoreThan.
+  ///
+  /// In en, this message translates to:
+  /// **'Non more than'**
+  String get nonMoreThan;
+
   /// No description provided for @matchedPassword.
   ///
   /// In en, this message translates to:
@@ -518,7 +530,7 @@ abstract class Translations {
   /// No description provided for @propertyDeedE.
   ///
   /// In en, this message translates to:
-  /// **'{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} other{Unknown}}'**
+  /// **'{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} stock{Stock Owner Ship} other{Unknown}}'**
   String propertyDeedE(String type);
 
   /// No description provided for @propertyDeed.
@@ -790,6 +802,96 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Add New Property'**
   String get addNewProperty;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @optional.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get optional;
+
+  /// No description provided for @inDollar.
+  ///
+  /// In en, this message translates to:
+  /// **'In dollar'**
+  String get inDollar;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
+
+  /// No description provided for @bathroom.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathroom'**
+  String get bathroom;
+
+  /// No description provided for @propertyAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Property Age'**
+  String get propertyAge;
+
+  /// No description provided for @sizeM2.
+  ///
+  /// In en, this message translates to:
+  /// **'Size (m2)'**
+  String get sizeM2;
+
+  /// No description provided for @propertyAgeInYears.
+  ///
+  /// In en, this message translates to:
+  /// **'Property age in years'**
+  String get propertyAgeInYears;
+
+  /// No description provided for @mainInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Main info'**
+  String get mainInfo;
+
+  /// No description provided for @sizeInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Size info'**
+  String get sizeInfo;
+
+  /// No description provided for @propertyInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Property info'**
+  String get propertyInfo;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @stock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get stock;
+
+  /// No description provided for @stocks2400.
+  ///
+  /// In en, this message translates to:
+  /// **'Stocks /2400'**
+  String get stocks2400;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

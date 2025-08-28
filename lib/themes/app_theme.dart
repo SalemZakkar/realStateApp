@@ -14,15 +14,18 @@ class AppTheme {
       backButtonIconBuilder: (context) => const Icon(Icons.arrow_back_ios),
     ),
     appBarTheme: AppBarTheme(
-      color: _schema.shapeColors.appBar,
+      backgroundColor: _schema.shapeColors.appBar,
       toolbarHeight: 80,
       centerTitle: false,
 
       // backgroundColor: _schema.shapeColors.appBar,
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      circularTrackColor: _schema.primaryColor,
+    ),
     primaryColor: _schema.primaryColor,
     scaffoldBackgroundColor: _schema.shapeColors.backgroundColor,
-    bottomAppBarTheme: BottomAppBarTheme(color: _schema.shapeColors.navBar),
+    bottomAppBarTheme: BottomAppBarThemeData(color: _schema.shapeColors.navBar),
     cardColor: _schema.shapeColors.cardColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: _schema.shapeColors.navBar,
@@ -216,7 +219,7 @@ class AppTheme {
     sliderTheme: SliderThemeData(
       activeTrackColor: _schema.primaryColor,
       thumbColor: _schema.primaryColor,
-    )
+    ),
   );
 }
 

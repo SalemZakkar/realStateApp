@@ -4,8 +4,8 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/chips_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/regular_bottom_sheet_layout.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
-import 'package:real_state/features/real_state/domain/enum/property_deed_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 
 class RealEstateFilterSheet extends StatefulWidget {

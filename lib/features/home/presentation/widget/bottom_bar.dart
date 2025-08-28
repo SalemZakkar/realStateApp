@@ -6,8 +6,8 @@ import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_list_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_state_map_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
@@ -64,11 +64,11 @@ class _BottomBarState extends State<BottomBar> {
               children: [
                 _Button(
                   image: Assets.icons.compass,
-                  path: RealStateMapPage.path,
+                  path: RealEStateMapPage.path,
                 ),
                 _Button(
                   image: Assets.icons.building,
-                  path: RealStateListPage.path,
+                  path: RealEStateListPage.path,
                 ),
                 _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(

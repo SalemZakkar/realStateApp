@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:platform_identity/platform_identity.dart';
+import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/utils/file_manager.dart';
-import 'package:real_state/injection.dart';
 
 class ViewImagePage extends StatefulWidget {
   static const String path = "/view_image";
@@ -24,11 +24,14 @@ class _ViewImagePageState extends State<ViewImagePage> {
         alignment: Alignment.center,
         child: PhotoView(
           backgroundDecoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
           // minScale: 2,
           imageProvider: NetworkImage(
-            getIt<FileManager>().getFile(name: widget.url)!,
+            headers: {
+              "appVersion" : PlatformIdentity.getAppVersion()
+            },
+            widget.url.getUrl!,
           ),
         ),
       ),

@@ -422,8 +422,8 @@ class MapClusterController<T> extends ChangeNotifier {
 
   void addPoints(List<T> points) {
     _isAddPoints = true;
-    this.data = [];
-    this.data.addAll(points);
+    data = [];
+    data.addAll(points);
     notifyListeners();
   }
 

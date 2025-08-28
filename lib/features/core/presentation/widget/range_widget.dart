@@ -43,7 +43,7 @@ class _RangeWidgetState extends State<RangeWidget> {
             setState(() {
               priceRange = v;
             });
-            widget.onChanged(v.start, v.end == widget.max ? null : widget.max);
+            widget.onChanged(v.start, v.end == widget.max ? null : v.end);
           },
           min: widget.min.toDouble(),
           max: widget.max.toDouble(),

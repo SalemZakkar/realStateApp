@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:real_state/features/real_state/domain/enum/category_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_deed_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 
 import '../../../domain/params/real_estate_get_params.dart';
 
@@ -28,6 +28,7 @@ class RealEstateGetParamsModel {
   double? minSize;
   @JsonKey(name: "property_size[lte]")
   double? maxSize;
+  @JsonKey(name: 'isFeature')
   bool? isFeatured;
 
   RealEstateGetParamsModel({

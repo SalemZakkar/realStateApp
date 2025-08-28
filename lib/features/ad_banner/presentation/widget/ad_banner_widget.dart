@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/ad_banner/presentation/cubit/ad_banner_cubit.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
@@ -47,7 +48,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
               height: 230,
               viewportFraction: 1,
               enlargeCenterPage: false,
-              autoPlay: true
+              autoPlay: kReleaseMode
             ),
           ),
         );

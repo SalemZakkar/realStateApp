@@ -20,7 +20,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final featuredCubit = getIt<RealEstateGetListCubit>();
-  final featuredParams = RealEstateGetParams(page: 1, limit: 10);
+  final featuredParams = RealEstateGetParams(
+    page: 1,
+    limit: 10,
+    isFeatured: true,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                     16.height(),
                     HomeButtonsWidget(),
                     16.height(),
-                    RealEstateRowWidget<RealEstateGetParams>(
+                    RealEstateRowWidget(
                       params: featuredParams,
                       cubit: featuredCubit,
                       title: context.translation.featured,

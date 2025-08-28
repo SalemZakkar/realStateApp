@@ -13,4 +13,7 @@ enum RealEstatePropertyDeedType {
   industrial,
   @JsonValue('agricultural')
   agricultural,
+  // @JsonValue('stock')
+  // stock
+  
 }

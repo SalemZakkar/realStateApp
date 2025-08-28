@@ -2,9 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_location_model/real_estate_location_model.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
-import 'package:real_state/features/real_state/domain/enum/category_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_deed_type.dart';
-import 'package:real_state/features/real_state/domain/enum/property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 
 part 'real_estate_model.g.dart';
 
@@ -27,12 +27,13 @@ class RealEstateModel {
   @JsonKey(name: "property_age")
   int propertyAge;
   List<String> images;
-  @JsonKey(name: "isFavorite" , )
+  @JsonKey(name: "isFavorite")
   bool isFavourite;
   String? description;
   RealEstateCategory category;
   @JsonKey(name: "property_deed_type")
   RealEstatePropertyDeedType propertyDeedType;
+  bool isFeature;
 
   RealEstateModel({
     required this.id,
@@ -52,6 +53,7 @@ class RealEstateModel {
     this.description,
     required this.propertyDeedType,
     required this.category,
+    this.isFeature = false,
   });
 
   factory RealEstateModel.fromJson(Map<String, dynamic> json) =>
@@ -75,5 +77,6 @@ class RealEstateModel {
     description: description,
     category: category,
     propertyDeedType: propertyDeedType,
+    isFeature: isFeature,
   );
 }

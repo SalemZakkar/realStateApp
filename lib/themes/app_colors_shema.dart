@@ -17,32 +17,26 @@ abstract class AppColorsSchema {
 
   StatusColors get statusColors =>
       StatusColors(fail: Colors.red, success: Colors.green);
-
   MainColor white = MainColor(0xffffffff, {});
   MainColor whiteDarker = MainColor(0xffF3F5F9, {});
   MainColor chineseWhite = MainColor(0xffE0E0E0, {});
-
-  // MainColor antiFlashWhite = MainColor(0xffF2F5F1, {});
   MainColor black = MainColor(0xff111111, {});
   MainColor darkCoral = MainColor(0xffCD5B3B, {});
   MainColor graniteGrey = MainColor(0xff666666, {});
   MainColor spanishGrey = MainColor(0xff999999, {});
   MainColor onyx = MainColor(0xff333539, {});
-
-  // MainColor eireBlack = MainColor(0xff1A1C22, {});
   Color grey = Colors.grey;
   Color blue = Colors.blue;
   final MainColor eireBlack = MainColor(0xFF191919, {});
   final MainColor darkJungleGreen = MainColor(0xFF1C1F27, {});
   final MainColor gunMental = MainColor(0xFF2A2D35, {});
-
-  // final MainColor cadetGrey = MainColor(0xFFFFFFFF, {});
   final MainColor antiFlashWhite = MainColor(0xFFF1F1F1, {});
   final MainColor quickSilver = MainColor(0xFFA1A1AA, {});
   final MainColor blackCoral = MainColor(0xFF5E6572, {});
   final MainColor crayola = MainColor(0xFF2563EB, {});
   final MainColor richBlack = MainColor(0xFF010507, {});
   final MainColor cultured = MainColor(0xFFF3F5F9, {});
+  final MainColor gold = MainColor(0xffefbf04, {});
 }
 
 class LightAppColorSchema extends AppColorsSchema {
@@ -71,8 +65,13 @@ class LightAppColorSchema extends AppColorsSchema {
   ShadowColors get shadowColors => ShadowColors(mainShadow: Colors.grey[200]!);
 
   @override
-  Shadows get shadows =>
-      Shadows(cardShadow: BoxShadow(color: shadowColors.mainShadow , blurRadius: 4 , spreadRadius: 3));
+  Shadows get shadows => Shadows(
+    cardShadow: BoxShadow(
+      color: shadowColors.mainShadow,
+      blurRadius: 4,
+      spreadRadius: 3,
+    ),
+  );
 }
 
 class DarkAppColorSchema extends AppColorsSchema {
@@ -103,6 +102,7 @@ class DarkAppColorSchema extends AppColorsSchema {
   @override
   ShadowColors get shadowColors =>
       ShadowColors(mainShadow: MainColor(Colors.transparent.toARGB32(), {}));
+
   @override
   Shadows get shadows =>
       Shadows(cardShadow: BoxShadow(color: shadowColors.mainShadow));

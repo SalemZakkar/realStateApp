@@ -89,6 +89,10 @@ class $AssetsFontGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/bathroomSolid.svg
+  SvgGenImage get bathroomSolid =>
+      const SvgGenImage('assets/icons/bathroomSolid.svg');
+
   /// File path: assets/icons/bookmark.svg
   SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
 
@@ -105,6 +109,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/chat.svg
   SvgGenImage get chat => const SvgGenImage('assets/icons/chat.svg');
+
+  /// File path: assets/icons/city.svg
+  SvgGenImage get city => const SvgGenImage('assets/icons/city.svg');
 
   /// File path: assets/icons/compass.svg
   SvgGenImage get compass => const SvgGenImage('assets/icons/compass.svg');
@@ -126,6 +133,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/filter.svg
   SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
+
+  /// File path: assets/icons/handHelping.svg
+  SvgGenImage get handHelping =>
+      const SvgGenImage('assets/icons/handHelping.svg');
 
   /// File path: assets/icons/heart.svg
   SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
@@ -154,6 +165,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/name.svg
   SvgGenImage get name => const SvgGenImage('assets/icons/name.svg');
 
+  /// File path: assets/icons/neighbourhood.svg
+  SvgGenImage get neighbourhood =>
+      const SvgGenImage('assets/icons/neighbourhood.svg');
+
   /// File path: assets/icons/otp.svg
   SvgGenImage get otp => const SvgGenImage('assets/icons/otp.svg');
 
@@ -166,11 +181,31 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phoneCall.svg
   SvgGenImage get phoneCall => const SvgGenImage('assets/icons/phoneCall.svg');
 
+  /// File path: assets/icons/realEstateAgent.svg
+  SvgGenImage get realEstateAgent =>
+      const SvgGenImage('assets/icons/realEstateAgent.svg');
+
+  /// File path: assets/icons/room.svg
+  SvgGenImage get room => const SvgGenImage('assets/icons/room.svg');
+
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
+  /// File path: assets/icons/size.svg
+  SvgGenImage get size => const SvgGenImage('assets/icons/size.svg');
+
   /// File path: assets/icons/star.svg
   SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
+
+  /// File path: assets/icons/stocks.svg
+  SvgGenImage get stocks => const SvgGenImage('assets/icons/stocks.svg');
+
+  /// File path: assets/icons/textDescription.svg
+  SvgGenImage get textDescription =>
+      const SvgGenImage('assets/icons/textDescription.svg');
+
+  /// File path: assets/icons/title.svg
+  SvgGenImage get title => const SvgGenImage('assets/icons/title.svg');
 
   /// File path: assets/icons/user.svg
   SvgGenImage get user => const SvgGenImage('assets/icons/user.svg');
@@ -180,11 +215,13 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+    bathroomSolid,
     bookmark,
     brandTelegram,
     brandWhatsapp,
     building,
     chat,
+    city,
     compass,
     dollar,
     edit,
@@ -192,6 +229,7 @@ class $AssetsIconsGen {
     expand,
     facebook,
     filter,
+    handHelping,
     heart,
     home,
     homeM,
@@ -201,12 +239,19 @@ class $AssetsIconsGen {
     mapMarker,
     maps,
     name,
+    neighbourhood,
     otp,
     password,
     phone,
     phoneCall,
+    realEstateAgent,
+    room,
     send,
+    size,
     star,
+    stocks,
+    textDescription,
+    title,
     user,
     visible,
   ];

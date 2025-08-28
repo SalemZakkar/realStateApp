@@ -34,6 +34,7 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
     json['property_deed_type'],
   ),
   category: $enumDecode(_$RealEstateCategoryEnumMap, json['category']),
+  isFeature: json['isFeature'] as bool? ?? false,
 );
 
 const _$RealEstatePropertyTypeEnumMap = {

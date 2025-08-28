@@ -11,6 +11,7 @@ import 'package:real_state/features/core/presentation/widget/buttons/tile_button
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
+import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
@@ -162,6 +163,27 @@ class _ProfilePageState extends State<ProfilePage> {
                                       icon: Icon(
                                         Icons.keyboard_arrow_right_sharp,
                                         color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
+                                    32.height(),
+                                    InkWellWithoutFeedback(
+                                      onTap: () {
+                                        context.push(RealEStateSavedPage.path);
+                                      },
+                                      child: TileButton(
+                                        image: Assets.icons.bookmark
+                                            .dynamicSVGColor(
+                                              context,
+                                              color: Theme.of(
+                                                context,
+                                              ).primaryColor,
+                                            ),
+                                        title:
+                                            context.translation.savedProperties,
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_right_sharp,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ],

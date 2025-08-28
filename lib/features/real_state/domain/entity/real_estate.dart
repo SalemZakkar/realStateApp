@@ -1,9 +1,8 @@
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
-
-import '../enum/category_type.dart';
-import '../enum/property_deed_type.dart';
-import '../enum/property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 
 class RealEstate {
   final String id;
@@ -23,6 +22,7 @@ class RealEstate {
   String? description;
   RealEstateCategory category;
   RealEstatePropertyDeedType propertyDeedType;
+  bool isFeature;
 
   RealEstate({
     required this.id,
@@ -42,5 +42,6 @@ class RealEstate {
     this.description,
     required this.propertyDeedType,
     required this.category,
+    this.isFeature = false,
   });
 }

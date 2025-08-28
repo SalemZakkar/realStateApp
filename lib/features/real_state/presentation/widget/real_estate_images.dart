@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
@@ -50,7 +51,7 @@ class _RealEstateImagesState extends State<RealEstateImages> {
                         );
                       },
                       child: ImageWidget(
-                        url: e,
+                        url: e.getUrl,
                         width: MediaQuery.of(context).size.width,
                         height: widget.height,
                       ),

@@ -115,6 +115,12 @@ class TranslationsEn extends Translations {
   String get shouldContainAtLeastOneSymbol => 'at least one symbol';
 
   @override
+  String get nonLessThan => 'Non less than';
+
+  @override
+  String get nonMoreThan => 'Non more than';
+
+  @override
   String get matchedPassword => 'matched password';
 
   @override
@@ -242,6 +248,7 @@ class TranslationsEn extends Translations {
       'farm': 'Farm Deed',
       'industrial': 'Industrial Deed',
       'agricultural': 'Agricultural Deed',
+      'stock': 'Stock Owner Ship',
       'other': 'Unknown',
     });
     return '$_temp0';
@@ -395,4 +402,49 @@ class TranslationsEn extends Translations {
 
   @override
   String get addNewProperty => 'Add New Property';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get optional => 'Optional';
+
+  @override
+  String get inDollar => 'In dollar';
+
+  @override
+  String get size => 'Size';
+
+  @override
+  String get bathroom => 'Bathroom';
+
+  @override
+  String get propertyAge => 'Property Age';
+
+  @override
+  String get sizeM2 => 'Size (m2)';
+
+  @override
+  String get propertyAgeInYears => 'Property age in years';
+
+  @override
+  String get mainInfo => 'Main info';
+
+  @override
+  String get sizeInfo => 'Size info';
+
+  @override
+  String get propertyInfo => 'Property info';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get stock => 'Stock';
+
+  @override
+  String get stocks2400 => 'Stocks /2400';
 }
