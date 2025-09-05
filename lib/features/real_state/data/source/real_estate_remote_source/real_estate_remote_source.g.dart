@@ -296,6 +296,45 @@ class _RealEstateRemoteSourceImpl implements RealEstateRemoteSourceImpl {
     return _value;
   }
 
+  @override
+  Future<BaseResponse<List<RealEstateModel>>> getMineList({
+    required RealEstateGetParamsModel params,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(params.toJson());
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BaseResponse<List<RealEstateModel>>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'users/getApartment',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseResponse<List<RealEstateModel>> _value;
+    try {
+      _value = BaseResponse<List<RealEstateModel>>.fromJson(
+        _result.data!,
+        (json) => json is List<dynamic>
+            ? json
+                  .map<RealEstateModel>(
+                    (i) => RealEstateModel.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
+            : List.empty(),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

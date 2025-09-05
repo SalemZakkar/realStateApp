@@ -70,6 +70,7 @@
   "instagram": "Instagram",
   "toSaveYouMustLogin": "To save you must login",
   "categoryE": "{category, select, buy{Buy} rent{Rent} swap{Swap} other{Unknown}}",
+  "realEstateStatusE": "{status, select, rented{Rented} sold{Sold} available{Available} other{Unknown}}",
   "category": "Category",
   "propertyDeedE": "{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} stock{Stock Owner Ship} other{Unknown}}",
   "propertyDeed": "Property Deed",
@@ -134,9 +135,12 @@
   "stocks2400": "Stocks /2400",
   "pressOnTheMapAndUseExpandIconForBiggerMap": "Press on the map and use expand icon for bigger map",
   "thePropertyWillBeDeleted": "The property will be deleted !",
-  "propertyAddMessageWarning": "property will be reviewed in the late 48 hours after the you can't edit the data",
+  "propertyAddMessageWarning": "property will be reviewed in the soon 48 hours after that you can't edit the data",
   "pleaseMakeSureYouAddedImages": "Add at least 3 images to the property otherwise the property will never be accepted",
   "propertyRejected": "Property rejected",
   "pressOnTheMapToSetTheMarker": "Press on the map to set the marker",
-  "longPressOnTheImageAndDragIt": "Long press on the image and drag it to change the order , the first image will be the cover image."
+  "longPressOnTheImageAndDragIt": "Long press on the image and drag it to change the order , the first image will be the cover image.",
+  "status" : "Status",
+  "pressToChangePropertyStatus" : "Press to change property status",
+  "rejected" : "Rejected"
 }

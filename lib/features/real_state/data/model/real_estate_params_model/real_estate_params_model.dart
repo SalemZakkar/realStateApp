@@ -3,6 +3,7 @@ import 'package:real_state/features/real_state/data/model/real_estate_location_m
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_status.dart';
 
 part 'real_estate_params_model.g.dart';
 
@@ -31,6 +32,7 @@ class RealEstateParamsModel {
   RealEstateLocationModel? location;
   String? neighborhood;
   List<String>? images;
+  RealEstateStatus? status;
 
   RealEstateParamsModel({
     this.id,
@@ -50,6 +52,7 @@ class RealEstateParamsModel {
     this.room,
     this.floor,
     this.stock,
+    this.status,
   });
 
   Map<String, dynamic> toJson() => _$RealEstateParamsModelToJson(this);

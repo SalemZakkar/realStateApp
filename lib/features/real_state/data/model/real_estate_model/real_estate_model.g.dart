@@ -25,7 +25,7 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
   size: (json['property_size'] as num).toDouble(),
   room: json['room'] as num,
   bathrooms: json['bathrooms'] as num,
-  propertyAge: json['property_age'] as num? ?? 0,
+  propertyAge: json['property_age'] as num?,
   images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   isFavourite: json['isFavorite'] as bool? ?? false,
   description: json['description'] as String?,
@@ -40,6 +40,7 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
   status: $enumDecode(_$RealEstateStatusEnumMap, json['status']),
   stock: json['stock'] as num? ?? 0,
   floor: json['floor'] as num? ?? 0,
+  rejectReason: json['rejectReason'] as String?,
 );
 
 const _$RealEstatePropertyTypeEnumMap = {

@@ -30,6 +30,8 @@ Map<String, dynamic> _$RealEstateParamsModelToJson(
   if (instance.location?.toJson() case final value?) 'location': value,
   if (instance.neighborhood case final value?) 'neighborhood': value,
   if (instance.images case final value?) 'images': value,
+  if (_$RealEstateStatusEnumMap[instance.status] case final value?)
+    'status': value,
 };
 
 const _$RealEstateCategoryEnumMap = {
@@ -56,4 +58,10 @@ const _$RealEstatePropertyDeedTypeEnumMap = {
   RealEstatePropertyDeedType.farm: 'farm',
   RealEstatePropertyDeedType.industrial: 'industrial',
   RealEstatePropertyDeedType.agricultural: 'agricultural',
+};
+
+const _$RealEstateStatusEnumMap = {
+  RealEstateStatus.sold: 'sold',
+  RealEstateStatus.rented: 'rented',
+  RealEstateStatus.available: 'available',
 };

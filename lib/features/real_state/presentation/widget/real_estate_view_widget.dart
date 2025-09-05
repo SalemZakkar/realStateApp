@@ -3,14 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/core/presentation/widget/fields/map_field.dart';
 import 'package:real_state/features/core/presentation/widget/images_widget.dart';
 import 'package:real_state/features/core/presentation/widget/map_cluster_widget.dart';
+import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/contact_us_sheet.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/text_item_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_status_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -85,10 +86,18 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     16.height(),
-                    HeaderText(
-                      title: widget.realEstate.title,
-                      textStyle: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(fontWeight: FontWeight.bold),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.realEstate.title,
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        RealEstateStatusWidget(estate: widget.realEstate)
+                      ],
                     ),
                     16.height(),
                     IconText(
@@ -171,12 +180,14 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                         widget.realEstate.propertyType.name,
                       ),
                     ),
-                    8.height(),
-                    TextItemWidget(
-                      title: context.translation.age,
-                      description:
-                          "${widget.realEstate.propertyAge} ${context.translation.year}",
-                    ),
+                    if (widget.realEstate.propertyAge != null) ...[
+                      8.height(),
+                      TextItemWidget(
+                        title: context.translation.age,
+                        description:
+                            "${widget.realEstate.propertyAge} ${context.translation.year}",
+                      ),
+                    ],
                     16.height(),
                     HeaderText(title: context.translation.location),
                     16.height(),
@@ -193,7 +204,6 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                       width: MediaQuery.of(context).size.width,
                       height: 300,
                       zoomControls: false,
-
                       latLng: widget.realEstate.location.latLng,
                     ),
                     40.height(),

@@ -2,9 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/ad_banner/presentation/cubit/ad_banner_cubit.dart';
+import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
+import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/injection.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AdBannerWidget extends StatefulWidget {
   const AdBannerWidget({super.key});
@@ -34,11 +37,16 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                     borderRadius: BorderRadius.circular(6),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: ImageWidget(
-                        borderRadius: BorderRadius.circular(6),
-                        width: MediaQuery.of(context).size.width,
-                        height: 230,
-                        url: e.image,
+                      child: InkWellWithoutFeedback(
+                        onTap: () {
+                          launchUrl(Uri.parse(e.url));
+                        },
+                        child: ImageWidget(
+                          borderRadius: BorderRadius.circular(6),
+                          width: MediaQuery.of(context).size.width,
+                          height: 230,
+                          url: e.image.getUrl,
+                        ),
                       ),
                     ),
                   ),
@@ -48,7 +56,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
               height: 230,
               viewportFraction: 1,
               enlargeCenterPage: false,
-              autoPlay: kReleaseMode
+              autoPlay: kReleaseMode,
             ),
           ),
         );

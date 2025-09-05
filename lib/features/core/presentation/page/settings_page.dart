@@ -55,7 +55,9 @@ class _SettingsPageState extends State<SettingsPage> {
                           for (var type in ContactType.values) ...[
                             for (var e in c) ...[
                               if (e.type == type) ...[
-                                ContactUsCard(contactItem: e),
+                                Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: ContactUsCard(contactItem: e)),
                                 16.height(),
                               ],
                             ],

@@ -3,17 +3,26 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/features/core/presentation/widget/bloc_consumers/screen_loader.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
+import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
-import 'package:real_state/features/core/presentation/widget/fields/map_field.dart';
 import 'package:real_state/features/core/presentation/widget/images_widget.dart';
 import 'package:real_state/features/core/presentation/widget/map_cluster_widget.dart';
+import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/features/core/presentation/widget/sheets/contact_us_sheet.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/text_item_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_post_status.dart';
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_delete_cubit.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_image_page.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_change_status_widget.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_status_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/injection.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class RealEstateViewUserWidget extends StatefulWidget {
@@ -27,6 +36,8 @@ class RealEstateViewUserWidget extends StatefulWidget {
 }
 
 class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
+  var del = getIt<RealEstateDeleteCubit>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +74,12 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
               actions: [
                 if (widget.realEstate.editable) ...[
                   InkWellWithoutFeedback(
-                    onTap: () {},
+                    onTap: () {
+                      context.push(
+                        RealEstateFormPage.path,
+                        extra: widget.realEstate,
+                      );
+                    },
                     child: Container(
                       width: 48,
                       height: 48,
@@ -79,28 +95,37 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                   ),
                   8.width(),
                 ],
-                InkWellWithoutFeedback(
-                  onTap: () {
-                    DialogUtil(
-                      context: context,
-                      onDone: () {},
-                    ).showConfirmDialog(
-                      message: context.translation.thePropertyWillBeDeleted,
-                    );
+                ScreenLoader(
+                  cubit: del,
+                  withSuccess: false,
+                  onSuccess: (v) {
+                    context.pop();
                   },
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    // margin: EdgeInsets.all(6),
-                    alignment: Alignment.center,
-                    // margin: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: context.appColorSchema.shapeColors.cardColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Assets.icons.delete.dynamicSVGColor(
-                      context,
-                      color: context.appColorSchema.statusColors.fail,
+                  child: InkWellWithoutFeedback(
+                    onTap: () {
+                      DialogUtil(
+                        context: context,
+                        onDone: () {
+                          del.delete(id: widget.realEstate.id);
+                        },
+                      ).showConfirmDialog(
+                        message: context.translation.thePropertyWillBeDeleted,
+                      );
+                    },
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      // margin: EdgeInsets.all(6),
+                      alignment: Alignment.center,
+                      // margin: EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: context.appColorSchema.shapeColors.cardColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Assets.icons.delete.dynamicSVGColor(
+                        context,
+                        color: context.appColorSchema.statusColors.fail,
+                      ),
                     ),
                   ),
                 ),
@@ -116,10 +141,42 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                   height: 320,
                   // color: Colors.red,
                   width: MediaQuery.of(context).size.width,
-                  child: ImagesWidget(
-                    images: widget.realEstate.images,
-                    height: 320,
-                  ),
+                  child: widget.realEstate.images.isEmpty
+                      ? CustomCardWidget(
+                          borderRadius: BorderRadius.zero,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+
+                            children: [
+                              Assets.icons.building.dynamicSVGColor(
+                                context,
+                                width: 48,
+                                height: 48,
+                              ),
+                              16.height(),
+                              Text(
+                                context
+                                    .translation
+                                    .pleaseMakeSureYouAddedImages,
+                                textAlign: TextAlign.center,
+                              ),
+                              8.height(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  context.push(
+                                    RealEstateImagePage.path,
+                                    extra: widget.realEstate,
+                                  );
+                                },
+                                child: Text(context.translation.addImage),
+                              ),
+                            ],
+                          ),
+                        )
+                      : ImagesWidget(
+                          images: widget.realEstate.images,
+                          height: 320,
+                        ),
                 ),
               ),
 
@@ -133,11 +190,63 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (widget.realEstate.postStatus ==
+                        RealEstatePostStatus.pending) ...[
+                      16.height(),
+                      CustomCardWidget(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Text(
+                              context.translation.propertyAddMessageWarning,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if (widget.realEstate.postStatus ==
+                        RealEstatePostStatus.rejected) ...[
+                      16.height(),
+                      CustomCardWidget(
+                        backgroundColor:
+                            context.appColorSchema.statusColors.fail,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.translation.rejected,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                8.height(),
+                                Text(
+                                  widget.realEstate.rejectReason ?? '',
+
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                     16.height(),
-                    HeaderText(
-                      title: widget.realEstate.title,
-                      textStyle: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(fontWeight: FontWeight.bold),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.realEstate.title,
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        RealEstateStatusWidget(estate: widget.realEstate),
+                      ],
                     ),
                     16.height(),
                     IconText(
@@ -160,6 +269,11 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                         // style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
+                    16.height(),
+                    RealEstateChangeStatusWidget(
+                      realEstate: widget.realEstate,
+                      onChanged: (v) {},
+                    ),
                     16.height(),
                     HeaderText(title: context.translation.specifications),
                     16.height(),
@@ -220,12 +334,14 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                         widget.realEstate.propertyType.name,
                       ),
                     ),
-                    8.height(),
-                    TextItemWidget(
-                      title: context.translation.age,
-                      description:
-                          "${widget.realEstate.propertyAge} ${context.translation.year}",
-                    ),
+                    if (widget.realEstate.propertyAge != null) ...[
+                      8.height(),
+                      TextItemWidget(
+                        title: context.translation.age,
+                        description:
+                            "${widget.realEstate.propertyAge} ${context.translation.year}",
+                      ),
+                    ],
                     16.height(),
                     HeaderText(title: context.translation.location),
                     16.height(),

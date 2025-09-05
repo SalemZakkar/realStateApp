@@ -39,6 +39,10 @@ abstract class RealEstateRemoteSource {
   });
 
   Future<BaseResponse<RealEstateModel>> delete({required String id});
+
+  Future<BaseResponse<List<RealEstateModel>>> getMineList({
+    required RealEstateGetParamsModel params,
+  });
 }
 
 @RestApi()
@@ -99,5 +103,11 @@ abstract class RealEstateRemoteSourceImpl extends RealEstateRemoteSource {
   @override
   Future<BaseResponse<RealEstateModel>> deleteApartmentImage({
     @Path("id") required String image,
+  });
+
+  @GET("users/getApartment")
+  @override
+  Future<BaseResponse<List<RealEstateModel>>> getMineList({
+    @Queries() required RealEstateGetParamsModel params,
   });
 }

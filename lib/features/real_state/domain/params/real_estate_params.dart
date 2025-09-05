@@ -5,6 +5,7 @@ import 'package:real_state/features/real_state/domain/entity/real_estate_locatio
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_status.dart';
 
 class RealEstateParams {
   String? id;
@@ -24,6 +25,7 @@ class RealEstateParams {
   RealEstateLocation? location;
   String? neighborhood;
   List<String>? images;
+  RealEstateStatus? status;
 
   RealEstateParams({
     this.id,
@@ -43,6 +45,7 @@ class RealEstateParams {
     this.room,
     this.floor,
     this.stock,
+    this.status,
   });
 
   factory RealEstateParams.fromRealEstate({required RealEstate realEstate}) {
@@ -86,5 +89,6 @@ class RealEstateParams {
     propertyType: propertyType,
     room: room,
     title: title,
+    status: status,
   );
 }

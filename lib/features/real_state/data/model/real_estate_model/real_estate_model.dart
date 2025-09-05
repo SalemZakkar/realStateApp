@@ -26,8 +26,8 @@ class RealEstateModel {
   double size;
   num room;
   num bathrooms;
-  @JsonKey(name: "property_age" , defaultValue: 0)
-  num propertyAge;
+  @JsonKey(name: "property_age")
+  num? propertyAge;
   List<String> images;
   @JsonKey(name: "isFavorite")
   bool isFavourite;
@@ -43,6 +43,7 @@ class RealEstateModel {
   num floor;
   @JsonKey(defaultValue: 0)
   num stock;
+  String? rejectReason;
 
   RealEstateModel({
     required this.id,
@@ -68,6 +69,7 @@ class RealEstateModel {
     required this.status,
     required this.stock,
     required this.floor,
+    this.rejectReason,
   });
 
   factory RealEstateModel.fromJson(Map<String, dynamic> json) =>
@@ -85,7 +87,7 @@ class RealEstateModel {
     size: size,
     room: room.toInt(),
     bathrooms: bathrooms.toInt(),
-    propertyAge: propertyAge.toInt(),
+    propertyAge: propertyAge?.toInt(),
     images: images,
     isFavourite: isFavourite,
     description: description,
@@ -97,5 +99,6 @@ class RealEstateModel {
     postStatus: postStatus,
     floor: floor.toInt(),
     stock: stock.toInt(),
+    rejectReason: rejectReason,
   );
 }

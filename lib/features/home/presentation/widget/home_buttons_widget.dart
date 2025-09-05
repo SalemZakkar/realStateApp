@@ -6,6 +6,7 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_mine_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
@@ -105,7 +106,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         ),
                         title: context.translation.myProperties,
                         onTap: () {
-                          // context.go(RealStateSavedPage.path);
+                          context.pushNamed(RealEstateMineListPage.path);
                         },
                       ),
                     ),

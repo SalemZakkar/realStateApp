@@ -17,7 +17,7 @@ class RealEstate {
   double size;
   int room;
   int bathrooms;
-  int propertyAge;
+  int? propertyAge;
   List<String> images;
   bool isFavourite;
   RealEstatePropertyType propertyType;
@@ -30,6 +30,7 @@ class RealEstate {
   RealEstateStatus status;
   int floor;
   int stock;
+  String? rejectReason;
 
   bool get editable =>
       (postStatus == RealEstatePostStatus.pending ||
@@ -48,7 +49,7 @@ class RealEstate {
     required this.size,
     required this.room,
     required this.bathrooms,
-    required this.propertyAge,
+    this.propertyAge,
     required this.images,
     this.isFavourite = false,
     this.description,
@@ -60,5 +61,6 @@ class RealEstate {
     required this.postStatus,
     required this.floor,
     required this.stock,
+    this.rejectReason,
   });
 }

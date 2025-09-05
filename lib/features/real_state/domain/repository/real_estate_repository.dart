@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/domain/entity/paginated_list.dart';
@@ -34,4 +33,8 @@ abstract class RealEstateRepository {
   });
 
   Future<Either<Failure, void>> deleteImage({required String image});
+
+  Future<Either<Failure, PaginatedList<RealEstate>>> getMineList({
+    required RealEstateGetParams params,
+  });
 }

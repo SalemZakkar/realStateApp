@@ -39,6 +39,7 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
   @override
   void initState() {
     super.initState();
+    realEstate = widget.realEstate;
     if (widget.realEstate != null) {
       params = RealEstateParams.fromRealEstate(realEstate: widget.realEstate!);
     } else {
@@ -54,6 +55,10 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
         cubit: editCubit,
         withSuccess: false,
         onSuccess: (v) {
+          if(widget.realEstate != null){
+            context.pop();
+            return;
+          }
           context.replace(RealEstateDetailsPage.path, extra: v);
         },
 
@@ -70,11 +75,18 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
             key: key,
             child: StepperFormWidget(
               canBack: (v) {
+                if (widget.realEstate != null) {
+                  return true;
+                }
                 return v <= 2;
               },
               controller: controller,
               onDone: () {
                 if (key.currentState!.validate()) {
+                  if (widget.realEstate != null) {
+                    editCubit.edit(params: params);
+                    return;
+                  }
                   editCubit.edit(
                     params: RealEstateParams(
                       id: params.id,
@@ -85,7 +97,7 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
               },
               onNext: (v) {
                 if (key.currentState!.validate()) {
-                  if (v == 2) {
+                  if (v == 2 && realEstate == null) {
                     addCubit.add(params: params);
                   } else {
                     controller.next();
@@ -106,9 +118,9 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
                 ],
               ],
               stepTitles: [
-                StepperItem(context.translation.mainInfo),
-                StepperItem(context.translation.sizeInfo),
-                StepperItem(context.translation.propertyInfo),
+                StepperItem(context.translation.main),
+                StepperItem(context.translation.area),
+                StepperItem(context.translation.property),
                 StepperItem(context.translation.images),
               ],
             ),

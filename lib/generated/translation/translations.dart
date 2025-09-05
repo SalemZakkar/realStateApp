@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'translations_ar.dart';
 import 'translations_en.dart';
 
 // ignore_for_file: type=lint
@@ -92,848 +93,887 @@ abstract class Translations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('en'),
+  ];
 
   /// No description provided for @logIn.
   ///
-  /// In en, this message translates to:
-  /// **'Login'**
+  /// In ar, this message translates to:
+  /// **'تسجيل الدخول'**
   String get logIn;
 
   /// No description provided for @email.
   ///
-  /// In en, this message translates to:
-  /// **'Email'**
+  /// In ar, this message translates to:
+  /// **'البريد الإلكتروني'**
   String get email;
 
   /// No description provided for @password.
   ///
-  /// In en, this message translates to:
-  /// **'Password'**
+  /// In ar, this message translates to:
+  /// **'كلمة المرور'**
   String get password;
 
   /// No description provided for @name.
   ///
-  /// In en, this message translates to:
-  /// **'Name'**
+  /// In ar, this message translates to:
+  /// **'الاسم'**
   String get name;
 
   /// No description provided for @code.
   ///
-  /// In en, this message translates to:
-  /// **'Code'**
+  /// In ar, this message translates to:
+  /// **'الرمز'**
   String get code;
 
   /// No description provided for @phoneNumber.
   ///
-  /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// In ar, this message translates to:
+  /// **'رقم الهاتف'**
   String get phoneNumber;
 
   /// No description provided for @confirmPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Confirm Password'**
+  /// In ar, this message translates to:
+  /// **'تأكيد كلمة المرور'**
   String get confirmPassword;
 
   /// No description provided for @signUp.
   ///
-  /// In en, this message translates to:
-  /// **'Sign Up'**
+  /// In ar, this message translates to:
+  /// **'إنشاء حساب'**
   String get signUp;
 
   /// No description provided for @forgetPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Forget Password'**
+  /// In ar, this message translates to:
+  /// **'نسيت كلمة المرور'**
   String get forgetPassword;
 
   /// No description provided for @continuE.
   ///
-  /// In en, this message translates to:
-  /// **'Continue'**
+  /// In ar, this message translates to:
+  /// **'متابعة'**
   String get continuE;
 
   /// No description provided for @retry.
   ///
-  /// In en, this message translates to:
-  /// **'Retry'**
+  /// In ar, this message translates to:
+  /// **'إعادة المحاولة'**
   String get retry;
 
   /// No description provided for @success.
   ///
-  /// In en, this message translates to:
-  /// **'Success'**
+  /// In ar, this message translates to:
+  /// **'نجاح'**
   String get success;
 
   /// No description provided for @accessDetails.
   ///
-  /// In en, this message translates to:
-  /// **'Access Details'**
+  /// In ar, this message translates to:
+  /// **'تفاصيل الوصول'**
   String get accessDetails;
 
   /// No description provided for @errorMessage.
   ///
-  /// In en, this message translates to:
-  /// **'OOPS! Something went wrong'**
+  /// In ar, this message translates to:
+  /// **'عذراً! حدث خطأ ما'**
   String get errorMessage;
 
   /// No description provided for @accessDeniedMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Access Denied, You have insufficient privileges'**
+  /// In ar, this message translates to:
+  /// **'تم رفض الوصول، ليس لديك الصلاحيات الكافية'**
   String get accessDeniedMessage;
 
   /// No description provided for @noInternetConnection.
   ///
-  /// In en, this message translates to:
-  /// **'No internet connection'**
+  /// In ar, this message translates to:
+  /// **'لا يوجد اتصال بالإنترنت'**
   String get noInternetConnection;
 
   /// No description provided for @connectionTimeOut.
   ///
-  /// In en, this message translates to:
-  /// **'Connection timeout'**
+  /// In ar, this message translates to:
+  /// **'انتهت مهلة الاتصال'**
   String get connectionTimeOut;
 
   /// No description provided for @unauthenticatedMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Session is Expired!'**
+  /// In ar, this message translates to:
+  /// **'انتهت الجلسة!'**
   String get unauthenticatedMessage;
 
   /// No description provided for @yes.
   ///
-  /// In en, this message translates to:
-  /// **'Yes'**
+  /// In ar, this message translates to:
+  /// **'نعم'**
   String get yes;
 
   /// No description provided for @no.
   ///
-  /// In en, this message translates to:
-  /// **'No'**
+  /// In ar, this message translates to:
+  /// **'لا'**
   String get no;
 
   /// No description provided for @cancel.
   ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
+  /// In ar, this message translates to:
+  /// **'إلغاء'**
   String get cancel;
 
   /// No description provided for @search.
   ///
-  /// In en, this message translates to:
-  /// **'Search'**
+  /// In ar, this message translates to:
+  /// **'بحث'**
   String get search;
 
   /// No description provided for @done.
   ///
-  /// In en, this message translates to:
-  /// **'Done'**
+  /// In ar, this message translates to:
+  /// **'تم'**
   String get done;
 
   /// No description provided for @fieldRequiredMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Required Field'**
+  /// In ar, this message translates to:
+  /// **'حقل مطلوب'**
   String get fieldRequiredMessage;
 
   /// No description provided for @codeIsRequired.
   ///
-  /// In en, this message translates to:
-  /// **'Code is required'**
+  /// In ar, this message translates to:
+  /// **'الرمز مطلوب'**
   String get codeIsRequired;
 
   /// No description provided for @youHaveUnverifiedEmailPleaseVerifyIt.
   ///
-  /// In en, this message translates to:
-  /// **'You have unverified email, please verify it!'**
+  /// In ar, this message translates to:
+  /// **'لديك بريد غير مُفعل، يرجى تفعيله!'**
   String get youHaveUnverifiedEmailPleaseVerifyIt;
 
   /// No description provided for @resetPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Reset Password'**
+  /// In ar, this message translates to:
+  /// **'إعادة تعيين كلمة المرور'**
   String get resetPassword;
 
   /// No description provided for @yourPasswordMustBeAtLeast8charactersLongAndContainAtLeastLetterAndOneDigit.
   ///
-  /// In en, this message translates to:
-  /// **'Your password must be at least 8 characters long and contain at least letter and one digit'**
+  /// In ar, this message translates to:
+  /// **'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، وحرف ورقم واحد على الأقل'**
   String
   get yourPasswordMustBeAtLeast8charactersLongAndContainAtLeastLetterAndOneDigit;
 
   /// No description provided for @shouldContainAtLeastOneCapitalLetter.
   ///
-  /// In en, this message translates to:
-  /// **'Should contain at least one capital letter'**
+  /// In ar, this message translates to:
+  /// **'يجب أن تحتوي على حرف كبير واحد على الأقل'**
   String get shouldContainAtLeastOneCapitalLetter;
 
   /// No description provided for @shouldContainAtLeastOneSmallLetter.
   ///
-  /// In en, this message translates to:
-  /// **'Should contain at least one small letter'**
+  /// In ar, this message translates to:
+  /// **'يجب أن تحتوي على حرف صغير واحد على الأقل'**
   String get shouldContainAtLeastOneSmallLetter;
 
   /// No description provided for @shouldContainAtLeastOneSmallLetterAndOneCapitalLetter.
   ///
-  /// In en, this message translates to:
-  /// **'capital letter and small letter'**
+  /// In ar, this message translates to:
+  /// **'حرف كبير وحرف صغير'**
   String get shouldContainAtLeastOneSmallLetterAndOneCapitalLetter;
 
   /// No description provided for @shouldContainAtLeast8Characters.
   ///
-  /// In en, this message translates to:
-  /// **'at least 8 character'**
+  /// In ar, this message translates to:
+  /// **'8 أحرف على الأقل'**
   String get shouldContainAtLeast8Characters;
 
   /// No description provided for @shouldContainAtLeastOneSymbol.
   ///
-  /// In en, this message translates to:
-  /// **'at least one symbol'**
+  /// In ar, this message translates to:
+  /// **'رمز واحد على الأقل'**
   String get shouldContainAtLeastOneSymbol;
 
   /// No description provided for @nonLessThan.
   ///
-  /// In en, this message translates to:
-  /// **'Non less than'**
+  /// In ar, this message translates to:
+  /// **'لا يقل عن'**
   String get nonLessThan;
 
   /// No description provided for @nonMoreThan.
   ///
-  /// In en, this message translates to:
-  /// **'Non more than'**
+  /// In ar, this message translates to:
+  /// **'لا يزيد عن'**
   String get nonMoreThan;
 
   /// No description provided for @matchedPassword.
   ///
-  /// In en, this message translates to:
-  /// **'matched password'**
+  /// In ar, this message translates to:
+  /// **'كلمة المرور متطابقة'**
   String get matchedPassword;
 
   /// No description provided for @createANewPasswordForYourAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Create a new password for your account'**
+  /// In ar, this message translates to:
+  /// **'أنشئ كلمة مرور جديدة لحسابك'**
   String get createANewPasswordForYourAccount;
 
   /// No description provided for @doNotHaveAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Don\'t have account?'**
+  /// In ar, this message translates to:
+  /// **'ليس لديك حساب؟'**
   String get doNotHaveAccount;
 
   /// No description provided for @createNewAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Create new account'**
+  /// In ar, this message translates to:
+  /// **'إنشاء حساب جديد'**
   String get createNewAccount;
 
   /// No description provided for @enterYourEmailAndPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Enter Your Email And Password'**
+  /// In ar, this message translates to:
+  /// **'أدخل البريد الإلكتروني وكلمة المرور'**
   String get enterYourEmailAndPassword;
 
   /// No description provided for @orCreateNewAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Or Create New Account'**
+  /// In ar, this message translates to:
+  /// **'أو أنشئ حساباً جديداً'**
   String get orCreateNewAccount;
 
   /// No description provided for @alreadyHaveAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Already Have Account ?'**
+  /// In ar, this message translates to:
+  /// **'لديك حساب بالفعل؟'**
   String get alreadyHaveAccount;
 
   /// No description provided for @createAccount.
   ///
-  /// In en, this message translates to:
-  /// **'Create Account'**
+  /// In ar, this message translates to:
+  /// **'إنشاء حساب'**
   String get createAccount;
 
   /// No description provided for @welcomeToOurApplication.
   ///
-  /// In en, this message translates to:
-  /// **'Welcome to our application'**
+  /// In ar, this message translates to:
+  /// **'مرحباً بك في تطبيقنا'**
   String get welcomeToOurApplication;
 
   /// No description provided for @phone.
   ///
-  /// In en, this message translates to:
-  /// **'phone'**
+  /// In ar, this message translates to:
+  /// **'الهاتف'**
   String get phone;
 
   /// No description provided for @enterYourEmailOtp.
   ///
-  /// In en, this message translates to:
-  /// **'Enter Your Email to send otp message'**
+  /// In ar, this message translates to:
+  /// **'أدخل بريدك الإلكتروني لإرسال رمز التحقق'**
   String get enterYourEmailOtp;
 
   /// No description provided for @verifyEmail.
   ///
-  /// In en, this message translates to:
-  /// **'Verify Email'**
+  /// In ar, this message translates to:
+  /// **'تفعيل البريد الإلكتروني'**
   String get verifyEmail;
 
   /// No description provided for @enterYourCode.
   ///
-  /// In en, this message translates to:
-  /// **'Enter the code you received on your email'**
+  /// In ar, this message translates to:
+  /// **'أدخل الرمز المرسل إلى بريدك الإلكتروني'**
   String get enterYourCode;
 
   /// No description provided for @changePassword.
   ///
-  /// In en, this message translates to:
-  /// **'Change Password'**
+  /// In ar, this message translates to:
+  /// **'تغيير كلمة المرور'**
   String get changePassword;
 
   /// No description provided for @changeYourAccountPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Change Your Account Password'**
+  /// In ar, this message translates to:
+  /// **'غيّر كلمة مرور حسابك'**
   String get changeYourAccountPassword;
 
   /// No description provided for @currentPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Current Password'**
+  /// In ar, this message translates to:
+  /// **'كلمة المرور الحالية'**
   String get currentPassword;
 
   /// No description provided for @resend.
   ///
-  /// In en, this message translates to:
-  /// **'Resend'**
+  /// In ar, this message translates to:
+  /// **'إعادة الإرسال'**
   String get resend;
 
   /// No description provided for @settings.
   ///
-  /// In en, this message translates to:
-  /// **'Settings'**
+  /// In ar, this message translates to:
+  /// **'الإعدادات'**
   String get settings;
 
   /// No description provided for @realStates.
   ///
-  /// In en, this message translates to:
-  /// **'RealStates'**
+  /// In ar, this message translates to:
+  /// **'العقارات'**
   String get realStates;
 
   /// No description provided for @logOut.
   ///
-  /// In en, this message translates to:
-  /// **'Logout'**
+  /// In ar, this message translates to:
+  /// **'تسجيل الخروج'**
   String get logOut;
 
   /// No description provided for @logoutMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Are u sure you want to logout?'**
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد أنك تريد تسجيل الخروج؟'**
   String get logoutMessage;
 
   /// No description provided for @profile.
   ///
-  /// In en, this message translates to:
-  /// **'Profile'**
+  /// In ar, this message translates to:
+  /// **'الملف الشخصي'**
   String get profile;
 
   /// No description provided for @edit.
   ///
-  /// In en, this message translates to:
-  /// **'Edit'**
+  /// In ar, this message translates to:
+  /// **'تعديل'**
   String get edit;
 
   /// No description provided for @save.
   ///
-  /// In en, this message translates to:
-  /// **'Save'**
+  /// In ar, this message translates to:
+  /// **'حفظ'**
   String get save;
 
   /// No description provided for @contactUs.
   ///
-  /// In en, this message translates to:
-  /// **'Contact Us'**
+  /// In ar, this message translates to:
+  /// **'اتصل بنا'**
   String get contactUs;
 
   /// No description provided for @whatsapp.
   ///
-  /// In en, this message translates to:
-  /// **'Whatsapp'**
+  /// In ar, this message translates to:
+  /// **'واتساب'**
   String get whatsapp;
 
   /// No description provided for @telegram.
   ///
-  /// In en, this message translates to:
-  /// **'Telegram'**
+  /// In ar, this message translates to:
+  /// **'تيليغرام'**
   String get telegram;
 
   /// No description provided for @aboutUs.
   ///
-  /// In en, this message translates to:
-  /// **'About Us'**
+  /// In ar, this message translates to:
+  /// **'معلومات عنا'**
   String get aboutUs;
 
   /// No description provided for @location.
   ///
-  /// In en, this message translates to:
-  /// **'Location'**
+  /// In ar, this message translates to:
+  /// **'الموقع'**
   String get location;
 
   /// No description provided for @sendWhatsapp.
   ///
-  /// In en, this message translates to:
-  /// **'Send whatsapp'**
+  /// In ar, this message translates to:
+  /// **'إرسال عبر واتساب'**
   String get sendWhatsapp;
 
   /// No description provided for @sendTelegram.
   ///
-  /// In en, this message translates to:
-  /// **'Send telegram'**
+  /// In ar, this message translates to:
+  /// **'إرسال عبر تيليغرام'**
   String get sendTelegram;
 
   /// No description provided for @callUs.
   ///
-  /// In en, this message translates to:
-  /// **'Call us'**
+  /// In ar, this message translates to:
+  /// **'اتصل بنا'**
   String get callUs;
 
   /// No description provided for @facebook.
   ///
-  /// In en, this message translates to:
-  /// **'Facebook'**
+  /// In ar, this message translates to:
+  /// **'فيسبوك'**
   String get facebook;
 
   /// No description provided for @instagram.
   ///
-  /// In en, this message translates to:
-  /// **'Instagram'**
+  /// In ar, this message translates to:
+  /// **'إنستغرام'**
   String get instagram;
 
   /// No description provided for @toSaveYouMustLogin.
   ///
-  /// In en, this message translates to:
-  /// **'To save you must login'**
+  /// In ar, this message translates to:
+  /// **'لحفظ العقار يجب تسجيل الدخول'**
   String get toSaveYouMustLogin;
 
   /// No description provided for @categoryE.
   ///
-  /// In en, this message translates to:
-  /// **'{category, select, buy{Buy} rent{Rent} swap{Swap} other{Unknown}}'**
+  /// In ar, this message translates to:
+  /// **'{category, select, buy{شراء} rent{إيجار} swap{مبادلة} other{غير معروف}}'**
   String categoryE(String category);
+
+  /// No description provided for @realEstateStatusE.
+  ///
+  /// In ar, this message translates to:
+  /// **'{status, select, rented{مؤجر} sold{مباع} available{متاح} other{غير معروف}}'**
+  String realEstateStatusE(String status);
 
   /// No description provided for @category.
   ///
-  /// In en, this message translates to:
-  /// **'Category'**
+  /// In ar, this message translates to:
+  /// **'الفئة'**
   String get category;
 
   /// No description provided for @propertyDeedE.
   ///
-  /// In en, this message translates to:
-  /// **'{type, select, green{Green Deed} courtRolling{Court Rolling Deed} municipal{Municipal Deed} farm{Farm Deed} industrial{Industrial Deed} agricultural{Agricultural Deed} stock{Stock Owner Ship} other{Unknown}}'**
+  /// In ar, this message translates to:
+  /// **'{type, select, green{سند أخضر} courtRolling{سند محكمة} municipal{سند بلدي} farm{سند مزرعة} industrial{سند صناعي} agricultural{سند زراعي} stock{سند ملكية أسهم} other{غير معروف}}'**
   String propertyDeedE(String type);
 
   /// No description provided for @propertyDeed.
   ///
-  /// In en, this message translates to:
-  /// **'Property Deed'**
+  /// In ar, this message translates to:
+  /// **'سند الملكية'**
   String get propertyDeed;
 
   /// No description provided for @propertyType.
   ///
-  /// In en, this message translates to:
-  /// **'Property Type'**
+  /// In ar, this message translates to:
+  /// **'نوع العقار'**
   String get propertyType;
 
   /// No description provided for @propertyTypeE.
   ///
-  /// In en, this message translates to:
-  /// **'{type, select, apartment{Apartment} land{Land} villa{Villa} agriculturalLand{Agricultural Land} industrialLand{Industrial Land} farm{Farm} shop{Shop} architecture{Architecture} other{Unknown}}'**
+  /// In ar, this message translates to:
+  /// **'{type, select, apartment{شقة} land{أرض} villa{فيلا} agriculturalLand{أرض زراعية} industrialLand{أرض صناعية} farm{مزرعة} shop{محل} architecture{مكتب هندسي} other{غير معروف}}'**
   String propertyTypeE(String type);
 
   /// No description provided for @price.
   ///
-  /// In en, this message translates to:
-  /// **'Price'**
+  /// In ar, this message translates to:
+  /// **'السعر'**
   String get price;
 
   /// No description provided for @neighborhood.
   ///
-  /// In en, this message translates to:
-  /// **'Neighborhood'**
+  /// In ar, this message translates to:
+  /// **'الحي'**
   String get neighborhood;
 
   /// No description provided for @address.
   ///
-  /// In en, this message translates to:
-  /// **'Address'**
+  /// In ar, this message translates to:
+  /// **'العنوان'**
   String get address;
 
   /// No description provided for @rooms.
   ///
-  /// In en, this message translates to:
-  /// **'Rooms'**
+  /// In ar, this message translates to:
+  /// **'الغرف'**
   String get rooms;
 
   /// No description provided for @floor.
   ///
-  /// In en, this message translates to:
-  /// **'Floor'**
+  /// In ar, this message translates to:
+  /// **'الطابق'**
   String get floor;
 
   /// No description provided for @area.
   ///
-  /// In en, this message translates to:
-  /// **'Area'**
+  /// In ar, this message translates to:
+  /// **'المساحة'**
   String get area;
 
   /// No description provided for @bedrooms.
   ///
-  /// In en, this message translates to:
-  /// **'Bedrooms'**
+  /// In ar, this message translates to:
+  /// **'غرف النوم'**
   String get bedrooms;
 
   /// No description provided for @bathrooms.
   ///
-  /// In en, this message translates to:
-  /// **'Bathrooms'**
+  /// In ar, this message translates to:
+  /// **'الحمامات'**
   String get bathrooms;
 
   /// No description provided for @kitchen.
   ///
-  /// In en, this message translates to:
-  /// **'Kitchen'**
+  /// In ar, this message translates to:
+  /// **'المطبخ'**
   String get kitchen;
 
   /// No description provided for @garage.
   ///
-  /// In en, this message translates to:
-  /// **'Garage'**
+  /// In ar, this message translates to:
+  /// **'كراج'**
   String get garage;
 
   /// No description provided for @balcony.
   ///
-  /// In en, this message translates to:
-  /// **'Balcony'**
+  /// In ar, this message translates to:
+  /// **'شرفة'**
   String get balcony;
 
   /// No description provided for @description.
   ///
-  /// In en, this message translates to:
-  /// **'Description'**
+  /// In ar, this message translates to:
+  /// **'الوصف'**
   String get description;
 
   /// No description provided for @images.
   ///
-  /// In en, this message translates to:
-  /// **'Images'**
+  /// In ar, this message translates to:
+  /// **'الصور'**
   String get images;
 
   /// No description provided for @addImage.
   ///
-  /// In en, this message translates to:
-  /// **'Add Image'**
+  /// In ar, this message translates to:
+  /// **'إضافة صورة'**
   String get addImage;
 
   /// No description provided for @addNewImage.
   ///
-  /// In en, this message translates to:
-  /// **'Add New Image'**
+  /// In ar, this message translates to:
+  /// **'إضافة صورة جديدة'**
   String get addNewImage;
 
   /// No description provided for @deleteImage.
   ///
-  /// In en, this message translates to:
-  /// **'Delete Image'**
+  /// In ar, this message translates to:
+  /// **'حذف الصورة'**
   String get deleteImage;
 
   /// No description provided for @deleteImageMessage.
   ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this image?'**
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد أنك تريد حذف هذه الصورة؟'**
   String get deleteImageMessage;
 
   /// No description provided for @delete.
   ///
-  /// In en, this message translates to:
-  /// **'Delete'**
+  /// In ar, this message translates to:
+  /// **'حذف'**
   String get delete;
 
   /// No description provided for @noData.
   ///
-  /// In en, this message translates to:
-  /// **'No Data'**
+  /// In ar, this message translates to:
+  /// **'لا توجد بيانات'**
   String get noData;
 
   /// No description provided for @specifications.
   ///
-  /// In en, this message translates to:
-  /// **'Specifications'**
+  /// In ar, this message translates to:
+  /// **'المواصفات'**
   String get specifications;
 
   /// No description provided for @m2.
   ///
-  /// In en, this message translates to:
-  /// **'M2'**
+  /// In ar, this message translates to:
+  /// **'م²'**
   String get m2;
 
   /// No description provided for @age.
   ///
-  /// In en, this message translates to:
-  /// **'Age'**
+  /// In ar, this message translates to:
+  /// **'العمر'**
   String get age;
 
   /// No description provided for @year.
   ///
-  /// In en, this message translates to:
-  /// **'Year'**
+  /// In ar, this message translates to:
+  /// **'السنة'**
   String get year;
 
   /// No description provided for @city.
   ///
-  /// In en, this message translates to:
-  /// **'City'**
+  /// In ar, this message translates to:
+  /// **'المدينة'**
   String get city;
 
   /// No description provided for @map.
   ///
-  /// In en, this message translates to:
-  /// **'Map'**
+  /// In ar, this message translates to:
+  /// **'الخريطة'**
   String get map;
 
   /// No description provided for @min.
   ///
-  /// In en, this message translates to:
-  /// **'Min'**
+  /// In ar, this message translates to:
+  /// **'الحد الأدنى'**
   String get min;
 
   /// No description provided for @max.
   ///
-  /// In en, this message translates to:
-  /// **'Max'**
+  /// In ar, this message translates to:
+  /// **'الحد الأقصى'**
   String get max;
 
   /// No description provided for @syp.
   ///
-  /// In en, this message translates to:
-  /// **'Syp'**
+  /// In ar, this message translates to:
+  /// **'ل.س'**
   String get syp;
 
   /// No description provided for @favourites.
   ///
-  /// In en, this message translates to:
-  /// **'Favourites'**
+  /// In ar, this message translates to:
+  /// **'المفضلة'**
   String get favourites;
 
   /// No description provided for @km2.
   ///
-  /// In en, this message translates to:
-  /// **'Km2'**
+  /// In ar, this message translates to:
+  /// **'كم²'**
   String get km2;
 
   /// No description provided for @updateApp.
   ///
-  /// In en, this message translates to:
-  /// **'Update App'**
+  /// In ar, this message translates to:
+  /// **'تحديث التطبيق'**
   String get updateApp;
 
   /// No description provided for @pleaseUpdateApp.
   ///
-  /// In en, this message translates to:
-  /// **'The app version is outdated'**
+  /// In ar, this message translates to:
+  /// **'إصدار التطبيق قديم'**
   String get pleaseUpdateApp;
 
   /// No description provided for @update.
   ///
-  /// In en, this message translates to:
-  /// **'Update'**
+  /// In ar, this message translates to:
+  /// **'تحديث'**
   String get update;
 
   /// No description provided for @savedProperties.
   ///
-  /// In en, this message translates to:
-  /// **'Saved Properties'**
+  /// In ar, this message translates to:
+  /// **'العقارات المحفوظة'**
   String get savedProperties;
 
   /// No description provided for @properties.
   ///
-  /// In en, this message translates to:
-  /// **'Properties'**
+  /// In ar, this message translates to:
+  /// **'العقارات'**
   String get properties;
 
   /// No description provided for @home.
   ///
-  /// In en, this message translates to:
-  /// **'Home'**
+  /// In ar, this message translates to:
+  /// **'الرئيسية'**
   String get home;
 
   /// No description provided for @myProperties.
   ///
-  /// In en, this message translates to:
-  /// **'My Properties'**
+  /// In ar, this message translates to:
+  /// **'عقاراتي'**
   String get myProperties;
 
   /// No description provided for @propertiesMap.
   ///
-  /// In en, this message translates to:
-  /// **'Properties Map'**
+  /// In ar, this message translates to:
+  /// **'خريطة العقارات'**
   String get propertiesMap;
 
   /// No description provided for @propertiesList.
   ///
-  /// In en, this message translates to:
-  /// **'Properties List'**
+  /// In ar, this message translates to:
+  /// **'قائمة العقارات'**
   String get propertiesList;
 
   /// No description provided for @featured.
   ///
-  /// In en, this message translates to:
-  /// **'Featured'**
+  /// In ar, this message translates to:
+  /// **'مميز'**
   String get featured;
 
   /// No description provided for @fastAccess.
   ///
-  /// In en, this message translates to:
-  /// **'Fast Access'**
+  /// In ar, this message translates to:
+  /// **'وصول سريع'**
   String get fastAccess;
 
   /// No description provided for @addNewProperty.
   ///
-  /// In en, this message translates to:
-  /// **'Add New Property'**
+  /// In ar, this message translates to:
+  /// **'إضافة عقار جديد'**
   String get addNewProperty;
 
   /// No description provided for @title.
   ///
-  /// In en, this message translates to:
-  /// **'Title'**
+  /// In ar, this message translates to:
+  /// **'العنوان'**
   String get title;
 
   /// No description provided for @optional.
   ///
-  /// In en, this message translates to:
-  /// **'Optional'**
+  /// In ar, this message translates to:
+  /// **'اختياري'**
   String get optional;
 
   /// No description provided for @inDollar.
   ///
-  /// In en, this message translates to:
-  /// **'In dollar'**
+  /// In ar, this message translates to:
+  /// **'بالدولار'**
   String get inDollar;
 
   /// No description provided for @size.
   ///
-  /// In en, this message translates to:
-  /// **'Size'**
+  /// In ar, this message translates to:
+  /// **'الحجم'**
   String get size;
 
   /// No description provided for @bathroom.
   ///
-  /// In en, this message translates to:
-  /// **'Bathroom'**
+  /// In ar, this message translates to:
+  /// **'حمام'**
   String get bathroom;
 
   /// No description provided for @propertyAge.
   ///
-  /// In en, this message translates to:
-  /// **'Property Age'**
+  /// In ar, this message translates to:
+  /// **'عمر العقار'**
   String get propertyAge;
 
   /// No description provided for @sizeM2.
   ///
-  /// In en, this message translates to:
-  /// **'Size (m2)'**
+  /// In ar, this message translates to:
+  /// **'المساحة (م²)'**
   String get sizeM2;
 
   /// No description provided for @propertyAgeInYears.
   ///
-  /// In en, this message translates to:
-  /// **'Property age in years'**
+  /// In ar, this message translates to:
+  /// **'عمر العقار بالسنوات'**
   String get propertyAgeInYears;
 
   /// No description provided for @mainInfo.
   ///
-  /// In en, this message translates to:
-  /// **'Main info'**
+  /// In ar, this message translates to:
+  /// **'المعلومات الرئيسية'**
   String get mainInfo;
 
   /// No description provided for @sizeInfo.
   ///
-  /// In en, this message translates to:
-  /// **'Size info'**
+  /// In ar, this message translates to:
+  /// **'معلومات المساحة'**
   String get sizeInfo;
 
   /// No description provided for @propertyInfo.
   ///
-  /// In en, this message translates to:
-  /// **'Property info'**
+  /// In ar, this message translates to:
+  /// **'معلومات العقار'**
   String get propertyInfo;
 
   /// No description provided for @back.
   ///
-  /// In en, this message translates to:
-  /// **'Back'**
+  /// In ar, this message translates to:
+  /// **'رجوع'**
   String get back;
 
   /// No description provided for @next.
   ///
-  /// In en, this message translates to:
-  /// **'Next'**
+  /// In ar, this message translates to:
+  /// **'التالي'**
   String get next;
 
   /// No description provided for @stock.
   ///
-  /// In en, this message translates to:
-  /// **'Stock'**
+  /// In ar, this message translates to:
+  /// **'سهم'**
   String get stock;
 
   /// No description provided for @stocks2400.
   ///
-  /// In en, this message translates to:
-  /// **'Stocks /2400'**
+  /// In ar, this message translates to:
+  /// **'أسهم /2400'**
   String get stocks2400;
 
   /// No description provided for @pressOnTheMapAndUseExpandIconForBiggerMap.
   ///
-  /// In en, this message translates to:
-  /// **'Press on the map and use expand icon for bigger map'**
+  /// In ar, this message translates to:
+  /// **'اضغط على الخريطة واستخدم رمز التوسيع لعرض أكبر'**
   String get pressOnTheMapAndUseExpandIconForBiggerMap;
 
   /// No description provided for @thePropertyWillBeDeleted.
   ///
-  /// In en, this message translates to:
-  /// **'The property will be deleted !'**
+  /// In ar, this message translates to:
+  /// **'سيتم حذف العقار!'**
   String get thePropertyWillBeDeleted;
 
   /// No description provided for @propertyAddMessageWarning.
   ///
-  /// In en, this message translates to:
-  /// **'property will be reviewed in the late 48 hours after the you can\'t edit the data'**
+  /// In ar, this message translates to:
+  /// **'سيتم مراجعة العقار خلال 48 ساعة، بعدها لا يمكنك تعديل البيانات'**
   String get propertyAddMessageWarning;
 
   /// No description provided for @pleaseMakeSureYouAddedImages.
   ///
-  /// In en, this message translates to:
-  /// **'Add at least 3 images to the property otherwise the property will never be accepted'**
+  /// In ar, this message translates to:
+  /// **'أضف 3 صور على الأقل للعقار، وإلا لن يتم قبوله'**
   String get pleaseMakeSureYouAddedImages;
 
   /// No description provided for @propertyRejected.
   ///
-  /// In en, this message translates to:
-  /// **'Property rejected'**
+  /// In ar, this message translates to:
+  /// **'تم رفض العقار'**
   String get propertyRejected;
 
   /// No description provided for @pressOnTheMapToSetTheMarker.
   ///
-  /// In en, this message translates to:
-  /// **'Press on the map to set the marker'**
+  /// In ar, this message translates to:
+  /// **'اضغط على الخريطة لتحديد الموقع'**
   String get pressOnTheMapToSetTheMarker;
 
   /// No description provided for @longPressOnTheImageAndDragIt.
   ///
-  /// In en, this message translates to:
-  /// **'Long press on the image and drag it to change the order , the first image will be the cover image.'**
+  /// In ar, this message translates to:
+  /// **'اضغط مطولاً على الصورة واسحبها لتغيير الترتيب، الصورة الأولى ستكون صورة الغلاف.'**
   String get longPressOnTheImageAndDragIt;
+
+  /// No description provided for @status.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحالة'**
+  String get status;
+
+  /// No description provided for @pressToChangePropertyStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط لتغيير حالة العقار'**
+  String get pressToChangePropertyStatus;
+
+  /// No description provided for @rejected.
+  ///
+  /// In ar, this message translates to:
+  /// **'مرفوض'**
+  String get rejected;
+
+  /// No description provided for @main.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرئيسية'**
+  String get main;
+
+  /// No description provided for @property.
+  ///
+  /// In ar, this message translates to:
+  /// **'العقار'**
+  String get property;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
@@ -946,7 +986,7 @@ class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_TranslationsDelegate old) => false;
@@ -955,6 +995,8 @@ class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
 Translations lookupTranslations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return TranslationsAr();
     case 'en':
       return TranslationsEn();
   }

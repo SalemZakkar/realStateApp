@@ -6,8 +6,8 @@ import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/fields/city_field.dart';
 import 'package:real_state/features/core/presentation/widget/fields/form_widget.dart';
-import 'package:real_state/features/core/presentation/widget/fields/map_field.dart';
 import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
+import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_params.dart';
 

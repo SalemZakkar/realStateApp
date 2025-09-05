@@ -81,7 +81,7 @@ class _RealEstateSizeInfoFormState extends State<RealEstateSizeInfoForm> {
             initial: widget.params.floor,
             title: context.translation.floor,
             required: true,
-            values: List.generate((40), (i) => i + 1),
+            values: [-2 , -1 , 0 , ...List.generate((40), (i) => i + 1)],
           ),
           16.height(),
         ],

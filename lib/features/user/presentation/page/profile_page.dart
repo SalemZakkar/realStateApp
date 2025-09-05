@@ -11,6 +11,7 @@ import 'package:real_state/features/core/presentation/widget/buttons/tile_button
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_mine_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
@@ -109,6 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           color: Theme.of(context).primaryColor,
                                           size: 24,
                                         ),
+                                        direction: TextDirection.ltr,
                                         title: user.formatNumber,
                                         icon: Assets.icons.edit.dynamicSVGColor(
                                           context,
@@ -151,18 +153,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width: MediaQuery.of(context).size.width,
                                 child: Column(
                                   children: [
-                                    TileButton(
-                                      image: Assets.icons.building
-                                          .dynamicSVGColor(
-                                            context,
-                                            color: Theme.of(
+                                    InkWellWithoutFeedback(
+                                      onTap: (){
+                                        context.push(RealEstateMineListPage.path);
+                                      },
+                                      child: TileButton(
+                                        image: Assets.icons.building
+                                            .dynamicSVGColor(
                                               context,
-                                            ).primaryColor,
-                                          ),
-                                      title: context.translation.myProperties,
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_right_sharp,
-                                        color: Theme.of(context).primaryColor,
+                                              color: Theme.of(
+                                                context,
+                                              ).primaryColor,
+                                            ),
+                                        title: context.translation.myProperties,
+                                        icon: Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
                                       ),
                                     ),
                                     32.height(),
@@ -181,7 +188,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         title:
                                             context.translation.savedProperties,
                                         icon: Icon(
-                                          Icons.keyboard_arrow_right_sharp,
+                                          Icons.arrow_forward_ios_outlined,
+
                                           color: Theme.of(context).primaryColor,
                                         ),
                                       ),

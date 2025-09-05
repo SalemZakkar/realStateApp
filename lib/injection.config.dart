@@ -17,6 +17,8 @@ import 'package:logger/logger.dart' as _i974;
 import 'package:real_state/configuration.dart' as _i270;
 import 'package:real_state/features/ad_banner/data/repository/ad_banner_repo_impl.dart'
     as _i579;
+import 'package:real_state/features/ad_banner/data/source/remote/ad_banner_remote_source.dart'
+    as _i534;
 import 'package:real_state/features/ad_banner/domain/repository/ad_banner_repository.dart'
     as _i593;
 import 'package:real_state/features/ad_banner/presentation/cubit/ad_banner_cubit.dart'
@@ -75,12 +77,16 @@ import 'package:real_state/features/real_state/presentation/cubit/real_estate_de
     as _i56;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_delete_image_cubit.dart'
     as _i31;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_details_cubit.dart'
+    as _i200;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_edit_cubit.dart'
     as _i477;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_featured_list_cubit.dart'
     as _i643;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart'
     as _i1066;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_mine_list_cubit.dart'
+    as _i966;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_map_get.dart'
     as _i680;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
@@ -108,6 +114,9 @@ extension GetItInjectableX on _i174.GetIt {
     final injectableModule = _$InjectableModule();
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
     gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
+    gh.singleton<_i200.RealEstateDetailsCubit>(
+      () => _i200.RealEstateDetailsCubit(),
+    );
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());
     await gh.lazySingletonAsync<_i460.SharedPreferences>(
       () => injectableModule.sharedPref,
@@ -118,7 +127,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i892.FirebaseMessaging>(
       () => injectableModule.firebaseMessaging(),
     );
-    gh.factory<_i593.AdBannerRepository>(() => _i579.AdBannerRepoImpl());
     gh.lazySingleton<_i270.Configuration>(() => _i270.DevConfiguration());
     gh.singleton<_i976.FileManager>(
       () => _i976.FileManager(gh<_i270.Configuration>()),
@@ -144,8 +152,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i270.Configuration>(),
       ),
     );
-    gh.singleton<_i422.AdBannerCubit>(
-      () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
+    gh.factory<_i534.AdBannerRemoteSource>(
+      () => _i534.AdBannerRemoteSourceImpl(
+        gh<_i361.Dio>(),
+        gh<_i270.Configuration>(),
+      ),
+    );
+    gh.factory<_i593.AdBannerRepository>(
+      () => _i579.AdBannerRepoImpl(gh<_i534.AdBannerRemoteSource>()),
     );
     gh.singleton<_i458.AuthRepository>(
       () => _i981.AuthRepositoryImpl(
@@ -170,6 +184,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i140.UserRepository>(
       () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
+    );
+    gh.singleton<_i422.AdBannerCubit>(
+      () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
     );
     gh.factory<_i737.UserChangePasswordCubit>(
       () => _i737.UserChangePasswordCubit(gh<_i140.UserRepository>()),
@@ -224,6 +241,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i1066.RealEstateGetListCubit>(
       () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.singleton<_i966.RealEstateGetMineListCubit>(
+      () => _i966.RealEstateGetMineListCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.factory<_i16.UserUpdateCubit>(
       () => _i16.UserUpdateCubit(

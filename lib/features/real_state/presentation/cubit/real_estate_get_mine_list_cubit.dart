@@ -6,9 +6,9 @@ import 'package:real_state/features/real_state/domain/params/real_estate_get_par
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart';
 
 @singleton
-class RealEstateGetListCubit
+class RealEstateGetMineListCubit
     extends PaginationCubit<RealEstate, RealEstateGetParams> {
-  RealEstateGetListCubit(this.repository) : super(BasePaginatedListState());
+  RealEstateGetMineListCubit(this.repository) : super(BasePaginatedListState());
   RealEstateRepository repository;
 
   late RealEstateGetParams params;
@@ -17,7 +17,7 @@ class RealEstateGetListCubit
   void get({RealEstateGetParams? params}) async {
     this.params = params!;
     emit(state.setInProgressState());
-    var res = await repository.getRealEstates(params: params);
+    var res = await repository.getMineList(params: params);
     res.fold((e) => emit(state.setFailureState(e)), (r) {
       emit(
         state.copyWith(
@@ -69,27 +69,17 @@ class RealEstateGetListCubit
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
 
     params.page = (params.page ?? 0) + 1;
-    var res = await repository.getRealEstates(params: params);
-    res.fold(
-      (e) {
-        params.page = params.page! - 1;
-        emit(
-
-          state.copyWith(
-              status: PaginatedListStatus.paginateFailure, failure: e),
-        );
-      },
-      (r) {
-        var list = [...state.items, ...r.data];
-        emit(
-          state.copyWith(
-            status: PaginatedListStatus.success,
-            totalRecords: r.totalRecords,
-            hasReachedMax: list.length >= r.totalRecords,
-            items: list,
-          ),
-        );
-      },
-    );
+    var res = await repository.getMineList(params: params);
+    res.fold((e) => emit(state.setPaginateFailureState(e)), (r) {
+      var list = [...state.items, ...r.data];
+      emit(
+        state.copyWith(
+          status: PaginatedListStatus.success,
+          totalRecords: r.totalRecords,
+          hasReachedMax: list.length >= r.totalRecords,
+          items: list,
+        ),
+      );
+    });
   }
 }

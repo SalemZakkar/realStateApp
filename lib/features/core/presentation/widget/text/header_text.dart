@@ -8,6 +8,8 @@ class HeaderText extends StatefulWidget {
   final Widget? end;
   final double padding;
 
+  final MainAxisAlignment mainAxisAlignment;
+
   const HeaderText({
     super.key,
     required this.title,
@@ -16,6 +18,7 @@ class HeaderText extends StatefulWidget {
     this.padding = 0,
     this.desc,
     this.descStyle,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   });
 
   @override
@@ -26,6 +29,7 @@ class _HeaderTextState extends State<HeaderText> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: widget.mainAxisAlignment,
       children: [
         (widget.padding).width(),
         Flexible(

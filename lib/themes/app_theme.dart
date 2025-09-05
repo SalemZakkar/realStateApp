@@ -8,7 +8,7 @@ class AppTheme {
 
   ThemeData getThemeData() => ThemeData(
     useMaterial3: true,
-    fontFamily: 'manrope',
+    fontFamily: 'cairo',
     brightness: _schema.brightness,
     actionIconTheme: ActionIconThemeData(
       backButtonIconBuilder: (context) => const Icon(Icons.arrow_back_ios),
@@ -20,9 +20,9 @@ class AppTheme {
 
       // backgroundColor: _schema.shapeColors.appBar,
     ),
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-      circularTrackColor: _schema.primaryColor,
-    ),
+    // progressIndicatorTheme: ProgressIndicatorThemeData(
+    //   circularTrackColor: _schema.primaryColor,
+    // ),
     primaryColor: _schema.primaryColor,
     scaffoldBackgroundColor: _schema.shapeColors.backgroundColor,
     bottomAppBarTheme: BottomAppBarThemeData(color: _schema.shapeColors.navBar),
@@ -185,7 +185,7 @@ class AppTheme {
         padding: EdgeInsets.all(8),
         disabledBackgroundColor: Colors.grey,
         textStyle: TextStyle(
-          fontFamily: 'manrope',
+          fontFamily: 'cairo',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
@@ -202,7 +202,7 @@ class AppTheme {
         padding: EdgeInsets.all(8),
         disabledBackgroundColor: Colors.grey,
         textStyle: TextStyle(
-          fontFamily: 'manrope',
+          fontFamily: 'cairo',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/format_to_normal.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
@@ -50,7 +51,15 @@ class _RealStateCardState extends State<RealStateCard> {
               borderRadius: BorderRadius.circular(4),
               width: h,
               height: h,
-              url: widget.realEstate.images.first.getUrl,
+              placeHolder: Align(
+                alignment: AlignmentGeometry.center,
+                child: Assets.icons.building.dynamicSVGColor(
+                  context,
+                  width: 32,
+                  height: 32,
+                ),
+              ),
+              url: widget.realEstate.images.firstOrNull?.getUrl,
             ),
             8.width(),
             Expanded(

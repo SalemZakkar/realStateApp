@@ -238,6 +238,17 @@ class TranslationsEn extends Translations {
   }
 
   @override
+  String realEstateStatusE(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'rented': 'Rented',
+      'sold': 'Sold',
+      'available': 'Available',
+      'other': 'Unknown',
+    });
+    return '$_temp0';
+  }
+
+  @override
   String get category => 'Category';
 
   @override
@@ -458,7 +469,7 @@ class TranslationsEn extends Translations {
 
   @override
   String get propertyAddMessageWarning =>
-      'property will be reviewed in the late 48 hours after the you can\'t edit the data';
+      'property will be reviewed in the soon 48 hours after that you can\'t edit the data';
 
   @override
   String get pleaseMakeSureYouAddedImages =>
@@ -474,4 +485,19 @@ class TranslationsEn extends Translations {
   @override
   String get longPressOnTheImageAndDragIt =>
       'Long press on the image and drag it to change the order , the first image will be the cover image.';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get pressToChangePropertyStatus => 'Press to change property status';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get main => 'الرئيسية';
+
+  @override
+  String get property => 'العقار';
 }

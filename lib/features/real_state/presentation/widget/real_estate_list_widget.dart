@@ -87,6 +87,7 @@ class _RealEstateListWidgetState extends State<RealEstateListWidget> {
         ),
         constraints: const BoxConstraints.expand(),
         child: ListViewPaginationWidget<RealEstate>(
+         end: 128,
           paginationCubit: bloc,
           params: params,
           autoDispose: widget.params.autoDispose,

@@ -17,8 +17,10 @@ import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_image_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_mine_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
@@ -116,7 +118,19 @@ class Routes {
     ),
     RouteInfo(
       path: RealEstateFormPage.path,
-      builder: (context, child, state) => RealEstateFormPage(),
+      builder: (context, state, child) =>
+          RealEstateFormPage(realEstate: state.extra as RealEstate?),
+    ),
+    RouteInfo(
+      builder: (context, state, child) => RealEstateMineListPage(),
+
+      path: RealEstateMineListPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) =>
+          RealEstateImagePage(realEstate: state.extra as RealEstate),
+
+      path: RealEstateImagePage.path,
     ),
   ];
 }

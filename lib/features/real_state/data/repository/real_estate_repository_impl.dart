@@ -23,6 +23,7 @@ class RealEstateRepositoryImpl extends RealEstateRepository with ApiHandler {
     required RealEstateGetParams params,
   }) {
     return request(() async {
+      // throw Exception();
       var res = await source.getRealEstates(params: params.toModel());
       return Right(
         PaginatedList(
@@ -108,6 +109,21 @@ class RealEstateRepositoryImpl extends RealEstateRepository with ApiHandler {
     return request(() async {
       await source.deleteApartmentImage(image: image);
       return Right(null);
+    });
+  }
+
+  @override
+  Future<Either<Failure, PaginatedList<RealEstate>>> getMineList({
+    required RealEstateGetParams params,
+  }) {
+    return request(() async {
+      var res = await source.getMineList(params: params.toModel());
+      return Right(
+        PaginatedList(
+          res.totalRecords!,
+          res.data!.map((e) => e.toDomain()).toList(),
+        ),
+      );
     });
   }
 }

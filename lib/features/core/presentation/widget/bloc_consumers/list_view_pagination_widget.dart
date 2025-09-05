@@ -27,6 +27,7 @@ class ListViewPaginationWidget<T> extends StatefulWidget {
   final Widget? loader;
   final Widget Function(Widget)? errorBuilder;
   final Widget? noDataWidget;
+  final double? end;
 
   const ListViewPaginationWidget({
     super.key,
@@ -47,6 +48,7 @@ class ListViewPaginationWidget<T> extends StatefulWidget {
     this.loader,
     this.errorBuilder,
     this.noDataWidget,
+    this.end,
   });
 
   @override
@@ -65,7 +67,7 @@ class _ListViewPaginationWidgetState<T>
     scrollController.addListener(() {
       if (scrollController.offset ==
               scrollController.position.maxScrollExtent &&
-          !widget.paginationCubit.state.isInProgress &&
+          widget.paginationCubit.state.isSuccess &&
           !widget.paginationCubit.state.hasReachedMax) {
         widget.paginationCubit.paginate();
       }
@@ -249,6 +251,9 @@ class _ListViewPaginationWidgetState<T>
                       ),
                     ),
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                  if (widget.end != null) ...[
+                    SliverToBoxAdapter(child: SizedBox(height: widget.end)),
+                  ],
                 ],
               ),
             ),

@@ -83,6 +83,7 @@ class _AppState extends State<App> {
           localizationsDelegates: Translations.localizationsDelegates,
           supportedLocales: Translations.supportedLocales,
           theme: context.theme,
+          locale: Locale('ar'),
           debugShowCheckedModeBanner: false,
           routerConfig: goRouterConfig,
           builder: (context, child) {
