@@ -14,9 +14,9 @@ import 'package:real_state/features/core/presentation/page/view_image_page.dart'
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_add_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_state_saved_page.dart';
@@ -115,8 +115,8 @@ class Routes {
       builder: (context, state, child) => RealEStateSavedPage(),
     ),
     RouteInfo(
-      path: RealEstateAddPage.path,
-      builder: (context, child, state) => RealEstateAddPage(),
+      path: RealEstateFormPage.path,
+      builder: (context, child, state) => RealEstateFormPage(),
     ),
   ];
 }

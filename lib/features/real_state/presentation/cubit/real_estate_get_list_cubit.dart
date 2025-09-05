@@ -43,6 +43,21 @@ class RealEstateGetListCubit
     }
   }
 
+  void removeItem(String id) {
+    emit(state.copyWith(items: state.items.where((e) => e.id != id).toList()));
+  }
+
+  void setItem(RealEstate realEstate) {
+    var k = state.items;
+    for (int i = 0; i < k.length; i++) {
+      if (k[i].id == realEstate.id) {
+        k[i] = realEstate;
+        break;
+      }
+    }
+    emit(state.copyWith(items: k));
+  }
+
   @override
   void paginate() async {
     if (state.hasReachedMax ||

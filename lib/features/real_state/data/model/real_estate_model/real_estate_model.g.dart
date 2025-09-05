@@ -23,9 +23,9 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
     json['property_type'],
   ),
   size: (json['property_size'] as num).toDouble(),
-  room: (json['room'] as num).toInt(),
-  bathrooms: (json['bathrooms'] as num).toInt(),
-  propertyAge: (json['property_age'] as num).toInt(),
+  room: json['room'] as num,
+  bathrooms: json['bathrooms'] as num,
+  propertyAge: json['property_age'] as num? ?? 0,
   images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   isFavourite: json['isFavorite'] as bool? ?? false,
   description: json['description'] as String?,
@@ -35,6 +35,11 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
   ),
   category: $enumDecode(_$RealEstateCategoryEnumMap, json['category']),
   isFeature: json['isFeature'] as bool? ?? false,
+  owner: json['owner'] as String?,
+  postStatus: $enumDecode(_$RealEstatePostStatusEnumMap, json['postStatus']),
+  status: $enumDecode(_$RealEstateStatusEnumMap, json['status']),
+  stock: json['stock'] as num? ?? 0,
+  floor: json['floor'] as num? ?? 0,
 );
 
 const _$RealEstatePropertyTypeEnumMap = {
@@ -60,4 +65,17 @@ const _$RealEstatePropertyDeedTypeEnumMap = {
 const _$RealEstateCategoryEnumMap = {
   RealEstateCategory.buy: 'buy',
   RealEstateCategory.rent: 'rent',
+  RealEstateCategory.swap: 'swap',
+};
+
+const _$RealEstatePostStatusEnumMap = {
+  RealEstatePostStatus.pending: 'pending',
+  RealEstatePostStatus.rejected: 'rejected',
+  RealEstatePostStatus.approved: 'approved',
+};
+
+const _$RealEstateStatusEnumMap = {
+  RealEstateStatus.sold: 'sold',
+  RealEstateStatus.rented: 'rented',
+  RealEstateStatus.available: 'available',
 };

@@ -53,4 +53,5 @@ const _$RealEstatePropertyTypeEnumMap = {
 const _$RealEstateCategoryEnumMap = {
   RealEstateCategory.buy: 'buy',
   RealEstateCategory.rent: 'rent',
+  RealEstateCategory.swap: 'swap',
 };

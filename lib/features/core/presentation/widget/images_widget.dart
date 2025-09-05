@@ -9,21 +9,17 @@ import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
-class RealEstateImages extends StatefulWidget {
+class ImagesWidget extends StatefulWidget {
   final List<String> images;
   final double height;
 
-  const RealEstateImages({
-    super.key,
-    required this.images,
-    required this.height,
-  });
+  const ImagesWidget({super.key, required this.images, required this.height});
 
   @override
-  State<RealEstateImages> createState() => _RealEstateImagesState();
+  State<ImagesWidget> createState() => _ImagesWidgetState();
 }
 
-class _RealEstateImagesState extends State<RealEstateImages> {
+class _ImagesWidgetState extends State<ImagesWidget> {
   int index = 0;
   CarouselSliderController controller = CarouselSliderController();
 

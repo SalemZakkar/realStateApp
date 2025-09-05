@@ -132,9 +132,7 @@ class _StepperWidgetState extends State<StepperWidget> {
                                           : Icon(
                                               Icons.check,
                                               size: 16,
-                                              color: Theme.of(
-                                                context,
-                                              ).scaffoldBackgroundColor,
+                                              color: Colors.white,
                                             ),
                                     ),
 

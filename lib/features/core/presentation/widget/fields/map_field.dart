@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/utils/map_utils.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
+import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/map_cluster_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
@@ -27,7 +29,7 @@ class MapWidget extends StatefulWidget {
     this.onCreate,
     this.icon,
     this.ignore = false,
-    this.zoomControls = true,
+    this.zoomControls = false,
     this.onTap,
     this.radius,
     this.withExpand = true,
@@ -175,6 +177,19 @@ class _MapWidgetState extends State<MapWidget> {
                 ),
               ),
             ),
+          if (widget.onTap != null) ...[
+            Positioned(
+              bottom: 8,
+              left: 8,
+              right: 8,
+              child: CustomCardWidget(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Text(context.translation.pressOnTheMapToSetTheMarker),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

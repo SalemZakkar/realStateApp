@@ -30,6 +30,7 @@ class _CityFieldState extends State<CityField> {
       bloc: cubit,
       onChanged: widget.onChanged,
       autoDispose: false,
+      value: widget.initial,
       required: widget.required,
       hint: context.translation.city,
       getValue: (v) => v.name,

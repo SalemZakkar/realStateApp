@@ -27,7 +27,7 @@ class AuthState {
   bool get authenticated => authState == AuthStateType.authenticated;
 }
 
-@singleton
+@lazySingleton
 class AuthCubit extends HydratedCubit<AuthState> {
   AuthRepository authRepository;
 
@@ -56,6 +56,7 @@ class AuthCubit extends HydratedCubit<AuthState> {
   }
 
   void init() {
+
     emit(state);
   }
 

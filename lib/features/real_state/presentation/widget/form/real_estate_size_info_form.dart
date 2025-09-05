@@ -4,13 +4,13 @@ import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/fields/chips_field.dart';
 import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_add_params.dart';
+import 'package:real_state/features/real_state/domain/params/real_estate_params.dart';
 
 import '../../../../../generated/generated_assets/assets.gen.dart';
 import '../../../../core/presentation/utils/input_validator.dart';
 
 class RealEstateSizeInfoForm extends StatefulWidget {
-  final RealEstateAddParams params;
+  final RealEstateParams params;
 
   const RealEstateSizeInfoForm({super.key, required this.params});
 
@@ -31,9 +31,9 @@ class _RealEstateSizeInfoFormState extends State<RealEstateSizeInfoForm> {
             title: context.translation.size,
             svgGenImage: Assets.icons.size,
             child: TextFormField(
-              initialValue: widget.params.size?.toStringAsFixed(0),
+              initialValue: widget.params.propertySize?.toStringAsFixed(0),
               onChanged: (v) {
-                widget.params.size = double.tryParse(v);
+                widget.params.propertySize = double.tryParse(v);
               },
               decoration: InputDecoration(hintText: context.translation.sizeM2),
               keyboardType: TextInputType.number,
@@ -81,7 +81,7 @@ class _RealEstateSizeInfoFormState extends State<RealEstateSizeInfoForm> {
             initial: widget.params.floor,
             title: context.translation.floor,
             required: true,
-            values: List.generate((20), (i) => i + 1),
+            values: List.generate((40), (i) => i + 1),
           ),
           16.height(),
         ],

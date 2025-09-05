@@ -15,8 +15,11 @@ abstract class AppColorsSchema {
 
   Shadows get shadows;
 
-  StatusColors get statusColors =>
-      StatusColors(fail: Colors.red, success: Colors.green);
+  StatusColors get statusColors => StatusColors(
+    fail: Colors.red,
+    success: Colors.green,
+    pending: Colors.orange,
+  );
   MainColor white = MainColor(0xffffffff, {});
   MainColor whiteDarker = MainColor(0xffF3F5F9, {});
   MainColor chineseWhite = MainColor(0xffE0E0E0, {});
@@ -96,7 +99,7 @@ class DarkAppColorSchema extends AppColorsSchema {
   TextColors get textColors => TextColors(
     primaryText: white,
     labelAndSecondaryText: white,
-    hintAndDisable: white,
+    hintAndDisable: graniteGrey,
   );
 
   @override

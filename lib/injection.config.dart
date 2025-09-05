@@ -67,6 +67,16 @@ import 'package:real_state/features/real_state/data/source/real_estate_remote_so
     as _i521;
 import 'package:real_state/features/real_state/domain/repository/real_estate_repository.dart'
     as _i670;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_add_image_cubit.dart'
+    as _i860;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_create_cubit.dart'
+    as _i115;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_delete_cubit.dart'
+    as _i56;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_delete_image_cubit.dart'
+    as _i31;
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_edit_cubit.dart'
+    as _i477;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_featured_list_cubit.dart'
     as _i643;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart'
@@ -182,7 +192,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i668.AuthVerifyOtpPasswordCubit>(
       () => _i668.AuthVerifyOtpPasswordCubit(gh<_i458.AuthRepository>()),
     );
-    gh.singleton<_i202.AuthCubit>(
+    gh.lazySingleton<_i202.AuthCubit>(
       () => _i202.AuthCubit(gh<_i458.AuthRepository>()),
     );
     gh.factory<_i509.UserGetMineCubit>(
@@ -196,6 +206,21 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i680.RealEstateMapGetCubit>(
       () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i115.RealEstateCreateCubit>(
+      () => _i115.RealEstateCreateCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i56.RealEstateDeleteCubit>(
+      () => _i56.RealEstateDeleteCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i477.RealEstateEditCubit>(
+      () => _i477.RealEstateEditCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i860.RealEstateAddImageCubit>(
+      () => _i860.RealEstateAddImageCubit(gh<_i670.RealEstateRepository>()),
+    );
+    gh.factory<_i31.RealEstateDeleteImageCubit>(
+      () => _i31.RealEstateDeleteImageCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.singleton<_i1066.RealEstateGetListCubit>(
       () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),

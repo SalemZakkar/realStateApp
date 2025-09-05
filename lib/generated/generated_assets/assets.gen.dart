@@ -116,6 +116,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/compass.svg
   SvgGenImage get compass => const SvgGenImage('assets/icons/compass.svg');
 
+  /// File path: assets/icons/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/icons/delete.svg');
+
   /// File path: assets/icons/dollar.svg
   SvgGenImage get dollar => const SvgGenImage('assets/icons/dollar.svg');
 
@@ -223,6 +226,7 @@ class $AssetsIconsGen {
     chat,
     city,
     compass,
+    delete,
     dollar,
     edit,
     email,

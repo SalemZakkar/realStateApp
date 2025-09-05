@@ -85,9 +85,13 @@ class MainColor extends ColorSwatch<ColorType> {
 }
 
 class StatusColors {
-  Color success, fail;
+  Color success, fail, pending;
 
-  StatusColors({required this.fail, required this.success});
+  StatusColors({
+    required this.fail,
+    required this.success,
+    required this.pending,
+  });
 }
 
 class TextColors {

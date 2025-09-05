@@ -231,6 +231,7 @@ class TranslationsEn extends Translations {
     String _temp0 = intl.Intl.selectLogic(category, {
       'buy': 'Buy',
       'rent': 'Rent',
+      'swap': 'Swap',
       'other': 'Unknown',
     });
     return '$_temp0';
@@ -447,4 +448,30 @@ class TranslationsEn extends Translations {
 
   @override
   String get stocks2400 => 'Stocks /2400';
+
+  @override
+  String get pressOnTheMapAndUseExpandIconForBiggerMap =>
+      'Press on the map and use expand icon for bigger map';
+
+  @override
+  String get thePropertyWillBeDeleted => 'The property will be deleted !';
+
+  @override
+  String get propertyAddMessageWarning =>
+      'property will be reviewed in the late 48 hours after the you can\'t edit the data';
+
+  @override
+  String get pleaseMakeSureYouAddedImages =>
+      'Add at least 3 images to the property otherwise the property will never be accepted';
+
+  @override
+  String get propertyRejected => 'Property rejected';
+
+  @override
+  String get pressOnTheMapToSetTheMarker =>
+      'Press on the map to set the marker';
+
+  @override
+  String get longPressOnTheImageAndDragIt =>
+      'Long press on the image and drag it to change the order , the first image will be the cover image.';
 }

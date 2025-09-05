@@ -10,6 +10,7 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
   CoreRepository coreRepository;
 
   void init() {
+    emit(NormalAppState());
     coreRepository.appStatus.listen((e) {
       emit(e);
     });

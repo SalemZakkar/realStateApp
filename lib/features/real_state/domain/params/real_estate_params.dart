@@ -1,31 +1,31 @@
 import 'package:real_state/features/core/domain/entity/city.dart';
+import 'package:real_state/features/real_state/data/model/real_estate_params_model/real_estate_params_model.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
 
-class RealEstateAddParams {
+class RealEstateParams {
   String? id;
   String? title;
   String? description;
   double? price;
   City? city;
-  String? neighborhood;
-  String? address;
-  RealEstateLocation? location;
-  double? size;
+  RealEstateCategory? category;
+  RealEstatePropertyType? propertyType;
+  RealEstatePropertyDeedType? deedType;
+  double? propertySize;
   int? room;
   int? bathrooms;
   int? propertyAge;
-  List<String>? images;
-  RealEstatePropertyType? propertyType;
-  RealEstateCategory? category;
-  RealEstatePropertyDeedType? deedType;
   int? floor;
   int? stock;
+  RealEstateLocation? location;
+  String? neighborhood;
+  List<String>? images;
 
-  RealEstateAddParams({
+  RealEstateParams({
     this.id,
     this.deedType,
     this.category,
@@ -34,8 +34,7 @@ class RealEstateAddParams {
     this.propertyType,
     this.bathrooms,
     this.propertyAge,
-    this.size,
-    this.address,
+    this.propertySize,
     this.neighborhood,
     this.price,
     this.description,
@@ -46,17 +45,16 @@ class RealEstateAddParams {
     this.stock,
   });
 
-  factory RealEstateAddParams.fromRealEstate({required RealEstate realEstate}) {
-    return RealEstateAddParams(
+  factory RealEstateParams.fromRealEstate({required RealEstate realEstate}) {
+    return RealEstateParams(
       id: realEstate.id,
       title: realEstate.title,
       description: realEstate.description,
       price: realEstate.price,
       city: realEstate.city,
       neighborhood: realEstate.neighborhood,
-      address: realEstate.address,
       location: realEstate.location,
-      size: realEstate.size,
+      propertySize: realEstate.size,
       room: realEstate.room,
       bathrooms: realEstate.bathrooms,
       propertyAge: realEstate.propertyAge,
@@ -65,6 +63,28 @@ class RealEstateAddParams {
       category: realEstate.category,
       deedType: realEstate.propertyDeedType,
       // floor: realEstate.f
+      stock: realEstate.stock,
+      floor: realEstate.floor,
     );
   }
+
+  RealEstateParamsModel toData() => RealEstateParamsModel(
+    id: id,
+    floor: floor,
+    stock: stock,
+    category: category,
+    bathrooms: bathrooms,
+    city: city?.id,
+    deedType: deedType,
+    description: description,
+    images: images,
+    location: location?.toData(),
+    neighborhood: neighborhood,
+    price: price,
+    propertyAge: propertyAge,
+    propertySize: propertySize,
+    propertyType: propertyType,
+    room: room,
+    title: title,
+  );
 }

@@ -29,8 +29,10 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((e){
+      statusCubit.init();
 
-    statusCubit.init();
+    });
   }
 
   var statusCubit = getIt<AppUpdateCubit>();

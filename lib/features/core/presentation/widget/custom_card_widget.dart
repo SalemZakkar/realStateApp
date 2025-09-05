@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomCardWidget extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
-  final EdgeInsets? margin;
+  final EdgeInsets margin;
   final Color? backgroundColor;
   final Color? borderColor;
   final BorderRadius? borderRadius;
@@ -13,7 +13,7 @@ class CustomCardWidget extends StatelessWidget {
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(16),
-    this.margin,
+    this.margin = EdgeInsets.zero,
     this.backgroundColor,
     this.borderColor,
     this.borderRadius,

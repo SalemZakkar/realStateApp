@@ -8,11 +8,11 @@ import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_add_params.dart';
+import 'package:real_state/features/real_state/domain/params/real_estate_params.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 class RealEstatePropertyInfoForm extends StatefulWidget {
-  final RealEstateAddParams params;
+  final RealEstateParams params;
 
   const RealEstatePropertyInfoForm({super.key, required this.params});
 
@@ -43,8 +43,11 @@ class _RealEstatePropertyInfoFormState
           ChipsSingleField<RealEstateCategory>(
             title: context.translation.category,
             required: true,
-
-            onChanged: (v) {},
+            initial: widget.params.category,
+            onChanged: (v) {
+              widget.params.category = v;
+              setState(() {});
+            },
             getString: (v) {
               return context.translation.categoryE(v.name);
             },
@@ -59,6 +62,7 @@ class _RealEstatePropertyInfoFormState
               widget.params.deedType = v;
               setState(() {});
             },
+            initial: widget.params.deedType,
             getString: (v) {
               return context.translation.propertyDeedE(v.name);
             },
@@ -93,8 +97,11 @@ class _RealEstatePropertyInfoFormState
           ChipsSingleField<RealEstatePropertyType>(
             title: context.translation.propertyType,
             required: true,
-
-            onChanged: (v) {},
+            initial: widget.params.propertyType,
+            onChanged: (v) {
+              widget.params.propertyType = v;
+              setState(() {});
+            },
             getString: (v) {
               return context.translation.propertyTypeE(v.name);
             },

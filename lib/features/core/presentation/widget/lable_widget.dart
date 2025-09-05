@@ -8,6 +8,7 @@ class LabelWidget extends StatefulWidget {
   final SvgGenImage svgGenImage;
   final Widget child;
   final Color? color;
+  final String? instructions;
 
   const LabelWidget({
     super.key,
@@ -15,6 +16,7 @@ class LabelWidget extends StatefulWidget {
     required this.title,
     required this.child,
     required this.svgGenImage,
+    this.instructions,
   });
 
   @override
@@ -25,6 +27,7 @@ class _LabelWidgetState extends State<LabelWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -34,14 +37,18 @@ class _LabelWidgetState extends State<LabelWidget> {
               color: widget.color ?? Theme.of(context).primaryColor,
             ),
             8.width(),
-            Text(widget.title ,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14
-            ),
+            Flexible(
+              child: Text(
+                widget.title,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+              ),
             ),
           ],
         ),
+        if(widget.instructions != null)...[
+          8.height(),
+          Text(widget.instructions!)
+        ],
         8.height(),
         widget.child,
       ],

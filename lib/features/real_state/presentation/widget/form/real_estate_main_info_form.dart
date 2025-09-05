@@ -9,13 +9,13 @@ import 'package:real_state/features/core/presentation/widget/fields/form_widget.
 import 'package:real_state/features/core/presentation/widget/fields/map_field.dart';
 import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_add_params.dart';
+import 'package:real_state/features/real_state/domain/params/real_estate_params.dart';
 
 import '../../../../../generated/generated_assets/assets.gen.dart';
 import '../../../../core/presentation/utils/input_validator.dart';
 
 class RealEstateMainInfoForm extends StatefulWidget {
-  final RealEstateAddParams params;
+  final RealEstateParams params;
 
   const RealEstateMainInfoForm({super.key, required this.params});
 
@@ -121,7 +121,7 @@ class _RealEstateMainInfoFormState extends State<RealEstateMainInfoForm> {
             title: context.translation.city,
             svgGenImage: Assets.icons.city,
             child: CityField(
-              // required: true,
+              required: true,
               onChanged: (v) {
                 widget.params.city = v;
                 setState(() {});
@@ -152,6 +152,8 @@ class _RealEstateMainInfoFormState extends State<RealEstateMainInfoForm> {
             valid: widget.params.location != null,
             child: LabelWidget(
               title: context.translation.location,
+              instructions:
+                  context.translation.pressOnTheMapAndUseExpandIconForBiggerMap,
               svgGenImage: Assets.icons.mapMarker,
               child: MapWidget(
                 width: MediaQuery.of(context).size.width,

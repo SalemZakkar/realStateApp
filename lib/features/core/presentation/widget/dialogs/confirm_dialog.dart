@@ -32,9 +32,15 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: widget.title,
-      content: Text(widget.message , style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),),
+      contentPadding: EdgeInsets.all(16),
+      content: Text(
+        widget.message,
+        style: Theme.of(
+          context,
+        ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
+      ),
       backgroundColor: Theme.of(context).cardColor,
-      actionsPadding: const EdgeInsets.all(16),
+      actionsPadding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       actions: [
         ConstrainedBox(
           constraints: const BoxConstraints(minWidth: 91, minHeight: 41),
@@ -55,9 +61,10 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
             ),
             child: Text(
               widget.cancelText ?? context.translation.cancel,
-              style: Theme.of(
-                context,
-              ).textTheme.labelSmall!.copyWith(fontSize: 15 , color: context.appColorSchema.textColors.primaryText),
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                fontSize: 15,
+                color: context.appColorSchema.textColors.primaryText,
+              ),
             ),
           ),
         ),
@@ -72,10 +79,7 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
               context.pop();
             },
 
-            child: Text(
-              widget.acceptText ?? context.translation.yes,
-
-            ),
+            child: Text(widget.acceptText ?? context.translation.yes),
           ),
         ),
       ],

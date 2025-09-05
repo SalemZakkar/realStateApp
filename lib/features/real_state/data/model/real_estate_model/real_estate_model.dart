@@ -3,8 +3,10 @@ import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_location_model/real_estate_location_model.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_post_status.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_status.dart';
 
 part 'real_estate_model.g.dart';
 
@@ -22,10 +24,10 @@ class RealEstateModel {
   RealEstatePropertyType propertyType;
   @JsonKey(name: "property_size")
   double size;
-  int room;
-  int bathrooms;
-  @JsonKey(name: "property_age")
-  int propertyAge;
+  num room;
+  num bathrooms;
+  @JsonKey(name: "property_age" , defaultValue: 0)
+  num propertyAge;
   List<String> images;
   @JsonKey(name: "isFavorite")
   bool isFavourite;
@@ -34,6 +36,13 @@ class RealEstateModel {
   @JsonKey(name: "property_deed_type")
   RealEstatePropertyDeedType propertyDeedType;
   bool isFeature;
+  String? owner;
+  RealEstatePostStatus postStatus;
+  RealEstateStatus status;
+  @JsonKey(defaultValue: 0)
+  num floor;
+  @JsonKey(defaultValue: 0)
+  num stock;
 
   RealEstateModel({
     required this.id,
@@ -54,6 +63,11 @@ class RealEstateModel {
     required this.propertyDeedType,
     required this.category,
     this.isFeature = false,
+    this.owner,
+    required this.postStatus,
+    required this.status,
+    required this.stock,
+    required this.floor,
   });
 
   factory RealEstateModel.fromJson(Map<String, dynamic> json) =>
@@ -69,14 +83,19 @@ class RealEstateModel {
     location: location.toDomain(),
     propertyType: propertyType,
     size: size,
-    room: room,
-    bathrooms: bathrooms,
-    propertyAge: propertyAge,
+    room: room.toInt(),
+    bathrooms: bathrooms.toInt(),
+    propertyAge: propertyAge.toInt(),
     images: images,
     isFavourite: isFavourite,
     description: description,
     category: category,
     propertyDeedType: propertyDeedType,
     isFeature: isFeature,
+    owner: owner,
+    status: status,
+    postStatus: postStatus,
+    floor: floor.toInt(),
+    stock: stock.toInt(),
   );
 }

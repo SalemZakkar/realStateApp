@@ -1,8 +1,10 @@
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_post_status.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_deed_type.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_property_type.dart';
+import 'package:real_state/features/real_state/domain/enum/real_estate_status.dart';
 
 class RealEstate {
   final String id;
@@ -23,6 +25,16 @@ class RealEstate {
   RealEstateCategory category;
   RealEstatePropertyDeedType propertyDeedType;
   bool isFeature;
+  String? owner;
+  RealEstatePostStatus postStatus;
+  RealEstateStatus status;
+  int floor;
+  int stock;
+
+  bool get editable =>
+      (postStatus == RealEstatePostStatus.pending ||
+          postStatus == RealEstatePostStatus.rejected) &&
+      status == RealEstateStatus.available;
 
   RealEstate({
     required this.id,
@@ -43,5 +55,10 @@ class RealEstate {
     required this.propertyDeedType,
     required this.category,
     this.isFeature = false,
+    this.owner,
+    required this.status,
+    required this.postStatus,
+    required this.floor,
+    required this.stock,
   });
 }

@@ -13,4 +13,9 @@ class RealEstateLocationModel {
       _$RealEstateLocationModelFromJson(json);
 
   RealEstateLocation toDomain() => RealEstateLocation(lat: lat, lng: lng);
+
+  Map<String, dynamic> toJson() => {
+    // "location.type": "Point",/
+    "coordinates": [lat , lng],
+  };
 }

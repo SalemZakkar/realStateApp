@@ -518,7 +518,7 @@ abstract class Translations {
   /// No description provided for @categoryE.
   ///
   /// In en, this message translates to:
-  /// **'{category, select, buy{Buy} rent{Rent} other{Unknown}}'**
+  /// **'{category, select, buy{Buy} rent{Rent} swap{Swap} other{Unknown}}'**
   String categoryE(String category);
 
   /// No description provided for @category.
@@ -892,6 +892,48 @@ abstract class Translations {
   /// In en, this message translates to:
   /// **'Stocks /2400'**
   String get stocks2400;
+
+  /// No description provided for @pressOnTheMapAndUseExpandIconForBiggerMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Press on the map and use expand icon for bigger map'**
+  String get pressOnTheMapAndUseExpandIconForBiggerMap;
+
+  /// No description provided for @thePropertyWillBeDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'The property will be deleted !'**
+  String get thePropertyWillBeDeleted;
+
+  /// No description provided for @propertyAddMessageWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'property will be reviewed in the late 48 hours after the you can\'t edit the data'**
+  String get propertyAddMessageWarning;
+
+  /// No description provided for @pleaseMakeSureYouAddedImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least 3 images to the property otherwise the property will never be accepted'**
+  String get pleaseMakeSureYouAddedImages;
+
+  /// No description provided for @propertyRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Property rejected'**
+  String get propertyRejected;
+
+  /// No description provided for @pressOnTheMapToSetTheMarker.
+  ///
+  /// In en, this message translates to:
+  /// **'Press on the map to set the marker'**
+  String get pressOnTheMapToSetTheMarker;
+
+  /// No description provided for @longPressOnTheImageAndDragIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Long press on the image and drag it to change the order , the first image will be the cover image.'**
+  String get longPressOnTheImageAndDragIt;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
