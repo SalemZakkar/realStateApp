@@ -9,26 +9,9 @@ import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/features/real_state/presentation/widget/real_state_card.dart';
 import 'package:real_state/injection.dart';
-
-class RealEstateListPageParams {
-  Widget Function(RealEstate)? cardBuilder;
-  PaginationCubit<RealEstate, RealEstateGetParams>? bloc;
-  RealEstateGetParams? params;
-  String? title;
-  bool autoDispose;
-  bool withFilter;
-
-  RealEstateListPageParams({
-    required this.title,
-    required this.params,
-    required this.bloc,
-    this.cardBuilder,
-    this.autoDispose = false,
-    this.withFilter = true,
-  });
-}
 
 class RealEstateListWidget extends StatefulWidget {
   const RealEstateListWidget({super.key, required this.params});
@@ -54,6 +37,8 @@ class _RealEstateListWidgetState extends State<RealEstateListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+
         title: Text(widget.params.title ?? context.translation.properties),
         bottom: !widget.params.withFilter
             ? null

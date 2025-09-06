@@ -219,7 +219,7 @@ class _MapWidgetState extends State<MapWidget> {
                     ),
                   ),
                   if (widget.root == false &&
-                      widget.latLng != null &&
+                      latLng != null &&
                       widget.onTap != null)
                     ...[
                       8.height(),

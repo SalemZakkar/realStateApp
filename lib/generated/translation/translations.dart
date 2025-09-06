@@ -986,6 +986,24 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'{status, select, pending{تتم المراجعة} rejected {مرفوض} approved {مقبول} other{غير معروف}}'**
   String propertyPostStatusE(String status);
+
+  /// No description provided for @authPageRequiresLogin.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه الصفحة تتطلب تسجيل الدخول للوصول إلى محتواها.'**
+  String get authPageRequiresLogin;
+
+  /// No description provided for @dollar.
+  ///
+  /// In ar, this message translates to:
+  /// **'دولار'**
+  String get dollar;
+
+  /// No description provided for @tutorial.
+  ///
+  /// In ar, this message translates to:
+  /// **'دليل الإستخدام'**
+  String get tutorial;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

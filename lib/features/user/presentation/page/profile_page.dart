@@ -11,11 +11,7 @@ import 'package:real_state/features/core/presentation/widget/buttons/tile_button
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
-import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
-import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_mine_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_list_widget.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
 import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
@@ -39,7 +35,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.translation.profile)),
+      appBar: AppBar(
+        title: Text(context.translation.profile),
+        centerTitle: true,
+      ),
       body: LogInWidget(
         child: Container(
           constraints: const BoxConstraints.expand(),
@@ -160,20 +159,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onTap: () {
                                         context.push(
                                           RealEStateListPage.extPath,
-                                          extra: RealEstateListPageParams(
-                                            title: context
-                                                .translation
-                                                .myProperties,
-                                            params: RealEstateGetParams(
-                                              skip: 0,
-                                              limit: 10,
-                                            ),
-                                            autoDispose: false,
-                                            withFilter: false,
-                                            bloc:
-                                                getIt<
-                                                  RealEstateGetMineListCubit
-                                                >(),
+                                          extra: RealEstateListPageParams.mine(
+                                            context,
                                           ),
                                         );
                                       },
@@ -197,19 +184,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onTap: () {
                                         context.push(
                                           RealEStateListPage.extPath,
-                                          extra: RealEstateListPageParams(
-                                            title: context
-                                                .translation
-                                                .savedProperties,
-                                            params: RealEstateGetParams(
-                                              skip: 0,
-                                              limit: 10,
-                                              isFavourite: true,
-                                            ),
-                                            autoDispose: false,
-                                            withFilter: false,
-                                            bloc:
-                                                getIt<RealEstateGetListCubit>(),
+                                          extra: RealEstateListPageParams.saved(
+                                            context,
                                           ),
                                         );
                                       },

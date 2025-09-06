@@ -85,7 +85,32 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     16.height(),
-                    HeaderText(title: widget.realEstate.title),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: HeaderText(title: widget.realEstate.title),
+                        ),
+                        if (widget.realEstate.isFeature) ...[
+                          8.width(),
+                          Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: context.appColorSchema.statusColors.pending
+                                  .withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              context.translation.featured,
+                              style: TextStyle(
+                                color:
+                                    context.appColorSchema.statusColors.pending,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
                     16.height(),
                     IconText(
                       icon: Assets.icons.dollar,

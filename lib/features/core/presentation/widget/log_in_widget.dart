@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
+import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 
@@ -23,13 +24,26 @@ class _LogInWidgetState extends State<LogInWidget> {
       unAuthWidget: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: ElevatedButton(
-              onPressed: () {
-                context.push(AuthLoginPage.path);
-              },
-              child: Text(context.translation.logIn),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  context.translation.authPageRequiresLogin,
+                  style: TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+                32.height(),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.push(AuthLoginPage.path);
+                    },
+                    child: Text(context.translation.logIn),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

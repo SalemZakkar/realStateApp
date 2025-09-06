@@ -25,7 +25,9 @@ class RealEstateMarkerWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: context.appColorSchema.primaryColor,
+              color: realEstate.isFeature
+                  ? context.appColorSchema.gold
+                  : context.appColorSchema.primaryColor,
               borderRadius: BorderRadius.circular(4),
             ),
             padding: const EdgeInsets.all(4),
@@ -34,7 +36,10 @@ class RealEstateMarkerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 12),
             ),
           ),
-          Assets.icons.mapMarker.svg(width: 35, height: 35),
+          if (realEstate.isFeature)
+            Assets.icons.mapFeaturedMarker.svg(width: 35, height: 35)
+          else
+            Assets.icons.mapMarker.svg(width: 35, height: 35),
         ],
       ),
     );

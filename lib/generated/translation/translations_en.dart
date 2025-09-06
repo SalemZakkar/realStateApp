@@ -514,4 +514,14 @@ class TranslationsEn extends Translations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get authPageRequiresLogin =>
+      'هذه الصفحة تتطلب تسجيل الدخول للوصول إلى محتواها.';
+
+  @override
+  String get dollar => 'دولار';
+
+  @override
+  String get tutorial => 'دليل الإستخدام';
 }

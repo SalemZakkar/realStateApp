@@ -146,5 +146,8 @@
   "main": "الرئيسية",
   "property": "العقار",
   "postStatus": "حالة المنشور",
-  "propertyPostStatusE": "{status, select, pending{تتم المراجعة} rejected {مرفوض} approved {مقبول} other{غير معروف}}"
+  "propertyPostStatusE": "{status, select, pending{تتم المراجعة} rejected {مرفوض} approved {مقبول} other{غير معروف}}",
+  "authPageRequiresLogin": "هذه الصفحة تتطلب تسجيل الدخول للوصول إلى محتواها.",
+  "dollar": "دولار",
+  "tutorial": "دليل الإستخدام"
 }

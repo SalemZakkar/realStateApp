@@ -16,16 +16,16 @@ import 'package:real_state/features/real_state/domain/params/real_estate_get_par
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_list_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/injection.dart';
+import 'package:real_state/themes/app_theme.dart';
 
-class RealEstateRowWidget extends StatefulWidget {
+class RealEstateGridWidget extends StatefulWidget {
   final String title;
   final PaginationCubit<RealEstate, RealEstateGetParams> cubit;
   final RealEstateGetParams params;
 
-  const RealEstateRowWidget({
+  const RealEstateGridWidget({
     super.key,
     required this.params,
     required this.cubit,
@@ -33,10 +33,10 @@ class RealEstateRowWidget extends StatefulWidget {
   });
 
   @override
-  State<RealEstateRowWidget> createState() => _RealEstateRowWidgetState();
+  State<RealEstateGridWidget> createState() => _RealEstateGridWidgetState();
 }
 
-class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
+class _RealEstateGridWidgetState extends State<RealEstateGridWidget> {
   @override
   void initState() {
     super.initState();
@@ -67,13 +67,7 @@ class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
                 onTap: () {
                   context.push(
                     RealEStateListPage.extPath,
-                    extra: RealEstateListPageParams(
-                      title: context.translation.featured,
-                      withFilter: false,
-                      params: RealEstateGetParams(isFeatured: true),
-                      autoDispose: false,
-                      bloc: getIt<RealEstateGetListCubit>(),
-                    ),
+                    extra: RealEstateListPageParams.featured(context),
                   );
                 },
                 child: Row(
@@ -104,9 +98,9 @@ class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 300,
-                  mainAxisExtent: 300,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+                  mainAxisExtent: 250,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4,
                 ),
                 itemBuilder: (context, index) {
                   return InkWellWithoutFeedback(
@@ -122,10 +116,25 @@ class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
                       child: Column(
                         children: [
                           Expanded(
-                            child: ImageWidget(
-                              borderRadius: BorderRadius.circular(4),
-                              width: double.infinity,
-                              url: state.items[index].images.first.getUrl,
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: ImageWidget(
+                                    borderRadius: BorderRadius.circular(4),
+                                    width: double.infinity,
+                                    url: state.items[index].images.first.getUrl,
+                                  ),
+                                ),
+                                if (state.items[index].isFeature)
+                                  PositionedDirectional(
+                                    top: 4,
+                                    end: 4,
+                                    child: Icon(
+                                      Icons.star,
+                                      color: context.appColorSchema.gold,
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                           8.height(),

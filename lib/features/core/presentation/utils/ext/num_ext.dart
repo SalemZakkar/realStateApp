@@ -6,6 +6,6 @@ extension NumExt on num {
   Widget width() => SizedBox(height: 0, width: toDouble(),);
   Widget height() => SizedBox(height: toDouble(), width: 0,);
   String formatPrice(BuildContext context){
-    return "${toStringAsFixed(0).formatNum()} ${context.translation.syp}" ;
+    return "${toStringAsFixed(0).formatNum()} ${context.translation.dollar}" ;
   }
 }

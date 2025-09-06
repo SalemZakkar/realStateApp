@@ -39,7 +39,7 @@ abstract class AppColorsSchema {
   final MainColor crayola = MainColor(0xFF2563EB, {});
   final MainColor richBlack = MainColor(0xFF010507, {});
   final MainColor cultured = MainColor(0xFFF3F5F9, {});
-  final MainColor gold = MainColor(0xffefbf04, {});
+  final MainColor gold = MainColor(0xffB8860B, {});
 }
 
 class LightAppColorSchema extends AppColorsSchema {

@@ -5,9 +5,10 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/home/presentation/widget/home_buttons_widget.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
+import 'package:real_state/features/tutorial/presentation/widget/tutorial_button.dart';
 import 'package:real_state/injection.dart';
 
-import '../../../real_state/presentation/widget/real_estate_featured_widget.dart';
+import '../../../real_state/presentation/widget/real_estate_grid_widget.dart';
 
 class HomePage extends StatefulWidget {
   static const String path = "/homePage";
@@ -42,9 +43,12 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     16.height(),
-                    HomeButtonsWidget(),
+                    TutorialButton(),
                     16.height(),
-                    RealEstateRowWidget(
+                    HomeButtonsWidget(),
+
+                    16.height(),
+                    RealEstateGridWidget(
                       params: featuredParams,
                       cubit: featuredCubit,
                       title: context.translation.featured,

@@ -1,0 +1,23 @@
+<svg
+    width="64"
+    height="64"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-labelledby="markerHomeTitle"
+    xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="markerHomeTitle">Map marker with home</title>
+
+  <!-- Pin shape -->
+  <path
+      d="M12 2c-3.866 0-7 3.134-7 7 0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7z"
+      fill="#B8860B"
+  />
+
+  <!-- House inside (moved to top of marker) -->
+  <path
+      transform="translate(0,-5)"
+      d="M8.25 12.25 12 9.6l3.75 2.65v3.75a.85.85 0 0 1-.85.85h-5.8a.85.85 0 0 1-.85-.85v-3.75zM11 16.8v-2.2h2v2.2"
+      fill="#ffffff"
+  />
+</svg>

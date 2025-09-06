@@ -30,7 +30,10 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.translation.contactUs)),
+      appBar: AppBar(
+        title: Text(context.translation.contactUs),
+        centerTitle: true,
+      ),
       body: ConsumerWidget(
         autoDispose: false,
         cubit: contact,
@@ -56,8 +59,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             for (var e in c) ...[
                               if (e.type == type) ...[
                                 Directionality(
-                                    textDirection: TextDirection.ltr,
-                                    child: ContactUsCard(contactItem: e)),
+                                  textDirection: TextDirection.ltr,
+                                  child: ContactUsCard(contactItem: e),
+                                ),
                                 16.height(),
                               ],
                             ],

@@ -10,6 +10,7 @@ class IconText extends StatefulWidget {
   final TextStyle? textStyle;
   final double? size;
   final int? maxLines;
+  final CrossAxisAlignment? crossAxisAlignment;
 
   const IconText({
     super.key,
@@ -18,6 +19,7 @@ class IconText extends StatefulWidget {
     this.textStyle,
     this.size,
     this.maxLines,
+    this.crossAxisAlignment,
   });
 
   @override
@@ -28,7 +30,7 @@ class _IconTextState extends State<IconText> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      // crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.center,
       children: [
         if (widget.icon is SvgGenImage)
           (widget.icon as SvgGenImage).dynamicSVGColor(

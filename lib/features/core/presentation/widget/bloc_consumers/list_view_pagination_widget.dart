@@ -62,6 +62,7 @@ class _ListViewPaginationWidgetState<T>
 
   @override
   void initState() {
+    widget.paginationCubit.get(params: widget.params);
     scrollController = widget.scrollController ?? ScrollController();
     scrollController.addListener(() {
       if (!scrollController.hasClients) return;

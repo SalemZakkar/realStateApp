@@ -4,16 +4,10 @@ import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
-import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
-import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_mine_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_list_widget.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_mine_card.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
-import 'package:real_state/injection.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class HomeButtonsWidget extends StatefulWidget {
@@ -77,17 +71,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         onTap: () {
                           context.pushNamed(
                             RealEStateListPage.extPath,
-                            extra: RealEstateListPageParams(
-                              title: context.translation.savedProperties,
-                              withFilter: false,
-                              autoDispose: false,
-                              params: RealEstateGetParams(
-                                skip: 0,
-                                limit: 10,
-                                isFeatured: true,
-                              ),
-                              bloc: getIt<RealEstateGetListCubit>(),
-                            ),
+                            extra: RealEstateListPageParams.saved(context),
                           );
                         },
                       ),
@@ -126,15 +110,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         onTap: () {
                           context.pushNamed(
                             RealEStateListPage.extPath,
-                            extra: RealEstateListPageParams(
-                              title: context.translation.myProperties,
-                              withFilter: false,
-                              cardBuilder: (data) =>
-                                  RealEstateMineCard(realEstate: data),
-                              autoDispose: false,
-                              params: RealEstateGetParams(skip: 0, limit: 10),
-                              bloc: getIt<RealEstateGetMineListCubit>(),
-                            ),
+                            extra: RealEstateListPageParams.mine(context),
                           );
                         },
                       ),

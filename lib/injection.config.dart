@@ -89,6 +89,12 @@ import 'package:real_state/features/real_state/presentation/cubit/real_estate_ge
     as _i966;
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_map_get.dart'
     as _i680;
+import 'package:real_state/features/tutorial/data/repository/tutorial_repository_impl.dart'
+    as _i432;
+import 'package:real_state/features/tutorial/domain/repository/tutorial_repository.dart'
+    as _i13;
+import 'package:real_state/features/tutorial/presentation/cubit/tutorial_cubit.dart'
+    as _i875;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
     as _i905;
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart'
@@ -131,6 +137,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i976.FileManager>(
       () => _i976.FileManager(gh<_i270.Configuration>()),
     );
+    gh.factory<_i13.TutorialRepository>(() => _i432.TutorialRepositoryImpl());
     gh.factory<_i910.CoreRemoteSource>(
       () => _i910.CoreRemoteSourceImpl(
         gh<_i361.Dio>(),
@@ -166,6 +173,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i837.AuthLocalSource>(),
         gh<_i31.AuthRemoteSource>(),
       ),
+    );
+    gh.factory<_i875.TutorialCubit>(
+      () => _i875.TutorialCubit(gh<_i13.TutorialRepository>()),
     );
     gh.singleton<_i676.CoreRepository>(
       () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),

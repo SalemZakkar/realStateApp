@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/screen_loader.dart';
+import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
 import 'package:real_state/features/core/presentation/widget/stepper_form_widget.dart';
 import 'package:real_state/features/core/presentation/widget/stepper_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
@@ -51,78 +52,80 @@ class _RealEstateFormPageState extends State<RealEstateFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.translation.addNewProperty)),
-      body: ScreenLoader(
-        cubit: editCubit,
-        withSuccess: false,
-        onSuccess: (v) {
-          if(widget.realEstate != null){
-            context.pop();
-            return;
-          }
-          context.replace(RealEstateDetailsPage.path, extra: v);
-        },
-
+      body: LogInWidget(
         child: ScreenLoader(
-          cubit: addCubit,
+          cubit: editCubit,
+          withSuccess: false,
           onSuccess: (v) {
-            params.id = v.id;
-            setState(() {
-              realEstate = v;
-            });
-            controller.next();
+            if(widget.realEstate != null){
+              context.pop();
+              return;
+            }
+            context.replace(RealEstateDetailsPage.path, extra: v);
           },
-          child: Form(
-            key: key,
-            child: StepperFormWidget(
-              canBack: (v) {
-                if (widget.realEstate != null) {
-                  return true;
-                }
-                return v <= 2;
-              },
-              controller: controller,
-              onDone: () {
-                if (key.currentState!.validate()) {
+        
+          child: ScreenLoader(
+            cubit: addCubit,
+            onSuccess: (v) {
+              params.id = v.id;
+              setState(() {
+                realEstate = v;
+              });
+              controller.next();
+            },
+            child: Form(
+              key: key,
+              child: StepperFormWidget(
+                canBack: (v) {
                   if (widget.realEstate != null) {
-                    editCubit.edit(params: params);
-                    return;
+                    return true;
                   }
-                  editCubit.edit(
-                    params: RealEstateParams(
-                      id: params.id,
-                      images: params.images,
+                  return v <= 2;
+                },
+                controller: controller,
+                onDone: () {
+                  if (key.currentState!.validate()) {
+                    if (widget.realEstate != null) {
+                      editCubit.edit(params: params);
+                      return;
+                    }
+                    editCubit.edit(
+                      params: RealEstateParams(
+                        id: params.id,
+                        images: params.images,
+                      ),
+                    );
+                  }
+                },
+                onNext: (v) {
+                  if (key.currentState!.validate()) {
+                    if (v == 2 && realEstate == null) {
+                      addCubit.add(params: params);
+                    } else {
+                      controller.next();
+                    }
+                  }
+                },
+                pages: [
+                  RealEstateMainInfoForm(params: params),
+                  RealEstateSizeInfoForm(params: params),
+                  RealEstatePropertyInfoForm(params: params),
+                  if (realEstate != null) ...[
+                    RealEstateImageManageWidget(
+                      realEstate: realEstate!,
+                      imageChanged: (v) {
+                        params.images = v;
+                      },
                     ),
-                  );
-                }
-              },
-              onNext: (v) {
-                if (key.currentState!.validate()) {
-                  if (v == 2 && realEstate == null) {
-                    addCubit.add(params: params);
-                  } else {
-                    controller.next();
-                  }
-                }
-              },
-              pages: [
-                RealEstateMainInfoForm(params: params),
-                RealEstateSizeInfoForm(params: params),
-                RealEstatePropertyInfoForm(params: params),
-                if (realEstate != null) ...[
-                  RealEstateImageManageWidget(
-                    realEstate: realEstate!,
-                    imageChanged: (v) {
-                      params.images = v;
-                    },
-                  ),
+                  ],
                 ],
-              ],
-              stepTitles: [
-                StepperItem(context.translation.main),
-                StepperItem(context.translation.area),
-                StepperItem(context.translation.property),
-                StepperItem(context.translation.images),
-              ],
+                stepTitles: [
+                  StepperItem(context.translation.main),
+                  StepperItem(context.translation.area),
+                  StepperItem(context.translation.property),
+                  StepperItem(context.translation.images),
+                ],
+              ),
             ),
           ),
         ),

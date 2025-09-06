@@ -3,6 +3,9 @@
     "main",
     "property",
     "postStatus",
-    "propertyPostStatusE"
+    "propertyPostStatusE",
+    "authPageRequiresLogin",
+    "dollar",
+    "tutorial"
   ]
 }
