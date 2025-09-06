@@ -28,7 +28,7 @@ class _IconTextState extends State<IconText> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.icon is SvgGenImage)
           (widget.icon as SvgGenImage).dynamicSVGColor(

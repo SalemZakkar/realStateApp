@@ -18,6 +18,7 @@ class RealEstateListPageParams {
   RealEstateGetParams? params;
   String? title;
   bool autoDispose;
+  bool withFilter;
 
   RealEstateListPageParams({
     required this.title,
@@ -25,6 +26,7 @@ class RealEstateListPageParams {
     required this.bloc,
     this.cardBuilder,
     this.autoDispose = false,
+    this.withFilter = true,
   });
 }
 
@@ -44,7 +46,7 @@ class _RealEstateListWidgetState extends State<RealEstateListWidget> {
   @override
   void initState() {
     super.initState();
-    params = widget.params.params ?? RealEstateGetParams(page: 1, limit: 10);
+    params = widget.params.params ?? RealEstateGetParams(skip: 0, limit: 10);
     bloc = widget.params.bloc ?? getIt<RealEstateGetListCubit>();
   }
 
@@ -53,48 +55,49 @@ class _RealEstateListWidgetState extends State<RealEstateListWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.params.title ?? context.translation.properties),
-        bottom: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 48 + 16),
-          child: Padding(
-            padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-            child: SearchTextField(
-              onChanged: (v) {
-                params.title = v.trim().isEmpty ? null : v.trim();
-                params.page = 1;
-                bloc.get(params: params);
-              },
-              onPressedFilter: () {
-                context.push(
-                  RealEstateFilterPage.path,
-                  extra: RealEstateFilterPageParams(
+        bottom: !widget.params.withFilter
+            ? null
+            : PreferredSize(
+                preferredSize: Size(MediaQuery.of(context).size.width, 48 + 16),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                  child: SearchTextField(
                     onChanged: (v) {
-                      params = v;
-                      setState(() {});
-                      bloc.get(params: v);
+                      params.title = v.trim().isEmpty ? null : v.trim();
+                      params.skip = 1;
+                      bloc.get(params: params);
                     },
-                    params: params,
+                    onPressedFilter: () {
+                      context.push(
+                        RealEstateFilterPage.path,
+                        extra: RealEstateFilterPageParams(
+                          onChanged: (v) {
+                            params = v;
+                            setState(() {});
+                            bloc.get(params: v);
+                          },
+                          params: params,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-        ),
+                ),
+              ),
       ),
 
       body: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         constraints: const BoxConstraints.expand(),
         child: ListViewPaginationWidget<RealEstate>(
-         end: 128,
+          end: 128,
           paginationCubit: bloc,
           params: params,
           autoDispose: widget.params.autoDispose,
           itemBuilder: (data) {
             return Column(
               children: [
-                RealStateCard(realEstate: data),
+                widget.params.cardBuilder?.call(data) ??
+                    RealStateCard(realEstate: data),
                 8.height(),
               ],
             );

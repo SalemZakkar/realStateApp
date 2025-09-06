@@ -20,6 +20,7 @@ import 'package:real_state/features/real_state/presentation/cubit/real_estate_de
 import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_image_page.dart';
 import 'package:real_state/features/real_state/presentation/widget/real_estate_change_status_widget.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_post_status_widget.dart';
 import 'package:real_state/features/real_state/presentation/widget/real_estate_status_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/injection.dart';
@@ -190,50 +191,16 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (widget.realEstate.postStatus ==
-                        RealEstatePostStatus.pending) ...[
-                      16.height(),
-                      CustomCardWidget(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Align(
-                            alignment: AlignmentDirectional.topStart,
-                            child: Text(
-                              context.translation.propertyAddMessageWarning,
-                            ),
-                          ),
-                        ),
+                    16.height(),
+                    HeaderText(title: context.translation.postStatus),
+                    16.height(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: RealEstatePostStatusWidget(
+                        estate: widget.realEstate,
                       ),
-                    ],
-                    if (widget.realEstate.postStatus ==
-                        RealEstatePostStatus.rejected) ...[
-                      16.height(),
-                      CustomCardWidget(
-                        backgroundColor:
-                            context.appColorSchema.statusColors.fail,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Align(
-                            alignment: AlignmentDirectional.topStart,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  context.translation.rejected,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                8.height(),
-                                Text(
-                                  widget.realEstate.rejectReason ?? '',
+                    ),
 
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
                     16.height(),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,11 +236,14 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                         // style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
-                    16.height(),
-                    RealEstateChangeStatusWidget(
-                      realEstate: widget.realEstate,
-                      onChanged: (v) {},
-                    ),
+                    if (widget.realEstate.postStatus ==
+                        RealEstatePostStatus.approved) ...[
+                      16.height(),
+                      RealEstateChangeStatusWidget(
+                        realEstate: widget.realEstate,
+                        onChanged: (v) {},
+                      ),
+                    ],
                     16.height(),
                     HeaderText(title: context.translation.specifications),
                     16.height(),
@@ -296,11 +266,12 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                         widget.realEstate.propertyDeedType.name,
                       ),
                     ),
-
                     8.height(),
                     TextItemWidget(
-                      title: context.translation.rooms,
-                      description: widget.realEstate.room.toString(),
+                      title: context.translation.propertyType,
+                      description: context.translation.propertyTypeE(
+                        widget.realEstate.propertyType.name,
+                      ),
                     ),
 
                     8.height(),
@@ -315,8 +286,13 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                       title: context.translation.rooms,
                       description: widget.realEstate.room.toString(),
                     ),
-
                     8.height(),
+                    TextItemWidget(
+                      title: context.translation.floor,
+                      description: widget.realEstate.floor.toStringAsFixed(0),
+                    ),
+                    8.height(),
+
                     TextItemWidget(
                       title: context.translation.bathrooms,
                       description: widget.realEstate.bathrooms.toString(),
@@ -327,13 +303,7 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                       description:
                           "${widget.realEstate.size} ${context.translation.m2}",
                     ),
-                    8.height(),
-                    TextItemWidget(
-                      title: context.translation.propertyType,
-                      description: context.translation.propertyTypeE(
-                        widget.realEstate.propertyType.name,
-                      ),
-                    ),
+
                     if (widget.realEstate.propertyAge != null) ...[
                       8.height(),
                       TextItemWidget(

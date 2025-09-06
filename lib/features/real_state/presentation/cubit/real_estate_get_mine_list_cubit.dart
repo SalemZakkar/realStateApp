@@ -16,6 +16,7 @@ class RealEstateGetMineListCubit
   @override
   void get({RealEstateGetParams? params}) async {
     this.params = params!;
+    params.skip = 0;
     emit(state.setInProgressState());
     var res = await repository.getMineList(params: params);
     res.fold((e) => emit(state.setFailureState(e)), (r) {
@@ -31,6 +32,9 @@ class RealEstateGetMineListCubit
   }
 
   void removeFavourite(String id) {
+    if (state.totalRecords == null) {
+      return;
+    }
     if (params.isFavourite == true) {
       var res = state.items.where((e) => e.id != id).toList();
       emit(
@@ -61,25 +65,30 @@ class RealEstateGetMineListCubit
 
   @override
   void paginate() async {
-    if (state.hasReachedMax ||
-        state.isInProgress ||
-        state.isPaginateInProgress) {
-      return;
-    }
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
-
-    params.page = (params.page ?? 0) + 1;
-    var res = await repository.getMineList(params: params);
-    res.fold((e) => emit(state.setPaginateFailureState(e)), (r) {
-      var list = [...state.items, ...r.data];
-      emit(
-        state.copyWith(
-          status: PaginatedListStatus.success,
-          totalRecords: r.totalRecords,
-          hasReachedMax: list.length >= r.totalRecords,
-          items: list,
-        ),
-      );
-    });
+    params.skip = (params.skip ?? 0) + state.items.length;
+    var res = await repository.getRealEstates(params: params);
+    res.fold(
+      (e) {
+        params.skip = params.skip! - state.items.length;
+        emit(
+          state.copyWith(
+            status: PaginatedListStatus.paginateFailure,
+            failure: e,
+          ),
+        );
+      },
+      (r) {
+        var list = [...state.items, ...r.data];
+        emit(
+          state.copyWith(
+            status: PaginatedListStatus.success,
+            totalRecords: r.totalRecords,
+            hasReachedMax: list.length >= r.totalRecords,
+            items: list,
+          ),
+        );
+      },
+    );
   }
 }

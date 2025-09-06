@@ -109,7 +109,7 @@ class _RealEStateMapPageState extends State<RealEStateMapPage> {
                           setState(() {
                             params = v;
                           });
-                          params.page = null;
+                          params.skip = null;
                           params.limit = null;
                           setState(() {});
                           cubit.get(params: params);

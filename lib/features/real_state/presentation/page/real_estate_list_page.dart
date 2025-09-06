@@ -7,8 +7,11 @@ import 'package:real_state/injection.dart';
 
 class RealEStateListPage extends StatefulWidget {
   static String path = '/real_state_list_page';
+  static String extPath = '/real_state_list_page_ext';
 
-  const RealEStateListPage({super.key});
+  final RealEstateListPageParams? params;
+
+  const RealEStateListPage({super.key,  this.params});
 
   @override
   State<RealEStateListPage> createState() => _RealEStateListPageState();
@@ -16,7 +19,7 @@ class RealEStateListPage extends StatefulWidget {
 
 class _RealEStateListPageState extends State<RealEStateListPage> {
   var cubit = getIt<RealEstateGetListCubit>();
-  var params = RealEstateGetParams(page: 1, limit: 10);
+  var params = RealEstateGetParams(skip: 0, limit: 10);
 
   @override
   void initState() {
@@ -27,11 +30,13 @@ class _RealEStateListPageState extends State<RealEStateListPage> {
   @override
   Widget build(BuildContext context) {
     return RealEstateListWidget(
-      params: RealEstateListPageParams(
-        title: context.translation.properties,
-        params: params,
-        bloc: cubit,
-      ),
+      params:
+          widget.params ??
+          RealEstateListPageParams(
+            title: context.translation.properties,
+            params: params,
+            bloc: cubit,
+          ),
     );
   }
 }

@@ -16,6 +16,8 @@ class ImageWidget extends StatefulWidget {
   final ValueChanged<ImageProvider>? onCreated;
   final ValueChanged<ImageProvider>? onTap;
   final BoxFit? fit;
+  final Color? color;
+  final BlendMode? blendMode;
 
   const ImageWidget({
     super.key,
@@ -31,6 +33,8 @@ class ImageWidget extends StatefulWidget {
     this.onCreated,
     this.fit,
     this.onTap,
+    this.color,
+    this.blendMode,
   });
 
   @override
@@ -77,6 +81,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                       httpHeaders: {
                         "appversion": PlatformIdentity.getAppVersion(),
                       },
+
                       imageUrl: widget.url!,
                       // placeholder: (context, url) => const Loader(),
                       imageBuilder: (context, provider) {
@@ -84,6 +89,8 @@ class _ImageWidgetState extends State<ImageWidget> {
                         this.provider = provider;
                         return Image(
                           image: provider,
+                          color: widget.color,
+                          colorBlendMode: widget.blendMode,
                           // color: Colors.red,
                           // colorBlendMode: BlendMode.dstOut,
                           fit: widget.fit ?? BoxFit.cover,

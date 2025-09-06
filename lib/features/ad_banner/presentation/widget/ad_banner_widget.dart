@@ -27,6 +27,9 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
       loadingBuilder: (context) => const SizedBox.shrink(),
       errorBuilder: (context, fail) => const SizedBox.shrink(),
       childBuilder: (context, state) {
+        if(state.isEmpty){
+          return const SizedBox.shrink();
+        }
         return SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 230,

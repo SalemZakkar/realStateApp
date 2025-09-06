@@ -16,6 +16,7 @@ class RealEstateGetListCubit
   @override
   void get({RealEstateGetParams? params}) async {
     this.params = params!;
+    params.skip = 0;
     emit(state.setInProgressState());
     var res = await repository.getRealEstates(params: params);
     res.fold((e) => emit(state.setFailureState(e)), (r) {
@@ -31,6 +32,9 @@ class RealEstateGetListCubit
   }
 
   void removeFavourite(String id) {
+    if (state.totalRecords == null) {
+      return;
+    }
     if (params.isFavourite == true) {
       var res = state.items.where((e) => e.id != id).toList();
       emit(
@@ -45,7 +49,13 @@ class RealEstateGetListCubit
 
   void removeItem(String id) {
     var k = state.items.where((e) => e.id != id).toList();
-    emit(state.copyWith(items: k, totalRecords: state.totalRecords! - 1));
+    emit(
+      state.copyWith(
+        items: k,
+        totalRecords: state.totalRecords! - 1,
+        hasReachedMax: k.length >= state.totalRecords! - 1,
+      ),
+    );
   }
 
   void setItem(RealEstate realEstate) {
@@ -61,22 +71,17 @@ class RealEstateGetListCubit
 
   @override
   void paginate() async {
-    if (state.hasReachedMax ||
-        state.isInProgress ||
-        state.isPaginateInProgress) {
-      return;
-    }
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
-
-    params.page = (params.page ?? 0) + 1;
+    params.skip = (params.skip ?? 0) + state.items.length;
     var res = await repository.getRealEstates(params: params);
     res.fold(
       (e) {
-        params.page = params.page! - 1;
+        params.skip = params.skip! - state.items.length;
         emit(
-
           state.copyWith(
-              status: PaginatedListStatus.paginateFailure, failure: e),
+            status: PaginatedListStatus.paginateFailure,
+            failure: e,
+          ),
         );
       },
       (r) {

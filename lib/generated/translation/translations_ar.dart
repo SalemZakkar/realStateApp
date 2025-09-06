@@ -280,7 +280,7 @@ class TranslationsAr extends Translations {
       'industrialLand': 'أرض صناعية',
       'farm': 'مزرعة',
       'shop': 'محل',
-      'architecture': 'مكتب هندسي',
+      'architecture': 'عمارة',
       'other': 'غير معروف',
     });
     return '$_temp0';
@@ -353,7 +353,7 @@ class TranslationsAr extends Translations {
   String get age => 'العمر';
 
   @override
-  String get year => 'السنة';
+  String get year => 'سنة';
 
   @override
   String get city => 'المدينة';
@@ -480,7 +480,7 @@ class TranslationsAr extends Translations {
 
   @override
   String get longPressOnTheImageAndDragIt =>
-      'اضغط مطولاً على الصورة واسحبها لتغيير الترتيب، الصورة الأولى ستكون صورة الغلاف.';
+      'اضغط زر الأضافة واختر صورة - اضغط مطولاً على الصورة واسحبها لتغيير الترتيب - الصورة الأولى ستكون صورة الغلاف.';
 
   @override
   String get status => 'الحالة';
@@ -496,4 +496,18 @@ class TranslationsAr extends Translations {
 
   @override
   String get property => 'العقار';
+
+  @override
+  String get postStatus => 'حالة المنشور';
+
+  @override
+  String propertyPostStatusE(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'pending': 'تتم المراجعة',
+      'rejected': 'مرفوض',
+      'approved': 'مقبول',
+      'other': 'غير معروف',
+    });
+    return '$_temp0';
+  }
 }

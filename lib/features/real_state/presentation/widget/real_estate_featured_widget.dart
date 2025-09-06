@@ -5,6 +5,7 @@ import 'package:real_state/features/core/presentation/cubit/base_states/base_pag
 import 'package:real_state/features/core/presentation/cubit/pagination_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
+import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
@@ -12,8 +13,12 @@ import 'package:real_state/features/core/presentation/widget/text/header_text.da
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
+import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
+import 'package:real_state/features/real_state/presentation/widget/real_estate_list_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/injection.dart';
 
 class RealEstateRowWidget extends StatefulWidget {
   final String title;
@@ -58,14 +63,50 @@ class _RealEstateRowWidgetState extends State<RealEstateRowWidget> {
           }
           return Column(
             children: [
-              HeaderText(title: widget.title),
-              8.height(),
+              InkWellWithoutFeedback(
+                onTap: () {
+                  context.push(
+                    RealEStateListPage.extPath,
+                    extra: RealEstateListPageParams(
+                      title: context.translation.featured,
+                      withFilter: false,
+                      params: RealEstateGetParams(isFeatured: true),
+                      autoDispose: false,
+                      bloc: getIt<RealEstateGetListCubit>(),
+                    ),
+                  );
+                },
+                child: Row(
+                  children: [
+                    Expanded(child: HeaderText(title: widget.title)),
+                    8.width(),
+                    IconButton(
+                      onPressed: () {
+                        context.push(
+                          RealEStateListPage.extPath,
+                          extra: RealEstateListPageParams(
+                            title: context.translation.featured,
+                            withFilter: false,
+                            params: RealEstateGetParams(isFeatured: true),
+                            autoDispose: false,
+                            bloc: getIt<RealEstateGetListCubit>(),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.arrow_forward_ios_outlined),
+                    ),
+                  ],
+                ),
+              ),
+              16.height(),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 300,
-                  mainAxisExtent: 250,
+                  mainAxisExtent: 300,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
                 ),
                 itemBuilder: (context, index) {
                   return InkWellWithoutFeedback(

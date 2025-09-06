@@ -327,6 +327,7 @@ class _PasswordInputFieldWidgetState extends State<PasswordInputFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textDirection: TextDirection.ltr,
       inputFormatters: [_PasswordFormatter()],
       autovalidateMode: AutovalidateMode.onUserInteraction,
       focusNode: widget.focusNode,

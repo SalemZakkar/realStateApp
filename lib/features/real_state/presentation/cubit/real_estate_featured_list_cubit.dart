@@ -13,7 +13,7 @@ class RealEstateFeaturedListCubit extends Cubit<BaseState<List<RealEstate>>> {
   void get() async {
     emit(state.setInProgressState());
     var res = await repository.getRealEstates(
-      params: RealEstateGetParams(page: 1, limit: 10),
+      params: RealEstateGetParams(skip: 0, limit: 10),
     );
     res.fold(
       (l) => emit(state.setFailureState(l)),

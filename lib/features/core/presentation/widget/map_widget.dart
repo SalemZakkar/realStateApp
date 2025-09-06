@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/utils/map_utils.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
@@ -220,16 +221,19 @@ class _MapWidgetState extends State<MapWidget> {
                   if (widget.root == false &&
                       widget.latLng != null &&
                       widget.onTap != null)
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.pop();
-                          widget.onTap?.call(latLng!);
-                        },
-                        child: Text(context.translation.save),
+                    ...[
+                      8.height(),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.pop();
+                            widget.onTap?.call(latLng!);
+                          },
+                          child: Text(context.translation.save),
+                        ),
                       ),
-                    ),
+                    ]
                 ],
               ),
             ),

@@ -500,4 +500,18 @@ class TranslationsEn extends Translations {
 
   @override
   String get property => 'العقار';
+
+  @override
+  String get postStatus => 'حالة المنشور';
+
+  @override
+  String propertyPostStatusE(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'pending': 'تتم المراجعة',
+      'rejected': 'مرفوض',
+      'approved': 'مقبول',
+      'other': 'غير معروف',
+    });
+    return '$_temp0';
+  }
 }

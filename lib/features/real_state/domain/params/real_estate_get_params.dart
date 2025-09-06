@@ -28,7 +28,7 @@ class RealEstateGetParams extends PaginationParams {
     category: category,
     maxSize: maxSize,
     minSize: minSize,
-    page: page,
+    skip: skip,
     limit: limit,
   );
 
@@ -43,13 +43,13 @@ class RealEstateGetParams extends PaginationParams {
     propertyDeedType = params.propertyDeedType;
     city = params.city;
     category = params.category;
-    page = params.page;
+    skip = params.skip;
     limit = params.limit;
     title = params.title;
   }
 
   RealEstateGetParams({
-    super.page,
+    super.skip,
     super.limit,
     this.minPrice,
     this.maxPrice,

@@ -59,6 +59,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                   title: context.translation.email,
                   svgGenImage: Assets.icons.email,
                   child: TextFormField(
+                    textDirection: TextDirection.ltr,
                     decoration: InputDecoration(
                       hintText: context.translation.email,
                     ),

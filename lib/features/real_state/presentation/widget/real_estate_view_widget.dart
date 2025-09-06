@@ -11,7 +11,6 @@ import 'package:real_state/features/core/presentation/widget/text/header_text.da
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/core/presentation/widget/text/text_item_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
-import 'package:real_state/features/real_state/presentation/widget/real_estate_status_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -86,19 +85,7 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     16.height(),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            widget.realEstate.title,
-                            style: Theme.of(context).textTheme.headlineMedium!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        RealEstateStatusWidget(estate: widget.realEstate)
-                      ],
-                    ),
+                    HeaderText(title: widget.realEstate.title),
                     16.height(),
                     IconText(
                       icon: Assets.icons.dollar,

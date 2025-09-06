@@ -17,7 +17,7 @@ class RealEStateSavedPage extends StatefulWidget {
 
 class _RealEStateSavedPageState extends State<RealEStateSavedPage> {
   var cubit = getIt<RealEstateGetListCubit>();
-  var params = RealEstateGetParams(page: 1, limit: 10, isFavourite: true);
+  var params = RealEstateGetParams(skip: 0, limit: 10, isFavourite: true);
 
   @override
   void initState() {

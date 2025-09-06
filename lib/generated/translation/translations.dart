@@ -558,7 +558,7 @@ abstract class Translations {
   /// No description provided for @propertyTypeE.
   ///
   /// In ar, this message translates to:
-  /// **'{type, select, apartment{شقة} land{أرض} villa{فيلا} agriculturalLand{أرض زراعية} industrialLand{أرض صناعية} farm{مزرعة} shop{محل} architecture{مكتب هندسي} other{غير معروف}}'**
+  /// **'{type, select, apartment{شقة} land{أرض} villa{فيلا} agriculturalLand{أرض زراعية} industrialLand{أرض صناعية} farm{مزرعة} shop{محل} architecture{عمارة} other{غير معروف}}'**
   String propertyTypeE(String type);
 
   /// No description provided for @price.
@@ -696,7 +696,7 @@ abstract class Translations {
   /// No description provided for @year.
   ///
   /// In ar, this message translates to:
-  /// **'السنة'**
+  /// **'سنة'**
   String get year;
 
   /// No description provided for @city.
@@ -942,7 +942,7 @@ abstract class Translations {
   /// No description provided for @longPressOnTheImageAndDragIt.
   ///
   /// In ar, this message translates to:
-  /// **'اضغط مطولاً على الصورة واسحبها لتغيير الترتيب، الصورة الأولى ستكون صورة الغلاف.'**
+  /// **'اضغط زر الأضافة واختر صورة - اضغط مطولاً على الصورة واسحبها لتغيير الترتيب - الصورة الأولى ستكون صورة الغلاف.'**
   String get longPressOnTheImageAndDragIt;
 
   /// No description provided for @status.
@@ -974,6 +974,18 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'العقار'**
   String get property;
+
+  /// No description provided for @postStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'حالة المنشور'**
+  String get postStatus;
+
+  /// No description provided for @propertyPostStatusE.
+  ///
+  /// In ar, this message translates to:
+  /// **'{status, select, pending{تتم المراجعة} rejected {مرفوض} approved {مقبول} other{غير معروف}}'**
+  String propertyPostStatusE(String status);
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

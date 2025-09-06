@@ -61,6 +61,7 @@ class _AuthSignUpPageState extends State<AuthSignUpPage> {
                   title: context.translation.email,
                   svgGenImage: Assets.icons.email,
                   child: TextFormField(
+                    textDirection: TextDirection.ltr,
                     decoration: InputDecoration(
                       hintText: context.translation.email,
                     ),
@@ -109,6 +110,7 @@ class _AuthSignUpPageState extends State<AuthSignUpPage> {
                 16.height(),
                 ScreenLoader(
                   cubit: cubit,
+                  withSuccess: false,
                   onSuccess: (v) {
                     context.pop();
                     context.pop();

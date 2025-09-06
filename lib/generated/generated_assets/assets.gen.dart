@@ -200,6 +200,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star.svg
   SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
 
+  /// File path: assets/icons/status.svg
+  SvgGenImage get status => const SvgGenImage('assets/icons/status.svg');
+
   /// File path: assets/icons/stocks.svg
   SvgGenImage get stocks => const SvgGenImage('assets/icons/stocks.svg');
 
@@ -253,6 +256,7 @@ class $AssetsIconsGen {
     send,
     size,
     star,
+    status,
     stocks,
     textDescription,
     title,

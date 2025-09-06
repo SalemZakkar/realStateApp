@@ -52,6 +52,7 @@ class _SendOtpPageState extends State<SendOtpPage> {
                   title: context.translation.email,
                   svgGenImage: Assets.icons.email,
                   child: TextFormField(
+                    textDirection: TextDirection.ltr,
                     decoration: InputDecoration(
                       hintText: context.translation.email,
                     ),

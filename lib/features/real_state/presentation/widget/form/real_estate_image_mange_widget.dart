@@ -126,7 +126,7 @@ class _RealEstateImageManageWidgetState
                       },
                     );
                   },
-                  itemCount: params.images!.length + 1,
+                  itemCount: params.images!.length + (params.images!.length >= 6 ? 0 : 1),
 
                   onReorder: (old, n) {
                     if (old >= widget.realEstate.images.length ||

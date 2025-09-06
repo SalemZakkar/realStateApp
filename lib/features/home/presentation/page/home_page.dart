@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final featuredCubit = getIt<RealEstateGetListCubit>();
   final featuredParams = RealEstateGetParams(
-    page: 1,
+    skip: 0,
     limit: 10,
     isFeatured: true,
   );

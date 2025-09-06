@@ -54,33 +54,39 @@ class _RealEstateChangeStatusWidgetState
                 crossAxisAlignment: WrapCrossAlignment.start,
                 runAlignment: WrapAlignment.start,
                 children: [
-                  ...RealEstateStatus.values.map(
-                    (e) => InkWellWithoutFeedback(
-                      onTap: () {
-                        cubit.edit(
-                          params: RealEstateParams(
-                            id: widget.realEstate.id,
-                            status: e,
-                          ),
-                        );
-                      },
-                      child: CustomCardWidget(
-                        backgroundColor: widget.realEstate.status == e
-                            ? Theme.of(context).primaryColor
-                            : null,
-                        padding: EdgeInsets.all(8),
-                        borderRadius: BorderRadius.circular(4),
-                        child: Text(
-                          context.translation.realEstateStatusE(e.name),
-                          style: TextStyle(
-                            color: widget.realEstate.status == e
-                                ? Colors.white
+                  ...(widget.realEstate.status != RealEstateStatus.available
+                          ? [widget.realEstate.status]
+                          : RealEstateStatus.values)
+                      .map(
+                        (e) => InkWellWithoutFeedback(
+                          onTap: () {
+                            if (widget.realEstate.status == e) {
+                              return;
+                            }
+                            cubit.edit(
+                              params: RealEstateParams(
+                                id: widget.realEstate.id,
+                                status: e,
+                              ),
+                            );
+                          },
+                          child: CustomCardWidget(
+                            backgroundColor: widget.realEstate.status == e
+                                ? Theme.of(context).primaryColor
                                 : null,
+                            padding: EdgeInsets.all(8),
+                            borderRadius: BorderRadius.circular(4),
+                            child: Text(
+                              context.translation.realEstateStatusE(e.name),
+                              style: TextStyle(
+                                color: widget.realEstate.status == e
+                                    ? Colors.white
+                                    : null,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
                 ],
               ),
             ),

@@ -7,8 +7,13 @@ import 'package:real_state/themes/app_theme.dart';
 
 class RealEstateStatusWidget extends StatefulWidget {
   final RealEstate estate;
+  final bool withOpacity;
 
-  const RealEstateStatusWidget({super.key, required this.estate});
+  const RealEstateStatusWidget({
+    super.key,
+    required this.estate,
+    this.withOpacity = true,
+  });
 
   @override
   State<RealEstateStatusWidget> createState() => _RealEstateStatusWidgetState();
@@ -32,7 +37,7 @@ class _RealEstateStatusWidgetState extends State<RealEstateStatusWidget> {
     return CustomCardWidget(
       backgroundColor: getStatusColor(
         widget.estate.status,
-      ).withValues(alpha: 0.1),
+      ).withValues(alpha: widget.withOpacity ? 0.1 : 1),
       padding: EdgeInsets.all(8),
       borderRadius: BorderRadius.circular(4),
       child: SizedBox(
@@ -40,7 +45,9 @@ class _RealEstateStatusWidgetState extends State<RealEstateStatusWidget> {
         child: Text(
           context.translation.realEstateStatusE(widget.estate.status.name),
           style: TextStyle(
-            color: getStatusColor(widget.estate.status),
+            color: !widget.withOpacity
+                ? Colors.white
+                : getStatusColor(widget.estate.status),
             fontWeight: FontWeight.bold,
           ),
         ),

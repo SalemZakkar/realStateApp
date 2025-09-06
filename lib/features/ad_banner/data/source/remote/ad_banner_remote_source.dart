@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:real_state/configuration.dart';
 import 'package:real_state/features/ad_banner/data/models/ad_banner_model/ad_banner_model.dart';
 import 'package:real_state/features/core/data/model/base_response/base_response.dart';
-import 'package:real_state/features/core/data/model/contact_item_model/contact_item_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'ad_banner_remote_source.g.dart';

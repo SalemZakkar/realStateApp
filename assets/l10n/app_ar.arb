@@ -75,7 +75,7 @@
   "propertyDeedE": "{type, select, green{سند أخضر} courtRolling{سند محكمة} municipal{سند بلدي} farm{سند مزرعة} industrial{سند صناعي} agricultural{سند زراعي} stock{سند ملكية أسهم} other{غير معروف}}",
   "propertyDeed": "سند الملكية",
   "propertyType": "نوع العقار",
-  "propertyTypeE": "{type, select, apartment{شقة} land{أرض} villa{فيلا} agriculturalLand{أرض زراعية} industrialLand{أرض صناعية} farm{مزرعة} shop{محل} architecture{مكتب هندسي} other{غير معروف}}",
+  "propertyTypeE": "{type, select, apartment{شقة} land{أرض} villa{فيلا} agriculturalLand{أرض زراعية} industrialLand{أرض صناعية} farm{مزرعة} shop{محل} architecture{عمارة} other{غير معروف}}",
   "price": "السعر",
   "neighborhood": "الحي",
   "address": "العنوان",
@@ -98,7 +98,7 @@
   "specifications": "المواصفات",
   "m2": "م²",
   "age": "العمر",
-  "year": "السنة",
+  "year": "سنة",
   "city": "المدينة",
   "map": "الخريطة",
   "min": "الحد الأدنى",
@@ -139,10 +139,12 @@
   "pleaseMakeSureYouAddedImages": "أضف 3 صور على الأقل للعقار، وإلا لن يتم قبوله",
   "propertyRejected": "تم رفض العقار",
   "pressOnTheMapToSetTheMarker": "اضغط على الخريطة لتحديد الموقع",
-  "longPressOnTheImageAndDragIt": "اضغط مطولاً على الصورة واسحبها لتغيير الترتيب، الصورة الأولى ستكون صورة الغلاف.",
+  "longPressOnTheImageAndDragIt": "اضغط زر الأضافة واختر صورة - اضغط مطولاً على الصورة واسحبها لتغيير الترتيب - الصورة الأولى ستكون صورة الغلاف.",
   "status": "الحالة",
   "pressToChangePropertyStatus": "اضغط لتغيير حالة العقار",
   "rejected": "مرفوض",
-  "main" : "الرئيسية",
-  "property" : "العقار"
+  "main": "الرئيسية",
+  "property": "العقار",
+  "postStatus": "حالة المنشور",
+  "propertyPostStatusE": "{status, select, pending{تتم المراجعة} rejected {مرفوض} approved {مقبول} other{غير معروف}}"
 }

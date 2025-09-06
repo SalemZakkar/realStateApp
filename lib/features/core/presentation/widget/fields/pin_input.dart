@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 
 class PinEntryTextField extends StatefulWidget {
   final int fields;
@@ -69,6 +70,21 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
     return double.tryParse(val) != null;
   }
 
+  void autoFocus() {
+    focus(getLast());
+  }
+
+  int getLast() {
+    int i = controllers.length - 1;
+    for (int j = 0; j < controllers.length; j++) {
+      if (controllers[j].text.trim().isEmpty) {
+        i = j;
+        break;
+      }
+    }
+    return i;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -86,63 +102,72 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
               }
             },
             focusNode: FocusNode(),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (int i = 0; i < widget.fields; i++) ...[
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
-                          errorMaxLines: 1, errorStyle: TextStyle(fontSize: 0)),
-                      onTap: () {
-                        last = i;
-                      },
-                      validator: (val) {
-                        if (val == null || val.trim() == "") {
-                          error = true;
-                          return "";
-                        }
-                        setState(() {
-                          error = false;
-                        });
-                        return null;
-                      },
-                      textInputAction: i == widget.fields - 1
-                          ? TextInputAction.done
-                          : TextInputAction.next,
-                      controller: controllers[i],
-                      focusNode: focuses[i],
-                      onChanged: (val) {
-                        if (!isNumeric(val)) {
-                          controllers[i].text = '';
-                          return;
-                        }
-                        if (val.length >= widget.fields) {
-                          focus(widget.fields - 1);
-                          for (int k = 0; k < val.length; k++) {
-                            if (k >= widget.fields) {
-                              break;
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (int i = 0; i < widget.fields; i++) ...[
+                    Expanded(
+                      child: InkWellWithoutFeedback(
+                        onTap: () {
+                          autoFocus();
+                        },
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            errorMaxLines: 1,
+                            errorStyle: TextStyle(fontSize: 0),
+                          ),
+                          ignorePointers: getLast() != i,
+                          validator: (val) {
+                            if (val == null || val.trim() == "") {
+                              error = true;
+                              return "";
                             }
-                            controllers[k].text = val[k];
-                          }
-                          getValue();
-                        } else {
-                          if (val.isEmpty) {
-                            controllers[i].text = '';
-                            focus(getBefore(i));
-                          } else {
-                            controllers[i].text = val[val.length - 1];
-                            focus(getNext(i));
-                          }
-                        }
-                        getValue();
-                      },
+                            setState(() {
+                              error = false;
+                            });
+                            return null;
+                          },
+                          textInputAction: i == widget.fields - 1
+                              ? TextInputAction.done
+                              : TextInputAction.next,
+                          controller: controllers[i],
+                          focusNode: focuses[i],
+                          onChanged: (val) {
+                            setState(() {});
+                            if (!isNumeric(val)) {
+                              controllers[i].text = '';
+                              return;
+                            }
+                            if (val.length >= widget.fields) {
+                              focus(widget.fields - 1);
+                              for (int k = 0; k < val.length; k++) {
+                                if (k >= widget.fields) {
+                                  break;
+                                }
+                                controllers[k].text = val[k];
+                              }
+                              getValue();
+                            } else {
+                              if (val.isEmpty) {
+                                controllers[i].text = '';
+                                focus(getBefore(i));
+                              } else {
+                                controllers[i].text = val[val.length - 1];
+                                focus(getNext(i));
+                              }
+                            }
+                            getValue();
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                  if (i != widget.fields - 1) 5.width(),
-                ]
-              ],
+                    if (i != widget.fields - 1) 5.width(),
+                  ],
+                ],
+              ),
             ),
           ),
           8.height(),
@@ -150,7 +175,7 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
             Text(
               context.translation.fieldRequiredMessage,
               style: TextStyle(color: Theme.of(context).colorScheme.error),
-            )
+            ),
         ],
       ),
     );

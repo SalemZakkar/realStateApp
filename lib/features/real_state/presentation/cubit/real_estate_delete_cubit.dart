@@ -17,8 +17,12 @@ class RealEstateDeleteCubit extends Cubit<BaseState<void>> {
     var res = await repository.delete(id: id);
     res.fold((e) => emit(state.setFailureState(e)), (r) {
       getIt<RealEstateGetListCubit>().removeItem(id);
+      // getIt<RealEstateGetListCubit>().refresh();
       getIt<RealEstateGetMineListCubit>().removeItem(id);
       emit(state.setSuccessState(r));
     });
   }
 }
+
+
+//1 2 3 4  6 7 8 9 10

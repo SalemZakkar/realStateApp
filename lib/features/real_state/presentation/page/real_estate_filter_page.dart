@@ -39,7 +39,7 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
     if (widget.params.params != null) {
       params.setFromClone(
         widget.params.params?.clone() ??
-            RealEstateGetParams(page: 1, limit: 10),
+            RealEstateGetParams(skip: 0, limit: 10),
       );
       WidgetsBinding.instance.addPostFrameCallback((e) {
         setState(() {});
@@ -51,7 +51,7 @@ class _RealEstateFilterPageState extends State<RealEstateFilterPage> {
   late RangeValues priceRange;
   final cityCubit = getIt<CityCubit>();
 
-  RealEstateGetParams params = RealEstateGetParams(page: 1, limit: 10);
+  RealEstateGetParams params = RealEstateGetParams(skip: 0, limit: 10);
 
   @override
   Widget build(BuildContext context) {

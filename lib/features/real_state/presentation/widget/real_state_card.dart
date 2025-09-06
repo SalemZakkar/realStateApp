@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
-import 'package:real_state/features/core/presentation/utils/ext/format_to_normal.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
@@ -81,71 +80,73 @@ class _RealStateCardState extends State<RealStateCard> {
                     6.height(),
                     IconText(
                       icon: Assets.icons.dollar,
-                      text: widget.realEstate.price
-                          .toStringAsFixed(0)
-                          .formatNum(),
+                      text: widget.realEstate.price.formatPrice(context),
                     ),
                   ],
                 ),
               ),
             ),
-            8.width(),
-            IconButton(
-              onPressed: () {
-                if (getIt<AuthCubit>().state.authenticated) {
-                  widget.realEstate.isFavourite =
-                      !widget.realEstate.isFavourite;
-                  if (widget.realEstate.isFavourite) {
-                    getIt<RealEstateRepository>().save(
-                      id: widget.realEstate.id,
-                    );
+            if (getIt<AuthCubit>().state.userData?.id !=
+                    widget.realEstate.owner ||
+                !getIt<AuthCubit>().state.authenticated) ...[
+              8.width(),
+              IconButton(
+                onPressed: () {
+                  if (getIt<AuthCubit>().state.authenticated) {
+                    widget.realEstate.isFavourite =
+                        !widget.realEstate.isFavourite;
+                    if (widget.realEstate.isFavourite) {
+                      getIt<RealEstateRepository>().save(
+                        id: widget.realEstate.id,
+                      );
+                    } else {
+                      getIt<RealEstateGetListCubit>().removeFavourite(
+                        widget.realEstate.id,
+                      );
+                      getIt<RealEstateRepository>().unSave(
+                        id: widget.realEstate.id,
+                      );
+                    }
+                    setState(() {});
                   } else {
-                    getIt<RealEstateGetListCubit>().removeFavourite(
-                      widget.realEstate.id,
-                    );
-                    getIt<RealEstateRepository>().unSave(
-                      id: widget.realEstate.id,
+                    showModalBottomSheet(
+                      context: context,
+                      useRootNavigator: true,
+                      builder: (context) {
+                        return RegularBottomSheetLayout(
+                          body: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                context.translation.toSaveYouMustLogin,
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                              8.height(),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context.pop();
+                                    context.pushNamed(AuthLoginPage.path);
+                                  },
+                                  child: Text(context.translation.logIn),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     );
                   }
-                  setState(() {});
-                } else {
-                  showModalBottomSheet(
-                    context: context,
-                    useRootNavigator: true,
-                    builder: (context) {
-                      return RegularBottomSheetLayout(
-                        body: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              context.translation.toSaveYouMustLogin,
-                              style: TextStyle(fontWeight: FontWeight.w700),
-                            ),
-                            8.height(),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context.pop();
-                                  context.pushNamed(AuthLoginPage.path);
-                                },
-                                child: Text(context.translation.logIn),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }
-              },
-              icon: Icon(
-                widget.realEstate.isFavourite
-                    ? Icons.bookmark
-                    : Icons.bookmark_border,
+                },
+                icon: Icon(
+                  widget.realEstate.isFavourite
+                      ? Icons.bookmark
+                      : Icons.bookmark_border,
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),
