@@ -55,7 +55,7 @@ class RealEstateListPageParams {
         params: RealEstateGetParams(skip: 0, limit: 10, isFeatured: true),
         title: context.translation.featured,
         bloc: getIt<RealEstateGetListCubit>(),
-        shouldAuth: true,
+        shouldAuth: false,
         withFilter: false,
       );
 

@@ -6,6 +6,9 @@
     "propertyPostStatusE",
     "authPageRequiresLogin",
     "dollar",
-    "tutorial"
+    "tutorial",
+    "changeStatusWarning",
+    "cantChangeStatus",
+    "ok"
   ]
 }

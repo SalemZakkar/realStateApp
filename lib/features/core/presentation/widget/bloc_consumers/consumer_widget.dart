@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_state/features/core/presentation/cubit/base_states/base_state.dart';
+import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 
 import '../../../domain/entity/failures.dart';
 import 'error_view.dart';
@@ -82,6 +83,9 @@ class _ConsumerWidgetState<T> extends State<ConsumerWidget<T>> {
               );
         }
         if (state.isSuccess) {
+          if (state.item is List && (state.item as List).isEmpty) {
+            return Center(child: Text(context.translation.noData));
+          }
           return widget.childBuilder.call(context, state.item as T);
         }
         return const SizedBox();

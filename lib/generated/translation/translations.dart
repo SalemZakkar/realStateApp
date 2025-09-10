@@ -1004,6 +1004,24 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'دليل الإستخدام'**
   String get tutorial;
+
+  /// No description provided for @changeStatusWarning.
+  ///
+  /// In ar, this message translates to:
+  /// **'⚠️ تنبيه مهم: هل أنت متأكد من تغيير الحالة إلى مباع أو مؤجّر؟ بعد الحفظ لن تتمكّن من التراجع عن هذا الإجراء. في حال غيرت الحالة بالخطأ، يرجى التواصل مع فريق الدعم عبر زر (اتصل بنا) في أسفل الصفحة.'**
+  String get changeStatusWarning;
+
+  /// No description provided for @cantChangeStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يمكن تغيير حالة عقار مؤجر او مباع اذا غيرته مسبقا بالخطأ يرجى التواصل مع فريق الدعم عبر زر (اتصل بنا) في أسفل الصفحة.'**
+  String get cantChangeStatus;
+
+  /// No description provided for @ok.
+  ///
+  /// In ar, this message translates to:
+  /// **'حسناً'**
+  String get ok;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

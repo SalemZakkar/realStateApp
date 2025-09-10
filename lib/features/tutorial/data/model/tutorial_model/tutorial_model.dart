@@ -6,7 +6,9 @@ part 'tutorial_model.g.dart';
 @JsonSerializable()
 class TutorialModel {
   String title;
+  @JsonKey(name: "videoUrl")
   String url;
+  @JsonKey(name: "helpCover")
   String image;
 
   TutorialModel({required this.url, required this.title, required this.image});

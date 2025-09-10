@@ -11,7 +11,7 @@ class AppTheme {
     fontFamily: 'cairo',
     brightness: _schema.brightness,
     actionIconTheme: ActionIconThemeData(
-      backButtonIconBuilder: (context) => const Icon(Icons.arrow_back_ios),
+      backButtonIconBuilder: (context) => const Icon(Icons.arrow_back_ios_new),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: _schema.shapeColors.appBar,

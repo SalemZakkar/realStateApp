@@ -4,6 +4,7 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/screen_loader.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
+import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_status.dart';
@@ -61,13 +62,26 @@ class _RealEstateChangeStatusWidgetState
                         (e) => InkWellWithoutFeedback(
                           onTap: () {
                             if (widget.realEstate.status == e) {
+                              if (widget.realEstate.status !=
+                                  RealEstateStatus.available) {
+                                DialogUtil(context: context).showMessage(
+                                  message: context.translation.cantChangeStatus,
+                                );
+                              }
                               return;
                             }
-                            cubit.edit(
-                              params: RealEstateParams(
-                                id: widget.realEstate.id,
-                                status: e,
-                              ),
+                            DialogUtil(
+                              context: context,
+                              onDone: () {
+                                cubit.edit(
+                                  params: RealEstateParams(
+                                    id: widget.realEstate.id,
+                                    status: e,
+                                  ),
+                                );
+                              },
+                            ).showConfirmDialog(
+                              message: context.translation.changeStatusWarning,
                             );
                           },
                           child: CustomCardWidget(

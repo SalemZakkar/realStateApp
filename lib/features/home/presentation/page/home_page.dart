@@ -5,6 +5,7 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/home/presentation/widget/home_buttons_widget.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
 import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
+import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/features/tutorial/presentation/widget/tutorial_button.dart';
 import 'package:real_state/injection.dart';
 
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                     RealEstateGridWidget(
                       params: featuredParams,
                       cubit: featuredCubit,
+                      pageParams: RealEstateListPageParams.featured(context),
                       title: context.translation.featured,
                     ),
                     120.height(),

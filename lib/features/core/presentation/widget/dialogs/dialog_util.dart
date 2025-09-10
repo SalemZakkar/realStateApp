@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/features/core/presentation/widget/dialogs/message_dialog.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 import 'confirm_dialog.dart';
@@ -96,6 +97,15 @@ class DialogUtil {
           },
           message: message,
         );
+      },
+    );
+  }
+
+  Future<void> showMessage({required String message}) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return MessageDialog(message: message);
       },
     );
   }

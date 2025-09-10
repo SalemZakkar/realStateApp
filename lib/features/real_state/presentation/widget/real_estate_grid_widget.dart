@@ -5,7 +5,6 @@ import 'package:real_state/features/core/presentation/cubit/base_states/base_pag
 import 'package:real_state/features/core/presentation/cubit/pagination_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
-import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/features/core/presentation/widget/custom_card_widget.dart';
 import 'package:real_state/features/core/presentation/widget/image_widget.dart';
@@ -13,23 +12,23 @@ import 'package:real_state/features/core/presentation/widget/text/header_text.da
 import 'package:real_state/features/core/presentation/widget/text/icon_text.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/params/real_estate_get_params.dart';
-import 'package:real_state/features/real_state/presentation/cubit/real_estate_get_list_cubit.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
 import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
-import 'package:real_state/injection.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class RealEstateGridWidget extends StatefulWidget {
   final String title;
   final PaginationCubit<RealEstate, RealEstateGetParams> cubit;
   final RealEstateGetParams params;
+  final RealEstateListPageParams pageParams;
 
   const RealEstateGridWidget({
     super.key,
     required this.params,
     required this.cubit,
     required this.title,
+    required this.pageParams,
   });
 
   @override
@@ -78,13 +77,7 @@ class _RealEstateGridWidgetState extends State<RealEstateGridWidget> {
                       onPressed: () {
                         context.push(
                           RealEStateListPage.extPath,
-                          extra: RealEstateListPageParams(
-                            title: context.translation.featured,
-                            withFilter: false,
-                            params: RealEstateGetParams(isFeatured: true),
-                            autoDispose: false,
-                            bloc: getIt<RealEstateGetListCubit>(),
-                          ),
+                          extra: widget.pageParams,
                         );
                       },
                       icon: Icon(Icons.arrow_forward_ios_outlined),

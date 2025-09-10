@@ -524,4 +524,15 @@ class TranslationsEn extends Translations {
 
   @override
   String get tutorial => 'دليل الإستخدام';
+
+  @override
+  String get changeStatusWarning =>
+      '⚠️ تنبيه مهم: هل أنت متأكد من تغيير الحالة إلى مباع أو مؤجّر؟ بعد الحفظ لن تتمكّن من التراجع عن هذا الإجراء. في حال غيرت الحالة بالخطأ، يرجى التواصل مع فريق الدعم عبر زر (اتصل بنا) في أسفل الصفحة.';
+
+  @override
+  String get cantChangeStatus =>
+      'لا يمكن تغيير حالة عقار مؤجر او مباع اذا غيرته مسبقا بالخطأ يرجى التواصل مع فريق الدعم عبر زر (اتصل بنا) في أسفل الصفحة.';
+
+  @override
+  String get ok => 'حسناً';
 }

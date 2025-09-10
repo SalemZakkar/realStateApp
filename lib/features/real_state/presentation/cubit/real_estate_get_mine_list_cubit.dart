@@ -66,11 +66,12 @@ class RealEstateGetMineListCubit
   @override
   void paginate() async {
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
-    params.skip = (params.skip ?? 0) + state.items.length;
+    int t = params.skip ?? 0;
+    params.skip = state.items.length;
     var res = await repository.getRealEstates(params: params);
     res.fold(
       (e) {
-        params.skip = params.skip! - state.items.length;
+        params.skip = t;
         emit(
           state.copyWith(
             status: PaginatedListStatus.paginateFailure,

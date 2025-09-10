@@ -9,7 +9,7 @@ part of 'tutorial_model.dart';
 // **************************************************************************
 
 TutorialModel _$TutorialModelFromJson(Map json) => TutorialModel(
-  url: json['url'] as String,
+  url: json['videoUrl'] as String,
   title: json['title'] as String,
-  image: json['image'] as String,
+  image: json['helpCover'] as String,
 );

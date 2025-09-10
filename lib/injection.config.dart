@@ -91,6 +91,8 @@ import 'package:real_state/features/real_state/presentation/cubit/real_estate_ma
     as _i680;
 import 'package:real_state/features/tutorial/data/repository/tutorial_repository_impl.dart'
     as _i432;
+import 'package:real_state/features/tutorial/data/source/remote/tutorial_remote_source.dart'
+    as _i366;
 import 'package:real_state/features/tutorial/domain/repository/tutorial_repository.dart'
     as _i13;
 import 'package:real_state/features/tutorial/presentation/cubit/tutorial_cubit.dart'
@@ -137,7 +139,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i976.FileManager>(
       () => _i976.FileManager(gh<_i270.Configuration>()),
     );
-    gh.factory<_i13.TutorialRepository>(() => _i432.TutorialRepositoryImpl());
     gh.factory<_i910.CoreRemoteSource>(
       () => _i910.CoreRemoteSourceImpl(
         gh<_i361.Dio>(),
@@ -159,6 +160,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i270.Configuration>(),
       ),
     );
+    gh.factory<_i366.TutorialRemoteSource>(
+      () => _i366.TutorialRemoteSourceImpl(
+        gh<_i361.Dio>(),
+        gh<_i270.Configuration>(),
+      ),
+    );
     gh.factory<_i534.AdBannerRemoteSource>(
       () => _i534.AdBannerRemoteSourceImpl(
         gh<_i361.Dio>(),
@@ -174,9 +181,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i31.AuthRemoteSource>(),
       ),
     );
-    gh.factory<_i875.TutorialCubit>(
-      () => _i875.TutorialCubit(gh<_i13.TutorialRepository>()),
-    );
     gh.singleton<_i676.CoreRepository>(
       () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
     );
@@ -191,6 +195,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i216.AppUpdateCubit>(
       () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.factory<_i13.TutorialRepository>(
+      () => _i432.TutorialRepositoryImpl(gh<_i366.TutorialRemoteSource>()),
     );
     gh.factory<_i140.UserRepository>(
       () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
@@ -222,17 +229,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i202.AuthCubit>(
       () => _i202.AuthCubit(gh<_i458.AuthRepository>()),
     );
+    gh.factory<_i875.TutorialCubit>(
+      () => _i875.TutorialCubit(gh<_i13.TutorialRepository>()),
+    );
     gh.factory<_i509.UserGetMineCubit>(
       () => _i509.UserGetMineCubit(
         gh<_i202.AuthCubit>(),
         gh<_i140.UserRepository>(),
       ),
     );
-    gh.factory<_i643.RealEstateFeaturedListCubit>(
-      () => _i643.RealEstateFeaturedListCubit(gh<_i670.RealEstateRepository>()),
-    );
-    gh.factory<_i680.RealEstateMapGetCubit>(
-      () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
+    gh.factory<_i860.RealEstateAddImageCubit>(
+      () => _i860.RealEstateAddImageCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.factory<_i115.RealEstateCreateCubit>(
       () => _i115.RealEstateCreateCubit(gh<_i670.RealEstateRepository>()),
@@ -240,14 +247,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i56.RealEstateDeleteCubit>(
       () => _i56.RealEstateDeleteCubit(gh<_i670.RealEstateRepository>()),
     );
+    gh.factory<_i31.RealEstateDeleteImageCubit>(
+      () => _i31.RealEstateDeleteImageCubit(gh<_i670.RealEstateRepository>()),
+    );
     gh.factory<_i477.RealEstateEditCubit>(
       () => _i477.RealEstateEditCubit(gh<_i670.RealEstateRepository>()),
     );
-    gh.factory<_i860.RealEstateAddImageCubit>(
-      () => _i860.RealEstateAddImageCubit(gh<_i670.RealEstateRepository>()),
+    gh.factory<_i643.RealEstateFeaturedListCubit>(
+      () => _i643.RealEstateFeaturedListCubit(gh<_i670.RealEstateRepository>()),
     );
-    gh.factory<_i31.RealEstateDeleteImageCubit>(
-      () => _i31.RealEstateDeleteImageCubit(gh<_i670.RealEstateRepository>()),
+    gh.factory<_i680.RealEstateMapGetCubit>(
+      () => _i680.RealEstateMapGetCubit(gh<_i670.RealEstateRepository>()),
     );
     gh.singleton<_i1066.RealEstateGetListCubit>(
       () => _i1066.RealEstateGetListCubit(gh<_i670.RealEstateRepository>()),
