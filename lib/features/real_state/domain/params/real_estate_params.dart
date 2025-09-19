@@ -1,4 +1,6 @@
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
+import 'package:real_state/features/core/presentation/utils/ext/phone_number.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_params_model/real_estate_params_model.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
@@ -26,6 +28,7 @@ class RealEstateParams {
   String? neighborhood;
   List<String>? images;
   RealEstateStatus? status;
+  PhoneNumber? phoneNumber;
 
   RealEstateParams({
     this.id,
@@ -46,6 +49,7 @@ class RealEstateParams {
     this.floor,
     this.stock,
     this.status,
+    this.phoneNumber,
   });
 
   factory RealEstateParams.fromRealEstate({required RealEstate realEstate}) {
@@ -68,6 +72,7 @@ class RealEstateParams {
       // floor: realEstate.f
       stock: realEstate.stock,
       floor: realEstate.floor,
+      phoneNumber: realEstate.phoneNumber,
     );
   }
 
@@ -90,5 +95,7 @@ class RealEstateParams {
     room: room,
     title: title,
     status: status,
+    phoneCountryCode: phoneNumber?.dialCode,
+    phoneOwner: phoneNumber?.readDialCode,
   );
 }

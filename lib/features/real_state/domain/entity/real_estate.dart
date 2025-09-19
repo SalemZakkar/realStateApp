@@ -1,3 +1,4 @@
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
 import 'package:real_state/features/real_state/domain/enum/real_estate_category_type.dart';
@@ -32,6 +33,8 @@ class RealEstate {
   int stock;
   String? rejectReason;
 
+  PhoneNumber? phoneNumber;
+
   bool get editable =>
       (postStatus == RealEstatePostStatus.pending ||
           postStatus == RealEstatePostStatus.rejected) &&
@@ -62,5 +65,6 @@ class RealEstate {
     required this.floor,
     required this.stock,
     this.rejectReason,
+    this.phoneNumber,
   });
 }

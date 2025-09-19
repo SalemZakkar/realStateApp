@@ -32,6 +32,8 @@ Map<String, dynamic> _$RealEstateParamsModelToJson(
   if (instance.images case final value?) 'images': value,
   if (_$RealEstateStatusEnumMap[instance.status] case final value?)
     'status': value,
+  if (instance.phoneCountryCode case final value?) 'phoneCountryCode': value,
+  if (instance.phoneOwner case final value?) 'phoneOwner': value,
 };
 
 const _$RealEstateCategoryEnumMap = {

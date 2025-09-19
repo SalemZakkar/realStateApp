@@ -11,6 +11,8 @@ class IconText extends StatefulWidget {
   final double? size;
   final int? maxLines;
   final CrossAxisAlignment? crossAxisAlignment;
+  final TextDirection? textDirection;
+  final TextAlign? textAlign;
 
   const IconText({
     super.key,
@@ -20,6 +22,8 @@ class IconText extends StatefulWidget {
     this.size,
     this.maxLines,
     this.crossAxisAlignment,
+    this.textDirection,
+    this.textAlign,
   });
 
   @override
@@ -43,6 +47,8 @@ class _IconTextState extends State<IconText> {
         Flexible(
           child: Text(
             widget.text,
+            textDirection: widget.textDirection,
+            textAlign: widget.textAlign,
             maxLines: widget.maxLines ?? 2,
             style:
                 widget.textStyle ??

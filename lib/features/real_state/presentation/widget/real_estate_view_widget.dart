@@ -13,6 +13,7 @@ import 'package:real_state/features/core/presentation/widget/text/text_item_widg
 import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RealEstateViewWidget extends StatefulWidget {
   final RealEstate realEstate;
@@ -111,6 +112,7 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                         ],
                       ],
                     ),
+
                     16.height(),
                     IconText(
                       icon: Assets.icons.dollar,
@@ -118,6 +120,7 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                       // textStyle: Theme.of(context).textTheme.bodyMedium,
                       text: widget.realEstate.price.formatPrice(context),
                     ),
+
                     16.height(),
                     IconText(
                       icon: Assets.icons.maps,
@@ -125,6 +128,7 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                       // textStyle: Theme.of(context).textTheme.bodyMedium,
                       text: widget.realEstate.neighborhood,
                     ),
+
                     if (widget.realEstate.description != null) ...[
                       16.height(),
                       Text(
@@ -132,7 +136,50 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                         // style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
+                    if(widget.realEstate.phoneNumber != null)...[
+                      16.height(),
+                      InkWellWithoutFeedback(
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse(
+                              "tel://${widget.realEstate.phoneNumber!.dialCode! + widget.realEstate.phoneNumber!.phoneNumber!}",
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(6)
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.phone,
+                                color: Theme.of(context).primaryColor,
+                                // size: 20,
+                              ),
+                              16.width(),
+                              Expanded(
+                                child: Text(
+                                  context.translation.callTheOwner,
+                                  style: Theme.of(
+                                    context,
+                                  ).listTileTheme.titleTextStyle,
+                                ),
+                              ),
+                              16.width(),
+                              Icon(
+                                Icons.arrow_forward_ios_outlined,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                     16.height(),
+
                     HeaderText(title: context.translation.specifications),
                     16.height(),
                     TextItemWidget(
@@ -247,7 +294,7 @@ class _RealEstateViewWidgetState extends State<RealEstateViewWidget> {
                 builder: (context) => ContactUsSheet(),
               );
             },
-            child: Text(context.translation.contactUs),
+            child: Text(context.translation.callMaisonHub),
           ),
         ),
       ),

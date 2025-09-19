@@ -1022,6 +1022,24 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'حسناً'**
   String get ok;
+
+  /// No description provided for @phoneNumberRealEstate.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيتواصل معك الزبون على هذا الرقم'**
+  String get phoneNumberRealEstate;
+
+  /// No description provided for @callTheOwner.
+  ///
+  /// In ar, this message translates to:
+  /// **'إتصل بصاحب الإعلان'**
+  String get callTheOwner;
+
+  /// No description provided for @callMaisonHub.
+  ///
+  /// In ar, this message translates to:
+  /// **'إتصل ب Maison Hub'**
+  String get callMaisonHub;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

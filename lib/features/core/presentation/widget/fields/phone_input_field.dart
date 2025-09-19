@@ -53,6 +53,10 @@ class _PhoneInputFieldWidgetState extends State<PhoneInputFieldWidget> {
   Widget build(BuildContext context) {
     return InternationalPhoneNumberInput(
       focusNode: widget.focusNode,
+      searchBoxDecoration: InputDecoration(
+        hintText: context.translation.search
+      ),
+      locale: Localizations.localeOf(context).languageCode,
       autoValidateMode: AutovalidateMode.onUserInteraction,
       inputBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
       inputDecoration: InputDecoration(
@@ -72,6 +76,7 @@ class _PhoneInputFieldWidgetState extends State<PhoneInputFieldWidget> {
           ),
         ),
       ),
+      errorMessage: context.translation.fieldRequiredMessage,
       hintText: widget.hintText ?? context.translation.phoneNumber,
       initialValue:
           (widget.initialPhoneNumber != null)

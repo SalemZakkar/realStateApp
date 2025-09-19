@@ -41,6 +41,8 @@ RealEstateModel _$RealEstateModelFromJson(Map json) => RealEstateModel(
   stock: json['stock'] as num? ?? 0,
   floor: json['floor'] as num? ?? 0,
   rejectReason: json['rejectReason'] as String?,
+  phone: json['phoneOwner'] as String?,
+  phoneCountryCode: json['phoneCountryCode'] as String?,
 );
 
 const _$RealEstatePropertyTypeEnumMap = {

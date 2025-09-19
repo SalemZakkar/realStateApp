@@ -535,4 +535,13 @@ class TranslationsEn extends Translations {
 
   @override
   String get ok => 'حسناً';
+
+  @override
+  String get phoneNumberRealEstate => 'سيتواصل معك الزبون على هذا الرقم';
+
+  @override
+  String get callTheOwner => 'إتصل بصاحب الإعلان';
+
+  @override
+  String get callMaisonHub => 'إتصل ب Maison Hub';
 }

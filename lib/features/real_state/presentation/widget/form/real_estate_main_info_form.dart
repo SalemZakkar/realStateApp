@@ -4,8 +4,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/core/presentation/utils/ext/format_to_normal.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/core/presentation/widget/fields/city_field.dart';
 import 'package:real_state/features/core/presentation/widget/fields/form_widget.dart';
+import 'package:real_state/features/core/presentation/widget/fields/phone_input_field.dart';
 import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
 import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/features/real_state/domain/entity/real_estate_location.dart';
@@ -66,6 +68,23 @@ class _RealEstateMainInfoFormState extends State<RealEstateMainInfoForm> {
                 errorText: context.translation.fieldRequiredMessage,
               ).call,
             ),
+          ),
+          16.height(),
+          UserBuilder(
+            builder: (context, user) {
+              return LabelWidget(
+                instructions: context.translation.phoneNumberRealEstate,
+                title: context.translation.phoneNumber,
+                svgGenImage: Assets.icons.phone,
+                child: PhoneInputFieldWidget(
+                  filled: true,
+                  onChanged: (v) {
+                    widget.params.phoneNumber = v;
+                  },
+                  initialPhoneNumber: user.phoneNumber,
+                ),
+              );
+            },
           ),
           16.height(),
           LabelWidget(

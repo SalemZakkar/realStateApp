@@ -9,6 +9,9 @@
     "tutorial",
     "changeStatusWarning",
     "cantChangeStatus",
-    "ok"
+    "ok",
+    "phoneNumberRealEstate",
+    "callTheOwner",
+    "callMaisonHub"
   ]
 }

@@ -1,3 +1,4 @@
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/real_state/data/model/real_estate_location_model/real_estate_location_model.dart';
@@ -44,6 +45,10 @@ class RealEstateModel {
   @JsonKey(defaultValue: 0)
   num stock;
   String? rejectReason;
+  @JsonKey(name: "phoneOwner")
+  String? phone;
+  String? phoneCountryCode;
+
 
   RealEstateModel({
     required this.id,
@@ -70,6 +75,8 @@ class RealEstateModel {
     required this.stock,
     required this.floor,
     this.rejectReason,
+    this.phone,
+    this.phoneCountryCode,
   });
 
   factory RealEstateModel.fromJson(Map<String, dynamic> json) =>
@@ -100,5 +107,8 @@ class RealEstateModel {
     floor: floor.toInt(),
     stock: stock.toInt(),
     rejectReason: rejectReason,
+    phoneNumber: phoneCountryCode != null && phone != null
+        ? PhoneNumber(phoneNumber: phone, dialCode: phoneCountryCode)
+        : null,
   );
 }

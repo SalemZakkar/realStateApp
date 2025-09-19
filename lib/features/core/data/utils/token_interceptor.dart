@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/auth/data/source/auth_local_source/auth_local_source.dart';
+import 'package:real_state/features/auth/domain/repository/auth_repository.dart';
 
 import '../../../../injection.dart';
 
@@ -19,6 +20,16 @@ class TokenInterceptor extends Interceptor {
     options.headers.addAll(headers);
 
     return handler.next(options);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.response?.statusCode == 401 &&
+            err.response?.data['message'] == "UnAuthenticated" ||
+        err.response?.data['message'] == "Invalid token") {
+      getIt<AuthRepository>().logout();
+    }
+    return handler.next(err);
   }
 
   FormData copyFormData(FormData original) {

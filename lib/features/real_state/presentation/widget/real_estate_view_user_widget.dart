@@ -360,7 +360,7 @@ class _RealEstateViewUserWidgetState extends State<RealEstateViewUserWidget> {
                 builder: (context) => ContactUsSheet(),
               );
             },
-            child: Text(context.translation.contactUs),
+            child: Text(context.translation.callMaisonHub),
           ),
         ),
       ),

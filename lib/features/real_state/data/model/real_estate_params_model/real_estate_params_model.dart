@@ -7,7 +7,6 @@ import 'package:real_state/features/real_state/domain/enum/real_estate_status.da
 
 part 'real_estate_params_model.g.dart';
 
-
 @JsonSerializable(createToJson: true, createFactory: false)
 class RealEstateParamsModel {
   @JsonKey(includeToJson: false)
@@ -33,6 +32,8 @@ class RealEstateParamsModel {
   String? neighborhood;
   List<String>? images;
   RealEstateStatus? status;
+  String? phoneCountryCode;
+  String? phoneOwner;
 
   RealEstateParamsModel({
     this.id,
@@ -53,6 +54,8 @@ class RealEstateParamsModel {
     this.floor,
     this.stock,
     this.status,
+    this.phoneOwner,
+    this.phoneCountryCode,
   });
 
   Map<String, dynamic> toJson() => _$RealEstateParamsModelToJson(this);
