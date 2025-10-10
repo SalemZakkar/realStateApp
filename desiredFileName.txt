@@ -12,6 +12,11 @@
     "ok",
     "phoneNumberRealEstate",
     "callTheOwner",
-    "callMaisonHub"
+    "callMaisonHub",
+    "privacyPolicy",
+    "termsAndConditions",
+    "and",
+    "iAcceptTermsAndConditionsAndPrivacyPolicy",
+    "iAccept"
   ]
 }

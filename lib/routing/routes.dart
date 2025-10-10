@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/auth/presentation/page/auth_signup_page.dart';
 import 'package:real_state/features/core/domain/enum/otp_reason.dart';
+import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/send_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
@@ -132,6 +133,10 @@ class Routes {
     RouteInfo(
       path: TutorialPage.path,
       builder: (context, state, child) => TutorialPage(),
+    ),
+    RouteInfo(
+      builder: (context, state, child) => LegalPage(),
+      path: LegalPage.path,
     ),
   ];
 }

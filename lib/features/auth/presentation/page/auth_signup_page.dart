@@ -1,11 +1,16 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:real_state/features/auth/domain/params/auth_sign_up_params.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_sign_up_cubit.dart';
+import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/screen_loader.dart';
+import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
+import 'package:real_state/features/core/presentation/widget/fields/form_widget.dart';
+import 'package:real_state/generated/generated_assets/fonts.gen.dart';
 import 'package:real_state/injection.dart';
 
 import '../../../../generated/generated_assets/assets.gen.dart';
@@ -33,6 +38,8 @@ class _AuthSignUpPageState extends State<AuthSignUpPage> {
   final key = GlobalKey<FormState>();
 
   var cubit = getIt<AuthSignUpCubit>();
+
+  bool accept = false;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +114,51 @@ class _AuthSignUpPageState extends State<AuthSignUpPage> {
                     hasConfirmPassword: true,
                   ),
                 ),
+                16.height(),
+                FormWidget(valid: accept,child: InkWellWithoutFeedback(
+                  onTap: () {
+                    setState(() {
+                      accept = !accept;
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        accept
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      8.width(),
+                      RichText(
+                        text: TextSpan(
+                          text: context.translation.iAccept,
+                          style: TextStyle(fontFamily: FontFamily.cairo),
+                          children: [
+                            TextSpan(
+                              text: " ${context.translation.privacyPolicy}",
+                              style: TextStyle(fontWeight: FontWeight.w800),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  context.push(LegalPage.path);
+                                },
+                            ),
+                            TextSpan(text: " ${context.translation.and}"),
+                            TextSpan(
+                              text:
+                              " ${context.translation.termsAndConditions}",
+                              style: TextStyle(fontWeight: FontWeight.w800),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  context.push(LegalPage.path);
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ) ,),
                 16.height(),
                 ScreenLoader(
                   cubit: cubit,

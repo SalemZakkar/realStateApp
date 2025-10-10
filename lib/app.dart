@@ -29,20 +29,19 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((e){
+    WidgetsBinding.instance.addPostFrameCallback((e) {
       statusCubit.init();
-
     });
   }
 
   var statusCubit = getIt<AppUpdateCubit>();
 
-  var authCubit =  getIt<AuthCubit>();
+  var authCubit = getIt<AuthCubit>();
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => authCubit,)],
+      providers: [BlocProvider(create: (context) => authCubit)],
       child: MultiBlocListener(
         listeners: [
           BlocListener<AppUpdateCubit, AppUpdateState>(
@@ -97,11 +96,16 @@ class _AppState extends State<App> {
                   onTap: () {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
-                  child: SafeArea(
-                    top: false,
-                    left: false,
-                    right: false,
-                    child: child,
+                  child: MediaQuery(
+                    data: MediaQuery.of(
+                      context,
+                    ).copyWith(textScaler: TextScaler.linear(0.85)),
+                    child: SafeArea(
+                      top: false,
+                      left: false,
+                      right: false,
+                      child: child,
+                    ),
                   ),
                 );
               },

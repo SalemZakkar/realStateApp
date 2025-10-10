@@ -59,6 +59,8 @@ import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
+import 'package:real_state/features/core/presentation/cubit/legal_cubit.dart'
+    as _i197;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
@@ -195,6 +197,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i216.AppUpdateCubit>(
       () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.factory<_i197.LegalCubit>(
+      () => _i197.LegalCubit(gh<_i676.CoreRepository>()),
     );
     gh.factory<_i13.TutorialRepository>(
       () => _i432.TutorialRepositoryImpl(gh<_i366.TutorialRemoteSource>()),

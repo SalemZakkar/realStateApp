@@ -8,6 +8,7 @@ import 'package:real_state/features/core/domain/entity/app_state.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/core/domain/entity/contact_item.dart';
 import 'package:real_state/features/core/domain/entity/failures.dart';
+import 'package:real_state/features/core/domain/entity/legal.dart';
 import 'package:real_state/features/core/domain/repository/core_repository.dart';
 
 @Singleton(as: CoreRepository)
@@ -47,4 +48,17 @@ class CoreRepoImpl extends CoreRepository with ApiHandler {
 
   @override
   Stream<AppUpdateState> get appStatus => controller.stream;
+
+  @override
+  Future<Either<Failure, Legal>> getLegals() {
+    return request(() async {
+      var res = await source.getLegal();
+      return Right(
+        Legal(
+          privacyPolicy: res.data['privacyPolicy'],
+          termsAndConditions: res.data['termsAndConditions'],
+        ),
+      );
+    });
+  }
 }

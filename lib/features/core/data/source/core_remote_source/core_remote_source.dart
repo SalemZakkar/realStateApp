@@ -13,6 +13,8 @@ abstract class CoreRemoteSource {
   Future<BaseResponse<List<ContactItemModel>>> getContacts();
 
   Future<BaseResponse<List<CityModel>>> getCities();
+
+  Future<BaseResponse> getLegal();
 }
 
 @RestApi()
@@ -30,4 +32,8 @@ abstract class CoreRemoteSourceImpl extends CoreRemoteSource {
   @GET("city")
   @override
   Future<BaseResponse<List<CityModel>>> getCities();
+
+  @GET("legal")
+  @override
+  Future<BaseResponse> getLegal();
 }

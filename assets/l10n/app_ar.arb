@@ -155,7 +155,12 @@
   "ok" : "حسناً",
   "phoneNumberRealEstate" : "سيتواصل معك الزبون على هذا الرقم",
   "callTheOwner" : "إتصل بصاحب الإعلان",
-  "callMaisonHub" : "إتصل ب Maison Hub"
+  "callMaisonHub" : "إتصل ب Maison Hub",
+  "privacyPolicy" : "سياسة الخصوصية",
+  "termsAndConditions" : "الشروط والأحكام",
+  "and" : "و",
+  "iAcceptTermsAndConditionsAndPrivacyPolicy" : "أنا أقبل بشروط الإستخدام وسياسة الخصوصية",
+  "iAccept" : "أنا أوافق على "
 
 
 }

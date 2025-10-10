@@ -544,4 +544,20 @@ class TranslationsEn extends Translations {
 
   @override
   String get callMaisonHub => 'إتصل ب Maison Hub';
+
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get termsAndConditions => 'الشروط والأحكام';
+
+  @override
+  String get and => 'و';
+
+  @override
+  String get iAcceptTermsAndConditionsAndPrivacyPolicy =>
+      'أنا أقبل بشروط الإستخدام وسياسة الخصوصية';
+
+  @override
+  String get iAccept => 'أنا أوافق على ';
 }

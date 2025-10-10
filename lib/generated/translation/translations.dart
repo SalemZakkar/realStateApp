@@ -1040,6 +1040,36 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'إتصل ب Maison Hub'**
   String get callMaisonHub;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In ar, this message translates to:
+  /// **'سياسة الخصوصية'**
+  String get privacyPolicy;
+
+  /// No description provided for @termsAndConditions.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشروط والأحكام'**
+  String get termsAndConditions;
+
+  /// No description provided for @and.
+  ///
+  /// In ar, this message translates to:
+  /// **'و'**
+  String get and;
+
+  /// No description provided for @iAcceptTermsAndConditionsAndPrivacyPolicy.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنا أقبل بشروط الإستخدام وسياسة الخصوصية'**
+  String get iAcceptTermsAndConditionsAndPrivacyPolicy;
+
+  /// No description provided for @iAccept.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنا أوافق على '**
+  String get iAccept;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
