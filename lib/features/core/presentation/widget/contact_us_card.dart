@@ -1,15 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/domain/entity/contact_item.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/tile_button.dart';
 import 'package:real_state/features/core/presentation/widget/contact_icon.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:core_package/core_package.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../domain/enum/contact_type.dart';
-import 'buttons/inkwell_without_feedback.dart';
 
 class ContactUsCard extends StatefulWidget {
   final ContactItem contactItem;
@@ -25,28 +22,8 @@ class _ContactUsCardState extends State<ContactUsCard> {
   Widget build(BuildContext context) {
     return InkWellWithoutFeedback(
       onTap: () {
-        if (widget.contactItem.type == ContactType.whatsapp) {
-          if (Platform.isAndroid) {
-            launchUrl(
-              Uri.parse(
-                "https://wa.me/${widget.contactItem.value}/?text=hello",
-              ),
-            );
-          } else {
-            launchUrl(
-              Uri.parse(
-                "https://api.whatsapp.com/send?phone=${widget.contactItem.type}=hello",
-              ),
-            );
-          }
-          return;
-        }
         if (widget.contactItem.type == ContactType.call) {
           launchUrl(Uri.parse("tel://${widget.contactItem.value}"));
-          return;
-        }
-        if (widget.contactItem.type == ContactType.telegram) {
-          launchUrl(Uri.parse("https://t.me/${widget.contactItem.value}"));
           return;
         }
 
@@ -57,11 +34,35 @@ class _ContactUsCardState extends State<ContactUsCard> {
         }
       },
       child: TileButton(
-        image: ContactIcon(contactType: widget.contactItem.type),
-        title: widget.contactItem.title ?? widget.contactItem.value,
-        icon: Assets.icons.send.dynamicSVGColor(
-          context,
-          color: Theme.of(context).iconTheme.color,
+        leading: ContactIcon(contactType: widget.contactItem.type),
+        title: widget.contactItem.type == ContactType.call
+            ? widget.contactItem.value
+            : widget.contactItem.type.name,
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.end,
+        trailing: Row(
+          children: [
+            InkWellWithoutFeedback(
+              onTap: () {},
+              child: Assets.icons.send.dynamicSVGColor(
+                context,
+                color: Theme.of(context).iconTheme.color,
+              ),
+            ),
+            if (widget.contactItem.type == ContactType.call) ...[
+              16.width(),
+              InkWellWithoutFeedback(
+                onTap: () {
+                  launchUrl(Uri.parse("tel://${widget.contactItem.value}"));
+                  return;
+                },
+                child: Assets.icons.brandWhatsapp.dynamicSVGColor(
+                  context,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+            ],
+          ],
         ),
       ),
     );

@@ -1,26 +1,19 @@
+import 'package:core_package/core_package.dart';
+import 'package:core_package/generated/core_translation/core_translations.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/themes/app_theme.dart';
 
 class ConfirmDialog extends StatefulWidget {
-  final VoidCallback onAccept;
-  final VoidCallback? onCancel;
   final String message;
-  final Color? foregroundColor;
+  final String title;
   final String? acceptText;
   final String? cancelText;
-  final Widget? title;
 
   const ConfirmDialog({
     super.key,
-    required this.onAccept,
-    this.onCancel,
     required this.message,
-    this.foregroundColor,
     this.acceptText,
+    required this.title,
     this.cancelText,
-    this.title,
   });
 
   @override
@@ -31,55 +24,39 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: widget.title,
-      contentPadding: EdgeInsets.all(16),
-      content: Text(
-        widget.message,
-        style: Theme.of(
-          context,
-        ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
+      title: Text(widget.title),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            widget.message,
+          ),
+        ],
       ),
-      backgroundColor: Theme.of(context).cardColor,
-      actionsPadding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 91, minHeight: 41),
-          // width: 91,
-          // height: 41,
-          child: OutlinedButton(
+        SizedBox(
+          width: 120,
+          child: TextButton(
             onPressed: () {
-              widget.onCancel?.call();
-              context.pop();
+              context.pop(true);
             },
-            style: OutlinedButton.styleFrom(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              padding: const EdgeInsets.all(8),
-              side: BorderSide(
-                width: 1,
-                color: Theme.of(context).textTheme.labelSmall!.color!,
-              ),
-            ),
             child: Text(
-              widget.cancelText ?? context.translation.cancel,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                fontSize: 15,
-                color: context.appColorSchema.textColors.primaryText,
-              ),
+              widget.acceptText ?? CoreTranslations.of(context)!.accept,
+              textAlign: TextAlign.center,
             ),
           ),
         ),
-        // 2.width(),
-        ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 91, minHeight: 41),
-          // width: 91,
-          // height: 41,
-          child: ElevatedButton(
+        SizedBox(
+          width: 120,
+          child: TextButton(
             onPressed: () {
-              widget.onAccept.call();
               context.pop();
             },
-
-            child: Text(widget.acceptText ?? context.translation.yes),
+            child: Text(
+              widget.cancelText ?? CoreTranslations.of(context)!.cancel,
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ],

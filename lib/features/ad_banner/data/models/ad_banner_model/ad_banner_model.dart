@@ -6,8 +6,7 @@ part 'ad_banner_model.g.dart';
 @JsonSerializable()
 class AdBannerModel {
   String image;
-  @JsonKey(name: 'value')
-  String url;
+  String? url;
 
   AdBannerModel({required this.url, required this.image});
 

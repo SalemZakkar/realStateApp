@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/data/utils/api_handler.dart';
-import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
@@ -15,22 +14,6 @@ class UserRepositoryImpl extends UserRepository with ApiHandler {
   UserRepositoryImpl(this.source);
 
   @override
-  Future<Either<Failure, void>> changePassword({
-    required String old,
-    required String password,
-    required String newPassword,
-  }) {
-    return request(() async {
-      await source.changePassword(
-        old: old,
-        password: password,
-        newPassword: newPassword,
-      );
-      return Right(null);
-    });
-  }
-
-  @override
   Future<Either<Failure, User>> getMine() {
     return request(() async {
       var res = await source.getMine();
@@ -42,10 +25,19 @@ class UserRepositoryImpl extends UserRepository with ApiHandler {
   Future<Either<Failure, User>> updateUser({required UserUpdateParams params}) {
     return request(() async {
       var res = await source.updateUser(
-        name: params.name,
-        phone: params.phone,
-        phoneCountryCode: params.phoneCountryCode,
+        body: FormData.fromMap({
+          if (params.name != null) ...{"name": params.name},
+          if (params.image != null) ...{"image": params.image!.multipartFile},
+        }),
       );
+      return Right(res.data!.toDomain());
+    });
+  }
+
+  @override
+  Future<Either<Failure, User>> deletePhoto() {
+    return request(() async {
+      var res = await source.deletePhoto();
       return Right(res.data!.toDomain());
     });
   }

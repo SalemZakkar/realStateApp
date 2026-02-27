@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart'
     show Assets;

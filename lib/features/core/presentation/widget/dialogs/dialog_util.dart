@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/message_dialog.dart';
 import 'package:real_state/themes/app_theme.dart';
@@ -87,18 +87,17 @@ class DialogUtil {
     );
   }
 
-  Future<void> showConfirmDialog({required String message}) async {
-    await showDialog(
+  Future<bool> showConfirmDialog({
+    required String title,
+    required String message,
+  }) async {
+    bool? k = await showDialog(
       context: context,
       builder: (context) {
-        return ConfirmDialog(
-          onAccept: () {
-            onDone?.call();
-          },
-          message: message,
-        );
+        return ConfirmDialog(title: title, message: message);
       },
     );
+    return k == true;
   }
 
   Future<void> showMessage({required String message}) async {

@@ -25,7 +25,7 @@ abstract class CoreRemoteSourceImpl extends CoreRemoteSource {
     return _CoreRemoteSourceImpl(dio, baseUrl: configuration.getBaseUrl);
   }
 
-  @GET("contact-info")
+  @GET("contactUs")
   @override
   Future<BaseResponse<List<ContactItemModel>>> getContacts();
 

@@ -1,10 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:real_state/features/auth/data/model/auth_sign_in_params_model/auth_sign_in_params_model.dart';
-import 'package:real_state/features/auth/data/model/auth_sign_up_params/auth_sign_up_params_model.dart';
-import 'package:real_state/features/core/data/model/base_response/base_response.dart';
-import 'package:real_state/features/core/data/model/otp_status_model/otp_status_model.dart';
-import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'package:real_state/configuration.dart';
@@ -12,22 +7,9 @@ import 'package:real_state/configuration.dart';
 part 'auth_remote_source.g.dart';
 
 abstract class AuthRemoteSource {
-  Future login({required AuthSignInParamsModel params});
+  Future requestLoginOtp(String phoneNumber);
 
-  Future signUp({required AuthSignUpParamsModel params});
-
-  Future<OtpStatusModel> requestEmailVerify({required String email});
-
-  Future<BaseResponse<UserModel>> verifyEmail({required String code});
-
-  Future<OtpStatusModel> requestPasswordOtp({required String email});
-
-  Future<void> verifyPasswordOtp({
-    required String email,
-    required String code,
-    required String password,
-    required String confirmPassword,
-  });
+  Future login(String vid, String code);
 }
 
 @RestApi()
@@ -38,32 +20,14 @@ abstract class AuthRemoteImpl extends AuthRemoteSource {
     return _AuthRemoteImpl(dio, baseUrl: configuration.getBaseUrl);
   }
 
-  @POST("auth/login")
+  @POST("auth/loginOtp")
   @override
-  Future login({@Body() required AuthSignInParamsModel params});
+  Future login(
+    @Field() String vid,
+    @Field() String code,
+  );
 
-  @POST("auth/signup/send-otp")
+  @POST("auth/requestLoginOtp")
   @override
-  Future<OtpStatusModel> requestEmailVerify({@Field() required String email});
-
-  @POST("auth/signup")
-  @override
-  Future signUp({@Body() required AuthSignUpParamsModel params});
-
-  @POST("auth/verify-email-code")
-  @override
-  Future<BaseResponse<UserModel>> verifyEmail({@Field() required String code});
-
-  @POST("auth/forgotPassword")
-  @override
-  Future<OtpStatusModel> requestPasswordOtp({@Field() required String email});
-
-  @POST("auth/verifyResetCode")
-  @override
-  Future<void> verifyPasswordOtp({
-    @Field() required String email,
-    @Field("resetCode") required String code,
-    @Field("newPassword") required String password,
-    @Field() required String confirmPassword,
-  });
+  Future<dynamic> requestLoginOtp(@Field() String phoneNumber);
 }

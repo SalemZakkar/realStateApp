@@ -1,7 +1,7 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
-import 'package:real_state/features/core/presentation/cubit/base_states/base_state.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
 import 'package:real_state/features/user/domain/repository/user_repository.dart';
 

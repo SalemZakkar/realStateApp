@@ -1,21 +1,15 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
-import 'package:real_state/features/auth/data/model/auth_sign_in_params_model/auth_sign_in_params_model.dart';
-import 'package:real_state/features/auth/data/model/auth_sign_up_params/auth_sign_up_params_model.dart';
+import 'package:real_state/features/auth/data/model/auth_otp_model/auth_otp_model.dart';
 import 'package:real_state/features/auth/data/source/auth_local_source/auth_local_source.dart';
 import 'package:real_state/features/auth/data/source/auth_remote_source/auth_remote_source.dart';
-import 'package:real_state/features/auth/domain/params/auth_sign_in_params.dart';
-import 'package:real_state/features/auth/domain/params/auth_sign_up_params.dart';
+import 'package:real_state/features/auth/domain/entity/auth_otp.dart';
 import 'package:real_state/features/auth/domain/repository/auth_repository.dart';
-import 'package:real_state/features/core/data/model/otp_status_model/otp_status_model.dart';
 import 'package:real_state/features/core/data/utils/api_handler.dart';
-import 'package:real_state/features/core/domain/entity/failures.dart';
-import 'package:real_state/features/core/domain/entity/otp_status.dart';
 import 'package:real_state/features/core/domain/entity/user_stream_signal.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
-import 'package:real_state/features/user/domain/entity/user.dart';
 
 @Singleton(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository with ApiHandler {
@@ -36,97 +30,33 @@ class AuthRepositoryImpl extends AuthRepository with ApiHandler {
   }
 
   @override
-  Future<Either<Failure, User>> login({
-    required AuthSignInParams params,
-  }) async {
-    return request(() async {
-      var res = await remoteSource.login(params: params.toData());
-      UserModel userModel = UserModel.fromJson(res['data']);
-      String token = res['token'];
-      await localSource.setToken(token);
-      controller.add(
-        UserStreamSignal(
-          user: userModel.toDomain(),
-          withPush: !userModel.isEmailVerified,
-        ),
-      );
-      return Right(userModel.toDomain());
-    });
-  }
-
-  @override
-  Future<void> logout() async {
-    controller.add(UserStreamSignal(withPush: false));
-    await localSource.clear();
-  }
-
-  @override
-  Future<Either<Failure, User>> register({required AuthSignUpParams params}) {
-    return request(() async {
-      var res = await remoteSource.signUp(params: params.toData());
-      UserModel userModel = UserModel.fromJson(res['data']);
-      String token = res['token'];
-      await localSource.setToken(token);
-      controller.add(
-        UserStreamSignal(
-          user: userModel.toDomain(),
-          withPush: !userModel.isEmailVerified,
-        ),
-      );
-      return Right(userModel.toDomain());
-    });
-  }
-
-  @override
-  Future<Either<Failure, OtpStatus>> requestOtpVerify({required String email}) {
-    return request(() async {
-      var res = await remoteSource.requestEmailVerify(email: email);
-      return Right(res.toDomain());
-    });
-  }
-
-  @override
-  Future<Either<Failure, User>> verifyUser({required String code}) {
-    return request(() async {
-      var res = await remoteSource.verifyEmail(code: code);
-      controller.add(
-        UserStreamSignal(
-          user: res.data!.toDomain(),
-          withPush: !res.data!.isEmailVerified,
-        ),
-      );
-      return Right(res.data!.toDomain());
-    });
-  }
-
-  @override
   Stream<UserStreamSignal> get authStream => controller.stream;
 
   @override
-  Future<Either<Failure, OtpStatus>> requestOtpPassword({
-    required String email,
-  }) {
+  Future<void> logout() async {
+    await localSource.clear();
+    controller.add(UserStreamSignal(withPush: true, user: null));
+  }
+
+  @override
+  Future<Either<Failure, void>> login(String vid, String code) {
     return request(() async {
-      var res = await remoteSource.requestPasswordOtp(email: email);
-      return Right(res.toDomain());
+      var res = await remoteSource.login(vid, code);
+      var token = res['accessToken'];
+      var rToken = res['refreshToken'];
+      var user = UserModel.fromJson(res['data']).toDomain();
+      await localSource.setTokens(token: token, refToken: rToken);
+      controller.add(UserStreamSignal(withPush: true, user: user));
+      return Right(null);
     });
   }
 
   @override
-  Future<Either<Failure, void>> verifyOtpPassword({
-    required String email,
-    required String code,
-    required String password,
-    required String confirmPassword,
-  }) {
+  Future<Either<Failure, AuthOtp>> requestOtp(String phone) async {
     return request(() async {
-      await remoteSource.verifyPasswordOtp(
-        code: code,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      );
-      return Right(null);
+      var res = await remoteSource.requestLoginOtp(phone);
+      var otp = AuthOtpModel.fromJson(res).toDomain();
+      return Right(otp);
     });
   }
 }

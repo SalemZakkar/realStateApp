@@ -1,19 +1,17 @@
+import 'package:core_package/core_package.dart';
+import 'package:core_package/generated/core_translation/core_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
+import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
-import 'package:real_state/features/core/domain/enum/otp_reason.dart';
-import 'package:real_state/features/core/presentation/page/update_app_page.dart';
-import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/user/presentation/page/user_complete_profile_page.dart';
 import 'package:real_state/injection.dart';
 import 'package:real_state/routing/observer_utils.dart';
 import 'package:real_state/routing/route_info.dart';
 import 'package:real_state/routing/routes.dart';
 import 'package:real_state/themes/app_theme.dart';
-
-import 'features/core/domain/entity/app_state.dart';
 import 'features/core/presentation/cubit/app_update.dart' show AppUpdateCubit;
 import 'features/core/presentation/page/splash_page.dart';
 import 'generated/translation/translations.dart';
@@ -30,7 +28,7 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((e) {
-      statusCubit.init();
+      getIt<AuthCubit>().init();
     });
   }
 
@@ -44,43 +42,34 @@ class _AppState extends State<App> {
       providers: [BlocProvider(create: (context) => authCubit)],
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AppUpdateCubit, AppUpdateState>(
-            bloc: statusCubit,
-            listener: (context, state) {
-              if (state is NormalAppState) {
-                getIt<AuthCubit>().init();
-              }
-              if (state is OutdatedAppState) {
-                goRouterConfig.go(UpdateAppPage.path);
-              }
-            },
-          ),
           BlocListener<AuthCubit, AuthState>(
             bloc: authCubit,
             listener: (context, state) {
-              if (statusCubit.state is OutdatedAppState) {
+              if(!state.withPush){
                 return;
               }
               if (state.authState == AuthStateType.unActivated) {
-                goRouterConfig.go(
-                  VerifyOtpPage.path,
-                  extra: VerifyOtpPageParams(
-                    reason: OtpReason.email,
-                    email: state.user.email,
-                  ),
-                );
+                goRouterConfig.go(UserCompleteProfilePage.path);
                 return;
               }
-              if (goRouterConfig.state.path != SplashPage.path) {
+              if (!state.authenticated) {
+                goRouterConfig.go(AuthLoginPage.path);
                 return;
               }
+
               goRouterConfig.go(HomePage.path);
             },
           ),
         ],
         child: MaterialApp.router(
-          localizationsDelegates: Translations.localizationsDelegates,
-          supportedLocales: Translations.supportedLocales,
+          localizationsDelegates: [
+            ...CoreTranslations.localizationsDelegates,
+            ...Translations.localizationsDelegates,
+          ],
+          supportedLocales: [
+            ...CoreTranslations.supportedLocales,
+            ...Translations.supportedLocales,
+          ],
           theme: context.theme,
           locale: Locale('ar'),
           debugShowCheckedModeBanner: false,
@@ -99,7 +88,7 @@ class _AppState extends State<App> {
                   child: MediaQuery(
                     data: MediaQuery.of(
                       context,
-                    ).copyWith(textScaler: TextScaler.linear(0.85)),
+                    ).copyWith(textScaler: TextScaler.linear(1)),
                     child: SafeArea(
                       top: false,
                       left: false,

@@ -19,7 +19,7 @@ abstract class AdBannerRemoteSourceImpl extends AdBannerRemoteSource {
     return _AdBannerRemoteSourceImpl(dio, baseUrl: configuration.getBaseUrl);
   }
 
-  @GET("banner")
+  @GET("adBanner")
   @override
   Future<BaseResponse<List<AdBannerModel>>> getBanner();
 }

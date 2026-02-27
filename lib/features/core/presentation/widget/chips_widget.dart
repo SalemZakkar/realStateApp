@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class ChipsWidget<T> extends StatefulWidget {

@@ -17,6 +17,12 @@
     "termsAndConditions",
     "and",
     "iAcceptTermsAndConditionsAndPrivacyPolicy",
-    "iAccept"
+    "iAccept",
+    "enterYourPhoneNumber",
+    "verification",
+    "sendTheCodeWeHaveSent",
+    "continueAsGuest",
+    "confirmation",
+    "areUSureYouWillLogout"
   ]
 }

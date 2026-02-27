@@ -1,12 +1,7 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
-import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -50,7 +45,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         ),
                         title: context.translation.propertiesMap,
                         onTap: () {
-                          context.go(RealEStateMapPage.path);
+                          // context.go(RealEStateMapPage.path);
                         },
                       ),
                     ),
@@ -69,10 +64,10 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         ),
                         title: context.translation.savedProperties,
                         onTap: () {
-                          context.pushNamed(
-                            RealEStateListPage.extPath,
-                            extra: RealEstateListPageParams.saved(context),
-                          );
+                          // context.pushNamed(
+                          //   RealEStateListPage.extPath,
+                          //   extra: RealEstateListPageParams.saved(context),
+                          // );
                         },
                       ),
                     ),
@@ -90,7 +85,7 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         icon: Icon(Icons.add, color: Colors.purple, size: 40),
                         title: context.translation.addNewProperty,
                         onTap: () {
-                          context.push(RealEstateFormPage.path);
+                          // context.push(RealEstateFormPage.path);
                         },
                       ),
                     ),
@@ -108,10 +103,10 @@ class _HomeButtonsWidgetState extends State<HomeButtonsWidget> {
                         ),
                         title: context.translation.myProperties,
                         onTap: () {
-                          context.pushNamed(
-                            RealEStateListPage.extPath,
-                            extra: RealEstateListPageParams.mine(context),
-                          );
+                          // context.pushNamed(
+                          //   RealEStateListPage.extPath,
+                          //   extra: RealEstateListPageParams.mine(context),
+                          // );
                         },
                       ),
                     ),

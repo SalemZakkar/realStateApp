@@ -159,6 +159,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/invisible.svg
   SvgGenImage get invisible => const SvgGenImage('assets/icons/invisible.svg');
 
+  /// File path: assets/icons/loginIllusion.svg
+  SvgGenImage get loginIllusion =>
+      const SvgGenImage('assets/icons/loginIllusion.svg');
+
   /// File path: assets/icons/mapFeaturedMarker.svg
   SvgGenImage get mapFeaturedMarker =>
       const SvgGenImage('assets/icons/mapFeaturedMarker.svg');
@@ -247,6 +251,7 @@ class $AssetsIconsGen {
     info,
     instagram,
     invisible,
+    loginIllusion,
     mapFeaturedMarker,
     mapMarker,
     maps,

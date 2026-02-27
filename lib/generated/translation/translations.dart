@@ -1070,6 +1070,42 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'أنا أوافق على '**
   String get iAccept;
+
+  /// No description provided for @enterYourPhoneNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'أدخل رقم هاتفك لنرسل اليك كود تحقق'**
+  String get enterYourPhoneNumber;
+
+  /// No description provided for @verification.
+  ///
+  /// In ar, this message translates to:
+  /// **'التحقق'**
+  String get verification;
+
+  /// No description provided for @sendTheCodeWeHaveSent.
+  ///
+  /// In ar, this message translates to:
+  /// **'ادخل الكود المرسل الى رقمك ليتم تسجيل الدخول'**
+  String get sendTheCodeWeHaveSent;
+
+  /// No description provided for @continueAsGuest.
+  ///
+  /// In ar, this message translates to:
+  /// **'متابعة كضيف'**
+  String get continueAsGuest;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد'**
+  String get confirmation;
+
+  /// No description provided for @areUSureYouWillLogout.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد انك تريد تسجيل الخروج ؟'**
+  String get areUSureYouWillLogout;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

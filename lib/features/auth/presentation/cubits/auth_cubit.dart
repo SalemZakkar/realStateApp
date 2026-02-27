@@ -5,6 +5,8 @@ import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
 import 'package:real_state/features/core/domain/entity/user_stream_signal.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
+import 'package:real_state/features/user/presentation/cubit/user_get_mine_cubit.dart';
+import 'package:real_state/injection.dart';
 
 class AuthState {
   AuthStateType authState;
@@ -12,10 +14,12 @@ class AuthState {
   AuthState({
     this.authState = AuthStateType.initial,
     this.userData,
-    // this.withPush = false,
+    this.withPush = false,
   });
 
   User? userData;
+
+  bool withPush;
 
   User get user {
     if (userData == null) {
@@ -24,7 +28,7 @@ class AuthState {
     return userData!;
   }
 
-  bool get authenticated => authState == AuthStateType.authenticated;
+  bool get authenticated => userData != null;
 }
 
 @lazySingleton
@@ -39,25 +43,52 @@ class AuthCubit extends HydratedCubit<AuthState> {
 
   void emitAuthState(UserStreamSignal e) {
     if (e.user == null) {
-      emit(AuthState(authState: AuthStateType.unAuth));
-    } else if (e.user?.isEmailVerified == false) {
-      emit(AuthState(authState: AuthStateType.unActivated, userData: e.user!));
+      emit(AuthState(authState: AuthStateType.unAuth, withPush: e.withPush));
+    } else if (e.user?.isCompleted == false) {
+      emit(
+        AuthState(
+          authState: AuthStateType.unActivated,
+          userData: e.user!,
+          withPush: e.withPush,
+        ),
+      );
     } else if (e.user?.isActive == false) {
-      emit(AuthState(authState: AuthStateType.blocked, userData: e.user!));
+      emit(
+        AuthState(
+          authState: AuthStateType.blocked,
+          userData: e.user!,
+          withPush: e.withPush,
+        ),
+      );
     } else {
-      emit(AuthState(authState: AuthStateType.authenticated, userData: e.user));
+      emit(
+        AuthState(
+          authState: AuthStateType.authenticated,
+          userData: e.user,
+          withPush: e.withPush,
+        ),
+      );
     }
   }
 
-  void setUser(User? user) {
+  void setUser(User? user, {bool? isPush}) {
     emitAuthState(
-      UserStreamSignal(user: user, withPush: user?.isEmailVerified == false),
+      UserStreamSignal(
+        user: user,
+        withPush: isPush ?? user?.isCompleted == false,
+      ),
     );
   }
 
   void init() {
-
-    emit(state);
+    emit(
+      AuthState(
+        withPush: true,
+        userData: state.userData,
+        authState: state.authState,
+      ),
+    );
+    getIt<UserGetMineCubit>().get();
   }
 
   @override

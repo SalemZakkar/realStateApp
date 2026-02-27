@@ -12,6 +12,6 @@ class FileManager {
       return null;
     }
     // print("${configuration.getBaseUrl.split("api/v1").first}$name");
-    return "${configuration.getBaseUrl}images/$name";
+    return "${configuration.getBaseUrl}files/$name";
   }
 }

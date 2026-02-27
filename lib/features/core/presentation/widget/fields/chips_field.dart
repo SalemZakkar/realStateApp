@@ -1,8 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/core/presentation/widget/fields/form_widget.dart';
-import 'package:real_state/features/core/presentation/widget/text/header_text.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class ChipsSingleField<T> extends StatefulWidget {

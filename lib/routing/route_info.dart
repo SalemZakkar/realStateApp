@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 
 class RouteInfo {
   final String? path;

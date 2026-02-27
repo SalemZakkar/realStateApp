@@ -29,7 +29,7 @@ class _CoreRemoteSourceImpl implements CoreRemoteSourceImpl {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'contact-info',
+            'contactUs',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -1,7 +1,14 @@
-class UserUpdateParams {
-  String? phoneCountryCode;
-  String? phone;
-  String? name;
+import 'package:core_package/core_package.dart';
+import 'package:real_state/features/user/domain/entity/user.dart';
 
-  UserUpdateParams({this.phoneCountryCode, this.name, this.phone});
+class UserUpdateParams {
+  String? name;
+  PickFile? image;
+  final bool? delete;
+
+  factory UserUpdateParams.fromUser(User user) {
+    return UserUpdateParams(name: user.name );
+  }
+
+  UserUpdateParams({this.name , this.image,this.delete,});
 }

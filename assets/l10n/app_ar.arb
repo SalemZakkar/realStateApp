@@ -160,7 +160,11 @@
   "termsAndConditions" : "الشروط والأحكام",
   "and" : "و",
   "iAcceptTermsAndConditionsAndPrivacyPolicy" : "أنا أقبل بشروط الإستخدام وسياسة الخصوصية",
-  "iAccept" : "أنا أوافق على "
-
-
+  "iAccept" : "أنا أوافق على ",
+  "enterYourPhoneNumber" : "أدخل رقم هاتفك لنرسل اليك كود تحقق",
+  "verification" : "التحقق",
+  "sendTheCodeWeHaveSent" : "ادخل الكود المرسل الى رقمك ليتم تسجيل الدخول",
+  "continueAsGuest" : "متابعة كضيف",
+  "confirmation" : "تأكيد",
+  "areUSureYouWillLogout" : "هل أنت متأكد انك تريد تسجيل الخروج ؟"
 }

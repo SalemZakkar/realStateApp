@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/data/source/core_remote_source/core_remote_source.dart';
 import 'package:real_state/features/core/data/utils/api_handler.dart';
 import 'package:real_state/features/core/domain/entity/app_state.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/core/domain/entity/contact_item.dart';
-import 'package:real_state/features/core/domain/entity/failures.dart';
 import 'package:real_state/features/core/domain/entity/legal.dart';
 import 'package:real_state/features/core/domain/repository/core_repository.dart';
 

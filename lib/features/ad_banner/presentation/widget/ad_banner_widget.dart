@@ -1,11 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:core_package/core_package.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/ad_banner/presentation/cubit/ad_banner_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
-import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
-import 'package:real_state/features/core/presentation/widget/buttons/inkwell_without_feedback.dart';
-import 'package:real_state/features/core/presentation/widget/image_widget.dart';
 import 'package:real_state/injection.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,9 +23,9 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
       cubit: cubit,
       autoDispose: false,
       loadingBuilder: (context) => const SizedBox.shrink(),
-      errorBuilder: (context, fail) => const SizedBox.shrink(),
+      errorBuilder: (fail) => const SizedBox.shrink(),
       childBuilder: (context, state) {
-        if(state.isEmpty){
+        if (state.isEmpty) {
           return const SizedBox.shrink();
         }
         return SizedBox(
@@ -42,7 +40,9 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: InkWellWithoutFeedback(
                         onTap: () {
-                          launchUrl(Uri.parse(e.url));
+                          if (e.url != null) {
+                            launchUrl(Uri.parse(e.url!));
+                          }
                         },
                         child: ImageWidget(
                           borderRadius: BorderRadius.circular(6),

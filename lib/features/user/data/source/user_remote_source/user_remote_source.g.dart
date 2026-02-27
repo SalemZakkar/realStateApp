@@ -56,7 +56,7 @@ class _UserRemoteSourceImpl implements UserRemoteSourceImpl {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'users/getme',
+            'user/mine',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -77,26 +77,46 @@ class _UserRemoteSourceImpl implements UserRemoteSourceImpl {
   }
 
   @override
-  Future<BaseResponse<UserModel>> updateUser({
-    String? name,
-    String? phoneCountryCode,
-    String? phone,
-  }) async {
+  Future<BaseResponse<UserModel>> updateUser({required FormData body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = {
-      'name': name,
-      'phoneCountryCode': phoneCountryCode,
-      'phone': phone,
-    };
-    _data.removeWhere((k, v) => v == null);
+    final _data = body;
     final _options = _setStreamType<BaseResponse<UserModel>>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'users/updateMe',
+            'user/mine',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseResponse<UserModel> _value;
+    try {
+      _value = BaseResponse<UserModel>.fromJson(
+        _result.data!,
+        (json) => UserModel.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseResponse<UserModel>> deletePhoto() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BaseResponse<UserModel>>(
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'user/mine/image',
             queryParameters: queryParameters,
             data: _data,
           )

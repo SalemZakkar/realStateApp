@@ -9,21 +9,19 @@ part of 'user_model.dart';
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map json) => UserModel(
-  name: json['name'] as String,
-  email: json['email'] as String,
-  id: json['_id'] as String,
-  phone: json['phone'] as String,
+  name: json['name'] as String?,
+  id: json['id'] as String,
+  phone: json['phone'] as String?,
   isActive: json['active'] as bool? ?? true,
-  isEmailVerified: json['isEmailVerified'] as bool? ?? false,
-  phoneCountryCode: json['phoneCountryCode'] as String,
+  isCompleted: json['isCompleted'] as bool,
+  image: json['image'] as String?,
 );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-  'name': instance.name,
-  'email': instance.email,
-  'phone': instance.phone,
-  'phoneCountryCode': instance.phoneCountryCode,
-  '_id': instance.id,
+  'id': instance.id,
+  if (instance.name case final value?) 'name': value,
+  if (instance.phone case final value?) 'phone': value,
+  'isCompleted': instance.isCompleted,
+  if (instance.image case final value?) 'image': value,
   'active': instance.isActive,
-  'isEmailVerified': instance.isEmailVerified,
 };

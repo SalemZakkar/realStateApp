@@ -560,4 +560,23 @@ class TranslationsEn extends Translations {
 
   @override
   String get iAccept => 'أنا أوافق على ';
+
+  @override
+  String get enterYourPhoneNumber => 'أدخل رقم هاتفك لنرسل اليك كود تحقق';
+
+  @override
+  String get verification => 'التحقق';
+
+  @override
+  String get sendTheCodeWeHaveSent =>
+      'ادخل الكود المرسل الى رقمك ليتم تسجيل الدخول';
+
+  @override
+  String get continueAsGuest => 'متابعة كضيف';
+
+  @override
+  String get confirmation => 'تأكيد';
+
+  @override
+  String get areUSureYouWillLogout => 'هل أنت متأكد انك تريد تسجيل الخروج ؟';
 }

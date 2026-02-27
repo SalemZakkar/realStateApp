@@ -6,14 +6,13 @@ part 'contact_item_model.g.dart';
 
 @JsonSerializable()
 class ContactItemModel {
-  String value;
   ContactType type;
-  String? title;
+  String value;
 
-  ContactItemModel({required this.type, required this.value, this.title});
+  ContactItemModel({required this.type, required this.value});
 
   factory ContactItemModel.fromJson(Map<String, dynamic> json) =>
       _$ContactItemModelFromJson(json);
 
-  ContactItem toDomain() => ContactItem(type: type, value: value, title: title);
+  ContactItem toDomain() => ContactItem(type: type, value: value);
 }

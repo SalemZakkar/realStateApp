@@ -1,16 +1,9 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/lable_widget.dart';
 import 'package:real_state/features/user/domain/entity/user.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/themes/app_theme.dart';
-
-import '../../../../generated/generated_assets/assets.gen.dart';
-import '../../../core/presentation/utils/input_validator.dart';
-import '../../../core/presentation/widget/fields/phone_input_field.dart';
 
 class UserEditDialog extends StatefulWidget {
   final User user;
@@ -34,9 +27,8 @@ class _UserEditDialogState extends State<UserEditDialog> {
   @override
   void initState() {
     super.initState();
-    // phoneNumber = widget.user.phoneNumber;
     WidgetsBinding.instance.addPostFrameCallback((e) {
-      name.text = widget.user.name;
+      name.text = widget.user.name ?? '';
       setState(() {});
     });
   }
@@ -61,30 +53,14 @@ class _UserEditDialogState extends State<UserEditDialog> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                LabelWidget(
-                  title: context.translation.name,
-                  svgGenImage: Assets.icons.name,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: context.translation.name,
-                    ),
-                    controller: name,
-                    validator: RequiredValidator(
-                      errorText: context.translation.fieldRequiredMessage,
-                    ).call,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: context.translation.name,
                   ),
-                ),
-                16.height(),
-                LabelWidget(
-                  title: context.translation.phone,
-                  svgGenImage: Assets.icons.phone,
-                  child: PhoneInputFieldWidget(
-                    filled: true,
-                    onChanged: (v) {
-                      phoneNumber = v;
-                    },
-                    initialPhoneNumber: widget.user.phoneNumber,
-                  ),
+                  controller: name,
+                  validator: RequiredValidator(
+                    errorText: context.translation.fieldRequiredMessage,
+                  ).call,
                 ),
                 // 16.height(),
               ],
@@ -106,13 +82,7 @@ class _UserEditDialogState extends State<UserEditDialog> {
         TextButton(
           onPressed: () {
             if (key.currentState!.validate()) {
-              widget.onChanged(
-                UserUpdateParams(
-                  phoneCountryCode: phoneNumber.dialCode,
-                  phone: phoneNumber.parseNumber(),
-                  name: name.text,
-                ),
-              );
+              widget.onChanged(UserUpdateParams(name: name.text));
               context.pop();
             }
           },

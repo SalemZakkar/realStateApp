@@ -1,4 +1,5 @@
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
+import 'package:core_package/core_package.dart';
 
 extension Util on PhoneNumber {
   String get readDialCode => phoneNumber!.split(dialCode!).last;

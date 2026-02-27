@@ -11,13 +11,10 @@ part of 'contact_item_model.dart';
 ContactItemModel _$ContactItemModelFromJson(Map json) => ContactItemModel(
   type: $enumDecode(_$ContactTypeEnumMap, json['type']),
   value: json['value'] as String,
-  title: json['title'] as String?,
 );
 
 const _$ContactTypeEnumMap = {
-  ContactType.whatsapp: 'whatsapp',
-  ContactType.instagram: 'instagram',
-  ContactType.call: 'call',
-  ContactType.telegram: 'telegram',
-  ContactType.facebook: 'facebook',
+  ContactType.instagram: 'Instagram',
+  ContactType.call: 'Phone',
+  ContactType.facebook: 'Facebook',
 };

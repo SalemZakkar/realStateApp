@@ -1,7 +1,7 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/core/presentation/cubit/city_cubit.dart';
-import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
 import 'package:real_state/injection.dart';
 
 class CityBuilder extends StatefulWidget {

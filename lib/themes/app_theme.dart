@@ -220,6 +220,11 @@ class AppTheme {
       activeTrackColor: _schema.primaryColor,
       thumbColor: _schema.primaryColor,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: TextStyle(fontSize: 16, fontFamily: 'cairo'),
+      ),
+    ),
   );
 }
 

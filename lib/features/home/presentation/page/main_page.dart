@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart';
 import 'package:real_state/features/home/presentation/widget/bottom_bar.dart';
 import 'package:real_state/injection.dart';

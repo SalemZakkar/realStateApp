@@ -1,8 +1,8 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/domain/entity/city.dart';
 import 'package:real_state/features/core/presentation/cubit/city_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/fields/drop_down_bloc_widget.dart';
 import 'package:real_state/injection.dart';
 
 class CityField extends StatefulWidget {
@@ -28,7 +28,11 @@ class _CityFieldState extends State<CityField> {
   Widget build(BuildContext context) {
     return DropDownBlocWidget<City>(
       bloc: cubit,
-      onChanged: widget.onChanged,
+      onChanged: (v) {
+        if (v != null) {
+          widget.onChanged(v);
+        }
+      },
       autoDispose: false,
       value: widget.initial,
       required: widget.required,

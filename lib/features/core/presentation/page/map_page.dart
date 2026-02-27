@@ -1,7 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:real_state/features/core/presentation/widget/map_cluster_widget.dart';
-import 'package:real_state/features/core/presentation/widget/map_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 class MapPage extends StatefulWidget {

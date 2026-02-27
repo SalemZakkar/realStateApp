@@ -1,9 +1,9 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
-import 'package:real_state/features/core/presentation/utils/ext/num_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
+
+import 'bloc_consumers/user_builder.dart';
 
 class LogInWidget extends StatefulWidget {
   final Widget child;

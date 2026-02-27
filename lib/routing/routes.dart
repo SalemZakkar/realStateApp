@@ -1,29 +1,18 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
-import 'package:real_state/features/auth/presentation/page/auth_signup_page.dart';
-import 'package:real_state/features/core/domain/enum/otp_reason.dart';
+import 'package:real_state/features/auth/presentation/page/auth_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
-import 'package:real_state/features/core/presentation/page/send_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
-import 'package:real_state/features/core/presentation/page/verify_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
-import 'package:real_state/features/real_state/domain/entity/real_estate.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_details_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_filter_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_form_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_image_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_list_page.dart';
-import 'package:real_state/features/real_state/presentation/page/real_estate_map_page.dart';
-import 'package:real_state/features/tutorial/presentation/page/tutorial_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
-import 'package:real_state/features/user/presentation/page/user_change_password_page.dart';
+import 'package:real_state/features/user/presentation/page/user_blocked_page.dart';
+import 'package:real_state/features/user/presentation/page/user_complete_profile_page.dart';
 import 'package:real_state/routing/route_info.dart';
 
 class Routes {
@@ -41,18 +30,18 @@ class Routes {
       type: RouteType.shell,
       builder: (co, st, child) => MainPage(child: child!),
       routes: [
-        RouteInfo(
-          useRootNavigator: false,
-          path: RealEStateMapPage.path,
-          builder: (context, state, child) => RealEStateMapPage(),
-        ),
-        RouteInfo(
-          useRootNavigator: false,
-          path: RealEStateListPage.path,
-          builder: (context, state, child) => RealEStateListPage(
-            params: state.extra as RealEstateListPageParams?,
-          ),
-        ),
+        // RouteInfo(
+        //   useRootNavigator: false,
+        //   path: RealEStateMapPage.path,
+        //   builder: (context, state, child) => RealEStateMapPage(),
+        // ),
+        // RouteInfo(
+        //   useRootNavigator: false,
+        //   path: RealEStateListPage.path,
+        //   builder: (context, state, child) => RealEStateListPage(
+        //     params: state.extra as RealEstateListPageParams?,
+        //   ),
+        // ),
         RouteInfo(
           useRootNavigator: false,
           path: HomePage.path,
@@ -73,70 +62,66 @@ class Routes {
     ),
     RouteInfo(
       path: AuthLoginPage.path,
-      builder: (context, state, child) => AuthLoginPage(),
-    ),
-    RouteInfo(
-      path: AuthSignUpPage.path,
-      builder: (context, state, child) => AuthSignUpPage(),
-    ),
-    RouteInfo(
-      path: SendOtpPage.path,
       builder: (context, state, child) =>
-          SendOtpPage(reason: state.extra as OtpReason),
+          AuthLoginPage(withBack: state.extra as bool?),
     ),
     RouteInfo(
-      path: VerifyOtpPage.path,
+      path: AuthOtpPage.path,
       builder: (context, state, child) =>
-          VerifyOtpPage(params: state.extra as VerifyOtpPageParams),
+          AuthOtpPage(phone: state.extra!.toString()),
     ),
-    RouteInfo(
-      path: UserChangePasswordPage.path,
-      builder: (context, state, child) => UserChangePasswordPage(),
-    ),
-    RouteInfo(
-      path: RealEstateDetailsPage.path,
-      builder: (context, state, child) =>
-          RealEstateDetailsPage(realEstate: state.extra as RealEstate),
-    ),
+    // RouteInfo(
+    //   path: RealEstateDetailsPage.path,
+    //   builder: (context, state, child) =>
+    //       RealEstateDetailsPage(realEstate: state.extra as RealEstate),
+    // ),
     RouteInfo(
       path: MapPage.path,
       builder: (context, state, child) =>
           MapPage(latLng: state.extra as LatLng),
     ),
-    RouteInfo(
-      path: RealEstateFilterPage.path,
-      builder: (context, state, child) => RealEstateFilterPage(
-        params: state.extra as RealEstateFilterPageParams,
-      ),
-    ),
+    // RouteInfo(
+    //   path: RealEstateFilterPage.path,
+    //   builder: (context, state, child) => RealEstateFilterPage(
+    //     params: state.extra as RealEstateFilterPageParams,
+    //   ),
+    // ),
     RouteInfo(builder: (c, s, i) => UpdateAppPage(), path: UpdateAppPage.path),
     RouteInfo(
       builder: (c, s, i) => ViewImagePage(url: s.extra as String),
       path: ViewImagePage.path,
     ),
-    RouteInfo(
-      path: RealEstateFormPage.path,
-      builder: (context, state, child) =>
-          RealEstateFormPage(realEstate: state.extra as RealEstate?),
-    ),
-    RouteInfo(
-      builder: (context, state, child) =>
-          RealEstateImagePage(realEstate: state.extra as RealEstate),
-
-      path: RealEstateImagePage.path,
-    ),
-    RouteInfo(
-      path: RealEStateListPage.extPath,
-      builder: (context, state, child) =>
-          RealEStateListPage(params: state.extra as RealEstateListPageParams?),
-    ),
-    RouteInfo(
-      path: TutorialPage.path,
-      builder: (context, state, child) => TutorialPage(),
-    ),
+    // RouteInfo(
+    //   path: RealEstateFormPage.path,
+    //   builder: (context, state, child) =>
+    //       RealEstateFormPage(realEstate: state.extra as RealEstate?),
+    // ),
+    // RouteInfo(
+    //   builder: (context, state, child) =>
+    //       RealEstateImagePage(realEstate: state.extra as RealEstate),
+    //
+    //   path: RealEstateImagePage.path,
+    // ),
+    // RouteInfo(
+    //   path: RealEStateListPage.extPath,
+    //   builder: (context, state, child) =>
+    //       RealEStateListPage(params: state.extra as RealEstateListPageParams?),
+    // ),
+    // RouteInfo(
+    //   path: TutorialPage.path,
+    //   builder: (context, state, child) => TutorialPage(),
+    // ),
     RouteInfo(
       builder: (context, state, child) => LegalPage(),
       path: LegalPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) => UserBlockedPage(),
+      path: UserBlockedPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) => UserCompleteProfilePage(),
+      path: UserCompleteProfilePage.path,
     ),
   ];
 }
@@ -162,8 +147,8 @@ extension R on BuildContext {
 }
 
 List<String> tabRoutes = [
-  RealEStateListPage.path,
-  RealEStateMapPage.path,
+  // RealEStateListPage.path,
+  // RealEStateMapPage.path,
   ProfilePage.path,
   SettingsPage.path,
   HomePage.path,

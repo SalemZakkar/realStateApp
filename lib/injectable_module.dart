@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:real_state/features/core/data/utils/token_interceptor.dart';
 import 'package:real_state/injection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'features/core/data/utils/unifi_logger.dart';
 import 'features/core/data/utils/version_interceptor.dart';
 
@@ -54,7 +52,4 @@ abstract class InjectableModule {
 
   @lazySingleton
   Logger get logger => Logger();
-
-  @lazySingleton
-  FirebaseMessaging firebaseMessaging() => FirebaseMessaging.instance;
 }

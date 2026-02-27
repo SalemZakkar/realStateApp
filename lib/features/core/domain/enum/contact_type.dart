@@ -1,14 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
 enum ContactType {
-  @JsonValue("whatsapp")
-  whatsapp,
-  @JsonValue("instagram")
+  @JsonValue("Instagram")
   instagram,
-  @JsonValue("call")
+  @JsonValue("Phone")
   call,
-  @JsonValue("telegram")
-  telegram,
-  @JsonValue("facebook")
+  @JsonValue("Facebook")
   facebook,
 }

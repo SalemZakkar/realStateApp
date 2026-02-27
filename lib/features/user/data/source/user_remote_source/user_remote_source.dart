@@ -9,7 +9,6 @@ import 'package:real_state/configuration.dart';
 
 part 'user_remote_source.g.dart';
 
-
 abstract class UserRemoteSource {
   Future<BaseResponse<UserModel>> getMine();
 
@@ -19,11 +18,9 @@ abstract class UserRemoteSource {
     required String newPassword,
   });
 
-  Future<BaseResponse<UserModel>> updateUser({
-    String? name,
-    String? phoneCountryCode,
-    String? phone,
-  });
+  Future<BaseResponse<UserModel>> updateUser({required FormData body});
+
+  Future<BaseResponse<UserModel>> deletePhoto();
 }
 
 @RestApi()
@@ -42,15 +39,15 @@ abstract class UserRemoteSourceImpl extends UserRemoteSource {
     @Field("passwordConfirm") required String newPassword,
   });
 
-  @GET("users/getme")
+  @GET("user/mine")
   @override
   Future<BaseResponse<UserModel>> getMine();
 
-  @PATCH("users/updateMe")
+  @PATCH("user/mine")
   @override
-  Future<BaseResponse<UserModel>> updateUser({
-    @Field() String? name,
-    @Field() String? phoneCountryCode,
-    @Field() String? phone,
-  });
+  Future<BaseResponse<UserModel>> updateUser({@Body() required FormData body});
+  
+  @DELETE("user/mine/image")
+  @override
+  Future<BaseResponse<UserModel>> deletePhoto();
 }

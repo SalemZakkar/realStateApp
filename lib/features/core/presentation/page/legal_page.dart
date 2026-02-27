@@ -1,6 +1,6 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/cubit/legal_cubit.dart';
-import 'package:real_state/features/core/presentation/widget/bloc_consumers/consumer_widget.dart';
 import 'package:real_state/injection.dart';
 
 class LegalPage extends StatefulWidget {

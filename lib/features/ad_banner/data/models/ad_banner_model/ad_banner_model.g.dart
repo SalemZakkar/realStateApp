@@ -9,4 +9,4 @@ part of 'ad_banner_model.dart';
 // **************************************************************************
 
 AdBannerModel _$AdBannerModelFromJson(Map json) =>
-    AdBannerModel(url: json['value'] as String, image: json['image'] as String);
+    AdBannerModel(url: json['url'] as String?, image: json['image'] as String);

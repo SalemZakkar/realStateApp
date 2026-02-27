@@ -29,7 +29,7 @@ class _AdBannerRemoteSourceImpl implements AdBannerRemoteSourceImpl {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'banner',
+            'adBanner',
             queryParameters: queryParameters,
             data: _data,
           )
