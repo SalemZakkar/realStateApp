@@ -278,6 +278,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/facebook.png
+  AssetGenImage get facebook =>
+      const AssetGenImage('assets/images/facebook.png');
+
   /// File path: assets/images/ic_launcher.png
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/images/ic_launcher.png');
@@ -286,14 +290,20 @@ class $AssetsImagesGen {
   AssetGenImage get icLauncherDark =>
       const AssetGenImage('assets/images/ic_launcher_dark.png');
 
+  /// File path: assets/images/instagram.png
+  AssetGenImage get instagram =>
+      const AssetGenImage('assets/images/instagram.png');
+
   /// File path: assets/images/profilePlaceholder.png
   AssetGenImage get profilePlaceholder =>
       const AssetGenImage('assets/images/profilePlaceholder.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    facebook,
     icLauncher,
     icLauncherDark,
+    instagram,
     profilePlaceholder,
   ];
 }

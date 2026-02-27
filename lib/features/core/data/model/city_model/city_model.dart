@@ -6,7 +6,6 @@ part 'city_model.g.dart';
 @JsonSerializable()
 class CityModel {
   String name;
-  @JsonKey(name: "_id")
   String id;
 
   CityModel(this.id, this.name);

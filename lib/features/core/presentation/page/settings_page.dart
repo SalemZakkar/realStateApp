@@ -1,10 +1,12 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/domain/enum/contact_type.dart';
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart';
+import 'package:real_state/features/core/presentation/page/legal_page.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/contact_us_card.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/themes/app_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../injection.dart';
 
@@ -18,13 +20,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final contact = getIt<ContactCubit>();
-  var cubit = getIt<ContactCubit>()..start();
+  var cubit = getIt<AboutUsCubit>()..start();
 
   @override
   void initState() {
     super.initState();
-    contact.start();
   }
 
   @override
@@ -34,87 +34,122 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Container(
         constraints: const BoxConstraints.expand(),
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // UserBuilder(
-              //   builder: (context, state) {
-              //     return UserProfileCard(user: state);
-              //   },
-              //   unAuthWidget: Column(
-              //     children: [
-              //       Icon(
-              //         Icons.login,
-              //         color: Theme.of(context).primaryColor,
-              //         size: 80,
-              //       ),
-              //       16.height(),
-              //       SizedBox(
-              //         width: MediaQuery.of(context).size.width,
-              //         child: ElevatedButton(
-              //           onPressed: () {
-              //             context.push(AuthLoginPage.path, extra: false);
-              //           },
-              //           child: Text(context.translation.logIn),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // 32.height(),
-              Theme.of(context).brightness == Brightness.dark
-                  ? Assets.images.icLauncherDark.image(width: 200)
-                  : Assets.images.icLauncher.image(width: 200),
-              16.height(),
-              HeaderText(
-                title: context.translation.info,
-                textStyle: Theme.of(context).textTheme.titleMedium,
-              ),
-              16.height(),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Column(
-                  children: [
-                    TileButton(title: context.translation.privacyPolicy),
-                    TileButton(title: context.translation.termsAndConditions),
+        child: ConsumerWidget(
+          cubit: cubit,
+          childBuilder: (context, data) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Assets.images.icLauncherDark.image(width: 200)
+                      : Assets.images.icLauncher.image(width: 200),
+                  if (data.description != null) ...[
+                    Text(data.description ?? '', textAlign: TextAlign.center),
+                    16.height(),
                   ],
-                ),
-              ),
-              16.height(),
-              ConsumerWidget(
-                cubit: cubit,
-                loadingBuilder: (context) => const SizedBox.shrink(),
-                childBuilder: (context, state) {
-                  return Column(
-                    children: [
-                      HeaderText(
-                        title: context.translation.callMaisonHub,
-                        textStyle: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      16.height(),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Column(
-                          children: [
-                            for (var e in ContactType.values) ...[
-                              for (var k in state.where(
-                                (j) => j.type == e,
-                              )) ...[ContactUsCard(contactItem: k)],
-                            ],
-                          ],
+                  ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(12),
+                    child: Column(
+                      children: [
+                        if (data.facebookLink != null) ...[
+                          InkWellWithoutFeedback(
+                            onTap: () {
+                              launchUrl(Uri.parse(data.facebookLink!));
+                            },
+                            child: TileButton(
+                              title: 'Facebook',
+                              leadingWidth: 40,
+                              leading: Assets.images.facebook.image(width: 56),
+                            ),
+                          ),
+                        ],
+                        if (data.instagramLink != null) ...[
+                          InkWellWithoutFeedback(
+                            onTap: () {
+                              launchUrl(Uri.parse(data.instagramLink!));
+                            },
+                            child: TileButton(
+                              title: 'Instagram',
+                              leadingWidth: 40,
+                              leading: Assets.images.instagram.image(width: 56),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+
+                  16.height(),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Column(
+                      children: [
+                        InkWellWithoutFeedback(
+                          onTap: () {
+                            context.push(LegalPage.path, extra: 0);
+                          },
+                          child: TileButton(
+                            title: context.translation.privacyPolicy,
+                          ),
                         ),
-                      ),
-                      120.height(),
-                    ],
-                  );
-                },
-                autoDispose: false,
-                onRetry: () {
-                  cubit.start();
-                },
+                        InkWellWithoutFeedback(
+                          onTap: () {
+                            context.push(LegalPage.path, extra: 1);
+                          },
+                          child: TileButton(
+                            title: context.translation.termsAndConditions,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  16.height(),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Column(
+                      children: [
+                        for (var e in data.phones) ...[
+                          TileButton(
+                            title: e,
+                            trailing: Row(
+                              children: [
+                                InkWellWithoutFeedback(
+                                  onTap: () {
+                                    launchUrl(Uri.parse("https://wa.me/$e"));
+                                  },
+                                  child: Assets.icons.brandWhatsapp
+                                      .dynamicSVGColor(context),
+                                ),
+                                16.width(),
+                                InkWellWithoutFeedback(
+                                  onTap: () {
+                                    launchUrl(Uri.parse("tel:$e"));
+                                  },
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: context
+                                        .appColorSchema
+                                        .shapeColors
+                                        .iconColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            textDirection: TextDirection.ltr,
+                            textAlign: TextAlign.end,
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+
+                  120.height(),
+                ],
               ),
-            ],
-          ),
+            );
+          },
+          onRetry: cubit.start,
+          autoDispose: false,
         ),
       ),
     );

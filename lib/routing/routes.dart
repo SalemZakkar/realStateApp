@@ -112,16 +112,16 @@ class Routes {
     //   builder: (context, state, child) => TutorialPage(),
     // ),
     RouteInfo(
-      builder: (context, state, child) => LegalPage(),
-      path: LegalPage.path,
-    ),
-    RouteInfo(
       builder: (context, state, child) => UserBlockedPage(),
       path: UserBlockedPage.path,
     ),
     RouteInfo(
       builder: (context, state, child) => UserCompleteProfilePage(),
       path: UserCompleteProfilePage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) => LegalPage(type: state.extra as int),
+      path: LegalPage.path,
     ),
   ];
 }

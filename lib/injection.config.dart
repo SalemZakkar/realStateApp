@@ -44,14 +44,10 @@ import 'package:real_state/features/core/data/utils/token_interceptor.dart'
     as _i838;
 import 'package:real_state/features/core/domain/repository/core_repository.dart'
     as _i676;
-import 'package:real_state/features/core/presentation/cubit/app_update.dart'
-    as _i216;
 import 'package:real_state/features/core/presentation/cubit/city_cubit.dart'
     as _i305;
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
-import 'package:real_state/features/core/presentation/cubit/legal_cubit.dart'
-    as _i197;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
@@ -126,14 +122,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i305.CityCubit>(
       () => _i305.CityCubit(gh<_i676.CoreRepository>()),
     );
-    gh.lazySingleton<_i672.ContactCubit>(
-      () => _i672.ContactCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.singleton<_i216.AppUpdateCubit>(
-      () => _i216.AppUpdateCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.factory<_i197.LegalCubit>(
-      () => _i197.LegalCubit(gh<_i676.CoreRepository>()),
+    gh.lazySingleton<_i672.AboutUsCubit>(
+      () => _i672.AboutUsCubit(gh<_i676.CoreRepository>()),
     );
     gh.factory<_i140.UserRepository>(
       () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),

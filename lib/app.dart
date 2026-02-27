@@ -12,7 +12,6 @@ import 'package:real_state/routing/observer_utils.dart';
 import 'package:real_state/routing/route_info.dart';
 import 'package:real_state/routing/routes.dart';
 import 'package:real_state/themes/app_theme.dart';
-import 'features/core/presentation/cubit/app_update.dart' show AppUpdateCubit;
 import 'features/core/presentation/page/splash_page.dart';
 import 'generated/translation/translations.dart';
 
@@ -31,8 +30,6 @@ class _AppState extends State<App> {
       getIt<AuthCubit>().init();
     });
   }
-
-  var statusCubit = getIt<AppUpdateCubit>();
 
   var authCubit = getIt<AuthCubit>();
 

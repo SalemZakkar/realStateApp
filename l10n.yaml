@@ -3,6 +3,5 @@ template-arb-file: app_ar.arb
 output-localization-file: translations.dart
 output-dir: ./lib/generated/translation
 output-class: Translations
-synthetic-package: false
 untranslated-messages-file: desiredFileName.txt
 

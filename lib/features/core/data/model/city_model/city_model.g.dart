@@ -9,4 +9,4 @@ part of 'city_model.dart';
 // **************************************************************************
 
 CityModel _$CityModelFromJson(Map json) =>
-    CityModel(json['_id'] as String, json['name'] as String);
+    CityModel(json['id'] as String, json['name'] as String);
