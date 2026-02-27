@@ -39,31 +39,31 @@ class _SettingsPageState extends State<SettingsPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              UserBuilder(
-                builder: (context, state) {
-                  return UserProfileCard(user: state);
-                },
-                unAuthWidget: Column(
-                  children: [
-                    Icon(
-                      Icons.login,
-                      color: Theme.of(context).primaryColor,
-                      size: 80,
-                    ),
-                    16.height(),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.push(AuthLoginPage.path, extra: false);
-                        },
-                        child: Text(context.translation.logIn),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              32.height(),
+              // UserBuilder(
+              //   builder: (context, state) {
+              //     return UserProfileCard(user: state);
+              //   },
+              //   unAuthWidget: Column(
+              //     children: [
+              //       Icon(
+              //         Icons.login,
+              //         color: Theme.of(context).primaryColor,
+              //         size: 80,
+              //       ),
+              //       16.height(),
+              //       SizedBox(
+              //         width: MediaQuery.of(context).size.width,
+              //         child: ElevatedButton(
+              //           onPressed: () {
+              //             context.push(AuthLoginPage.path, extra: false);
+              //           },
+              //           child: Text(context.translation.logIn),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // 32.height(),
               ConsumerWidget(
                 cubit: cubit,
                 loadingBuilder: (context) => const SizedBox.shrink(),
@@ -80,9 +80,9 @@ class _SettingsPageState extends State<SettingsPage> {
                         child: Column(
                           children: [
                             for (var e in ContactType.values) ...[
-                              for (var k in state.where((j) => j.type == e)) ...[
-                                ContactUsCard(contactItem: k),
-                              ],
+                              for (var k in state.where(
+                                (j) => j.type == e,
+                              )) ...[ContactUsCard(contactItem: k)],
                             ],
                           ],
                         ),
