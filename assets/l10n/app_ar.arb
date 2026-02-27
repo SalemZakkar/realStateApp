@@ -166,5 +166,6 @@
   "sendTheCodeWeHaveSent" : "ادخل الكود المرسل الى رقمك ليتم تسجيل الدخول",
   "continueAsGuest" : "متابعة كضيف",
   "confirmation" : "تأكيد",
-  "areUSureYouWillLogout" : "هل أنت متأكد انك تريد تسجيل الخروج ؟"
+  "areUSureYouWillLogout" : "هل أنت متأكد انك تريد تسجيل الخروج ؟",
+  "info" : "معلومات"
 }

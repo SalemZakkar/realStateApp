@@ -10,6 +10,8 @@ abstract class AuthRemoteSource {
   Future requestLoginOtp(String phoneNumber);
 
   Future login(String vid, String code);
+
+  Future refreshToken(String token);
 }
 
 @RestApi()
@@ -22,12 +24,13 @@ abstract class AuthRemoteImpl extends AuthRemoteSource {
 
   @POST("auth/loginOtp")
   @override
-  Future login(
-    @Field() String vid,
-    @Field() String code,
-  );
+  Future login(@Field() String vid, @Field() String code);
 
   @POST("auth/requestLoginOtp")
   @override
   Future<dynamic> requestLoginOtp(@Field() String phoneNumber);
+
+  @POST("auth/refreshToken")
+  @override
+  Future<dynamic> refreshToken(@Field() String token);
 }

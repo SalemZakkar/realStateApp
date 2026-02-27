@@ -15,7 +15,7 @@ class UserUpdateCubit extends Cubit<BaseState<User>> {
 
   void change(UserUpdateParams params) async {
     emit(state.setInProgressState());
-    var res = params.delete == true
+    var res = params.deleteImage == true
         ? await repository.deletePhoto()
         : await repository.updateUser(params: params);
     res.fold((e) => emit(state.setFailureState(e)), (r) {
@@ -26,7 +26,7 @@ class UserUpdateCubit extends Cubit<BaseState<User>> {
 
   void complete(UserUpdateParams params) async {
     emit(state.setInProgressState());
-    var res = params.delete == true
+    var res = params.deleteImage == true
         ? await repository.deletePhoto()
         : await repository.updateUser(params: params);
     res.fold((e) => emit(state.setFailureState(e)), (r) {

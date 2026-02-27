@@ -12,4 +12,5 @@ abstract class AuthRepository {
   Future<Either<Failure, AuthOtp>> requestOtp(String phone);
 
   Future<Either<Failure, void>> login(String vid, String code);
+  Future<Either<Failure, void>> refreshToken();
 }

@@ -10,7 +10,7 @@ class AuthLocalSource {
 
   Future<String?> getRefToken() async {
     var b = await Hive.openBox("auth");
-    return b.get("rtoken");
+    return b.get("refToken");
   }
 
   Future<String?> getId() async {

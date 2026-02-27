@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     16.height(),
-                    16.height(),
                     HomeButtonsWidget(),
 
                     // 16.height(),

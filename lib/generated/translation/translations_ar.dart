@@ -575,4 +575,7 @@ class TranslationsAr extends Translations {
 
   @override
   String get areUSureYouWillLogout => 'هل أنت متأكد انك تريد تسجيل الخروج ؟';
+
+  @override
+  String get info => 'معلومات';
 }

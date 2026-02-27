@@ -39,7 +39,7 @@ class _UserProfileCardState extends State<UserProfileCard> {
                     height: 200,
                     onDelete: widget.user.image != null
                         ? () {
-                            cubit.change(UserUpdateParams(delete: true));
+                            cubit.change(UserUpdateParams(deleteImage: true));
                           }
                         : null,
                     borderRadius: BorderRadius.circular(6),

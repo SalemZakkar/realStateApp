@@ -38,7 +38,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
                     onPressed: () {
-                      context.push(AuthLoginPage.path);
+                      context.push(AuthLoginPage.path , extra: false);
                     },
                     child: Text(context.translation.logIn),
                   ),

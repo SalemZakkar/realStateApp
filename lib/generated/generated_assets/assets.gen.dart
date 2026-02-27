@@ -286,8 +286,16 @@ class $AssetsImagesGen {
   AssetGenImage get icLauncherDark =>
       const AssetGenImage('assets/images/ic_launcher_dark.png');
 
+  /// File path: assets/images/profilePlaceholder.png
+  AssetGenImage get profilePlaceholder =>
+      const AssetGenImage('assets/images/profilePlaceholder.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [icLauncher, icLauncherDark];
+  List<AssetGenImage> get values => [
+    icLauncher,
+    icLauncherDark,
+    profilePlaceholder,
+  ];
 }
 
 class $AssetsMapsGen {

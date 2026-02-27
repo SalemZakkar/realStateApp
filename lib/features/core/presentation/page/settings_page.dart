@@ -1,12 +1,10 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/enum/contact_type.dart';
 import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/core/presentation/widget/contact_us_card.dart';
-import 'package:real_state/features/user/presentation/widget/user_profile_card.dart';
+import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 import '../../../../injection.dart';
 
@@ -64,6 +62,25 @@ class _SettingsPageState extends State<SettingsPage> {
               //   ),
               // ),
               // 32.height(),
+              Theme.of(context).brightness == Brightness.dark
+                  ? Assets.images.icLauncherDark.image(width: 200)
+                  : Assets.images.icLauncher.image(width: 200),
+              16.height(),
+              HeaderText(
+                title: context.translation.info,
+                textStyle: Theme.of(context).textTheme.titleMedium,
+              ),
+              16.height(),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Column(
+                  children: [
+                    TileButton(title: context.translation.privacyPolicy),
+                    TileButton(title: context.translation.termsAndConditions),
+                  ],
+                ),
+              ),
+              16.height(),
               ConsumerWidget(
                 cubit: cubit,
                 loadingBuilder: (context) => const SizedBox.shrink(),
@@ -72,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       HeaderText(
                         title: context.translation.callMaisonHub,
-                        textStyle: Theme.of(context).textTheme.headlineSmall,
+                        textStyle: Theme.of(context).textTheme.titleMedium,
                       ),
                       16.height(),
                       ClipRRect(

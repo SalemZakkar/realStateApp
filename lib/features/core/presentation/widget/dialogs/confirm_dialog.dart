@@ -28,33 +28,31 @@ class _ConfirmDialogState extends State<ConfirmDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            widget.message,
-          ),
+          Text(widget.message, style: Theme.of(context).textTheme.titleMedium),
         ],
       ),
-      actionsAlignment: MainAxisAlignment.spaceBetween,
+      actionsAlignment: MainAxisAlignment.end,
       actions: [
         SizedBox(
-          width: 120,
-          child: TextButton(
-            onPressed: () {
-              context.pop(true);
-            },
-            child: Text(
-              widget.acceptText ?? CoreTranslations.of(context)!.accept,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 120,
+          // width: 120,
           child: TextButton(
             onPressed: () {
               context.pop();
             },
             child: Text(
               widget.cancelText ?? CoreTranslations.of(context)!.cancel,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        SizedBox(
+          // width: 120,
+          child: TextButton(
+            onPressed: () {
+              context.pop(true);
+            },
+            child: Text(
+              widget.acceptText ?? CoreTranslations.of(context)!.accept,
               textAlign: TextAlign.center,
             ),
           ),

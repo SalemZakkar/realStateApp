@@ -23,6 +23,7 @@
     "sendTheCodeWeHaveSent",
     "continueAsGuest",
     "confirmation",
-    "areUSureYouWillLogout"
+    "areUSureYouWillLogout",
+    "info"
   ]
 }

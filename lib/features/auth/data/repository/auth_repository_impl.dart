@@ -59,4 +59,20 @@ class AuthRepositoryImpl extends AuthRepository with ApiHandler {
       return Right(otp);
     });
   }
+
+  @override
+  Future<Either<Failure, void>> refreshToken() async {
+    return request(() async {
+      var rToken = await localSource.getRefToken();
+      if (rToken == null) {
+        logout();
+        return Right(null);
+      }
+      var res = await remoteSource.refreshToken(rToken);
+      var token = res['accessToken'];
+      var newRefreshToken = res['refreshToken'];
+      await localSource.setTokens(token: token, refToken: newRefreshToken);
+      return Right(null);
+    });
+  }
 }

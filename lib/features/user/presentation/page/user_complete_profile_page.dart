@@ -6,6 +6,7 @@ import 'package:real_state/features/core/presentation/widget/bloc_consumers/user
 import 'package:real_state/features/core/presentation/widget/button/log_out_button.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
+import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/injection.dart';
 
 class UserCompleteProfilePage extends StatefulWidget {
@@ -46,6 +47,10 @@ class _UserCompleteProfilePageState extends State<UserCompleteProfilePage> {
                         shape: BoxShape.circle,
                         editable: true,
                         url: user.image?.getUrl,
+                        placeHolder: Assets.images.profilePlaceholder.image(
+                          width: 200,
+                          // fit: BoxFit.cover,
+                        ),
                         pickImageConfig: PickImageConfig(withCrop: false),
                         onChanged: (v) {
                           cubit.change(UserUpdateParams(image: v));
@@ -69,7 +74,9 @@ class _UserCompleteProfilePageState extends State<UserCompleteProfilePage> {
                             if (!k.currentState!.validate()) {
                               return;
                             }
-                            cubit.complete(UserUpdateParams(name: controller.text.valOrNull));
+                            cubit.complete(
+                              UserUpdateParams(name: controller.text.valOrNull),
+                            );
                           },
                           child: Text(context.translation.continuE),
                         ),

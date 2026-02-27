@@ -1106,6 +1106,12 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'هل أنت متأكد انك تريد تسجيل الخروج ؟'**
   String get areUSureYouWillLogout;
+
+  /// No description provided for @info.
+  ///
+  /// In ar, this message translates to:
+  /// **'معلومات'**
+  String get info;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {
