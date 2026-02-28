@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
@@ -19,9 +20,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxWidth: 320
-      ),
+      constraints: BoxConstraints(maxWidth: 320),
       height: 64,
       alignment: Alignment.center,
 
@@ -62,15 +61,12 @@ class _BottomBarState extends State<BottomBar> {
                 //   image: Assets.icons.compass,
                 //   path: RealEStateMapPage.path,
                 // ),
-                // _Button(
-                //   image: Assets.icons.building,
-                //   path: RealEStateListPage.path,
-                // ),
-                _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(
-                  image: Assets.icons.user,
-                  path: ProfilePage.path,
+                  image: Assets.icons.building,
+                  path: PropertyListPage.shell,
                 ),
+                _Button(image: Assets.icons.home, path: HomePage.path),
+                _Button(image: Assets.icons.user, path: ProfilePage.path),
                 _Button(image: Assets.icons.info, path: SettingsPage.path),
               ],
             ),

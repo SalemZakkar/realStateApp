@@ -10,6 +10,9 @@ import 'package:real_state/features/core/presentation/page/update_app_page.dart'
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
+import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_blocked_page.dart';
 import 'package:real_state/features/user/presentation/page/user_complete_profile_page.dart';
@@ -35,13 +38,12 @@ class Routes {
         //   path: RealEStateMapPage.path,
         //   builder: (context, state, child) => RealEStateMapPage(),
         // ),
-        // RouteInfo(
-        //   useRootNavigator: false,
-        //   path: RealEStateListPage.path,
-        //   builder: (context, state, child) => RealEStateListPage(
-        //     params: state.extra as RealEstateListPageParams?,
-        //   ),
-        // ),
+        RouteInfo(
+          useRootNavigator: false,
+          path: PropertyListPage.shell,
+          builder: (context, state, child) =>
+              PropertyListPage(params: state.extra as PropertyGetParams?),
+        ),
         RouteInfo(
           useRootNavigator: false,
           path: HomePage.path,
@@ -91,26 +93,6 @@ class Routes {
       builder: (c, s, i) => ViewImagePage(url: s.extra as String),
       path: ViewImagePage.path,
     ),
-    // RouteInfo(
-    //   path: RealEstateFormPage.path,
-    //   builder: (context, state, child) =>
-    //       RealEstateFormPage(realEstate: state.extra as RealEstate?),
-    // ),
-    // RouteInfo(
-    //   builder: (context, state, child) =>
-    //       RealEstateImagePage(realEstate: state.extra as RealEstate),
-    //
-    //   path: RealEstateImagePage.path,
-    // ),
-    // RouteInfo(
-    //   path: RealEStateListPage.extPath,
-    //   builder: (context, state, child) =>
-    //       RealEStateListPage(params: state.extra as RealEstateListPageParams?),
-    // ),
-    // RouteInfo(
-    //   path: TutorialPage.path,
-    //   builder: (context, state, child) => TutorialPage(),
-    // ),
     RouteInfo(
       builder: (context, state, child) => UserBlockedPage(),
       path: UserBlockedPage.path,
@@ -122,6 +104,16 @@ class Routes {
     RouteInfo(
       builder: (context, state, child) => LegalPage(type: state.extra as int),
       path: LegalPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) =>
+          PropertyListPage(params: state.extra as PropertyGetParams?),
+      path: PropertyListPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) =>
+          PropertyDetailsPage(id: state.extra!.toString()),
+      path: PropertyDetailsPage.path,
     ),
   ];
 }
@@ -147,7 +139,7 @@ extension R on BuildContext {
 }
 
 List<String> tabRoutes = [
-  // RealEStateListPage.path,
+  PropertyListPage.shell,
   // RealEStateMapPage.path,
   ProfilePage.path,
   SettingsPage.path,

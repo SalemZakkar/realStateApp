@@ -25,7 +25,6 @@ dependencies:
   carousel_slider: ^5.0.0
   image_picker: ^1.1.2
   file_picker: ^10.1.2
-  #  google_maps_flutter: ^2.12.1
   hive_flutter: ^1.1.0
   hydrated_bloc: ^10.1.1
   path_provider: ^2.1.5

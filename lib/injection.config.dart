@@ -52,6 +52,16 @@ import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
     as _i976;
+import 'package:real_state/features/properties/data/repository/property_repo_impl.dart'
+    as _i50;
+import 'package:real_state/features/properties/data/source/remote/properties_remote_source.dart'
+    as _i422;
+import 'package:real_state/features/properties/domain/repository/property_repository.dart'
+    as _i986;
+import 'package:real_state/features/properties/presentation/cubits/properties_details_cubit.dart'
+    as _i17;
+import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart'
+    as _i865;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
     as _i905;
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart'
@@ -116,6 +126,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i31.AuthRemoteSource>(),
       ),
     );
+    gh.factory<_i422.PropertiesRemoteSource>(
+      () => _i422.PropertiesRemoteSourceImpl(
+        gh<_i361.Dio>(),
+        gh<_i270.Configuration>(),
+      ),
+    );
+    gh.singleton<_i986.PropertiesRepository>(
+      () => _i50.PropertiesRepoImpl(gh<_i422.PropertiesRemoteSource>()),
+    );
     gh.singleton<_i676.CoreRepository>(
       () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
     );
@@ -127,6 +146,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i140.UserRepository>(
       () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
+    );
+    gh.factory<_i17.PropertiesDetailsCubit>(
+      () => _i17.PropertiesDetailsCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i865.PropertiesGetListCubit>(
+      () => _i865.PropertiesGetListCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.singleton<_i422.AdBannerCubit>(
       () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
