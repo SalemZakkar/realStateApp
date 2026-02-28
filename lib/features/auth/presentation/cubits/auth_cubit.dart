@@ -88,7 +88,9 @@ class AuthCubit extends HydratedCubit<AuthState> {
         authState: state.authState,
       ),
     );
-    getIt<UserGetMineCubit>().get();
+    if (state.userData != null) {
+      getIt<UserGetMineCubit>().get();
+    }
   }
 
   @override
