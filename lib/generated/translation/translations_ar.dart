@@ -252,20 +252,20 @@ class TranslationsAr extends Translations {
   @override
   String propertyDeedE(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
-      'green': 'سند أخضر',
-      'courtRolling': 'سند محكمة',
-      'municipal': 'سند بلدي',
-      'farm': 'سند مزرعة',
-      'industrial': 'سند صناعي',
-      'agricultural': 'سند زراعي',
-      'stock': 'سند ملكية أسهم',
+      'green': 'طابو أخضر',
+      'courtRolling': 'طابو محكمة',
+      'municipal': 'طابو بلدي',
+      'farm': 'طابو مزرعة',
+      'industrial': 'طابو صناعي',
+      'agricultural': 'طابو زراعي',
+      'stock': 'طابو أسهم',
       'other': 'غير معروف',
     });
     return '$_temp0';
   }
 
   @override
-  String get propertyDeed => 'سند الملكية';
+  String get propertyDeed => 'الطّابو';
 
   @override
   String get propertyType => 'نوع العقار';

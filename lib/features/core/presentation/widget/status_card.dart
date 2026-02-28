@@ -25,7 +25,10 @@ class _StatusCardState extends State<StatusCard> {
         color: widget.color.withValues(alpha: 0.15),
       ),
       padding: widget.padding,
-      child: Text(widget.title, style: TextStyle(color: widget.color)),
+      child: Text(
+        widget.title,
+        style: TextStyle(color: widget.color, fontWeight: FontWeight.w600),
+      ),
     );
   }
 }

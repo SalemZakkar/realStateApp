@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
-import 'package:real_state/features/core/presentation/widget/status_card.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
+import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
 import '../../../../generated/generated_assets/assets.gen.dart';
 
 class PropertyCard extends StatefulWidget {
@@ -61,22 +61,43 @@ class _PropertyCardState extends State<PropertyCard> {
                   Expanded(
                     child: Container(
                       constraints: BoxConstraints(minHeight: h),
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      // padding: EdgeInsets.symmetric(vertical: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          StatusCard(color: Theme.of(context).primaryColor, title: 'title'),
-                          16.height(),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: IconText(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  icon: Icon(
+                                    Icons.tag,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  text: widget.realEstate.refNumber,
+                                ),
+                              ),
+                              PropertyCategoryTypeWidget(
+                                property: widget.realEstate,
+                              ),
+                            ],
+                          ),
                           IconText(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            icon: Assets.icons.maps.dynamicSVGColor(context),
+                            icon: Assets.icons.maps.dynamicSVGColor(
+                              context,
+                              color: Theme.of(context).primaryColor,
+                            ),
                             text: widget.realEstate.city.name,
                           ),
-                          16.height(),
                           IconText(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            icon: Assets.icons.dollar.dynamicSVGColor(context),
+                            icon: Assets.icons.dollar.dynamicSVGColor(
+                              context,
+
+                              color: Theme.of(context).primaryColor,
+                            ),
                             text: widget.realEstate.price.formatPrice(context),
                           ),
                         ],

@@ -540,13 +540,13 @@ abstract class Translations {
   /// No description provided for @propertyDeedE.
   ///
   /// In ar, this message translates to:
-  /// **'{type, select, green{سند أخضر} courtRolling{سند محكمة} municipal{سند بلدي} farm{سند مزرعة} industrial{سند صناعي} agricultural{سند زراعي} stock{سند ملكية أسهم} other{غير معروف}}'**
+  /// **'{type, select, green{طابو أخضر} courtRolling{طابو محكمة} municipal{طابو بلدي} farm{طابو مزرعة} industrial{طابو صناعي} agricultural{طابو زراعي} stock{طابو أسهم} other{غير معروف}}'**
   String propertyDeedE(String type);
 
   /// No description provided for @propertyDeed.
   ///
   /// In ar, this message translates to:
-  /// **'سند الملكية'**
+  /// **'الطّابو'**
   String get propertyDeed;
 
   /// No description provided for @propertyType.

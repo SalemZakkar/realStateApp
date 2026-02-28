@@ -10,8 +10,10 @@ import 'package:real_state/features/core/presentation/page/update_app_page.dart'
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
+import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_images_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_blocked_page.dart';
@@ -72,22 +74,11 @@ class Routes {
       builder: (context, state, child) =>
           AuthOtpPage(phone: state.extra!.toString()),
     ),
-    // RouteInfo(
-    //   path: RealEstateDetailsPage.path,
-    //   builder: (context, state, child) =>
-    //       RealEstateDetailsPage(realEstate: state.extra as RealEstate),
-    // ),
     RouteInfo(
       path: MapPage.path,
       builder: (context, state, child) =>
           MapPage(latLng: state.extra as LatLng),
     ),
-    // RouteInfo(
-    //   path: RealEstateFilterPage.path,
-    //   builder: (context, state, child) => RealEstateFilterPage(
-    //     params: state.extra as RealEstateFilterPageParams,
-    //   ),
-    // ),
     RouteInfo(builder: (c, s, i) => UpdateAppPage(), path: UpdateAppPage.path),
     RouteInfo(
       builder: (c, s, i) => ViewImagePage(url: s.extra as String),
@@ -114,6 +105,11 @@ class Routes {
       builder: (context, state, child) =>
           PropertyDetailsPage(id: state.extra!.toString()),
       path: PropertyDetailsPage.path,
+    ),
+    RouteInfo(
+      builder: (context, state, child) =>
+          PropertyImagesPage(property: state.extra as Property),
+      path: PropertyImagesPage.path,
     ),
   ];
 }
