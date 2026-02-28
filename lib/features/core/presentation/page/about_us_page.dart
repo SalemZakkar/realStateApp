@@ -9,16 +9,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../injection.dart';
 
-class SettingsPage extends StatefulWidget {
-  static String path = '/settings_page';
+class AboutUsPage extends StatefulWidget {
+  static String path = '/aboutUs_page';
 
-  const SettingsPage({super.key});
+  const AboutUsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<AboutUsPage> createState() => _AboutUsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _AboutUsPageState extends State<AboutUsPage> {
   var cubit = getIt<AboutUsCubit>()..start();
 
   @override
@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Maison'), centerTitle: true),
+      appBar: AppBar(title: Text(context.translation.aboutUs), centerTitle: true),
       body: Container(
         constraints: const BoxConstraints.expand(),
         padding: EdgeInsets.symmetric(horizontal: 16),

@@ -11,10 +11,10 @@ class CityCubit extends Cubit<BaseState<List<City>>> {
   CoreRepository repository;
 
   void start() async {
-    // if (state.isSuccess || state.isInProgress) {
-    //   emit(state);
-    //   return;
-    // }
+    if (state.isSuccess || state.isInProgress) {
+      emit(state);
+      return;
+    }
     emit(state.setInProgressState());
     var res = await repository.getCities();
     res.fold(

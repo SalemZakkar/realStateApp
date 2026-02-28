@@ -1,5 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
+import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
@@ -49,7 +50,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         return Column(
                           children: [
                             ImageWidget(
-
                               placeHolder: Assets.images.profilePlaceholder
                                   .image(),
                               width: MediaQuery.of(context).size.width,
@@ -112,10 +112,28 @@ class _ProfilePageState extends State<ProfilePage> {
                                         );
                                       },
                                     ),
+                                    16.height(),
+                                    TileButton(
+                                      padding: EdgeInsets.zero,
+                                      leading: Assets.icons.phoneCall
+                                          .dynamicSVGColor(
+                                            context,
+                                            color: Theme.of(
+                                              context,
+                                            ).primaryColor,
+                                            width: 24,
+                                            height: 24,
+                                          ),
+                                      trailing: const SizedBox(),
+                                      title: user.phoneNumber ?? '',
+                                      textAlign: TextAlign.end,
+                                      textDirection: TextDirection.ltr,
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
+
                             16.height(),
                             CustomCardWidget(
                               child: SizedBox(
@@ -168,8 +186,59 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ),
                                       ),
                                     ),
+                                    32.height(),
+                                    InkWellWithoutFeedback(
+                                      onTap: () {
+                                        // context.push(
+                                        //   RealEStateListPage.extPath,
+                                        //   extra: RealEstateListPageParams.saved(
+                                        //     context,
+                                        //   ),
+                                        // );
+                                      },
+                                      child: TileButton(
+                                        padding: EdgeInsets.zero,
+                                        leading: Icon(
+                                          Icons.add,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        title:
+                                            context.translation.addNewProperty,
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios_outlined,
+
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
+                              ),
+                            ),
+                            16.height(),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Column(
+                                children: [
+                                  InkWellWithoutFeedback(
+                                    onTap: () {
+                                      context.push(LegalPage.path, extra: 0);
+                                    },
+                                    child: TileButton(
+                                      title: context.translation.privacyPolicy,
+                                    ),
+                                  ),
+                                  InkWellWithoutFeedback(
+                                    onTap: () {
+                                      context.push(LegalPage.path, extra: 1);
+                                    },
+                                    child: TileButton(
+                                      title: context
+                                          .translation
+                                          .termsAndConditions,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             16.height(),

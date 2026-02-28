@@ -68,6 +68,12 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
             SliverToBoxAdapter(
               child: ListViewPaginationWidget<Property>(
                 shrinkWrap: true,
+                emptyState: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: NoDataWidget(),
+                ),
                 loading: Container(
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,

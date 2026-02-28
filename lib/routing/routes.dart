@@ -4,7 +4,7 @@ import 'package:real_state/features/auth/presentation/page/auth_login_page.dart'
 import 'package:real_state/features/auth/presentation/page/auth_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
-import 'package:real_state/features/core/presentation/page/settings_page.dart';
+import 'package:real_state/features/core/presentation/page/about_us_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
@@ -56,12 +56,6 @@ class Routes {
           builder: (c, s, i) => ProfilePage(),
           path: ProfilePage.path,
         ),
-
-        RouteInfo(
-          useRootNavigator: false,
-          path: SettingsPage.path,
-          builder: (context, state, child) => SettingsPage(),
-        ),
       ],
     ),
     RouteInfo(
@@ -111,6 +105,11 @@ class Routes {
           PropertyImagesPage(property: state.extra as Property),
       path: PropertyImagesPage.path,
     ),
+
+    RouteInfo(
+      path: AboutUsPage.path,
+      builder: (context, state, child) => AboutUsPage(),
+    ),
   ];
 }
 
@@ -138,6 +137,6 @@ List<String> tabRoutes = [
   PropertyListPage.shell,
   // RealEStateMapPage.path,
   ProfilePage.path,
-  SettingsPage.path,
+  // AboutUsPage.path,
   HomePage.path,
 ];

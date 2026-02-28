@@ -599,4 +599,10 @@ class TranslationsAr extends Translations {
 
   @override
   String get all => 'الكل';
+
+  @override
+  String get sellBuySwap => 'بيع/شراء/مبادلة';
+
+  @override
+  String get whoAreWe => 'من نحن ؟';
 }

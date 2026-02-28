@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/page/settings_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
@@ -61,13 +60,12 @@ class _BottomBarState extends State<BottomBar> {
                 //   image: Assets.icons.compass,
                 //   path: RealEStateMapPage.path,
                 // ),
+                _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(
                   image: Assets.icons.building,
                   path: PropertyListPage.shell,
                 ),
-                _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(image: Assets.icons.user, path: ProfilePage.path),
-                _Button(image: Assets.icons.info, path: SettingsPage.path),
               ],
             ),
           ),

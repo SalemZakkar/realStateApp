@@ -47,15 +47,15 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
           (_) => _scrollController
               .animateTo(
                 maxScrollExtent,
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.linearToEaseOut,
+                duration: const Duration(milliseconds: 2000),
+                curve: Curves.linear,
               )
               .then((_) {
                 if (mounted && _scrollController.hasClients) {
                   _scrollController.animateTo(
                     0,
-                    duration: const Duration(milliseconds: 600),
-                    curve: Curves.linearToEaseOut,
+                    duration: const Duration(milliseconds: 2000),
+                    curve: Curves.linear,
                   );
                 }
               }),
@@ -68,7 +68,7 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 48,
+      height: 100,
       child: SingleChildScrollView(
         controller: _scrollController,
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -173,7 +173,7 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
               selected: widget.params.category,
               height: 230,
               equal: (a, b) => a == b,
-              title: context.translation.category,
+              title: context.translation.sellBuySwap,
               data: PropertyCategory.values,
             ),
             FilterDialog<PropertyDeedType>(

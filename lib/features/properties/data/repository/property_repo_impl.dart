@@ -33,7 +33,9 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
       );
       return Right(
         PaginatedList(
-          hasReachedEnd: (params.skip ?? 0) >= response.data!.length,
+          hasReachedEnd:
+              (params.skip ?? 0) >= response.data!.length ||
+              response.totalRecords! <= response.data!.length,
           totalRecords: response.totalRecords!,
           data: response.data!.map((e) => e.toDomain()).toList(),
         ),

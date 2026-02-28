@@ -1154,6 +1154,18 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'الكل'**
   String get all;
+
+  /// No description provided for @sellBuySwap.
+  ///
+  /// In ar, this message translates to:
+  /// **'بيع/شراء/مبادلة'**
+  String get sellBuySwap;
+
+  /// No description provided for @whoAreWe.
+  ///
+  /// In ar, this message translates to:
+  /// **'من نحن ؟'**
+  String get whoAreWe;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

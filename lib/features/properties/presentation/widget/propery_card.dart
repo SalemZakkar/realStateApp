@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
+import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
@@ -71,11 +72,12 @@ class _PropertyCardState extends State<PropertyCard> {
                               Expanded(
                                 child: IconText(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  icon: Icon(
-                                    Icons.tag,
+                                  icon: Assets.icons.size.dynamicSVGColor(
+                                    context,
                                     color: Theme.of(context).primaryColor,
                                   ),
-                                  text: widget.realEstate.refNumber,
+                                  text:
+                                      "${widget.realEstate.size} ${context.translation.m2}",
                                 ),
                               ),
                               PropertyCategoryTypeWidget(

@@ -174,5 +174,7 @@
   "smallest" : "الأصغر مساحةً",
   "theFiltering" : "الفلترة",
   "more" : "أكثر",
-  "all" : "الكل"
+  "all" : "الكل",
+  "sellBuySwap" : "بيع/شراء/مبادلة",
+  "whoAreWe" : "من نحن ؟"
 }

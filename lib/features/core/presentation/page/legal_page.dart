@@ -15,7 +15,7 @@ class LegalPage extends StatefulWidget {
 }
 
 class _LegalPageState extends State<LegalPage> {
-  var cubit = getIt<AboutUsCubit>();
+  var cubit = getIt<AboutUsCubit>()..start();
 
   @override
   Widget build(BuildContext context) {

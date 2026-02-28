@@ -14,5 +14,6 @@ class DevConfiguration extends Configuration {
   String get name => AppEnvironment.dev;
 
   @override
-  String get getBaseUrl => "http://192.168.1.110:3000/api/";
+  String get getBaseUrl => "http://10.0.2.2:3000/api/";
+  // String get getBaseUrl => "https://real-estate-api-lnn0.onrender.com/api/";
 }
