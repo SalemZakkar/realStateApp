@@ -213,6 +213,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 16,
+        fontFamily: 'cairo',
         color: _schema.textColors.primaryText,
       ),
     ),
@@ -225,6 +226,12 @@ class AppTheme {
         textStyle: TextStyle(fontSize: 16, fontFamily: 'cairo'),
       ),
     ),
+    dialogTheme: DialogThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6),
+      ),
+      insetPadding: EdgeInsets.symmetric(horizontal: 16)
+    )
   );
 }
 

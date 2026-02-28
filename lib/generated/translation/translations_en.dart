@@ -582,4 +582,25 @@ class TranslationsEn extends Translations {
 
   @override
   String get info => 'معلومات';
+
+  @override
+  String get mostExpensive => 'الأكثر سعراً';
+
+  @override
+  String get lessExpensive => 'الأقل سعراً';
+
+  @override
+  String get biggest => 'الأكبر مساحةً';
+
+  @override
+  String get smallest => 'الأصغر مساحةً';
+
+  @override
+  String get theFiltering => 'الفلترة';
+
+  @override
+  String get more => 'أكثر';
+
+  @override
+  String get all => 'الكل';
 }

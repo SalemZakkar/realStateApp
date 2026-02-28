@@ -167,5 +167,12 @@
   "continueAsGuest" : "متابعة كضيف",
   "confirmation" : "تأكيد",
   "areUSureYouWillLogout" : "هل أنت متأكد انك تريد تسجيل الخروج ؟",
-  "info" : "معلومات"
+  "info" : "معلومات",
+  "mostExpensive" : "الأكثر سعراً",
+  "lessExpensive" : "الأقل سعراً",
+  "biggest" : "الأكبر مساحةً",
+  "smallest" : "الأصغر مساحةً",
+  "theFiltering" : "الفلترة",
+  "more" : "أكثر",
+  "all" : "الكل"
 }

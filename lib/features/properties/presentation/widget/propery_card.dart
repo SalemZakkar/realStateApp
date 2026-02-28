@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
+import 'package:real_state/features/core/presentation/widget/status_card.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
 import '../../../../generated/generated_assets/assets.gen.dart';
@@ -65,11 +66,7 @@ class _PropertyCardState extends State<PropertyCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconText(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            icon: Icon(Icons.tag),
-                            text: widget.realEstate.refNumber,
-                          ),
+                          StatusCard(color: Theme.of(context).primaryColor, title: 'title'),
                           16.height(),
                           IconText(
                             crossAxisAlignment: CrossAxisAlignment.start,

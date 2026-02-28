@@ -1112,6 +1112,48 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'معلومات'**
   String get info;
+
+  /// No description provided for @mostExpensive.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأكثر سعراً'**
+  String get mostExpensive;
+
+  /// No description provided for @lessExpensive.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأقل سعراً'**
+  String get lessExpensive;
+
+  /// No description provided for @biggest.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأكبر مساحةً'**
+  String get biggest;
+
+  /// No description provided for @smallest.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأصغر مساحةً'**
+  String get smallest;
+
+  /// No description provided for @theFiltering.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفلترة'**
+  String get theFiltering;
+
+  /// No description provided for @more.
+  ///
+  /// In ar, this message translates to:
+  /// **'أكثر'**
+  String get more;
+
+  /// No description provided for @all.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكل'**
+  String get all;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

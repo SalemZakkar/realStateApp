@@ -24,6 +24,13 @@
     "continueAsGuest",
     "confirmation",
     "areUSureYouWillLogout",
-    "info"
+    "info",
+    "mostExpensive",
+    "lessExpensive",
+    "biggest",
+    "smallest",
+    "theFiltering",
+    "more",
+    "all"
   ]
 }
