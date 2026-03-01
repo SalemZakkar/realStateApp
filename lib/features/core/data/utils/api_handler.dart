@@ -1,5 +1,4 @@
 import 'package:core_package/core_package.dart';
-import 'package:logger/logger.dart';
 import 'package:real_state/features/core/domain/entity/errors.dart';
 
 typedef FutureEitherFailureOrData<T> = Future<Either<Failure, T>> Function();

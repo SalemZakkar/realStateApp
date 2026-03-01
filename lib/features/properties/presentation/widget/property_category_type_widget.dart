@@ -25,7 +25,7 @@ class _PropertyCategoryTypeWidgetState
           return context.appColorSchema.statusColors.success;
         }
         if (widget.property.category == PropertyCategory.rent) {
-          return Theme.of(context).primaryColor;
+          return Colors.blue;
         }
         return context.appColorSchema.statusColors.fail;
       }.call(),

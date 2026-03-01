@@ -41,26 +41,31 @@ class $AssetsFontGen {
   /// File path: assets/font/Cairo-SemiBold.ttf
   String get cairoSemiBold => 'assets/font/Cairo-SemiBold.ttf';
 
-  /// File path: assets/font/Manrope-Bold.ttf
-  String get manropeBold => 'assets/font/Manrope-Bold.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-Bold.ttf
+  String get iBMPlexSansArabicBold => 'assets/font/IBMPlexSansArabic-Bold.ttf';
 
-  /// File path: assets/font/Manrope-ExtraBold.ttf
-  String get manropeExtraBold => 'assets/font/Manrope-ExtraBold.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-ExtraLight.ttf
+  String get iBMPlexSansArabicExtraLight =>
+      'assets/font/IBMPlexSansArabic-ExtraLight.ttf';
 
-  /// File path: assets/font/Manrope-ExtraLight.ttf
-  String get manropeExtraLight => 'assets/font/Manrope-ExtraLight.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-Light.ttf
+  String get iBMPlexSansArabicLight =>
+      'assets/font/IBMPlexSansArabic-Light.ttf';
 
-  /// File path: assets/font/Manrope-Light.ttf
-  String get manropeLight => 'assets/font/Manrope-Light.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-Medium.ttf
+  String get iBMPlexSansArabicMedium =>
+      'assets/font/IBMPlexSansArabic-Medium.ttf';
 
-  /// File path: assets/font/Manrope-Medium.ttf
-  String get manropeMedium => 'assets/font/Manrope-Medium.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-Regular.ttf
+  String get iBMPlexSansArabicRegular =>
+      'assets/font/IBMPlexSansArabic-Regular.ttf';
 
-  /// File path: assets/font/Manrope-Regular.ttf
-  String get manropeRegular => 'assets/font/Manrope-Regular.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-SemiBold.ttf
+  String get iBMPlexSansArabicSemiBold =>
+      'assets/font/IBMPlexSansArabic-SemiBold.ttf';
 
-  /// File path: assets/font/Manrope-SemiBold.ttf
-  String get manropeSemiBold => 'assets/font/Manrope-SemiBold.ttf';
+  /// File path: assets/font/IBMPlexSansArabic-Thin.ttf
+  String get iBMPlexSansArabicThin => 'assets/font/IBMPlexSansArabic-Thin.ttf';
 
   /// File path: assets/font/calibri.ttf
   String get calibri => 'assets/font/calibri.ttf';
@@ -75,13 +80,13 @@ class $AssetsFontGen {
     cairoMedium,
     cairoRegular,
     cairoSemiBold,
-    manropeBold,
-    manropeExtraBold,
-    manropeExtraLight,
-    manropeLight,
-    manropeMedium,
-    manropeRegular,
-    manropeSemiBold,
+    iBMPlexSansArabicBold,
+    iBMPlexSansArabicExtraLight,
+    iBMPlexSansArabicLight,
+    iBMPlexSansArabicMedium,
+    iBMPlexSansArabicRegular,
+    iBMPlexSansArabicSemiBold,
+    iBMPlexSansArabicThin,
     calibri,
   ];
 }

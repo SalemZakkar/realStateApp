@@ -14,6 +14,6 @@ class FontFamily {
   /// Font family: Cairo
   static const String cairo = 'Cairo';
 
-  /// Font family: Manrope
-  static const String manrope = 'Manrope';
+  /// Font family: ibm
+  static const String ibm = 'ibm';
 }

@@ -5,6 +5,7 @@ import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/contact_us_phone_buttons.dart';
+import 'package:real_state/features/core/presentation/widget/video_player_widget.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/page/property_images_page.dart';
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
@@ -21,6 +22,20 @@ class PropertyViewWidget extends StatefulWidget {
 }
 
 class _PropertyViewWidgetState extends State<PropertyViewWidget> {
+  // Create a [VideoController] to handle video output from [Player].
+
+  @override
+  void initState() {
+    // player.open(Media('https://download.samplelib.com/mp4/sample-5s.mp4') , play: false);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // player.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +50,29 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
               // backgroundColor: Theme.of(context).cardColor,
               pinned: true,
               leadingWidth: 60,
+              actions: [
+                if (widget.realEstate.images.isNotEmpty == true) ...[
+                  InkWellWithoutFeedback(
+                    onTap: () {
+                      context.push(
+                        PropertyImagesPage.path,
+                        extra: widget.realEstate,
+                      );
+                    },
+                    child: Container(
+                      width: 46,
+                      height: 46,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: context.appColorSchema.shapeColors.cardColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Assets.icons.expand.dynamicSVGColor(context),
+                    ),
+                  ),
+                  8.width(),
+                ],
+              ],
               leading: InkWellWithoutFeedback(
                 onTap: () {
                   context.pop();
@@ -256,7 +294,11 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                         ],
                       ),
                     ),
-                    // HeaderText(title: context.translation.location),
+                    if (widget.realEstate.video != null)
+                      VideoPlayerWidget(
+                        size: Size(MediaQuery.of(context).size.width, 300),
+                        url: widget.realEstate.video!.getUrl!,
+                      ),
                     MapWidget(
                       ignore: true,
                       withExpand: true,

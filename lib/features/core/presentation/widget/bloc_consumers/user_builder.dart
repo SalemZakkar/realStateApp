@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 
 import '../../../../../injection.dart';

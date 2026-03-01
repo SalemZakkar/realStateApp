@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

@@ -29,7 +29,10 @@ class _AboutUsPageState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.translation.aboutUs), centerTitle: true),
+      appBar: AppBar(
+        title: Text(context.translation.aboutUs),
+        centerTitle: true,
+      ),
       body: Container(
         constraints: const BoxConstraints.expand(),
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -40,12 +43,28 @@ class _AboutUsPageState extends State<AboutUsPage> {
               child: Column(
                 children: [
                   Theme.of(context).brightness == Brightness.dark
-                      ? Assets.images.icLauncherDark.image(width: 200)
-                      : Assets.images.icLauncher.image(width: 200),
+                      ? Assets.images.icLauncherDark.image(width: 130)
+                      : Assets.images.icLauncher.image(width: 130),
                   if (data.description != null) ...[
                     Text(data.description ?? '', textAlign: TextAlign.center),
                     16.height(),
                   ],
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Column(
+                      children: [
+                        for (var e in data.phones) ...[
+                          TileButton(
+                            title: e,
+                            trailing: ContactUsPhoneButtons(phone: e),
+                            textDirection: TextDirection.ltr,
+                            textAlign: TextAlign.end,
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                  16.height(),
                   ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(12),
                     child: Column(
@@ -99,22 +118,6 @@ class _AboutUsPageState extends State<AboutUsPage> {
                             title: context.translation.termsAndConditions,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  16.height(),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Column(
-                      children: [
-                        for (var e in data.phones) ...[
-                          TileButton(
-                            title: e,
-                            trailing: ContactUsPhoneButtons(phone: e),
-                            textDirection: TextDirection.ltr,
-                            textAlign: TextAlign.end,
-                          ),
-                        ],
                       ],
                     ),
                   ),

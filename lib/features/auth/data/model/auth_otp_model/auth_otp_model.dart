@@ -1,6 +1,6 @@
+import 'package:core_package/core_package.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:real_state/features/auth/domain/entity/auth_otp.dart';
-import 'package:real_state/features/core/data/utils/custom_non_nullable_date_converter.dart';
 
 part 'auth_otp_model.g.dart';
 

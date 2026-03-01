@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/data/model/about_us_model/about_us_model.dart';
 import 'package:real_state/features/core/data/model/base_response/base_response.dart';

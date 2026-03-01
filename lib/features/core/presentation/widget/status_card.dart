@@ -22,12 +22,12 @@ class _StatusCardState extends State<StatusCard> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        color: widget.color.withValues(alpha: 0.15),
+        color: widget.color.withValues(alpha: 0.05),
       ),
       padding: widget.padding,
       child: Text(
         widget.title,
-        style: TextStyle(color: widget.color, fontWeight: FontWeight.w600),
+        style: TextStyle(color: widget.color, fontWeight: FontWeight.bold),
       ),
     );
   }

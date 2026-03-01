@@ -1,5 +1,5 @@
 
-import 'package:dio/dio.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/auth/data/source/auth_local_source/auth_local_source.dart';
 import 'package:real_state/features/auth/domain/repository/auth_repository.dart';

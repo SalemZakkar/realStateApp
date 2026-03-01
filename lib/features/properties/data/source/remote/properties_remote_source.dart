@@ -1,9 +1,9 @@
+import 'package:core_package/core_package.dart';
 import 'package:real_state/configuration.dart';
 import 'package:real_state/features/core/data/model/base_response/base_response.dart';
 import 'package:real_state/features/properties/data/model/property_get_params_model/property_get_params_model.dart';
 import 'package:real_state/features/properties/data/model/property_model/property_model.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 part 'properties_remote_source.g.dart';

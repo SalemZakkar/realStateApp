@@ -115,7 +115,8 @@
   "myProperties": "عقاراتي",
   "propertiesMap": "خريطة العقارات",
   "propertiesList": "قائمة العقارات",
-  "featured": "مميز",
+  "featured": "مميزة",
+  "theFeatured": "المميزة",
   "fastAccess": "وصول سريع",
   "addNewProperty": "إضافة عقار جديد",
   "title": "العنوان",
@@ -176,5 +177,8 @@
   "more" : "أكثر",
   "all" : "الكل",
   "sellBuySwap" : "بيع/شراء/مبادلة",
-  "whoAreWe" : "من نحن ؟"
+  "whoAreWe" : "من نحن ؟",
+  "postYourProperty" : "انشر عقارك",
+  "doUHaveQuestions" : "هل لديك استفسارات ؟",
+  "issueWhenLoadingVideo" : "خطأ في تحميل الفيديو"
 }

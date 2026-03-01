@@ -1,6 +1,5 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
@@ -50,6 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         return Column(
                           children: [
                             ImageWidget(
+                              editIconSize: 26,
                               placeHolder: Assets.images.profilePlaceholder
                                   .image(),
                               width: MediaQuery.of(context).size.width,
@@ -203,7 +203,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           color: Theme.of(context).primaryColor,
                                         ),
                                         title:
-                                            context.translation.addNewProperty,
+                                            context.translation.postYourProperty,
                                         trailing: Icon(
                                           Icons.arrow_forward_ios_outlined,
 
@@ -213,32 +213,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                            16.height(),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Column(
-                                children: [
-                                  InkWellWithoutFeedback(
-                                    onTap: () {
-                                      context.push(LegalPage.path, extra: 0);
-                                    },
-                                    child: TileButton(
-                                      title: context.translation.privacyPolicy,
-                                    ),
-                                  ),
-                                  InkWellWithoutFeedback(
-                                    onTap: () {
-                                      context.push(LegalPage.path, extra: 1);
-                                    },
-                                    child: TileButton(
-                                      title: context
-                                          .translation
-                                          .termsAndConditions,
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
                             16.height(),

@@ -38,6 +38,7 @@ PropertyModel _$PropertyModelFromJson(Map json) => PropertyModel(
   coordinates: LocationModel.fromJson(
     Map<String, dynamic>.from(json['coordinates'] as Map),
   ),
+  video: json['video'] as String?,
 );
 
 const _$PropertyTypeEnumMap = {

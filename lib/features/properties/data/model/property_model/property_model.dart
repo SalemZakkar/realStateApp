@@ -16,6 +16,7 @@ class PropertyModel {
   @JsonKey(defaultValue: [])
   final List<String> images;
   final String? cover;
+  final String? video;
   final String? neighborhood;
   final int size;
   final int room;
@@ -56,6 +57,7 @@ class PropertyModel {
     this.address,
     required this.owner,
     required this.coordinates,
+    this.video,
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
@@ -86,5 +88,6 @@ extension MapToDomain on PropertyModel {
     notes: notes,
     propertyAge: propertyAge,
     rejectReason: rejectReason,
+    video: video,
   );
 }

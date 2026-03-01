@@ -11,6 +11,7 @@ class Property {
   final City city;
   final List<String> images;
   final String? cover;
+  final String? video;
   final String? neighborhood;
   final int size;
   final int room;
@@ -51,6 +52,7 @@ class Property {
     this.address,
     required this.owner,
     required this.coordinates,
+    this.video,
   });
 }
 

@@ -9,10 +9,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i361;
+import 'package:core_package/core_package.dart' as _i996;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:logger/logger.dart' as _i974;
 import 'package:real_state/configuration.dart' as _i270;
 import 'package:real_state/features/ad_banner/data/repository/ad_banner_repo_impl.dart'
     as _i579;
@@ -50,6 +49,8 @@ import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
+import 'package:real_state/features/core/presentation/cubit/video_cubit.dart'
+    as _i432;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
     as _i976;
 import 'package:real_state/features/properties/data/repository/property_repo_impl.dart'
@@ -73,49 +74,57 @@ import 'package:real_state/features/user/presentation/cubit/user_get_mine_cubit.
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart'
     as _i16;
 import 'package:real_state/injectable_module.dart' as _i162;
-import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i174.GetIt> init({
+  _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) async {
+  }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final injectableModule = _$InjectableModule();
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
+    gh.factory<_i432.VideoCubit>(() => _i432.VideoCubit());
     gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());
-    await gh.lazySingletonAsync<_i460.SharedPreferences>(
-      () => injectableModule.sharedPref,
-      preResolve: true,
-    );
-    gh.lazySingleton<_i361.Dio>(() => injectableModule.dioInstance);
-    gh.lazySingleton<_i974.Logger>(() => injectableModule.logger);
+    gh.lazySingleton<_i996.Dio>(() => injectableModule.dioInstance);
+    gh.lazySingleton<_i996.Logger>(() => injectableModule.logger);
     gh.lazySingleton<_i270.Configuration>(() => _i270.DevConfiguration());
+    gh.factory<_i31.AuthRemoteSource>(
+      () => _i31.AuthRemoteImpl(gh<_i996.Dio>(), gh<_i270.Configuration>()),
+    );
+    gh.factory<_i797.UserRemoteSource>(
+      () => _i797.UserRemoteSourceImpl(
+        gh<_i996.Dio>(),
+        gh<_i270.Configuration>(),
+      ),
+    );
     gh.singleton<_i976.FileManager>(
       () => _i976.FileManager(gh<_i270.Configuration>()),
     );
     gh.factory<_i910.CoreRemoteSource>(
       () => _i910.CoreRemoteSourceImpl(
-        gh<_i361.Dio>(),
+        gh<_i996.Dio>(),
         gh<_i270.Configuration>(),
       ),
     );
-    gh.factory<_i31.AuthRemoteSource>(
-      () => _i31.AuthRemoteImpl(gh<_i361.Dio>(), gh<_i270.Configuration>()),
+    gh.singleton<_i676.CoreRepository>(
+      () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
     );
-    gh.factory<_i797.UserRemoteSource>(
-      () => _i797.UserRemoteSourceImpl(
-        gh<_i361.Dio>(),
-        gh<_i270.Configuration>(),
-      ),
+    gh.lazySingleton<_i305.CityCubit>(
+      () => _i305.CityCubit(gh<_i676.CoreRepository>()),
+    );
+    gh.lazySingleton<_i672.AboutUsCubit>(
+      () => _i672.AboutUsCubit(gh<_i676.CoreRepository>()),
     );
     gh.factory<_i534.AdBannerRemoteSource>(
       () => _i534.AdBannerRemoteSourceImpl(
-        gh<_i361.Dio>(),
+        gh<_i996.Dio>(),
         gh<_i270.Configuration>(),
       ),
+    );
+    gh.factory<_i140.UserRepository>(
+      () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
     );
     gh.factory<_i593.AdBannerRepository>(
       () => _i579.AdBannerRepoImpl(gh<_i534.AdBannerRemoteSource>()),
@@ -128,24 +137,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i422.PropertiesRemoteSource>(
       () => _i422.PropertiesRemoteSourceImpl(
-        gh<_i361.Dio>(),
+        gh<_i996.Dio>(),
         gh<_i270.Configuration>(),
       ),
     );
     gh.singleton<_i986.PropertiesRepository>(
       () => _i50.PropertiesRepoImpl(gh<_i422.PropertiesRemoteSource>()),
-    );
-    gh.singleton<_i676.CoreRepository>(
-      () => _i1031.CoreRepoImpl(gh<_i910.CoreRemoteSource>()),
-    );
-    gh.lazySingleton<_i305.CityCubit>(
-      () => _i305.CityCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.lazySingleton<_i672.AboutUsCubit>(
-      () => _i672.AboutUsCubit(gh<_i676.CoreRepository>()),
-    );
-    gh.factory<_i140.UserRepository>(
-      () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
     );
     gh.factory<_i17.PropertiesDetailsCubit>(
       () => _i17.PropertiesDetailsCubit(gh<_i986.PropertiesRepository>()),

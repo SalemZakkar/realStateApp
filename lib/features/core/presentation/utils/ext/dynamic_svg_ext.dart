@@ -1,5 +1,5 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 extension DynamicSVGImageColor on String {

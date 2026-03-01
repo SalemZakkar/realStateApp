@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/configuration.dart';
 import 'package:real_state/features/ad_banner/data/models/ad_banner_model/ad_banner_model.dart';

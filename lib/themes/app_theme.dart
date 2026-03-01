@@ -8,7 +8,7 @@ class AppTheme {
 
   ThemeData getThemeData() => ThemeData(
     useMaterial3: true,
-    fontFamily: 'cairo',
+    fontFamily: 'ibm',
     brightness: _schema.brightness,
     actionIconTheme: ActionIconThemeData(
       backButtonIconBuilder: (context) => const Icon(Icons.arrow_back_ios_new),
@@ -16,7 +16,8 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: _schema.shapeColors.appBar,
       toolbarHeight: 80,
-      centerTitle: false,
+      centerTitle: true,
+      scrolledUnderElevation: 0,
 
       // backgroundColor: _schema.shapeColors.appBar,
     ),
@@ -185,7 +186,7 @@ class AppTheme {
         padding: EdgeInsets.all(8),
         disabledBackgroundColor: Colors.grey,
         textStyle: TextStyle(
-          fontFamily: 'cairo',
+          fontFamily: 'ibm',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
@@ -202,7 +203,7 @@ class AppTheme {
         padding: EdgeInsets.all(8),
         disabledBackgroundColor: Colors.grey,
         textStyle: TextStyle(
-          fontFamily: 'cairo',
+          fontFamily: 'ibm',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
@@ -213,7 +214,7 @@ class AppTheme {
       titleTextStyle: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 16,
-        fontFamily: 'cairo',
+        fontFamily: 'ibm',
         color: _schema.textColors.primaryText,
       ),
     ),
@@ -223,15 +224,13 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        textStyle: TextStyle(fontSize: 16, fontFamily: 'cairo'),
+        textStyle: TextStyle(fontSize: 16, fontFamily: 'ibm'),
       ),
     ),
     dialogTheme: DialogThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-      ),
-      insetPadding: EdgeInsets.symmetric(horizontal: 16)
-    )
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+      insetPadding: EdgeInsets.symmetric(horizontal: 16),
+    ),
   );
 }
 

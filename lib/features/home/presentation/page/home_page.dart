@@ -1,9 +1,12 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/ad_banner/presentation/widget/ad_banner_widget.dart';
-import 'package:real_state/features/core/presentation/page/about_us_page.dart';
-import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/home/presentation/widget/home_buttons_widget.dart';
+import 'package:real_state/features/properties/domain/entity/property.dart';
+import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart';
+import 'package:real_state/features/properties/presentation/widget/property_filter_widget.dart';
+import 'package:real_state/features/properties/presentation/widget/property_grid_card.dart';
+import 'package:real_state/injection.dart';
 
 class HomePage extends StatefulWidget {
   static const String path = "/homePage";
@@ -15,75 +18,78 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final featuredCubit = getIt<RealEstateGetListCubit>();
-  // final featuredParams = RealEstateGetParams(
-  //   skip: 0,
-  //   limit: 10,
-  //   isFeatured: true,
-  // );
+  final cubit = getIt<PropertiesGetListCubit>();
+  final params = PropertyGetParams(skip: 0, limit: 10);
+
+  ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Maison"), centerTitle: true),
       body: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 16),
         constraints: const BoxConstraints.expand(),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AdBannerWidget(),
-              16.height(),
-              InkWellWithoutFeedback(
-                onTap: () {
-                  context.push(AboutUsPage.path);
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  padding: EdgeInsets.all(16),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        context.translation.whoAreWe,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    16.height(),
-                    HomeButtonsWidget(),
+        child: CustomScrollView(
+          controller: controller,
+          slivers: [
+            SliverToBoxAdapter(child: AdBannerWidget()),
+            SliverAppBar(
 
-                    // 16.height(),
-                    // RealEstateGridWidget(
-                    //   params: featuredParams,
-                    //   cubit: featuredCubit,
-                    //   pageParams: RealEstateListPageParams.featured(context),
-                    //   title: context.translation.featured,
-                    // ),
-                    120.height(),
-                  ],
-                ),
+              floating: true,
+              pinned: true,
+              flexibleSpace: PropertyFilterWidget(
+                params: params,
+                onFilter: () {
+                  params.reset();
+                  cubit.get(params: params);
+                },
               ),
-            ],
-          ),
+            ),
+            SliverToBoxAdapter(child: 2.height(),),
+            SliverToBoxAdapter(
+              child: GridViewPaginationWidget<Property>(
+                paginationCubit: cubit,
+                shrinkWrap: true,
+                params: params,
+                controller: controller,
+                padding: EdgeInsets.only(bottom: 150, left: 16, right: 16),
+                delegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 300,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  mainAxisExtent: 310,
+                ),
+                emptyState: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: NoDataWidget(),
+                ),
+                loading: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  child: CircularProgressIndicator(),
+                ),
+                error: (v) {
+                  return Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                    child: ErrorView(
+                      failure: v,
+                      onRetry: () {
+                        cubit.get(params: params);
+                      },
+                    ),
+                  );
+                },
+                itemBuilder: (data) {
+                  return PropertyGridCard(property: data);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

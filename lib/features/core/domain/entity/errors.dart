@@ -28,8 +28,12 @@ class ServerError extends Failure {
 }
 
 class InternalError extends Failure {
+  String? message;
+
+  InternalError({this.message});
+
   @override
   String getError(BuildContext context) {
-    return CoreTranslations.of(context)!.errorMessage;
+    return message ?? CoreTranslations.of(context)!.errorMessage;
   }
 }

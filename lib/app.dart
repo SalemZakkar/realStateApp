@@ -1,7 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:core_package/generated/core_translation/core_translations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/entity/auth_state_type.dart';

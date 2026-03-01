@@ -798,8 +798,14 @@ abstract class Translations {
   /// No description provided for @featured.
   ///
   /// In ar, this message translates to:
-  /// **'مميز'**
+  /// **'مميزة'**
   String get featured;
+
+  /// No description provided for @theFeatured.
+  ///
+  /// In ar, this message translates to:
+  /// **'المميزة'**
+  String get theFeatured;
 
   /// No description provided for @fastAccess.
   ///
@@ -1166,6 +1172,24 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'من نحن ؟'**
   String get whoAreWe;
+
+  /// No description provided for @postYourProperty.
+  ///
+  /// In ar, this message translates to:
+  /// **'انشر عقارك'**
+  String get postYourProperty;
+
+  /// No description provided for @doUHaveQuestions.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل لديك استفسارات ؟'**
+  String get doUHaveQuestions;
+
+  /// No description provided for @issueWhenLoadingVideo.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ في تحميل الفيديو'**
+  String get issueWhenLoadingVideo;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

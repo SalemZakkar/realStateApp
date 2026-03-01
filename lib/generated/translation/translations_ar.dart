@@ -404,7 +404,10 @@ class TranslationsAr extends Translations {
   String get propertiesList => 'قائمة العقارات';
 
   @override
-  String get featured => 'مميز';
+  String get featured => 'مميزة';
+
+  @override
+  String get theFeatured => 'المميزة';
 
   @override
   String get fastAccess => 'وصول سريع';
@@ -605,4 +608,13 @@ class TranslationsAr extends Translations {
 
   @override
   String get whoAreWe => 'من نحن ؟';
+
+  @override
+  String get postYourProperty => 'انشر عقارك';
+
+  @override
+  String get doUHaveQuestions => 'هل لديك استفسارات ؟';
+
+  @override
+  String get issueWhenLoadingVideo => 'خطأ في تحميل الفيديو';
 }

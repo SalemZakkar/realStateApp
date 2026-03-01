@@ -1,5 +1,6 @@
 {
   "en": [
+    "theFeatured",
     "main",
     "property",
     "postStatus",
@@ -33,6 +34,9 @@
     "more",
     "all",
     "sellBuySwap",
-    "whoAreWe"
+    "whoAreWe",
+    "postYourProperty",
+    "doUHaveQuestions",
+    "issueWhenLoadingVideo"
   ]
 }

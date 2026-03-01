@@ -1,11 +1,13 @@
 import 'dart:ui';
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
+import 'package:real_state/features/core/presentation/page/about_us_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
-import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_map_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
+import 'package:real_state/routing/routes.dart';
 import 'package:real_state/themes/app_theme.dart';
 
 class BottomBar extends StatefulWidget {
@@ -19,7 +21,9 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 320),
+      constraints: BoxConstraints(
+        maxWidth: (48 * tabRoutes.length).toDouble() + 8 + 64,
+      ),
       height: 64,
       alignment: Alignment.center,
 
@@ -40,7 +44,7 @@ class _BottomBarState extends State<BottomBar> {
                     ? Theme.of(
                         context,
                       ).scaffoldBackgroundColor.withValues(alpha: 0.6)
-                    : Theme.of(context).primaryColor.withValues(alpha: 0.3),
+                    : Theme.of(context).primaryColor.withValues(alpha: 0.6),
               ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
@@ -56,16 +60,10 @@ class _BottomBarState extends State<BottomBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // _Button(
-                //   image: Assets.icons.compass,
-                //   path: RealEStateMapPage.path,
-                // ),
+                _Button(image: Assets.icons.maps, path: PropertyMapPage.path),
                 _Button(image: Assets.icons.home, path: HomePage.path),
-                _Button(
-                  image: Assets.icons.building,
-                  path: PropertyListPage.shell,
-                ),
                 _Button(image: Assets.icons.user, path: ProfilePage.path),
+                _Button(image: Assets.icons.info, path: AboutUsPage.path),
               ],
             ),
           ),

@@ -43,19 +43,19 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
 
         final maxScrollExtent = _scrollController.position.maxScrollExtent;
 
-        Future.delayed(Duration(milliseconds: 500)).then(
+        Future.delayed(Duration(milliseconds: 0)).then(
           (_) => _scrollController
               .animateTo(
                 maxScrollExtent,
-                duration: const Duration(milliseconds: 2000),
-                curve: Curves.linear,
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.linearToEaseOut,
               )
               .then((_) {
                 if (mounted && _scrollController.hasClients) {
                   _scrollController.animateTo(
                     0,
-                    duration: const Duration(milliseconds: 2000),
-                    curve: Curves.linear,
+                    duration: const Duration(milliseconds: 800),
+                    curve: Curves.linearToEaseOut,
                   );
                 }
               }),
@@ -66,15 +66,17 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
-      height: 100,
+      // height: 100,
+      alignment: Alignment.center,
       child: SingleChildScrollView(
         controller: _scrollController,
         padding: EdgeInsets.symmetric(horizontal: 16),
         scrollDirection: Axis.horizontal,
         child: Row(
           spacing: 16,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FilterChip(
               label: Text(context.translation.city),
@@ -94,7 +96,7 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
               selected: widget.params.city != null,
             ),
             FilterChip(
-              label: Text(context.translation.featured),
+              label: Text(context.translation.theFeatured),
               onSelected: (v) {
                 if (widget.params.isFeature != true) {
                   widget.params.isFeature = true;

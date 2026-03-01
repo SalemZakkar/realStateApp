@@ -15,6 +15,7 @@ import 'package:real_state/features/properties/domain/params/property_get_params
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_images_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_list_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_map_page.dart';
 import 'package:real_state/features/user/presentation/page/profile_page.dart';
 import 'package:real_state/features/user/presentation/page/user_blocked_page.dart';
 import 'package:real_state/features/user/presentation/page/user_complete_profile_page.dart';
@@ -35,16 +36,15 @@ class Routes {
       type: RouteType.shell,
       builder: (co, st, child) => MainPage(child: child!),
       routes: [
-        // RouteInfo(
-        //   useRootNavigator: false,
-        //   path: RealEStateMapPage.path,
-        //   builder: (context, state, child) => RealEStateMapPage(),
-        // ),
         RouteInfo(
           useRootNavigator: false,
-          path: PropertyListPage.shell,
-          builder: (context, state, child) =>
-              PropertyListPage(params: state.extra as PropertyGetParams?),
+          path: PropertyMapPage.path,
+          builder: (context, state, child) => PropertyMapPage(),
+        ),
+        RouteInfo(
+          builder: (context, state, child) => AboutUsPage(),
+          path: AboutUsPage.path,
+          useRootNavigator: false,
         ),
         RouteInfo(
           useRootNavigator: false,
@@ -105,11 +105,6 @@ class Routes {
           PropertyImagesPage(property: state.extra as Property),
       path: PropertyImagesPage.path,
     ),
-
-    RouteInfo(
-      path: AboutUsPage.path,
-      builder: (context, state, child) => AboutUsPage(),
-    ),
   ];
 }
 
@@ -134,9 +129,9 @@ extension R on BuildContext {
 }
 
 List<String> tabRoutes = [
-  PropertyListPage.shell,
-  // RealEStateMapPage.path,
+  // PropertyListPage.shell,
+  PropertyMapPage.path,
   ProfilePage.path,
-  // AboutUsPage.path,
+  AboutUsPage.path,
   HomePage.path,
 ];

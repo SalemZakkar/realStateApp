@@ -1,5 +1,4 @@
 import 'package:core_package/core_package.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/domain/entity/about_us.dart';
 import 'package:real_state/features/core/domain/repository/core_repository.dart';
