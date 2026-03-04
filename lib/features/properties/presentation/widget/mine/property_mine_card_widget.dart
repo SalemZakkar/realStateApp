@@ -1,0 +1,112 @@
+import 'package:core_package/core_package.dart';
+import 'package:flutter/material.dart';
+import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
+import 'package:real_state/features/core/presentation/utils/ext/num.dart';
+import 'package:real_state/features/core/presentation/utils/ext/string.dart';
+import 'package:real_state/features/properties/domain/entity/property.dart';
+import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
+import 'package:real_state/features/properties/presentation/widget/mine/property_status_badge_widget.dart';
+import 'package:real_state/generated/generated_assets/assets.gen.dart';
+
+class PropertyMineCardWidget extends StatefulWidget {
+  final Property property;
+
+  const PropertyMineCardWidget({super.key, required this.property});
+
+  @override
+  State<PropertyMineCardWidget> createState() => _PropertyMineCardWidgetState();
+}
+
+class _PropertyMineCardWidgetState extends State<PropertyMineCardWidget> {
+  @override
+  Widget build(BuildContext context) {
+    double h = 120;
+    return InkWellWithoutFeedback(
+      onTap: () {
+        context.pushNamed(PropertyDetailsPage.path, extra: widget.property.id);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(6),
+        ),
+        padding: EdgeInsets.all(8),
+        constraints: BoxConstraints(minHeight: h),
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ImageWidget(
+              borderRadius: BorderRadius.circular(4),
+              width: h,
+              height: h,
+              placeHolder: Align(
+                alignment: AlignmentGeometry.center,
+                child: Assets.icons.building.dynamicSVGColor(
+                  context,
+                  width: 32,
+                  height: 32,
+                ),
+              ),
+              url: widget.property.cover?.getUrl,
+            ),
+            8.width(),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      constraints: BoxConstraints(minHeight: h),
+                      // padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: IconText(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  icon: Icon(
+                                    Icons.tag,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  text: widget.property.refNumber,
+                                ),
+                              ),
+                              PropertyStatusBadgeWidget(
+                                status: widget.property.status,
+                              ),
+                            ],
+                          ),
+                          IconText(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            icon: Assets.icons.maps.dynamicSVGColor(
+                              context,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            text: widget.property.city.name,
+                          ),
+                          IconText(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            icon: Assets.icons.dollar.dynamicSVGColor(
+                              context,
+
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            text: widget.property.price.formatPrice(context),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

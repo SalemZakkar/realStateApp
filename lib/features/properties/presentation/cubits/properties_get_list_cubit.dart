@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
@@ -7,10 +9,32 @@ import 'package:real_state/features/properties/domain/repository/property_reposi
 @injectable
 class PropertiesGetListCubit
     extends PaginationCubit<Property, PropertyGetParams> {
-  PropertiesGetListCubit(this.repository) : super(BasePaginatedListState());
+  PropertiesGetListCubit(this.repository) : super(BasePaginatedListState()) {
+    streamSubscription = repository.newPropertyStream.listen((v) {
+      int index = state.items.indexWhere((e) => e.id == v.id);
+      if (index != -1) {
+        state.items[index] = v;
+        emit(state.copyWith(items: state.items));
+      } else {
+        emit(state.copyWith(items: [v, ...state.items]));
+      }
+    });
+    streamSubscription2 = repository.deletedPropertyStream.listen((v) {
+      int index = state.items.indexWhere((e) => e.id == v);
+      if (index > -1) {
+        emit(
+          state.copyWith(items: state.items.where((e) => e.id != v).toList()),
+        );
+      }
+    });
+  }
+
   PropertiesRepository repository;
 
   late PropertyGetParams params;
+
+  StreamSubscription? streamSubscription;
+  StreamSubscription? streamSubscription2;
 
   @override
   void get({PropertyGetParams? params}) async {
@@ -49,5 +73,12 @@ class PropertiesGetListCubit
         );
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await streamSubscription?.cancel();
+    await streamSubscription2?.cancel();
+    return super.close();
   }
 }

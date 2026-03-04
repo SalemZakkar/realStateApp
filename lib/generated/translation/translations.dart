@@ -528,7 +528,7 @@ abstract class Translations {
   /// No description provided for @realEstateStatusE.
   ///
   /// In ar, this message translates to:
-  /// **'{status, select, rented{مؤجر} sold{مباع} available{متاح} other{غير معروف}}'**
+  /// **'{status, select, active{فعال} unactive {غير فعال} pending {في المراجعة}  rejected{مرفوض} unCompleted{غير مكتمل} other{غير معروف}}'**
   String realEstateStatusE(String status);
 
   /// No description provided for @category.
@@ -840,7 +840,7 @@ abstract class Translations {
   /// No description provided for @size.
   ///
   /// In ar, this message translates to:
-  /// **'الحجم'**
+  /// **'المساحة'**
   String get size;
 
   /// No description provided for @bathroom.
@@ -1161,11 +1161,11 @@ abstract class Translations {
   /// **'الكل'**
   String get all;
 
-  /// No description provided for @sellBuySwap.
+  /// No description provided for @buyRentSwap.
   ///
   /// In ar, this message translates to:
-  /// **'بيع/شراء/مبادلة'**
-  String get sellBuySwap;
+  /// **'شراء/آجار/مبادلة'**
+  String get buyRentSwap;
 
   /// No description provided for @whoAreWe.
   ///
@@ -1190,6 +1190,162 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'خطأ في تحميل الفيديو'**
   String get issueWhenLoadingVideo;
+
+  /// No description provided for @theStocks.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأسهم'**
+  String get theStocks;
+
+  /// No description provided for @pressHereToSelectLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط عنا لتحديد العنوان'**
+  String get pressHereToSelectLocation;
+
+  /// No description provided for @pressHereToChangeLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط هنا لتغيير العنوان'**
+  String get pressHereToChangeLocation;
+
+  /// No description provided for @pressOnThePlaceYouWantToSetYourPropertyLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط في المكان الذي تريده لتحديد موقع عقارك'**
+  String get pressOnThePlaceYouWantToSetYourPropertyLocation;
+
+  /// No description provided for @editImages.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل الصور'**
+  String get editImages;
+
+  /// No description provided for @youHaveToAddImages.
+  ///
+  /// In ar, this message translates to:
+  /// **'يجب اضافة صور'**
+  String get youHaveToAddImages;
+
+  /// No description provided for @addImages.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة صور'**
+  String get addImages;
+
+  /// No description provided for @addVideo.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة فيديو'**
+  String get addVideo;
+
+  /// No description provided for @changeVideo.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير الفيديو'**
+  String get changeVideo;
+
+  /// No description provided for @deleteVideo.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف الفيديو'**
+  String get deleteVideo;
+
+  /// No description provided for @dataIsUnCompletedYouShouldAddImagesToContinue.
+  ///
+  /// In ar, this message translates to:
+  /// **'البيانات غير مكتملة يجب اضافة صورة على الاقل للمتابعة'**
+  String get dataIsUnCompletedYouShouldAddImagesToContinue;
+
+  /// No description provided for @thePostIsCurrentlyInReviewPleaseWaitForAccepting.
+  ///
+  /// In ar, this message translates to:
+  /// **'المنشور في حالة مراجعة يرجى الانتظار حتى يتم قبول المنشور'**
+  String get thePostIsCurrentlyInReviewPleaseWaitForAccepting;
+
+  /// No description provided for @postIsRejectedPleaseContactUsIfYouWantMoreInformation.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم رفض المنشور يرجي التواصل معنا اذا اردت معلومات اضافية'**
+  String get postIsRejectedPleaseContactUsIfYouWantMoreInformation;
+
+  /// No description provided for @postIsActiveAndVisibleToAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'المنشور فعال ويظهر للجميع'**
+  String get postIsActiveAndVisibleToAll;
+
+  /// No description provided for @postIsUnActivatedAndNotVisibleToAnyOne.
+  ///
+  /// In ar, this message translates to:
+  /// **'المنشور غير مفعل ومخفي عن الجميع'**
+  String get postIsUnActivatedAndNotVisibleToAnyOne;
+
+  /// No description provided for @activate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفعيل'**
+  String get activate;
+
+  /// No description provided for @unActivate.
+  ///
+  /// In ar, this message translates to:
+  /// **'الغاء تفعيل'**
+  String get unActivate;
+
+  /// No description provided for @deletePostQuestion.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل تريد حذف المنشور ؟'**
+  String get deletePostQuestion;
+
+  /// No description provided for @deleteVideoQuestion.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل تريد حذف الفيديو ؟'**
+  String get deleteVideoQuestion;
+
+  /// No description provided for @sendToReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارسال للمراجعة'**
+  String get sendToReview;
+
+  /// No description provided for @doUWantToDeActivateThePost.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل تريد الغاء تفعيل المنشور ؟'**
+  String get doUWantToDeActivateThePost;
+
+  /// No description provided for @doUWantToActivateThePost.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل تريد تفعيل المنشور ؟'**
+  String get doUWantToActivateThePost;
+
+  /// No description provided for @areUSure.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد؟'**
+  String get areUSure;
+
+  /// No description provided for @postIsReadyToSendToReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'المنشور جاهز للمراجعة'**
+  String get postIsReadyToSendToReview;
+
+  /// No description provided for @sendPostToReviewQ.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارسال المنشور للمراجعة ؟'**
+  String get sendPostToReviewQ;
+
+  /// No description provided for @youCanAddUpTo6Images.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك إضافة حتى 6 صور'**
+  String get youCanAddUpTo6Images;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

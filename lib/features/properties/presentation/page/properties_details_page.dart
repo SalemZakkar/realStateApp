@@ -2,6 +2,7 @@ import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/properties/presentation/cubits/properties_details_cubit.dart';
+import 'package:real_state/features/properties/presentation/widget/mine/property_view_user_widget.dart';
 import 'package:real_state/features/properties/presentation/widget/property_view_widget.dart';
 import 'package:real_state/injection.dart';
 
@@ -35,7 +36,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
             child: UserBuilder(
               builder: (context, user) {
                 if (user.id == state.owner.id) {
-                  return PropertyViewWidget(realEstate: state);
+                  return PropertyViewUserWidget(realEstate: state);
                 }
                 return PropertyViewWidget(realEstate: state);
               },

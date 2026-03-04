@@ -175,7 +175,7 @@ class _PropertyFilterWidgetState extends State<PropertyFilterWidget> {
               selected: widget.params.category,
               height: 230,
               equal: (a, b) => a == b,
-              title: context.translation.sellBuySwap,
+              title: context.translation.buyRentSwap,
               data: PropertyCategory.values,
             ),
             FilterDialog<PropertyDeedType>(

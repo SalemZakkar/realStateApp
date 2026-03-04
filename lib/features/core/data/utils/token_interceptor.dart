@@ -25,7 +25,7 @@ class TokenInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.data['message'] == "UnAuthenticated") {
+    if (err.response?.data['code'] == "UNAUTHENTICATED") {
       var oldToken = await getIt<AuthLocalSource>().getToken();
       if (oldToken == null) {
         return handler.next(err);
@@ -48,8 +48,8 @@ class TokenInterceptor extends Interceptor {
         return handler.next(err);
       }
     }
-    if (err.response?.data['message'] == 'Refresh Token Expired' ||
-        err.response?.data['message'] == 'Invalid Token') {
+    if (err.response?.data['code'] == 'JWT_TOKEN_EXPIRED' ||
+        err.response?.data['code'] == 'INVALID_JWT_TOKEN') {
       getIt<AuthRepository>().logout();
     }
     return handler.next(err);

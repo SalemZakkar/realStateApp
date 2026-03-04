@@ -63,6 +63,14 @@ import 'package:real_state/features/properties/presentation/cubits/properties_de
     as _i17;
 import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart'
     as _i865;
+import 'package:real_state/features/properties/presentation/cubits/property_add_edit_cubit.dart'
+    as _i640;
+import 'package:real_state/features/properties/presentation/cubits/property_delete_cubit.dart'
+    as _i488;
+import 'package:real_state/features/properties/presentation/cubits/property_file_cubit.dart'
+    as _i617;
+import 'package:real_state/features/properties/presentation/cubits/property_status_cubit.dart'
+    as _i466;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
     as _i905;
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart'
@@ -149,6 +157,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i865.PropertiesGetListCubit>(
       () => _i865.PropertiesGetListCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i640.PropertyAddEditCubit>(
+      () => _i640.PropertyAddEditCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i617.PropertyFileCubit>(
+      () => _i617.PropertyFileCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i466.PropertyStatusCubit>(
+      () => _i466.PropertyStatusCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i488.PropertyDeleteCubit>(
+      () => _i488.PropertyDeleteCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.singleton<_i422.AdBannerCubit>(
       () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),

@@ -24,6 +24,7 @@ class AppTheme {
     // progressIndicatorTheme: ProgressIndicatorThemeData(
     //   circularTrackColor: _schema.primaryColor,
     // ),
+
     primaryColor: _schema.primaryColor,
     scaffoldBackgroundColor: _schema.shapeColors.backgroundColor,
     bottomAppBarTheme: BottomAppBarThemeData(color: _schema.shapeColors.navBar),
@@ -130,6 +131,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       seedColor: _schema.primaryColor,
       brightness: _schema.brightness,
+      error: _schema.statusColors.fail
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

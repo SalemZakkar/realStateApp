@@ -63,7 +63,7 @@ class _BottomBarState extends State<BottomBar> {
                 _Button(image: Assets.icons.maps, path: PropertyMapPage.path),
                 _Button(image: Assets.icons.home, path: HomePage.path),
                 _Button(image: Assets.icons.user, path: ProfilePage.path),
-                _Button(image: Assets.icons.info, path: AboutUsPage.path),
+                _Button(image: Assets.icons.info, path: AboutUsPage.shell),
               ],
             ),
           ),

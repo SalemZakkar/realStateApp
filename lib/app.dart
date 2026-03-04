@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/domain/entity/auth_state_type.dart';
+import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/user/presentation/page/user_complete_profile_page.dart';
 import 'package:real_state/injection.dart';
@@ -25,6 +26,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    ScreenLoader.setDialogProvider(MainScreenLoaderDialogProvider());
     WidgetsBinding.instance.addPostFrameCallback((e) {
       getIt<AuthCubit>().init();
     });
@@ -41,7 +43,7 @@ class _AppState extends State<App> {
           BlocListener<AuthCubit, AuthState>(
             bloc: authCubit,
             listener: (context, state) {
-              if(!state.withPush){
+              if (!state.withPush) {
                 return;
               }
               if (state.authState == AuthStateType.unActivated) {

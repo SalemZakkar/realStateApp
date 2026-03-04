@@ -33,6 +33,7 @@ class PropertyModel {
   final String? address;
   final UserModel owner;
   final LocationModel coordinates;
+  final int stocks;
 
   PropertyModel({
     required this.id,
@@ -58,6 +59,7 @@ class PropertyModel {
     required this.owner,
     required this.coordinates,
     this.video,
+    required this.stocks,
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
@@ -89,5 +91,6 @@ extension MapToDomain on PropertyModel {
     propertyAge: propertyAge,
     rejectReason: rejectReason,
     video: video,
+    stocks: stocks,
   );
 }

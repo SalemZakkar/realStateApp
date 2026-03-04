@@ -10,7 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../injection.dart';
 
 class AboutUsPage extends StatefulWidget {
-  static String path = '/aboutUs_page';
+  static String shell = '/aboutUs_page_shell';
+  static String path = '/aboutUS_page';
 
   const AboutUsPage({super.key});
 

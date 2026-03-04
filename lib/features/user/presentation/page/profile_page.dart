@@ -6,6 +6,8 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/core/presentation/widget/button/log_out_button.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
+import 'package:real_state/features/properties/presentation/page/property_form_page.dart';
+import 'package:real_state/features/properties/presentation/page/property_mine_page.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
 import 'package:real_state/features/user/presentation/widget/user_edit_dialog.dart';
@@ -141,7 +143,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Column(
                                   children: [
                                     InkWellWithoutFeedback(
-                                      onTap: () {},
+                                      onTap: () {
+                                        context.push(PropertyMinePage.path);
+                                      },
                                       child: TileButton(
                                         padding: EdgeInsets.zero,
                                         leading: Assets.icons.building
@@ -189,12 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     32.height(),
                                     InkWellWithoutFeedback(
                                       onTap: () {
-                                        // context.push(
-                                        //   RealEStateListPage.extPath,
-                                        //   extra: RealEstateListPageParams.saved(
-                                        //     context,
-                                        //   ),
-                                        // );
+                                        context.push(PropertyFormPage.path);
                                       },
                                       child: TileButton(
                                         padding: EdgeInsets.zero,
@@ -202,8 +201,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Icons.add,
                                           color: Theme.of(context).primaryColor,
                                         ),
-                                        title:
-                                            context.translation.postYourProperty,
+                                        title: context
+                                            .translation
+                                            .postYourProperty,
                                         trailing: Icon(
                                           Icons.arrow_forward_ios_outlined,
 

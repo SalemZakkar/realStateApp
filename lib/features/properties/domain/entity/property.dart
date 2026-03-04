@@ -28,6 +28,9 @@ class Property {
   final String? address;
   final User owner;
   final LatLng coordinates;
+  final int stocks;
+
+  bool get editable => [PropertyStatus.pending , PropertyStatus.unCompleted].contains(status);
 
   Property({
     required this.id,
@@ -53,6 +56,7 @@ class Property {
     required this.owner,
     required this.coordinates,
     this.video,
+    this.stocks = 0
   });
 }
 

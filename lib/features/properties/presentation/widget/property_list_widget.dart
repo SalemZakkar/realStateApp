@@ -5,7 +5,7 @@ import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart';
 import 'package:real_state/features/properties/presentation/widget/property_filter_widget.dart';
-import 'package:real_state/features/properties/presentation/widget/propery_card.dart';
+import 'package:real_state/features/properties/presentation/widget/propery_card_widget.dart';
 import 'package:real_state/injection.dart';
 
 class PropertyListWidget extends StatefulWidget {
@@ -15,12 +15,14 @@ class PropertyListWidget extends StatefulWidget {
     this.bloc,
     this.title,
     this.withFilter = true,
+    this.builder,
   });
 
   final PropertyGetParams params;
   final PaginationCubit<Property, PropertyGetParams>? bloc;
   final String? title;
   final bool withFilter;
+  final Widget Function(Property)? builder;
 
   @override
   State<PropertyListWidget> createState() => _PropertyListWidgetState();
@@ -55,6 +57,8 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
           slivers: [
             if (widget.withFilter) ...[
               SliverAppBar(
+                leadingWidth: 0,
+                leading: const SizedBox.shrink(),
                 floating: true,
                 flexibleSpace: PropertyFilterWidget(
                   params: params,
@@ -99,12 +103,13 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                 paginationCubit: bloc,
                 params: params,
                 itemBuilder: (data) {
-                  return Column(
-                    children: [
-                      PropertyCard(realEstate: data),
-                      8.height(),
-                    ],
-                  );
+                  return widget.builder?.call(data) ??
+                      Column(
+                        children: [
+                          PropertyCardWidget(realEstate: data),
+                          8.height(),
+                        ],
+                      );
                 },
               ),
             ),

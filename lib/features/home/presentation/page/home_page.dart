@@ -5,7 +5,7 @@ import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart';
 import 'package:real_state/features/properties/presentation/widget/property_filter_widget.dart';
-import 'package:real_state/features/properties/presentation/widget/property_grid_card.dart';
+import 'package:real_state/features/properties/presentation/widget/property_grid_card_widget.dart';
 import 'package:real_state/injection.dart';
 
 class HomePage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
                 itemBuilder: (data) {
-                  return PropertyGridCard(property: data);
+                  return PropertyGridCardWidget(property: data);
                 },
               ),
             ),

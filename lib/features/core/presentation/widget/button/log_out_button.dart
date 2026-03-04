@@ -19,16 +19,14 @@ class _LogOutButtonState extends State<LogOutButton> {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: () {
-          DialogUtil(context: context)
-              .showConfirmDialog(
-                title: context.translation.confirmation,
-                message: context.translation.areUSureYouWillLogout,
-              )
-              .then((e) {
-                if (e) {
-                  getIt<AuthRepository>().logout();
-                }
-              });
+          DialogUtil(
+            context: context,
+            onAccept: () {
+              getIt<AuthRepository>().logout();
+            },
+          ).showConfirmDialog(
+            message: context.translation.areUSureYouWillLogout,
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: context.appColorSchema.statusColors.fail,

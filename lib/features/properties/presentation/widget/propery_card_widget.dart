@@ -9,16 +9,16 @@ import 'package:real_state/features/properties/presentation/page/properties_deta
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
 import '../../../../generated/generated_assets/assets.gen.dart';
 
-class PropertyCard extends StatefulWidget {
+class PropertyCardWidget extends StatefulWidget {
   final Property realEstate;
 
-  const PropertyCard({super.key, required this.realEstate});
+  const PropertyCardWidget({super.key, required this.realEstate});
 
   @override
-  State<PropertyCard> createState() => _PropertyCardState();
+  State<PropertyCardWidget> createState() => _PropertyCardWidgetState();
 }
 
-class _PropertyCardState extends State<PropertyCard> {
+class _PropertyCardWidgetState extends State<PropertyCardWidget> {
   @override
   Widget build(BuildContext context) {
     double h = 120;

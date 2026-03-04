@@ -9,16 +9,16 @@ import 'package:real_state/features/properties/presentation/page/properties_deta
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
-class PropertyGridCard extends StatefulWidget {
+class PropertyGridCardWidget extends StatefulWidget {
   final Property property;
 
-  const PropertyGridCard({super.key, required this.property});
+  const PropertyGridCardWidget({super.key, required this.property});
 
   @override
-  State<PropertyGridCard> createState() => _PropertyGridCardState();
+  State<PropertyGridCardWidget> createState() => _PropertyGridCardWidgetState();
 }
 
-class _PropertyGridCardState extends State<PropertyGridCard> {
+class _PropertyGridCardWidgetState extends State<PropertyGridCardWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWellWithoutFeedback(

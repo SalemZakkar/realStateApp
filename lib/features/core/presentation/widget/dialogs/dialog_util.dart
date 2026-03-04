@@ -1,21 +1,19 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/dialogs/message_dialog.dart';
 import 'package:real_state/themes/app_theme.dart';
-
-import 'confirm_dialog.dart';
 import 'loading_dialog.dart';
 
 class DialogUtil {
   BuildContext context;
   final bool canPop;
-  final VoidCallback? onShow, onDone, onCancel;
+  final VoidCallback? onShow, onAccept, onCancel;
 
   DialogUtil({
     required this.context,
     this.canPop = true,
-    this.onDone,
+    this.onAccept,
     this.onShow,
     this.onCancel,
   });
@@ -28,33 +26,24 @@ class DialogUtil {
       builder: (context) => const LoadingDialog(),
       barrierDismissible: false,
     );
-    onDone?.call();
   }
 
   Future<void> showSuccessDialog({String? message}) async {
     onShow?.call();
-    String m = message ?? context.translation.success;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.check, color: context.appColorSchema.white),
-            const SizedBox(width: 4),
-            Expanded(
-              child: Text(
-                m,
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: context.appColorSchema.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: context.appColorSchema.statusColors.success,
-      ),
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      titleColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      textColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      title: message ?? context.translation.success,
+      onConfirmBtnTap: () {
+        context.pop();
+        onAccept?.call();
+      },
+      backgroundColor: Theme.of(context).cardColor,
+      confirmBtnText: context.translation.ok,
+      confirmBtnColor: context.appColorSchema.statusColors.success,
     );
-    onDone?.call();
   }
 
   Future<void> showFailDialog({
@@ -62,50 +51,80 @@ class DialogUtil {
     bool isFloating = false,
   }) async {
     onShow?.call();
-    String message =
-        failure?.getError(context) ?? context.translation.errorMessage;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.error_outline, color: context.appColorSchema.white),
-            const SizedBox(width: 4),
-            Expanded(
-              child: Text(
-                message,
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: context.appColorSchema.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: context.appColorSchema.statusColors.fail,
-        behavior: isFloating ? SnackBarBehavior.floating : null,
-      ),
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      titleColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      textColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      title: failure?.getError(context) ?? context.translation.errorMessage,
+      onConfirmBtnTap: () {
+        context.pop();
+        onAccept?.call();
+      },
+      backgroundColor: Theme.of(context).cardColor,
+      confirmBtnText: context.translation.ok,
+      confirmBtnColor: context.appColorSchema.statusColors.fail,
     );
   }
 
-  Future<bool> showConfirmDialog({
-    required String title,
-    required String message,
+  Future showConfirmDialog({String? title, required String message}) async {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.confirm,
+      cancelBtnText: context.translation.no,
+      confirmBtnColor: Theme.of(context).primaryColor,
+      confirmBtnText: context.translation.yes,
+      backgroundColor: Theme.of(context).cardColor,
+      text: message,
+      title: title ?? context.translation.areUSure,
+      titleColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      textColor: Theme.of(context).textTheme.headlineSmall!.color!,
+      onConfirmBtnTap: () {
+        context.pop();
+        onAccept?.call();
+      },
+      onCancelBtnTap: () {
+        context.pop();
+        onCancel?.call();
+      },
+    );
+  }
+
+  // Future<void> showMessage({required String message}) async {
+  //   await showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return MessageDialog(message: message);
+  //     },
+  //   );
+  // }
+}
+
+class MainScreenLoaderDialogProvider extends ScreenLoaderDialogProvider {
+  @override
+  Future<void> showFailDialog({
+    required BuildContext context,
+    Failure? failure,
   }) async {
-    bool? k = await showDialog(
-      context: context,
-      builder: (context) {
-        return ConfirmDialog(title: title, message: message);
-      },
-    );
-    return k == true;
+    await DialogUtil(context: context).showFailDialog(failure: failure);
   }
 
-  Future<void> showMessage({required String message}) async {
-    await showDialog(
+  @override
+  Future<void> showLoadingDialog({
+    required BuildContext context,
+    bool? root,
+  }) async {
+    await DialogUtil(
       context: context,
-      builder: (context) {
-        return MessageDialog(message: message);
-      },
-    );
+      canPop: false,
+    ).showLoadingDialog(root: root);
+  }
+
+  @override
+  Future<void> showSuccessDialog({
+    required BuildContext context,
+    String? message,
+  }) async {
+    await DialogUtil(context: context).showSuccessDialog(message: message);
   }
 }

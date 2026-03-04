@@ -17,7 +17,7 @@ class VideoCubit extends Cubit<BaseState<VideoController>> {
       player?.dispose();
       player = Player();
       controller = VideoController(player!);
-      await player!.open(Media(url));
+      await player!.open(Media(url , start: Duration(milliseconds: 500)), play: false );
       emit(state.setSuccessState(controller!));
     } catch (e) {
       emit(

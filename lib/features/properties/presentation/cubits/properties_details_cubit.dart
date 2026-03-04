@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
@@ -7,7 +9,15 @@ import 'package:real_state/features/properties/domain/repository/property_reposi
 class PropertiesDetailsCubit extends Cubit<BaseState<Property>> {
   PropertiesRepository repository;
 
-  PropertiesDetailsCubit(this.repository) : super(BaseState());
+  PropertiesDetailsCubit(this.repository) : super(BaseState()) {
+    streamSubscription = repository.newPropertyStream.listen((v) {
+      if (v.id == state.item?.id) {
+        emit(state.setSuccessState(v));
+      }
+    });
+  }
+
+  StreamSubscription? streamSubscription;
 
   void get(String id) async {
     emit(state.setInProgressState());
@@ -16,5 +26,11 @@ class PropertiesDetailsCubit extends Cubit<BaseState<Property>> {
       (e) => emit(state.setFailureState(e)),
       (r) => emit(state.setSuccessState(r)),
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await streamSubscription?.cancel();
+    return super.close();
   }
 }

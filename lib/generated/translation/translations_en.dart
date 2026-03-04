@@ -608,7 +608,7 @@ class TranslationsEn extends Translations {
   String get all => 'الكل';
 
   @override
-  String get sellBuySwap => 'بيع/شراء/مبادلة';
+  String get buyRentSwap => 'شراء/آجار/مبادلة';
 
   @override
   String get whoAreWe => 'من نحن ؟';
@@ -621,4 +621,87 @@ class TranslationsEn extends Translations {
 
   @override
   String get issueWhenLoadingVideo => 'خطأ في تحميل الفيديو';
+
+  @override
+  String get theStocks => 'الأسهم';
+
+  @override
+  String get pressHereToSelectLocation => 'اضغط عنا لتحديد العنوان';
+
+  @override
+  String get pressHereToChangeLocation => 'اضغط هنا لتغيير العنوان';
+
+  @override
+  String get pressOnThePlaceYouWantToSetYourPropertyLocation =>
+      'اضغط في المكان الذي تريده لتحديد موقع عقارك';
+
+  @override
+  String get editImages => 'تعديل الصور';
+
+  @override
+  String get youHaveToAddImages => 'يجب اضافة صور';
+
+  @override
+  String get addImages => 'إضافة صور';
+
+  @override
+  String get addVideo => 'إضافة فيديو';
+
+  @override
+  String get changeVideo => 'تغيير الفيديو';
+
+  @override
+  String get deleteVideo => 'حذف الفيديو';
+
+  @override
+  String get dataIsUnCompletedYouShouldAddImagesToContinue =>
+      'البيانات غير مكتملة يجب اضافة صورة على الاقل للمتابعة';
+
+  @override
+  String get thePostIsCurrentlyInReviewPleaseWaitForAccepting =>
+      'المنشور في حالة مراجعة يرجى الانتظار حتى يتم قبول المنشور';
+
+  @override
+  String get postIsRejectedPleaseContactUsIfYouWantMoreInformation =>
+      'تم رفض المنشور يرجي التواصل معنا اذا اردت معلومات اضافية';
+
+  @override
+  String get postIsActiveAndVisibleToAll => 'المنشور فعال ويظهر للجميع';
+
+  @override
+  String get postIsUnActivatedAndNotVisibleToAnyOne =>
+      'المنشور غير مفعل ومخفي عن الجميع';
+
+  @override
+  String get activate => 'تفعيل';
+
+  @override
+  String get unActivate => 'الغاء تفعيل';
+
+  @override
+  String get deletePostQuestion => 'هل تريد حذف المنشور ؟';
+
+  @override
+  String get deleteVideoQuestion => 'هل تريد حذف الفيديو ؟';
+
+  @override
+  String get sendToReview => 'ارسال للمراجعة';
+
+  @override
+  String get doUWantToDeActivateThePost => 'هل تريد الغاء تفعيل المنشور ؟';
+
+  @override
+  String get doUWantToActivateThePost => 'هل تريد تفعيل المنشور ؟';
+
+  @override
+  String get areUSure => 'هل أنت متأكد؟';
+
+  @override
+  String get postIsReadyToSendToReview => 'المنشور جاهز للمراجعة';
+
+  @override
+  String get sendPostToReviewQ => 'ارسال المنشور للمراجعة ؟';
+
+  @override
+  String get youCanAddUpTo6Images => 'يمكنك إضافة حتى 6 صور';
 }

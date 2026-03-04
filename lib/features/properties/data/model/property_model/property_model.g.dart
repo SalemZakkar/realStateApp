@@ -39,6 +39,7 @@ PropertyModel _$PropertyModelFromJson(Map json) => PropertyModel(
     Map<String, dynamic>.from(json['coordinates'] as Map),
   ),
   video: json['video'] as String?,
+  stocks: (json['stocks'] as num).toInt(),
 );
 
 const _$PropertyTypeEnumMap = {
