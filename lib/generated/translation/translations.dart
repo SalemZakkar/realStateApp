@@ -1346,6 +1346,24 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'يمكنك إضافة حتى 6 صور'**
   String get youCanAddUpTo6Images;
+
+  /// No description provided for @youNeedToLoginFirst.
+  ///
+  /// In ar, this message translates to:
+  /// **'يجب تسجيل الدخول اولاً'**
+  String get youNeedToLoginFirst;
+
+  /// No description provided for @satellite.
+  ///
+  /// In ar, this message translates to:
+  /// **'صور القمر الصناعي'**
+  String get satellite;
+
+  /// No description provided for @goToLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'الذهاب للموقع'**
+  String get goToLocation;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

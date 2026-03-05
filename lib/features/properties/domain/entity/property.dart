@@ -29,8 +29,10 @@ class Property {
   final User owner;
   final LatLng coordinates;
   final int stocks;
+  bool isSaved;
 
-  bool get editable => [PropertyStatus.pending , PropertyStatus.unCompleted].contains(status);
+  bool get editable =>
+      [PropertyStatus.pending, PropertyStatus.unCompleted].contains(status);
 
   Property({
     required this.id,
@@ -56,8 +58,17 @@ class Property {
     required this.owner,
     required this.coordinates,
     this.video,
-    this.stocks = 0
+    this.stocks = 0,
+    required this.isSaved,
   });
+
+  @override
+  bool operator ==(Object other) {
+    return other is Property && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 // {

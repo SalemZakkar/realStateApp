@@ -63,6 +63,9 @@
     "areUSure",
     "postIsReadyToSendToReview",
     "sendPostToReviewQ",
-    "youCanAddUpTo6Images"
+    "youCanAddUpTo6Images",
+    "youNeedToLoginFirst",
+    "satellite",
+    "goToLocation"
   ]
 }

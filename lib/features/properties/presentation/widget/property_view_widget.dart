@@ -5,11 +5,14 @@ import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/contact_us_phone_buttons.dart';
+import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
+import 'package:real_state/features/core/presentation/widget/map_view_widget.dart';
 import 'package:real_state/features/core/presentation/widget/video_player_widget.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/page/property_images_page.dart';
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
 import 'package:real_state/features/properties/presentation/widget/property_details_card.dart';
+import 'package:real_state/features/properties/presentation/widget/property_save_button.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 import 'package:real_state/themes/app_theme.dart';
 
@@ -146,25 +149,29 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                                 ),
                           ),
                         ),
-                        if (widget.realEstate.isFeature) ...[
-                          8.width(),
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: context.appColorSchema.statusColors.pending
-                                  .withValues(alpha: 0.2),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              context.translation.featured,
-                              style: TextStyle(
-                                color:
-                                    context.appColorSchema.statusColors.pending,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
+                        PropertySaveButton(
+                          property: widget.realEstate.id,
+                          isSaved: widget.realEstate.isSaved,
+                        ),
+                        // if (widget.realEstate.isFeature) ...[
+                        //   8.width(),
+                        //   Container(
+                        //     padding: EdgeInsets.all(8),
+                        //     decoration: BoxDecoration(
+                        //       color: context.appColorSchema.statusColors.pending
+                        //           .withValues(alpha: 0.2),
+                        //       borderRadius: BorderRadius.circular(8),
+                        //     ),
+                        //     child: Text(
+                        //       context.translation.featured,
+                        //       style: TextStyle(
+                        //         color:
+                        //             context.appColorSchema.statusColors.pending,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ],
                       ],
                     ),
                     Row(
@@ -218,20 +225,10 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                     ),
                     PropertyDetailsCardWidget(realEstate: widget.realEstate),
 
-                    MapWidget(
-                      ignore: true,
-                      withExpand: true,
-                      icon: MarkerData.fromWidget(
-                        child: Assets.icons.mapMarker.svg(
-                          width: 40,
-                          height: 40,
-                        ),
-                        size: Size(40, 40),
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      height: 300,
-                      zoomControls: false,
-                      latLng: widget.realEstate.coordinates,
+                    MainMapWidget(
+                      size: Size(MediaQuery.of(context).size.width, 300),
+                      radius: BorderRadius.circular(12),
+                      initial: widget.realEstate.coordinates,
                     ),
                     120.height(),
                   ],

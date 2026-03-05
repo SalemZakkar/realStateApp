@@ -206,5 +206,8 @@
   "areUSure": "هل أنت متأكد؟",
   "postIsReadyToSendToReview" : "المنشور جاهز للمراجعة",
   "sendPostToReviewQ" : "ارسال المنشور للمراجعة ؟",
-  "youCanAddUpTo6Images" : "يمكنك إضافة حتى 6 صور"
+  "youCanAddUpTo6Images" : "يمكنك إضافة حتى 6 صور",
+  "youNeedToLoginFirst" : "يجب تسجيل الدخول اولاً",
+  "satellite" : "صور القمر الصناعي",
+  "goToLocation" : "الذهاب للموقع"
 }

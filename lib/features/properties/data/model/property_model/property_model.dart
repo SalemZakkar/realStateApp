@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:real_state/features/core/data/model/city_model/city_model.dart';
 import 'package:real_state/features/core/data/model/location_model/location_model.dart';
+import 'package:real_state/features/properties/data/source/cache/property_cache_source.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/enum/property_enum.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
@@ -34,6 +35,11 @@ class PropertyModel {
   final UserModel owner;
   final LocationModel coordinates;
   final int stocks;
+  @JsonKey(
+    fromJson: PropertyCacheSource.propertyFromJson,
+    readValue: _isSavedFromJson,
+  )
+  final bool? isSaved;
 
   PropertyModel({
     required this.id,
@@ -60,6 +66,7 @@ class PropertyModel {
     required this.coordinates,
     this.video,
     required this.stocks,
+    required this.isSaved,
   });
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
@@ -92,5 +99,10 @@ extension MapToDomain on PropertyModel {
     rejectReason: rejectReason,
     video: video,
     stocks: stocks,
+    isSaved: isSaved ?? false,
   );
+}
+
+Object? _isSavedFromJson(Map<dynamic, dynamic> json, String key) {
+  return json;
 }

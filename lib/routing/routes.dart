@@ -5,10 +5,10 @@ import 'package:real_state/features/auth/presentation/page/auth_otp_page.dart';
 import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/about_us_page.dart';
-import 'package:real_state/features/core/presentation/page/map_select_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
+import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
 import 'package:real_state/features/home/presentation/page/home_page.dart';
 import 'package:real_state/features/home/presentation/page/main_page.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
@@ -78,7 +78,7 @@ class Routes {
     RouteInfo(
       path: MapPage.path,
       builder: (context, state, child) =>
-          MapPage(latLng: state.extra as LatLng),
+          MapPage(build: state.extra as MainMapWidget Function()),
     ),
     RouteInfo(builder: (c, s, i) => UpdateAppPage(), path: UpdateAppPage.path),
     RouteInfo(
@@ -124,11 +124,6 @@ class Routes {
     RouteInfo(
       builder: (context, state, child) => PropertyMinePage(),
       path: PropertyMinePage.path,
-    ),
-    RouteInfo(
-      builder: (context, state, child) =>
-          MapSelectPage(latLng: state.extra as LatLng?),
-      path: MapSelectPage.path,
     ),
     RouteInfo(
       builder: (context, state, child) =>

@@ -40,6 +40,9 @@ PropertyModel _$PropertyModelFromJson(Map json) => PropertyModel(
   ),
   video: json['video'] as String?,
   stocks: (json['stocks'] as num).toInt(),
+  isSaved: PropertyCacheSource.propertyFromJson(
+    _isSavedFromJson(json, 'isSaved'),
+  ),
 );
 
 const _$PropertyTypeEnumMap = {

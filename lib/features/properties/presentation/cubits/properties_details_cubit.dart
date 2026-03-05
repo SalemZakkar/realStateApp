@@ -15,9 +15,21 @@ class PropertiesDetailsCubit extends Cubit<BaseState<Property>> {
         emit(state.setSuccessState(v));
       }
     });
+    streamSubscription2 = repository.saveStream.listen((v) {
+      if (state.item?.id == v) {
+        var prop = state.item;
+        if (prop!.isSaved) {
+          prop.isSaved = true;
+        } else {
+          prop.isSaved = false;
+        }
+        emit(state.setSuccessState(prop));
+      }
+    });
   }
 
   StreamSubscription? streamSubscription;
+  StreamSubscription? streamSubscription2;
 
   void get(String id) async {
     emit(state.setInProgressState());
@@ -31,6 +43,7 @@ class PropertiesDetailsCubit extends Cubit<BaseState<Property>> {
   @override
   Future<void> close() async {
     await streamSubscription?.cancel();
+    await streamSubscription2?.cancel();
     return super.close();
   }
 }

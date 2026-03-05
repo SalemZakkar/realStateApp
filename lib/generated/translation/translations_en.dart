@@ -704,4 +704,13 @@ class TranslationsEn extends Translations {
 
   @override
   String get youCanAddUpTo6Images => 'يمكنك إضافة حتى 6 صور';
+
+  @override
+  String get youNeedToLoginFirst => 'يجب تسجيل الدخول اولاً';
+
+  @override
+  String get satellite => 'صور القمر الصناعي';
+
+  @override
+  String get goToLocation => 'الذهاب للموقع';
 }

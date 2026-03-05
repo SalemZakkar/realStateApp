@@ -1,4 +1,12 @@
+import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
+import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
+import 'package:real_state/features/properties/domain/entity/property.dart';
+import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart';
+import 'package:real_state/features/properties/presentation/widget/property_grid_card_widget.dart';
+import 'package:real_state/features/properties/presentation/widget/property_list_widget.dart';
+import 'package:real_state/injection.dart';
 
 class PropertyFavouritePage extends StatefulWidget {
   static String path = "/PropertyFavouritePage";
@@ -10,18 +18,57 @@ class PropertyFavouritePage extends StatefulWidget {
 }
 
 class _PropertyFavouritePageState extends State<PropertyFavouritePage> {
+  final cubit = getIt<PropertiesGetListCubit>();
+  final params = PropertyGetParams(skip: 0, limit: 10, isSaved: true);
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(context.translation.savedProperties),
+        centerTitle: true,
+      ),
       body: Container(
         constraints: const BoxConstraints.expand(),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              //
-            ],
+        child: GridViewPaginationWidget<Property>(
+          paginationCubit: cubit,
+          params: params,
+          padding: EdgeInsets.only(bottom: 150, left: 16, right: 16),
+          delegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 300,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            mainAxisExtent: 310,
           ),
+          emptyState: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            alignment: Alignment.center,
+            child: NoDataWidget(),
+          ),
+          loading: Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            child: CircularProgressIndicator(),
+          ),
+          error: (v) {
+            return Container(
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width,
+              height: 200,
+              child: ErrorView(
+                failure: v,
+                onRetry: () {
+                  cubit.get(params: params);
+                },
+              ),
+            );
+          },
+          itemBuilder: (data) {
+            return PropertyGridCardWidget(property: data);
+          },
         ),
       ),
     );

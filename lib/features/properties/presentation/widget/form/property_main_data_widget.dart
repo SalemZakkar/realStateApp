@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:real_state/features/core/presentation/cubit/city_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/chips_widget.dart';
+import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
 import 'package:real_state/features/core/presentation/widget/map_field_widget.dart';
 import 'package:real_state/features/properties/domain/enum/property_enum.dart';
 import 'package:real_state/features/properties/domain/params/property_create_params.dart';
@@ -27,8 +28,7 @@ class _PropertyMainDataWidgetState extends State<PropertyMainDataWidget> {
       spacing: 16,
       children: [
         LabelWidget(
-          title:
-              "${context.translation.price} (${context.translation.dollar})",
+          title: "${context.translation.price} (${context.translation.dollar})",
           child: TextFormField(
             onChanged: (v) {
               widget.params.price = int.tryParse(v);
@@ -86,9 +86,7 @@ class _PropertyMainDataWidgetState extends State<PropertyMainDataWidget> {
             validator: RequiredValidator(
               errorText: context.translation.fieldRequiredMessage,
             ).call,
-            decoration: InputDecoration(
-              hintText: context.translation.address,
-            ),
+            decoration: InputDecoration(hintText: context.translation.address),
           ),
         ),
         LabelWidget(
@@ -241,20 +239,14 @@ class _PropertyMainDataWidgetState extends State<PropertyMainDataWidget> {
           valid: widget.params.latLng != null,
           child: LabelWidget(
             title: context.translation.location,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 350,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: MapFieldWidget(
-                latLng: widget.params.latLng,
-                onChanged: (v) {
-                  widget.params.latLng = v;
-                },
-                view: true,
-              ),
+            child: MainMapWidget(
+              onChanged: (v) {
+                widget.params.latLng = v;
+              },
+              isField: true,
+              size: Size(MediaQuery.of(context).size.width, 300),
+              radius: BorderRadius.circular(12),
+              initial: widget.params.latLng,
             ),
           ),
         ),

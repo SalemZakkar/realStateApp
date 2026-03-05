@@ -1,12 +1,13 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
+import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
 
 class MapPage extends StatefulWidget {
   static String path = '/map_page';
-  final LatLng latLng;
+  final MainMapWidget Function() build;
 
-  const MapPage({super.key, required this.latLng});
+  const MapPage({super.key, required this.build});
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -24,15 +25,7 @@ class _MapPageState extends State<MapPage> {
       child: Scaffold(
         body: Container(
           constraints: BoxConstraints.expand(),
-          child: MapWidget(
-            withBackButton: true,
-            withExpand: false,
-            latLng: widget.latLng,
-            icon: MarkerData.fromWidget(
-              child: Assets.icons.mapMarker.svg(width: 40, height: 40),
-              size: Size(40, 40),
-            ),
-          ),
+          child: widget.build(),
         ),
       ),
     );

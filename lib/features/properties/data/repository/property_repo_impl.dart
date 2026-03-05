@@ -4,12 +4,15 @@ import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/data/utils/api_handler.dart';
 import 'package:real_state/features/properties/data/model/property_add_edit_params_model/property_add_edit_params_model.dart';
+import 'package:real_state/features/properties/data/model/property_map_params_model/property_map_params_model.dart';
 import 'package:real_state/features/properties/data/model/property_model/property_model.dart';
+import 'package:real_state/features/properties/data/source/cache/property_cache_source.dart';
 import 'package:real_state/features/properties/data/source/remote/properties_remote_source.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/enum/property_enum.dart';
 import 'package:real_state/features/properties/domain/params/property_create_params.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/domain/params/property_map_params.dart';
 import 'package:real_state/features/properties/domain/repository/property_repository.dart';
 
 import '../model/property_get_params_model/property_get_params_model.dart';
@@ -18,12 +21,16 @@ import '../model/property_get_params_model/property_get_params_model.dart';
 class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
   PropertiesRemoteSource propertiesRemoteSource;
 
-  PropertiesRepoImpl(this.propertiesRemoteSource);
+  PropertiesRepoImpl(this.propertiesRemoteSource, this.cacheSource);
 
   StreamController<Property> addPropertyController =
       StreamController.broadcast();
   StreamController<String> deletePropertyController =
       StreamController.broadcast();
+
+  StreamController<String> saveController = StreamController.broadcast();
+
+  PropertyCacheSource cacheSource;
 
   @override
   Future<Either<Failure, Property>> getById(String id) {
@@ -45,7 +52,7 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
       return Right(
         PaginatedList(
           hasReachedEnd:
-              (params.skip ?? 0) >= response.data!.length ||
+              (params.skip ?? 0) >= response.totalRecords! ||
               response.totalRecords! <= response.data!.length,
           totalRecords: response.totalRecords!,
           data: response.data!.map((e) => e.toDomain()).toList(),
@@ -143,4 +150,35 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
 
   @override
   Stream<String> get deletedPropertyStream => deletePropertyController.stream;
+
+  @override
+  Future<Either<Failure, void>> save(String id) {
+    return request(() async {
+      saveController.add(id);
+      cacheSource.save(id);
+      await propertiesRemoteSource.save(id);
+      return Right(null);
+    });
+  }
+
+  @override
+  Future<Either<Failure, void>> unSave(String id) {
+    return request(() async {
+      saveController.add(id);
+      cacheSource.unSave(id);
+      await propertiesRemoteSource.unSave(id);
+      return Right(null);
+    });
+  }
+
+  @override
+  Stream<String> get saveStream => saveController.stream;
+
+  @override
+  Future<Either<Failure, List<Property>>> getMap(PropertyMapParams params) {
+    return request(() async {
+      var res = await propertiesRemoteSource.getMap(params.fromDomain());
+      return Right(res.data!.map((e) => e.toDomain()).toList());
+    });
+  }
 }

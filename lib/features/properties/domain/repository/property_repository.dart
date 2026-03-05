@@ -3,6 +3,7 @@ import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/enum/property_enum.dart';
 import 'package:real_state/features/properties/domain/params/property_create_params.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/domain/params/property_map_params.dart';
 
 abstract class PropertiesRepository {
   Future<Either<Failure, PaginatedList<Property>>> getProperties(
@@ -33,7 +34,15 @@ abstract class PropertiesRepository {
 
   Future<Either<Failure, Property>> deleteVideo(String id, String video);
 
+  Future<Either<Failure, void>> save(String id);
+
+  Future<Either<Failure, void>> unSave(String id);
+
   Stream<Property> get newPropertyStream;
 
   Stream<String> get deletedPropertyStream;
+
+  Stream<String> get saveStream;
+
+  Future<Either<Failure, List<Property>>> getMap(PropertyMapParams params);
 }

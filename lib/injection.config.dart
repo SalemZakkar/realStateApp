@@ -55,6 +55,8 @@ import 'package:real_state/features/core/presentation/utils/file_manager.dart'
     as _i976;
 import 'package:real_state/features/properties/data/repository/property_repo_impl.dart'
     as _i50;
+import 'package:real_state/features/properties/data/source/cache/property_cache_source.dart'
+    as _i107;
 import 'package:real_state/features/properties/data/source/remote/properties_remote_source.dart'
     as _i422;
 import 'package:real_state/features/properties/domain/repository/property_repository.dart'
@@ -69,6 +71,8 @@ import 'package:real_state/features/properties/presentation/cubits/property_dele
     as _i488;
 import 'package:real_state/features/properties/presentation/cubits/property_file_cubit.dart'
     as _i617;
+import 'package:real_state/features/properties/presentation/cubits/property_map_cubit.dart'
+    as _i406;
 import 'package:real_state/features/properties/presentation/cubits/property_status_cubit.dart'
     as _i466;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
@@ -94,6 +98,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
     gh.factory<_i432.VideoCubit>(() => _i432.VideoCubit());
     gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
+    gh.singleton<_i107.PropertyCacheSource>(() => _i107.PropertyCacheSource());
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());
     gh.lazySingleton<_i996.Dio>(() => injectableModule.dioInstance);
     gh.lazySingleton<_i996.Logger>(() => injectableModule.logger);
@@ -150,7 +155,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i986.PropertiesRepository>(
-      () => _i50.PropertiesRepoImpl(gh<_i422.PropertiesRemoteSource>()),
+      () => _i50.PropertiesRepoImpl(
+        gh<_i422.PropertiesRemoteSource>(),
+        gh<_i107.PropertyCacheSource>(),
+      ),
     );
     gh.factory<_i17.PropertiesDetailsCubit>(
       () => _i17.PropertiesDetailsCubit(gh<_i986.PropertiesRepository>()),
@@ -161,14 +169,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i640.PropertyAddEditCubit>(
       () => _i640.PropertyAddEditCubit(gh<_i986.PropertiesRepository>()),
     );
+    gh.factory<_i488.PropertyDeleteCubit>(
+      () => _i488.PropertyDeleteCubit(gh<_i986.PropertiesRepository>()),
+    );
     gh.factory<_i617.PropertyFileCubit>(
       () => _i617.PropertyFileCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.factory<_i466.PropertyStatusCubit>(
       () => _i466.PropertyStatusCubit(gh<_i986.PropertiesRepository>()),
     );
-    gh.factory<_i488.PropertyDeleteCubit>(
-      () => _i488.PropertyDeleteCubit(gh<_i986.PropertiesRepository>()),
+    gh.factory<_i406.PropertyMapCubit>(
+      () => _i406.PropertyMapCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.singleton<_i422.AdBannerCubit>(
       () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),

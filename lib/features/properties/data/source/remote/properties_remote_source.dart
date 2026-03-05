@@ -3,6 +3,7 @@ import 'package:real_state/configuration.dart';
 import 'package:real_state/features/core/data/model/base_response/base_response.dart';
 import 'package:real_state/features/properties/data/model/property_add_edit_params_model/property_add_edit_params_model.dart';
 import 'package:real_state/features/properties/data/model/property_get_params_model/property_get_params_model.dart';
+import 'package:real_state/features/properties/data/model/property_map_params_model/property_map_params_model.dart';
 import 'package:real_state/features/properties/data/model/property_model/property_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:injectable/injectable.dart';
@@ -34,6 +35,14 @@ abstract class PropertiesRemoteSource {
   Future<BaseResponse<PropertyModel>> deleteVideo(String id, String fileId);
 
   Future<BaseResponse<PropertyModel>> deleteImage(String id, String fileId);
+
+  Future save(String id);
+
+  Future unSave(String id);
+
+  Future<BaseResponse<List<PropertyModel>>> getMap(
+    PropertyMapParamsModel params,
+  );
 }
 
 @RestApi()
@@ -104,5 +113,19 @@ abstract class PropertiesRemoteSourceImpl extends PropertiesRemoteSource {
   Future<BaseResponse<PropertyModel>> video(
     @Path() String id,
     @Body() FormData data,
+  );
+
+  @POST("property/{id}/save")
+  @override
+  Future<dynamic> save(@Path() String id);
+
+  @DELETE("property/{id}/save")
+  @override
+  Future<dynamic> unSave(@Path() String id);
+
+  @GET("property/map")
+  @override
+  Future<BaseResponse<List<PropertyModel>>> getMap(
+    @Queries() PropertyMapParamsModel params,
   );
 }

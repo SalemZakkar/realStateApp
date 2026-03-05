@@ -6,6 +6,7 @@ import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/core/presentation/widget/button/log_out_button.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
+import 'package:real_state/features/properties/presentation/page/property_favourite_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_form_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_mine_page.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
@@ -165,12 +166,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     32.height(),
                                     InkWellWithoutFeedback(
                                       onTap: () {
-                                        // context.push(
-                                        //   RealEStateListPage.extPath,
-                                        //   extra: RealEstateListPageParams.saved(
-                                        //     context,
-                                        //   ),
-                                        // );
+                                        context.push(
+                                          PropertyFavouritePage.path,
+                                        );
                                       },
                                       child: TileButton(
                                         padding: EdgeInsets.zero,

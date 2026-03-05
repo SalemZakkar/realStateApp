@@ -5,6 +5,7 @@ import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
+import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
 import 'package:real_state/features/core/presentation/widget/map_view_widget.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/cubits/property_delete_cubit.dart';
@@ -184,7 +185,9 @@ class _PropertyViewUserWidgetState extends State<PropertyViewUserWidget> {
                             child: Text(context.translation.addImages),
                           ),
                         ),
-                      PropertyStatusDescriptionWidget(property: widget.realEstate),
+                      PropertyStatusDescriptionWidget(
+                        property: widget.realEstate,
+                      ),
 
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,23 +247,10 @@ class _PropertyViewUserWidgetState extends State<PropertyViewUserWidget> {
                       PropertyMineVideoWidget(property: widget.realEstate),
 
                       PropertyDetailsCardWidget(realEstate: widget.realEstate),
-                      Container(
-                        clipBehavior: Clip.hardEdge,
-                        width: MediaQuery.of(context).size.width,
-                        height: 300,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: MapViewWidget(
-                          icon: MarkerData.fromWidget(
-                            child: Assets.icons.mapMarker.svg(
-                              width: 40,
-                              height: 40,
-                            ),
-                            size: Size(40, 40),
-                          ),
-                          latLng: widget.realEstate.coordinates,
-                        ),
+                      MainMapWidget(
+                        size: Size(MediaQuery.of(context).size.width, 300),
+                        radius: BorderRadius.circular(12),
+                        initial: widget.realEstate.coordinates,
                       ),
                       ScreenLoader(
                         cubit: delete,

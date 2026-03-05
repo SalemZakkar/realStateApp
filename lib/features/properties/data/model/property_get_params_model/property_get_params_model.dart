@@ -18,6 +18,7 @@ class PropertyGetParamsModel {
   final PropertyDeedType? propertyDeedType;
   final bool? isFeature;
   final PropertyStatus? status;
+  final bool? isSaved;
 
   PropertyGetParamsModel({
     this.skip,
@@ -31,6 +32,7 @@ class PropertyGetParamsModel {
     this.propertyDeedType,
     this.isFeature,
     this.status,
+    this.isSaved,
   });
 
   Map<String, dynamic> toJson() => _$PropertyGetParamsModelToJson(this);
@@ -49,5 +51,6 @@ extension MapFromDomain on PropertyGetParams {
     size: size,
     skip: skip,
     status: status,
+    isSaved: isSaved,
   );
 }

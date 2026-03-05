@@ -11,6 +11,7 @@ class PropertyGetParams extends BasePaginationParams {
   PropertyDeedType? propertyDeedType;
   bool? isFeature;
   PropertyStatus? status;
+  bool? isSaved;
 
   @override
   void reset() {
@@ -31,6 +32,7 @@ class PropertyGetParams extends BasePaginationParams {
     propertyType: propertyType,
     size: size,
     status: status,
+    isSaved: isSaved,
   );
 
   PropertyGetParams({
@@ -43,6 +45,7 @@ class PropertyGetParams extends BasePaginationParams {
     this.price,
     this.isFeature,
     this.owner,
+    this.isSaved,
     super.skip,
     super.limit,
   });

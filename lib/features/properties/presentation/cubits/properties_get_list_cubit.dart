@@ -27,6 +27,13 @@ class PropertiesGetListCubit
         );
       }
     });
+    streamSubscription3 = repository.saveStream.listen((v) {
+      int index = state.items.indexWhere((e) => e.id == v);
+      if (index > -1) {
+        state.items[index].isSaved = !state.items[index].isSaved;
+        emit(state.copyWith(items: state.items));
+      }
+    });
   }
 
   PropertiesRepository repository;
@@ -35,6 +42,7 @@ class PropertiesGetListCubit
 
   StreamSubscription? streamSubscription;
   StreamSubscription? streamSubscription2;
+  StreamSubscription? streamSubscription3;
 
   @override
   void get({PropertyGetParams? params}) async {
@@ -56,7 +64,13 @@ class PropertiesGetListCubit
   @override
   void paginate() async {
     emit(state.copyWith(status: PaginatedListStatus.paginateInProgress));
-    params.skip = state.items.length;
+    if (params.isSaved != null) {
+      params.skip = state.items
+          .where((e) => e.isSaved == params.isSaved)
+          .length;
+    } else {
+      params.skip = state.items.length;
+    }
     var res = await repository.getProperties(params);
     res.fold(
       (e) {
@@ -79,6 +93,7 @@ class PropertiesGetListCubit
   Future<void> close() async {
     await streamSubscription?.cancel();
     await streamSubscription2?.cancel();
+    await streamSubscription3?.cancel();
     return super.close();
   }
 }

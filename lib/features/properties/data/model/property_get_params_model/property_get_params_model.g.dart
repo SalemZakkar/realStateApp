@@ -28,6 +28,7 @@ Map<String, dynamic> _$PropertyGetParamsModelToJson(
   if (instance.isFeature case final value?) 'isFeature': value,
   if (_$PropertyStatusEnumMap[instance.status] case final value?)
     'status': value,
+  if (instance.isSaved case final value?) 'isSaved': value,
 };
 
 const _$BaseParamsSortTypeEnumMap = {
