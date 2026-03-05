@@ -5,7 +5,6 @@ import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/presentation/cubits/properties_get_list_cubit.dart';
 import 'package:real_state/features/properties/presentation/widget/property_grid_card_widget.dart';
-import 'package:real_state/features/properties/presentation/widget/property_list_widget.dart';
 import 'package:real_state/injection.dart';
 
 class PropertyFavouritePage extends StatefulWidget {

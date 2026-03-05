@@ -5,7 +5,6 @@ import 'package:real_state/features/core/presentation/cubit/city_cubit.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/chips_widget.dart';
 import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
-import 'package:real_state/features/core/presentation/widget/map_field_widget.dart';
 import 'package:real_state/features/properties/domain/enum/property_enum.dart';
 import 'package:real_state/features/properties/domain/params/property_create_params.dart';
 import 'package:real_state/injection.dart';

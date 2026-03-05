@@ -1,14 +1,11 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:real_state/features/auth/presentation/cubits/auth_cubit.dart';
-import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/dynamic_svg_ext.dart';
 import 'package:real_state/features/core/presentation/utils/ext/num.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
-import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
-import 'package:real_state/features/properties/domain/repository/property_repository.dart';
 import 'package:real_state/features/properties/presentation/page/properties_details_page.dart';
 import 'package:real_state/features/properties/presentation/widget/property_category_type_widget.dart';
 import 'package:real_state/features/properties/presentation/widget/property_save_button.dart';

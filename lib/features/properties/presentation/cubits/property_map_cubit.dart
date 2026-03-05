@@ -1,7 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
-import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/domain/params/property_map_params.dart';
 import 'package:real_state/features/properties/domain/repository/property_repository.dart';
 

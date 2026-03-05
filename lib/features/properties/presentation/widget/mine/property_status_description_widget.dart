@@ -1,6 +1,5 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/page/about_us_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/call_us_dialog.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';

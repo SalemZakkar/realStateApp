@@ -6,7 +6,6 @@ import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/main_map_page.dart';
-import 'package:real_state/features/core/presentation/widget/map_view_widget.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
 import 'package:real_state/features/properties/presentation/cubits/property_delete_cubit.dart';
 import 'package:real_state/features/properties/presentation/page/properties_manage_image_page.dart';
