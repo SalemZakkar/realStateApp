@@ -78,9 +78,9 @@ class _AppState extends State<App> {
                 if (child == null) {
                   return const SizedBox();
                 }
-                return GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
+                return Listener(
+                  behavior: HitTestBehavior.translucent,
+                  onPointerDown: (_) {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
                   child: MediaQuery(

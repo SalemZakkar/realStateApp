@@ -1,5 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
+import 'package:real_state/features/core/data/utils/timeout_interceptor.dart';
 import 'package:real_state/features/core/data/utils/token_interceptor.dart';
 import 'package:real_state/injection.dart';
 
@@ -28,6 +29,7 @@ abstract class InjectableModule {
     );
     dio.interceptors.addAll([
       getIt<TokenInterceptor>(),
+      TimeoutInterceptor(),
       UnifiInterceptor(
         requestBody: true,
         requestHeader: true,

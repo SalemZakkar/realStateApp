@@ -1,6 +1,7 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/properties/domain/entity/property.dart';
@@ -47,14 +48,14 @@ class _PropertyImagesPageState extends State<PropertyImagesPage> {
         child: Column(
           children: [
             Expanded(
-              child: PageView.builder(
-                controller: pageController,
+              child: PhotoViewGallery.builder(
+                pageController: pageController,
                 itemCount: widget.property.images.length,
-                itemBuilder: (context, index) {
-                  return PhotoView(
-                    backgroundDecoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                    ),
+                backgroundDecoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                ),
+                builder: (context, index) {
+                  return PhotoViewGalleryPageOptions(
                     imageProvider: NetworkImage(
                       widget.property.images[index].getUrl!,
                     ),
@@ -62,6 +63,12 @@ class _PropertyImagesPageState extends State<PropertyImagesPage> {
                     maxScale: PhotoViewComputedScale.covered * 2,
                   );
                 },
+                onPageChanged: (v) {
+                  setState(() {
+                    index = v;
+                  });
+                },
+                // scrollPhysics: const BouncingScrollPhysics(),
               ),
             ),
             16.height(),

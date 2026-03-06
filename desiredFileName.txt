@@ -66,6 +66,10 @@
     "youCanAddUpTo6Images",
     "youNeedToLoginFirst",
     "satellite",
-    "goToLocation"
+    "goToLocation",
+    "preparing",
+    "movePointerToTheWantedLocations",
+    "theVideo",
+    "chooseImageToAddIt"
   ]
 }

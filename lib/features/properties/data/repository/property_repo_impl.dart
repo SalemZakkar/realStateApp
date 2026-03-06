@@ -76,6 +76,7 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
   @override
   Future<Either<Failure, Property>> addVideo(String id, PickFile image) {
     return request(() async {
+      // await Future.delayed(Duration(seconds: 30));
       var res = await propertiesRemoteSource.video(
         id,
         FormData.fromMap({"video": image.multipartFile}),

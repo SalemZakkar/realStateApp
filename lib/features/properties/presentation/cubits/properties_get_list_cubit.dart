@@ -13,6 +13,9 @@ class PropertiesGetListCubit
     streamSubscription = repository.newPropertyStream.listen((v) {
       int index = state.items.indexWhere((e) => e.id == v.id);
       if (index != -1) {
+        if (params.owner != null && v.owner.id != params.owner) {
+          return;
+        }
         state.items[index] = v;
         emit(state.copyWith(items: state.items));
       } else {

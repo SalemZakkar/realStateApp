@@ -2,9 +2,11 @@ import 'package:core_package/core_package.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:real_state/features/auth/presentation/page/auth_login_page.dart';
 import 'package:real_state/features/auth/presentation/page/auth_otp_page.dart';
+import 'package:real_state/features/core/presentation/page/compress_video_page.dart';
 import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/about_us_page.dart';
+// import 'package:real_state/features/core/presentation/page/play_video_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
 import 'package:real_state/features/core/presentation/page/view_image_page.dart';
@@ -134,6 +136,16 @@ class Routes {
       builder: (context, state, child) => AboutUsPage(),
       path: AboutUsPage.path,
     ),
+    RouteInfo(
+      builder: (context, state, child) =>
+          CompressVideoPage(file: state.extra!.toString()),
+      path: CompressVideoPage.path,
+    ),
+    // RouteInfo(
+    //   builder: (context, state, child) =>
+    //       PlayVideoPage(file: state.extra!.toString()),
+    //   path: PlayVideoPage.path,
+    // ),
   ];
 }
 

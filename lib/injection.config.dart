@@ -49,8 +49,8 @@ import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
-import 'package:real_state/features/core/presentation/cubit/video_cubit.dart'
-    as _i432;
+// import 'package:real_state/features/core/presentation/cubit/video_cubit.dart'
+//     as _i432;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
     as _i976;
 import 'package:real_state/features/properties/data/repository/property_repo_impl.dart'
@@ -96,7 +96,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final injectableModule = _$InjectableModule();
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
-    gh.factory<_i432.VideoCubit>(() => _i432.VideoCubit());
+    // gh.factory<_i432.VideoCubit>(() => _i432.VideoCubit());
     gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
     gh.singleton<_i107.PropertyCacheSource>(() => _i107.PropertyCacheSource());
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());

@@ -1364,6 +1364,30 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'الذهاب للموقع'**
   String get goToLocation;
+
+  /// No description provided for @preparing.
+  ///
+  /// In ar, this message translates to:
+  /// **'جاري التجهيز'**
+  String get preparing;
+
+  /// No description provided for @movePointerToTheWantedLocations.
+  ///
+  /// In ar, this message translates to:
+  /// **'حرك المؤشر للموقع المطلوب'**
+  String get movePointerToTheWantedLocations;
+
+  /// No description provided for @theVideo.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفيديو'**
+  String get theVideo;
+
+  /// No description provided for @chooseImageToAddIt.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر صورة لإضافتها'**
+  String get chooseImageToAddIt;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

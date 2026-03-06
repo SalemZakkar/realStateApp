@@ -7,4 +7,5 @@ abstract class CoreRepository {
 
   Future<Either<Failure, List<City>>> getCities();
 
+  Future<Either<Failure, String>> getVideoThumbnail(String url);
 }

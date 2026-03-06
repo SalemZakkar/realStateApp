@@ -209,5 +209,9 @@
   "youCanAddUpTo6Images" : "يمكنك إضافة حتى 6 صور",
   "youNeedToLoginFirst" : "يجب تسجيل الدخول اولاً",
   "satellite" : "صور القمر الصناعي",
-  "goToLocation" : "الذهاب للموقع"
+  "goToLocation" : "الذهاب للموقع",
+  "preparing" : "جاري التجهيز",
+  "movePointerToTheWantedLocations" : "حرك المؤشر للموقع المطلوب",
+  "theVideo" : "الفيديو",
+  "chooseImageToAddIt" : "اختر صورة لإضافتها"
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
+import 'package:real_state/features/properties/presentation/page/property_form_page.dart';
 import 'package:real_state/features/properties/presentation/widget/mine/property_mine_card_widget.dart';
 import 'package:real_state/features/properties/presentation/widget/property_list_widget.dart';
 
@@ -19,6 +20,12 @@ class _PropertyMinePageState extends State<PropertyMinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.push(PropertyFormPage.path);
+        },
+        child: Icon(Icons.add),
+      ),
       body: UserBuilder(
         builder: (context, user) {
           return Container(

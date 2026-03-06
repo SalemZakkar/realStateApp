@@ -28,12 +28,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ConsumerWidget(
-        cubit: cubit,
-        childBuilder: (context, state) {
-          return Container(
-            constraints: const BoxConstraints.expand(),
-            child: UserBuilder(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: ConsumerWidget(
+          cubit: cubit,
+          childBuilder: (context, state) {
+            return UserBuilder(
               builder: (context, user) {
                 if (user.id == state.owner.id) {
                   return PropertyViewUserWidget(realEstate: state);
@@ -41,12 +41,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                 return PropertyViewWidget(realEstate: state);
               },
               unAuthWidget: PropertyViewWidget(realEstate: state),
-            ),
-          );
-        },
-        onRetry: () {
-          cubit.get(widget.id);
-        },
+            );
+          },
+          onRetry: () {
+            cubit.get(widget.id);
+          },
+        ),
       ),
     );
   }

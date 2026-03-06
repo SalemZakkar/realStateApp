@@ -1,3 +1,2 @@
-//compressions
-//dio timeout for upload
 //version
+//improve filters by watching others

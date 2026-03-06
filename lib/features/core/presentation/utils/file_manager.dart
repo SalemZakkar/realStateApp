@@ -14,4 +14,11 @@ class FileManager {
     // print("${configuration.getBaseUrl.split("api/v1").first}$name");
     return "${configuration.getBaseUrl}files/$name";
   }
+
+  String? getVideoThumbnail({String? name}) {
+    if (name == null) {
+      return null;
+    }
+    return "${configuration.getBaseUrl}files/$name/thumbnail";
+  }
 }

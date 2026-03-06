@@ -24,20 +24,6 @@ class PropertyViewWidget extends StatefulWidget {
 }
 
 class _PropertyViewWidgetState extends State<PropertyViewWidget> {
-  // Create a [VideoController] to handle video output from [Player].
-
-  @override
-  void initState() {
-    // player.open(Media('https://download.samplelib.com/mp4/sample-5s.mp4') , play: false);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // player.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,9 +107,6 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                   ),
                 ),
               ),
-
-              // toolbarHeight: 200,
-              // collapsedHeight: 200,
               expandedHeight: 320,
             ),
             SliverToBoxAdapter(
@@ -151,25 +134,6 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                           property: widget.realEstate.id,
                           isSaved: widget.realEstate.isSaved,
                         ),
-                        // if (widget.realEstate.isFeature) ...[
-                        //   8.width(),
-                        //   Container(
-                        //     padding: EdgeInsets.all(8),
-                        //     decoration: BoxDecoration(
-                        //       color: context.appColorSchema.statusColors.pending
-                        //           .withValues(alpha: 0.2),
-                        //       borderRadius: BorderRadius.circular(8),
-                        //     ),
-                        //     child: Text(
-                        //       context.translation.featured,
-                        //       style: TextStyle(
-                        //         color:
-                        //             context.appColorSchema.statusColors.pending,
-                        //         fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ],
                       ],
                     ),
                     Row(
@@ -184,9 +148,9 @@ class _PropertyViewWidgetState extends State<PropertyViewWidget> {
                       ],
                     ),
                     if (widget.realEstate.video != null)
-                      VideoPlayerWidget(
+                      VideoThumbnailWidget(
                         size: Size(MediaQuery.of(context).size.width, 300),
-                        url: widget.realEstate.video!.getUrl!,
+                        id: widget.realEstate.video!,
                       ),
                     CustomCardWidget(
                       child: Row(

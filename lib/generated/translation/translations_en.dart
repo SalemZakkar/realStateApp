@@ -713,4 +713,16 @@ class TranslationsEn extends Translations {
 
   @override
   String get goToLocation => 'الذهاب للموقع';
+
+  @override
+  String get preparing => 'جاري التجهيز';
+
+  @override
+  String get movePointerToTheWantedLocations => 'حرك المؤشر للموقع المطلوب';
+
+  @override
+  String get theVideo => 'الفيديو';
+
+  @override
+  String get chooseImageToAddIt => 'اختر صورة لإضافتها';
 }

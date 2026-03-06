@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
           slivers: [
             SliverToBoxAdapter(child: AdBannerWidget()),
             SliverAppBar(
-
               floating: true,
               pinned: true,
               flexibleSpace: PropertyFilterWidget(
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            SliverToBoxAdapter(child: 2.height(),),
+            SliverToBoxAdapter(child: 2.height()),
             SliverToBoxAdapter(
               child: GridViewPaginationWidget<Property>(
                 paginationCubit: cubit,

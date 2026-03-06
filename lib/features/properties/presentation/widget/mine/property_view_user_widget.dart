@@ -47,12 +47,15 @@ class _PropertyViewUserWidgetState extends State<PropertyViewUserWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       // appBar: AppBar(),
       body: Container(
         constraints: BoxConstraints.expand(),
         child: Scrollbar(
           child: CustomScrollView(
+            shrinkWrap: true,
+            cacheExtent: double.infinity,
             physics: BouncingScrollPhysics(),
             slivers: [
               SliverAppBar(

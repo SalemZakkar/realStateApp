@@ -35,18 +35,22 @@ class _MainMapWidgetState extends State<MainMapWidget> {
   late GoogleMapController controller;
   BitmapDescriptor descriptor = BitmapDescriptor.defaultMarker;
   MapType mapType = MapType.normal;
+  LatLng center = LatLng(34.8021, 38.9968);
 
   @override
   void initState() {
     super.initState();
-    selectedLatLng = widget.initial;
-        if (selectedLatLng == null && !widget.root) {
+    if (widget.initial != null) {
+      selectedLatLng = widget.initial;
+      center = selectedLatLng!;
+    }
+    if (selectedLatLng == null && !widget.root) {
       Geolocator.requestPermission().then((e) {
         if (e == LocationPermission.always ||
             e == LocationPermission.whileInUse) {
           Geolocator.getCurrentPosition().then((e) {
             controller.animateCamera(
-              CameraUpdate.newLatLngZoom(LatLng(e.latitude, e.longitude), 12),
+              CameraUpdate.newLatLngZoom(LatLng(e.latitude, e.longitude), 18),
             );
           });
         }
@@ -60,11 +64,13 @@ class _MainMapWidgetState extends State<MainMapWidget> {
     if (oldWidget.initial != widget.initial && widget.initial != null) {
       setState(() {
         selectedLatLng = widget.initial;
+        center = widget.initial!;
       });
       controller.animateCamera(CameraUpdate.newLatLngZoom(widget.initial!, 18));
     }
     if (oldWidget.initial != widget.initial && widget.initial == null) {
       selectedLatLng = null;
+      center = LatLng(34.8021, 38.9968);
       controller.animateCamera(
         CameraUpdate.newLatLngZoom(LatLng(34.8021, 38.9968), 6),
       );
@@ -131,8 +137,11 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                     : <Marker>{},
                 zoomControlsEnabled: false,
                 rotateGesturesEnabled: false,
+                onCameraMove: (v) {
+                  center = v.target;
+                },
                 initialCameraPosition: CameraPosition(
-                  target: selectedLatLng ?? LatLng(34.8021, 38.9968),
+                  target: center,
                   zoom: selectedLatLng != null ? 19 : 6,
                 ),
                 onMapCreated: (c) async {
@@ -149,11 +158,11 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                   setState(() {});
                 },
                 onTap: (v) {
-                  if (widget.isField) {
-                    setState(() {
-                      selectedLatLng = v;
-                    });
-                  }
+                  // if (widget.isField) {
+                  //   setState(() {
+                  //     selectedLatLng = v;
+                  //   });
+                  // }
                 },
               ),
 
@@ -190,6 +199,20 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                 ],
               ],
               if (!widget.root) ...[
+                // Center(
+                //   child: Container(
+                //     height: MediaQuery.of(context).size.height,
+                //     width: 4,
+                //     color: Colors.yellow,
+                //   ),
+                // ),
+                // Center(
+                //   child: Container(
+                //     width: MediaQuery.of(context).size.width,
+                //     height: 4,
+                //     color: Colors.yellow,
+                //   ),
+                // ),
                 PositionedDirectional(
                   end: 8,
                   top: 8,
@@ -257,6 +280,23 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                     ),
                   ),
                 if (widget.isField) ...[
+                  Center(
+                    child: IgnorePointer(
+                      ignoring: true,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red.withValues(alpha: 0.3),
+                        ),
+
+                        child: Icon(
+                          Icons.gps_fixed_outlined,
+                          color: Colors.red,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     bottom: 8,
                     left: 8,
@@ -272,19 +312,19 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                             child: Text(
                               context
                                   .translation
-                                  .pressOnThePlaceYouWantToSetYourPropertyLocation,
+                                  .movePointerToTheWantedLocations,
                             ),
                           ),
-                          if (selectedLatLng != null)
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context.pop(selectedLatLng);
-                                },
-                                child: Text(context.translation.save),
-                              ),
+                          // if (selectedLatLng != null)
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.pop(center);
+                              },
+                              child: Text(context.translation.save),
                             ),
+                          ),
                         ],
                       ),
                     ),

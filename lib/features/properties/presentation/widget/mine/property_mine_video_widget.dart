@@ -1,6 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state/features/core/presentation/utils/ext/string.dart';
+import 'package:real_state/features/core/presentation/page/compress_video_page.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/video_player_widget.dart';
@@ -23,6 +23,18 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
   final cubit = getIt<PropertyFileCubit>();
 
   @override
+  void didUpdateWidget(covariant PropertyMineVideoWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  String? video;
+  @override
+  void initState() {
+    super.initState();
+    video = widget.property.video;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScreenLoader(
       cubit: cubit,
@@ -31,15 +43,25 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
         child: Column(
           spacing: 8,
           children: [
-            if (widget.property.video == null &&
-                widget.property.editable) ...[
+            if (widget.property.video == null && widget.property.editable) ...[
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: OutlinedButton(
                   onPressed: () async {
                     var res = await FilePickUtil.getVideo(quality: 40);
                     if (res != null) {
-                      cubit.addVideo(widget.property.id, res);
+                      if (context.mounted) {
+                        var path = await context.push(
+                          CompressVideoPage.path,
+                          extra: res.path,
+                        );
+                        if (path != null) {
+                          cubit.addVideo(
+                            widget.property.id,
+                            await PickFile.fromPath(path.toString()),
+                          );
+                        }
+                      }
                     }
                   },
                   child: Text(context.translation.addVideo),
@@ -47,9 +69,9 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
               ),
             ],
             if (widget.property.video != null) ...[
-              VideoPlayerWidget(
+              VideoThumbnailWidget(
                 size: Size(MediaQuery.of(context).size.width, 300),
-                url: widget.property.video!.getUrl!,
+                id: widget.property.video!,
               ),
               if (widget.property.editable) ...[
                 Row(
@@ -73,8 +95,7 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
                                 );
                               },
                             ).showConfirmDialog(
-                              message:
-                                  context.translation.deleteVideoQuestion,
+                              message: context.translation.deleteVideoQuestion,
                             );
                           },
                           child: Text(context.translation.deleteVideo),
@@ -86,11 +107,21 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           onPressed: () async {
-                            var res = await FilePickUtil.getVideo(
-                              quality: 40,
-                            );
+                            var res = await FilePickUtil.getVideo(quality: 40);
+
                             if (res != null) {
-                              cubit.addVideo(widget.property.id, res);
+                              if (context.mounted) {
+                                var path = await context.push(
+                                  CompressVideoPage.path,
+                                  extra: res.path,
+                                );
+                                if (path != null) {
+                                  cubit.addVideo(
+                                    widget.property.id,
+                                    await PickFile.fromPath(path.toString()),
+                                  );
+                                }
+                              }
                             }
                           },
                           child: Text(context.translation.changeVideo),

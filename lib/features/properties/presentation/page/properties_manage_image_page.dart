@@ -37,6 +37,27 @@ class _PropertyManageImagePageState extends State<PropertyManageImagePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.translation.images)),
+      bottomNavigationBar: Container(
+        width: MediaQuery.of(context).size.width,
+        // height: 60,
+        padding: EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8
+        ),
+        color: Theme.of(context).cardColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                onPressed: context.pop,
+                child: Text(context.translation.done),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: ScreenLoader(
         cubit: cubit,
         child: Container(
@@ -84,7 +105,13 @@ class _PropertyManageImagePageState extends State<PropertyManageImagePage> {
                                 cubit.addImage(widget.id, res);
                               }
                             },
-                            child: CustomCardWidget(child: Icon(Icons.add)),
+                            child: CustomCardWidget(
+                              child: Center(
+                                child: Text(
+                                  context.translation.chooseImageToAddIt,
+                                ),
+                              ),
+                            ),
                           );
                         }
                         return const SizedBox.shrink();
