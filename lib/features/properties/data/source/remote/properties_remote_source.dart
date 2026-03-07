@@ -30,7 +30,12 @@ abstract class PropertiesRemoteSource {
 
   Future<BaseResponse<PropertyModel>> addImage(String id, FormData data);
 
-  Future<BaseResponse<PropertyModel>> video(String id, FormData data);
+  Future<BaseResponse<PropertyModel>> video(
+    String id,
+    FormData data,
+    ProgressCallback sendProgress,
+    CancelToken? cancel,
+  );
 
   Future<BaseResponse<PropertyModel>> deleteVideo(String id, String fileId);
 
@@ -113,6 +118,8 @@ abstract class PropertiesRemoteSourceImpl extends PropertiesRemoteSource {
   Future<BaseResponse<PropertyModel>> video(
     @Path() String id,
     @Body() FormData data,
+    @SendProgress() ProgressCallback sendProgress,
+    @CancelRequest() CancelToken? cancel,
   );
 
   @POST("property/{id}/save")

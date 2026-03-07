@@ -6,6 +6,7 @@ import 'package:real_state/features/core/presentation/page/compress_video_page.d
 import 'package:real_state/features/core/presentation/page/legal_page.dart';
 import 'package:real_state/features/core/presentation/page/map_page.dart';
 import 'package:real_state/features/core/presentation/page/about_us_page.dart';
+
 // import 'package:real_state/features/core/presentation/page/play_video_page.dart';
 import 'package:real_state/features/core/presentation/page/splash_page.dart';
 import 'package:real_state/features/core/presentation/page/update_app_page.dart';
@@ -137,15 +138,12 @@ class Routes {
       path: AboutUsPage.path,
     ),
     RouteInfo(
-      builder: (context, state, child) =>
-          CompressVideoPage(file: state.extra!.toString()),
-      path: CompressVideoPage.path,
+      builder: (context, state, child) => PropertyUploadVideoPage(
+        file: state.pathParameters['file']!,
+        id: state.pathParameters['id']!,
+      ),
+      path: PropertyUploadVideoPage.path,
     ),
-    // RouteInfo(
-    //   builder: (context, state, child) =>
-    //       PlayVideoPage(file: state.extra!.toString()),
-    //   path: PlayVideoPage.path,
-    // ),
   ];
 }
 

@@ -306,9 +306,15 @@ class _PropertiesRemoteSourceImpl implements PropertiesRemoteSourceImpl {
   }
 
   @override
-  Future<BaseResponse<PropertyModel>> video(String id, FormData data) async {
+  Future<BaseResponse<PropertyModel>> video(
+    String id,
+    FormData data,
+    void Function(int, int) sendProgress,
+    CancelToken? cancel,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = data;
     final _options = _setStreamType<BaseResponse<PropertyModel>>(
@@ -318,6 +324,8 @@ class _PropertiesRemoteSourceImpl implements PropertiesRemoteSourceImpl {
             'property/${id}/video',
             queryParameters: queryParameters,
             data: _data,
+            cancelToken: cancel,
+            onSendProgress: sendProgress,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );

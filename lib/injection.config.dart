@@ -49,8 +49,6 @@ import 'package:real_state/features/core/presentation/cubit/contact_cubit.dart'
     as _i672;
 import 'package:real_state/features/core/presentation/cubit/settings_cubit.dart'
     as _i568;
-// import 'package:real_state/features/core/presentation/cubit/video_cubit.dart'
-//     as _i432;
 import 'package:real_state/features/core/presentation/utils/file_manager.dart'
     as _i976;
 import 'package:real_state/features/properties/data/repository/property_repo_impl.dart'
@@ -75,6 +73,8 @@ import 'package:real_state/features/properties/presentation/cubits/property_map_
     as _i406;
 import 'package:real_state/features/properties/presentation/cubits/property_status_cubit.dart'
     as _i466;
+import 'package:real_state/features/properties/presentation/cubits/property_upload_video_cubit.dart'
+    as _i806;
 import 'package:real_state/features/user/data/repository/user_repository_impl.dart'
     as _i905;
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart'
@@ -96,7 +96,6 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final injectableModule = _$InjectableModule();
     gh.factory<_i837.AuthLocalSource>(() => _i837.AuthLocalSource());
-    // gh.factory<_i432.VideoCubit>(() => _i432.VideoCubit());
     gh.singleton<_i568.SettingsCubit>(() => _i568.SettingsCubit());
     gh.singleton<_i107.PropertyCacheSource>(() => _i107.PropertyCacheSource());
     gh.lazySingleton<_i838.TokenInterceptor>(() => _i838.TokenInterceptor());
@@ -175,11 +174,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i617.PropertyFileCubit>(
       () => _i617.PropertyFileCubit(gh<_i986.PropertiesRepository>()),
     );
-    gh.factory<_i466.PropertyStatusCubit>(
-      () => _i466.PropertyStatusCubit(gh<_i986.PropertiesRepository>()),
-    );
     gh.factory<_i406.PropertyMapCubit>(
       () => _i406.PropertyMapCubit(gh<_i986.PropertiesRepository>()),
+    );
+    gh.factory<_i466.PropertyStatusCubit>(
+      () => _i466.PropertyStatusCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.singleton<_i422.AdBannerCubit>(
       () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
@@ -192,6 +191,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i202.AuthCubit>(
       () => _i202.AuthCubit(gh<_i458.AuthRepository>()),
+    );
+    gh.factory<_i806.PropertyUploadVideoCubit>(
+      () => _i806.PropertyUploadVideoCubit(gh<_i986.PropertiesRepository>()),
     );
     gh.factory<_i509.UserGetMineCubit>(
       () => _i509.UserGetMineCubit(

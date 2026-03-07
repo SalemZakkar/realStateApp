@@ -27,11 +27,9 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
     super.didUpdateWidget(oldWidget);
   }
 
-  String? video;
   @override
   void initState() {
     super.initState();
-    video = widget.property.video;
   }
 
   @override
@@ -51,16 +49,13 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
                     var res = await FilePickUtil.getVideo(quality: 40);
                     if (res != null) {
                       if (context.mounted) {
-                        var path = await context.push(
-                          CompressVideoPage.path,
-                          extra: res.path,
+                        context.pushNamed(
+                          PropertyUploadVideoPage.path,
+                          pathParameters: {
+                            "file": res.path,
+                            "id": widget.property.id,
+                          },
                         );
-                        if (path != null) {
-                          cubit.addVideo(
-                            widget.property.id,
-                            await PickFile.fromPath(path.toString()),
-                          );
-                        }
                       }
                     }
                   },
@@ -111,16 +106,13 @@ class _PropertyMineVideoWidgetState extends State<PropertyMineVideoWidget> {
 
                             if (res != null) {
                               if (context.mounted) {
-                                var path = await context.push(
-                                  CompressVideoPage.path,
-                                  extra: res.path,
+                                context.pushNamed(
+                                  PropertyUploadVideoPage.path,
+                                  pathParameters: {
+                                    "file": res.path,
+                                    "id": widget.property.id,
+                                  },
                                 );
-                                if (path != null) {
-                                  cubit.addVideo(
-                                    widget.property.id,
-                                    await PickFile.fromPath(path.toString()),
-                                  );
-                                }
                               }
                             }
                           },

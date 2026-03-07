@@ -213,5 +213,6 @@
   "preparing" : "جاري التجهيز",
   "movePointerToTheWantedLocations" : "حرك المؤشر للموقع المطلوب",
   "theVideo" : "الفيديو",
-  "chooseImageToAddIt" : "اختر صورة لإضافتها"
+  "chooseImageToAddIt" : "اختر صورة لإضافتها",
+  "videoIsBeingUploadedClosingTheScreenWillCancelTheOperation" : "يتم رفع الفيديو .. اغلاق الصفحة سيلغي العملية"
 }

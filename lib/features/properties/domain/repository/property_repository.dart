@@ -28,7 +28,7 @@ abstract class PropertiesRepository {
 
   Future<Either<Failure, Property>> addImage(String id, PickFile image);
 
-  Future<Either<Failure, Property>> addVideo(String id, PickFile image);
+  // Future<Either<Failure, Property>> addVideo(String id, PickFile image);
 
   Future<Either<Failure, Property>> deleteImage(String id, String image);
 
@@ -45,4 +45,12 @@ abstract class PropertiesRepository {
   Stream<String> get saveStream;
 
   Future<Either<Failure, List<Property>>> getMap(PropertyMapParams params);
+
+  Future<Either<Failure, void>> uploadVideo(
+    String id,
+    PickFile file,
+    void Function(double , bool) onProgress,
+  );
+
+  Future<void> cleanCompressedCache();
 }

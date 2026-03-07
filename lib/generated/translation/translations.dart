@@ -1388,6 +1388,12 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'اختر صورة لإضافتها'**
   String get chooseImageToAddIt;
+
+  /// No description provided for @videoIsBeingUploadedClosingTheScreenWillCancelTheOperation.
+  ///
+  /// In ar, this message translates to:
+  /// **'يتم رفع الفيديو .. اغلاق الصفحة سيلغي العملية'**
+  String get videoIsBeingUploadedClosingTheScreenWillCancelTheOperation;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

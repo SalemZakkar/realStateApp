@@ -14,6 +14,7 @@ import 'package:real_state/features/properties/domain/params/property_create_par
 import 'package:real_state/features/properties/domain/params/property_get_params.dart';
 import 'package:real_state/features/properties/domain/params/property_map_params.dart';
 import 'package:real_state/features/properties/domain/repository/property_repository.dart';
+import 'package:v_video_compressor/v_video_compressor.dart';
 
 import '../model/property_get_params_model/property_get_params_model.dart';
 
@@ -31,6 +32,10 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
   StreamController<String> saveController = StreamController.broadcast();
 
   PropertyCacheSource cacheSource;
+
+  Map<String, PickFile> compressTable = {};
+
+  CancelToken? cancelToken;
 
   @override
   Future<Either<Failure, Property>> getById(String id) {
@@ -67,19 +72,6 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
       var res = await propertiesRemoteSource.addImage(
         id,
         FormData.fromMap({"image": image.multipartFile}),
-      );
-      addPropertyController.add(res.data!.toDomain());
-      return Right(res.data!.toDomain());
-    });
-  }
-
-  @override
-  Future<Either<Failure, Property>> addVideo(String id, PickFile image) {
-    return request(() async {
-      // await Future.delayed(Duration(seconds: 30));
-      var res = await propertiesRemoteSource.video(
-        id,
-        FormData.fromMap({"video": image.multipartFile}),
       );
       addPropertyController.add(res.data!.toDomain());
       return Right(res.data!.toDomain());
@@ -180,6 +172,67 @@ class PropertiesRepoImpl extends PropertiesRepository with ApiHandler {
     return request(() async {
       var res = await propertiesRemoteSource.getMap(params.fromDomain());
       return Right(res.data!.map((e) => e.toDomain()).toList());
+    });
+  }
+
+  @override
+  Future<void> cleanCompressedCache() async {
+    cancelToken?.cancel();
+    cancelToken = null;
+    compressTable = {};
+    await VVideoCompressor().cleanupFiles(deleteCompressedVideos: true);
+  }
+
+  @override
+  Future<Either<Failure, void>> uploadVideo(
+    String id,
+    PickFile file,
+    void Function(double, bool) onProgress,
+  ) {
+    return request(() async {
+      var chosen = compressTable[file.path] ?? file;
+      VVideoCompressor compressor = VVideoCompressor();
+      if (compressTable[file.path] != null) {
+        cancelToken = CancelToken();
+        var uploadResult = await propertiesRemoteSource.video(
+          id,
+          FormData.fromMap({"video": chosen.multipartFile}),
+          (a, b) {
+            onProgress(b / a, false);
+          },
+          cancelToken,
+        );
+        cancelToken = null;
+        var result = uploadResult.data!.toDomain();
+        addPropertyController.add(result);
+      } else {
+        var compressed = await compressor.compressVideo(
+          chosen.path,
+          VVideoCompressionConfig(
+            quality: VVideoCompressQuality.medium,
+            advanced: VVideoAdvancedConfig.socialMediaOptimized(),
+          ),
+          onProgress: (v) {
+            onProgress(v, true);
+          },
+        );
+        // throw Exception();
+        chosen = await PickFile.fromPath(compressed!.compressedFilePath);
+        compressTable[file.file.path] = chosen;
+        cancelToken = CancelToken();
+        var uploadResult = await propertiesRemoteSource.video(
+          id,
+          FormData.fromMap({"video": chosen.multipartFile}),
+          (a, b) {
+            onProgress(b / a, false);
+          },
+          cancelToken,
+        );
+        cancelToken = null;
+        var result = uploadResult.data!.toDomain();
+        addPropertyController.add(result);
+      }
+      return Right(null);
     });
   }
 }

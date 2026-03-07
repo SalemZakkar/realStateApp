@@ -1,7 +1,5 @@
 import 'package:core_package/core_package.dart';
 import 'package:real_state/features/core/domain/entity/errors.dart';
-// import 'package:real_state/features/core/domain/repository/core_repository.dart';
-// import 'package:real_state/injection.dart';
 import 'package:v_video_compressor/v_video_compressor.dart';
 
 class VideoThumbnailCubit extends Cubit<BaseState<String?>> {
@@ -20,15 +18,6 @@ class VideoThumbnailCubit extends Cubit<BaseState<String?>> {
       emit(state.setFailureState(InternalError()));
     }
   }
-
-  // void getUrl(String url) async {
-  //   emit(state.setInProgressState());
-  //   var res = await getIt<CoreRepository>().getVideoThumbnail(url);
-  //   res.fold(
-  //     (e) => emit(state.setSuccessState(null)),
-  //     (r) => emit(state.setSuccessState(r)),
-  //   );
-  // }
 
   @override
   Future<void> close() {

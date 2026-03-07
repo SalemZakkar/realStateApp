@@ -18,15 +18,6 @@ class PropertyFileCubit extends Cubit<BaseState<Property>> {
     );
   }
 
-  void addVideo(String id, PickFile video) async {
-    emit(state.setInProgressState());
-    var res = await repository.addVideo(id, video);
-    res.fold(
-      (e) => emit(state.setFailureState(e)),
-      (r) => emit(state.setSuccessState(r)),
-    );
-  }
-
   void deleteImage(String id, String image) async {
     emit(state.setInProgressState());
     var res = await repository.deleteImage(id, image);

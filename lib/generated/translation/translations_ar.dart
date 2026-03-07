@@ -723,4 +723,8 @@ class TranslationsAr extends Translations {
 
   @override
   String get chooseImageToAddIt => 'اختر صورة لإضافتها';
+
+  @override
+  String get videoIsBeingUploadedClosingTheScreenWillCancelTheOperation =>
+      'يتم رفع الفيديو .. اغلاق الصفحة سيلغي العملية';
 }
