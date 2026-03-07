@@ -2,6 +2,7 @@ import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
 import 'package:real_state/features/core/data/utils/timeout_interceptor.dart';
 import 'package:real_state/features/core/data/utils/token_interceptor.dart';
+import 'package:real_state/features/core/data/utils/version_interceptor.dart';
 import 'package:real_state/injection.dart';
 
 @module
@@ -11,7 +12,7 @@ abstract class InjectableModule {
     final dio = Dio(
       BaseOptions(
         headers: {'Accept': '*/*'},
-        sendTimeout: Duration(seconds: 30),
+        sendTimeout: Duration(seconds: 90),
         connectTimeout: Duration(seconds: 30),
         receiveTimeout: Duration(seconds: 30),
         validateStatus: (statusCode) {
@@ -30,6 +31,7 @@ abstract class InjectableModule {
     dio.interceptors.addAll([
       getIt<TokenInterceptor>(),
       TimeoutInterceptor(),
+      VersionInterceptor(),
       UnifiInterceptor(
         requestBody: true,
         requestHeader: true,

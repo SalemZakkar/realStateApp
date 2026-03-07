@@ -17,4 +17,5 @@ AboutUsModel _$AboutUsModelFromJson(Map json) => AboutUsModel(
       (json['phones'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       [],
   termsAndConditions: json['termsAndConditions'] as String?,
+  googlePlayUrl: json['googlePlayUrl'] as String?,
 );

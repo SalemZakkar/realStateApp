@@ -81,6 +81,8 @@ import 'package:real_state/features/user/data/source/user_remote_source/user_rem
     as _i797;
 import 'package:real_state/features/user/domain/repository/user_repository.dart'
     as _i140;
+import 'package:real_state/features/user/presentation/cubit/user_delete_mine_cubit.dart'
+    as _i924;
 import 'package:real_state/features/user/presentation/cubit/user_get_mine_cubit.dart'
     as _i509;
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart'
@@ -135,9 +137,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i270.Configuration>(),
       ),
     );
-    gh.factory<_i140.UserRepository>(
-      () => _i905.UserRepositoryImpl(gh<_i797.UserRemoteSource>()),
-    );
     gh.factory<_i593.AdBannerRepository>(
       () => _i579.AdBannerRepoImpl(gh<_i534.AdBannerRemoteSource>()),
     );
@@ -157,6 +156,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i50.PropertiesRepoImpl(
         gh<_i422.PropertiesRemoteSource>(),
         gh<_i107.PropertyCacheSource>(),
+      ),
+    );
+    gh.factory<_i140.UserRepository>(
+      () => _i905.UserRepositoryImpl(
+        gh<_i797.UserRemoteSource>(),
+        gh<_i458.AuthRepository>(),
       ),
     );
     gh.factory<_i17.PropertiesDetailsCubit>(
@@ -182,6 +187,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i422.AdBannerCubit>(
       () => _i422.AdBannerCubit(gh<_i593.AdBannerRepository>()),
+    );
+    gh.factory<_i924.UserDeleteMineCubit>(
+      () => _i924.UserDeleteMineCubit(gh<_i140.UserRepository>()),
     );
     gh.factory<_i204.AuthLoginCubit>(
       () => _i204.AuthLoginCubit(gh<_i458.AuthRepository>()),

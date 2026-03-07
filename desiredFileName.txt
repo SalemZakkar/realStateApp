@@ -71,6 +71,11 @@
     "movePointerToTheWantedLocations",
     "theVideo",
     "chooseImageToAddIt",
-    "videoIsBeingUploadedClosingTheScreenWillCancelTheOperation"
+    "videoIsBeingUploadedClosingTheScreenWillCancelTheOperation",
+    "deleteMyAccount",
+    "deleteAccountWarning",
+    "post",
+    "pleaseUpdateTheApp",
+    "currentVersion"
   ]
 }

@@ -5,11 +5,13 @@ import 'package:real_state/features/core/presentation/utils/ext/string.dart';
 import 'package:real_state/features/core/presentation/utils/ext/tr.dart';
 import 'package:real_state/features/core/presentation/widget/bloc_consumers/user_builder.dart';
 import 'package:real_state/features/core/presentation/widget/button/log_out_button.dart';
+import 'package:real_state/features/core/presentation/widget/dialogs/dialog_util.dart';
 import 'package:real_state/features/core/presentation/widget/log_in_widget.dart';
 import 'package:real_state/features/properties/presentation/page/property_favourite_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_form_page.dart';
 import 'package:real_state/features/properties/presentation/page/property_mine_page.dart';
 import 'package:real_state/features/user/domain/params/user_update_params.dart';
+import 'package:real_state/features/user/presentation/cubit/user_delete_mine_cubit.dart';
 import 'package:real_state/features/user/presentation/cubit/user_update_cubit.dart';
 import 'package:real_state/features/user/presentation/widget/user_edit_dialog.dart';
 import 'package:real_state/generated/generated_assets/assets.gen.dart';
@@ -26,6 +28,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final cubit = getIt<UserUpdateCubit>();
+  final deleteCubit = getIt<UserDeleteMineCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               pickImageConfig: PickImageConfig(
                                 rootNavigator: true,
                                 withCrop: false,
+                                quality: 20
                               ),
                             ),
                             16.height(),
@@ -131,6 +135,42 @@ class _ProfilePageState extends State<ProfilePage> {
                                       title: user.phoneNumber ?? '',
                                       textAlign: TextAlign.end,
                                       textDirection: TextDirection.ltr,
+                                    ),
+                                    16.height(),
+                                    ScreenLoader(
+                                      cubit: deleteCubit,
+                                      child: TileButton(
+                                        onTap: () {
+                                          DialogUtil(
+                                            context: context,
+                                            onAccept: () {
+                                              deleteCubit.delete();
+                                            },
+                                          ).showConfirmDialog(
+                                            message: context
+                                                .translation
+                                                .deleteAccountWarning,
+                                          );
+                                        },
+                                        padding: EdgeInsets.zero,
+                                        leading: Assets.icons.delete
+                                            .dynamicSVGColor(
+                                              context,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.error,
+                                              width: 24,
+                                              height: 24,
+                                            ),
+                                        trailing: const SizedBox(),
+                                        title:
+                                            context.translation.deleteMyAccount,
+                                        titleStyle: TextStyle(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.error,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

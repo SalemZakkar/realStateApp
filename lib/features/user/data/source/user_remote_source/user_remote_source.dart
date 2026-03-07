@@ -21,6 +21,8 @@ abstract class UserRemoteSource {
   Future<BaseResponse<UserModel>> updateUser({required FormData body});
 
   Future<BaseResponse<UserModel>> deletePhoto();
+  
+  Future deleteMyAccount();
 }
 
 @RestApi()
@@ -50,4 +52,8 @@ abstract class UserRemoteSourceImpl extends UserRemoteSource {
   @DELETE("user/mine/image")
   @override
   Future<BaseResponse<UserModel>> deletePhoto();
+  
+  @DELETE("user/mine")
+  @override
+  Future<dynamic> deleteMyAccount();
 }

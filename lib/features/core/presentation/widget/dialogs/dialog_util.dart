@@ -70,11 +70,12 @@ class DialogUtil {
   Future showConfirmDialog({String? title, required String message}) async {
     QuickAlert.show(
       context: context,
-      type: QuickAlertType.confirm,
+      type: QuickAlertType.warning,
       cancelBtnText: context.translation.no,
       confirmBtnColor: Theme.of(context).primaryColor,
       confirmBtnText: context.translation.yes,
       backgroundColor: Theme.of(context).cardColor,
+      showCancelBtn: true,
       text: message,
       title: title ?? context.translation.areUSure,
       titleColor: Theme.of(context).textTheme.headlineSmall!.color!,

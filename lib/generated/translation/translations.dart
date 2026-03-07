@@ -1394,6 +1394,36 @@ abstract class Translations {
   /// In ar, this message translates to:
   /// **'يتم رفع الفيديو .. اغلاق الصفحة سيلغي العملية'**
   String get videoIsBeingUploadedClosingTheScreenWillCancelTheOperation;
+
+  /// No description provided for @deleteMyAccount.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف حسابي'**
+  String get deleteMyAccount;
+
+  /// No description provided for @deleteAccountWarning.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحذير: حذف الحساب نهائي ولا يمكن التراجع عنه. سيتم حذف جميع منشوراتك والعقارات المحفوظة وبياناتك الشخصية.'**
+  String get deleteAccountWarning;
+
+  /// No description provided for @post.
+  ///
+  /// In ar, this message translates to:
+  /// **'نشر'**
+  String get post;
+
+  /// No description provided for @pleaseUpdateTheApp.
+  ///
+  /// In ar, this message translates to:
+  /// **'يرجى تحديث التطبيق'**
+  String get pleaseUpdateTheApp;
+
+  /// No description provided for @currentVersion.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإصدار الحالي'**
+  String get currentVersion;
 }
 
 class _TranslationsDelegate extends LocalizationsDelegate<Translations> {

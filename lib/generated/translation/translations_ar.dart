@@ -727,4 +727,20 @@ class TranslationsAr extends Translations {
   @override
   String get videoIsBeingUploadedClosingTheScreenWillCancelTheOperation =>
       'يتم رفع الفيديو .. اغلاق الصفحة سيلغي العملية';
+
+  @override
+  String get deleteMyAccount => 'حذف حسابي';
+
+  @override
+  String get deleteAccountWarning =>
+      'تحذير: حذف الحساب نهائي ولا يمكن التراجع عنه. سيتم حذف جميع منشوراتك والعقارات المحفوظة وبياناتك الشخصية.';
+
+  @override
+  String get post => 'نشر';
+
+  @override
+  String get pleaseUpdateTheApp => 'يرجى تحديث التطبيق';
+
+  @override
+  String get currentVersion => 'الإصدار الحالي';
 }

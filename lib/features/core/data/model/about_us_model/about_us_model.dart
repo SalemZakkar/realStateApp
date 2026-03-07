@@ -12,6 +12,7 @@ class AboutUsModel {
   String? description;
   String? termsAndConditions;
   String? privacyPolicy;
+  String? googlePlayUrl;
 
   AboutUsModel({
     this.privacyPolicy,
@@ -20,6 +21,7 @@ class AboutUsModel {
     this.instagramLink,
     required this.phones,
     this.termsAndConditions,
+    this.googlePlayUrl,
   });
 
   factory AboutUsModel.fromJson(Map<String, dynamic> json) =>
@@ -34,5 +36,6 @@ extension MapToDomain on AboutUsModel {
     instagramLink: instagramLink,
     privacyPolicy: privacyPolicy,
     termsAndConditions: termsAndConditions,
+    googlePlay: googlePlayUrl,
   );
 }

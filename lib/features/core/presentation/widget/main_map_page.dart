@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:core_package/core_package.dart';
 import 'package:core_package/generated/generated_assets/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -157,12 +159,18 @@ class _MainMapWidgetState extends State<MainMapWidget> {
                   }
                   setState(() {});
                 },
-                onTap: (v) {
+                onTap: (v) async {
                   // if (widget.isField) {
                   //   setState(() {
                   //     selectedLatLng = v;
                   //   });
                   // }
+                  controller.animateCamera(
+                    CameraUpdate.newLatLngZoom(
+                      v,
+                      max(await controller.getZoomLevel(), 16),
+                    ),
+                  );
                 },
               ),
 

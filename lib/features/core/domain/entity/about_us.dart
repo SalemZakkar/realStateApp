@@ -6,6 +6,7 @@ class AboutUs {
   String? description;
   String? termsAndConditions;
   String? privacyPolicy;
+  String? googlePlay;
 
   AboutUs({
     this.privacyPolicy,
@@ -14,5 +15,6 @@ class AboutUs {
     this.instagramLink,
     required this.phones,
     this.termsAndConditions,
+    this.googlePlay,
   });
 }

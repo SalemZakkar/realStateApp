@@ -34,13 +34,9 @@ class PropertyUploadVideoCubit extends Cubit<PropertyUploadVideoState> {
     if (pickFile?.file.path != file) {
       pickFile = await PickFile.fromPath(file);
     }
-    var res = await propertiesRepository.uploadVideo(
-      id,
-      await PickFile.fromPath(file),
-      (a, b) {
-        emit(PropertyUploadVideoState(wait: false, progress: a, compress: b));
-      },
-    );
+    var res = await propertiesRepository.uploadVideo(id, pickFile!, (a, b) {
+      emit(PropertyUploadVideoState(wait: false, progress: a, compress: b));
+    });
     if (res.isRight()) {
       emit(PropertyUploadVideoState(wait: false, done: true));
     } else {

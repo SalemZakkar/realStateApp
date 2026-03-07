@@ -10,4 +10,6 @@ abstract class UserRepository {
   });
 
   Future<Either<Failure , User>> deletePhoto();
+
+  Future<Either<Failure , void>> deleteMyAccount();
 }

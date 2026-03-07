@@ -18,7 +18,10 @@ mixin ApiHandler {
           e.type == DioExceptionType.receiveTimeout) {
         return left(TimeOutError());
       } else if (e.type == DioExceptionType.badResponse) {
-        return left(ServerError(null));
+        var error = e.response?.data;
+        return left(
+          ServerError(status: e.response?.statusCode, code: error['code']),
+        );
       } else {
         return left(NetworkError());
       }

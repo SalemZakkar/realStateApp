@@ -38,25 +38,25 @@ class _PropertyFormPageState extends State<PropertyFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.id != null
-              ? context.translation.edit
-              : context.translation.postYourProperty,
+    return FormFieldWidget(
+      builder: (form) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.id != null
+                ? context.translation.edit
+                : context.translation.postYourProperty,
+          ),
         ),
-      ),
-      body: ScreenLoader(
-        cubit: addEdit,
-        onSuccess: (v) {
-          if (widget.id == null) {
-            context.replaceNamed(PropertyDetailsPage.path, extra: v.id);
-          } else {
-            context.pop();
-          }
-        },
-        child: FormFieldWidget(
-          builder: (form) => Container(
+        body: ScreenLoader(
+          cubit: addEdit,
+          onSuccess: (v) {
+            if (widget.id == null) {
+              context.replaceNamed(PropertyDetailsPage.path, extra: v.id);
+            } else {
+              context.pop();
+            }
+          },
+          child: Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             constraints: BoxConstraints.expand(),
             child: SingleChildScrollView(
@@ -82,35 +82,51 @@ class _PropertyFormPageState extends State<PropertyFormPage> {
                   if (widget.id == null) ...[
                     PropertyMainDataWidget(params: params!),
                   ],
-                  if (widget.id == null && params != null) ...[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (form.currentState!.validate()) {
-                            addEdit.add(params!);
-                          }
-                        },
-                        child: Text(context.translation.save),
-                      ),
-                    ),
-                  ],
-                  if (widget.id != null) ...[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (form.currentState!.validate()) {
-                            addEdit.edit(widget.id!, params!);
-                          }
-                        },
-                        child: Text(context.translation.save),
-                      ),
-                    ),
-                  ],
+                  // if (widget.id == null && params != null) ...[
+                  //   SizedBox(
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+
+                  //       },
+                  //       child: Text(context.translation.save),
+                  //     ),
+                  //   ),
+                  // ],
+                  // if (widget.id != null) ...[
+                  //   SizedBox(
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+
+                  //       },
+                  //       child: Text(context.translation.save),
+                  //     ),
+                  //   ),
+                  // ],
                 ],
               ),
             ),
+          ),
+        ),
+        bottomNavigationBar: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: ElevatedButton(
+            onPressed: () {
+              if (widget.id == null) {
+                if (form.currentState!.validate()) {
+                  addEdit.add(params!);
+                }
+              } else {
+                if (form.currentState!.validate()) {
+                  addEdit.edit(widget.id!, params!);
+                }
+              }
+            },
+            child: widget.id != null
+                ? Text(context.translation.save)
+                : Text(context.translation.post),
           ),
         ),
       ),

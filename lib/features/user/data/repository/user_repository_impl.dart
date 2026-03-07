@@ -1,5 +1,6 @@
 import 'package:core_package/core_package.dart';
 import 'package:injectable/injectable.dart';
+import 'package:real_state/features/auth/domain/repository/auth_repository.dart';
 import 'package:real_state/features/core/data/utils/api_handler.dart';
 import 'package:real_state/features/user/data/model/user_model/user_model.dart';
 import 'package:real_state/features/user/data/source/user_remote_source/user_remote_source.dart';
@@ -10,8 +11,9 @@ import 'package:real_state/features/user/domain/repository/user_repository.dart'
 @Injectable(as: UserRepository)
 class UserRepositoryImpl extends UserRepository with ApiHandler {
   final UserRemoteSource source;
+  final AuthRepository authRepository;
 
-  UserRepositoryImpl(this.source);
+  UserRepositoryImpl(this.source, this.authRepository);
 
   @override
   Future<Either<Failure, User>> getMine() {
@@ -39,6 +41,15 @@ class UserRepositoryImpl extends UserRepository with ApiHandler {
     return request(() async {
       var res = await source.deletePhoto();
       return Right(res.data!.toDomain());
+    });
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteMyAccount() {
+    return request(() async {
+      await source.deleteMyAccount();
+      authRepository.logout();
+      return Right(null);
     });
   }
 }
